@@ -38,4 +38,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Note
 
 - [Step 1](https://dev.to/hajhosein/nextjs-mui-v5-typescript-tutorial-and-starter-3pab#some-of-next-js-benefits)
-- [Step 2](https://javascript.plainenglish.io/deploy-your-next-js-app-on-github-pages-using-the-github-action-525271137409)
+- [Step 2](https://songsakwanta.medium.com/next-js-ทำ-ci-cd-เพื่อ-deploy-next-js-ไปยัง-github-pages-ด้วย-github-actions-47b732dd508d)
