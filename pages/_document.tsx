@@ -2,17 +2,57 @@ import * as React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 import createEmotionServer from "@emotion/server/create-instance";
-
 import createEmotionCache from "@utility/createEmotionCache";
+
+import DEFAULT_SEO from "@utility/next-seo.config";
 
 export default class MyDocument extends Document {
   render() {
+    const { title, description, og, additionalLinkTags, theme_color } =
+      DEFAULT_SEO;
     return (
       <Html lang="en">
         <Head>
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Mali:300,400,500,700&display=swap"
+          />
+          <title>{title}</title>
+          <meta name="description" content={description} />
+          <meta name="theme-color" content={theme_color} />
+          <meta property="og:title" content={og.title} />
+          <meta property="og:description" content={og.description} />
+          <meta property="og:url" content={og.url} />
+          <meta property="og:type" content={og.type} />
+          <meta name="application-name" content={title} />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="default"
+          />
+          <meta name="apple-mobile-web-app-title" content={title} />
+          <meta name="description" content={description} />
+          <meta name="format-detection" content="telephone=no" />
+          <meta name="mobile-web-app-capable" content="yes" />
+          <meta name="msapplication-TileColor" content={theme_color} />
+          <meta name="msapplication-tap-highlight" content="no" />
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+          />
+
+          <link
+            rel={additionalLinkTags[0].rel}
+            href={additionalLinkTags[0].href}
+          />
+          <link
+            rel={additionalLinkTags[1].rel}
+            href={additionalLinkTags[1].href}
+            sizes={additionalLinkTags[1].sizes}
+          />
+          <link
+            rel={additionalLinkTags[2].rel}
+            href={additionalLinkTags[2].href}
           />
         </Head>
         <body>
