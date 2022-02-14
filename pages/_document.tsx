@@ -48,11 +48,50 @@ export default class MyDocument extends Document {
           <link
             rel={additionalLinkTags[1].rel}
             href={additionalLinkTags[1].href}
-            sizes={additionalLinkTags[1].sizes}
           />
           <link
             rel={additionalLinkTags[2].rel}
             href={additionalLinkTags[2].href}
+            sizes={additionalLinkTags[2].sizes}
+          />
+          <link
+            rel={additionalLinkTags[3].rel}
+            href={additionalLinkTags[3].href}
+            sizes={additionalLinkTags[3].sizes}
+          />
+          <link
+            rel={additionalLinkTags[4].rel}
+            href={additionalLinkTags[4].href}
+            sizes={additionalLinkTags[4].sizes}
+          />
+          <link
+            rel={additionalLinkTags[5].rel}
+            href={additionalLinkTags[5].href}
+            sizes={additionalLinkTags[5].sizes}
+          />
+          <link
+            rel={additionalLinkTags[6].rel}
+            href={additionalLinkTags[6].href}
+            sizes={additionalLinkTags[6].sizes}
+          />
+          <link
+            rel={additionalLinkTags[7].rel}
+            href={additionalLinkTags[7].href}
+            sizes={additionalLinkTags[7].sizes}
+          />
+          <link
+            rel={additionalLinkTags[8].rel}
+            href={additionalLinkTags[8].href}
+            sizes={additionalLinkTags[8].sizes}
+          />
+          <link
+            rel={additionalLinkTags[9].rel}
+            href={additionalLinkTags[9].href}
+            sizes={additionalLinkTags[9].sizes}
+          />
+          <link
+            rel={additionalLinkTags[10].rel}
+            href={additionalLinkTags[10].href}
           />
         </Head>
         <body>

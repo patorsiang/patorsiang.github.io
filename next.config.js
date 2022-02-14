@@ -12,6 +12,12 @@ const nextConfig = withPWA({
   assetPrefix: isProd
     ? "https://cdn.statically.io/gh/patorseing/patorseing.github.io/gh-pages/"
     : "",
+  exportPathMap: function () {
+    return {
+      "/": { page: "/" },
+      "/api": { page: "/api" },
+    };
+  },
 });
 
 module.exports = nextConfig;

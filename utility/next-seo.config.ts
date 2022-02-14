@@ -9,8 +9,47 @@ export default {
     },
     {
       rel: "apple-touch-icon",
-      href: "/logo.svg",
-      sizes: "76x76",
+      href: "/logo.png",
+    },
+    {
+      rel: "apple-touch-icon",
+      href: "/logo-72x72.png",
+      sizes: "72x72",
+    },
+    {
+      rel: "apple-touch-icon",
+      href: "/logo-96x96.png",
+      sizes: "96x96",
+    },
+    {
+      rel: "apple-touch-icon",
+      href: "/logo-128x128.png",
+      sizes: "128x128",
+    },
+    {
+      rel: "apple-touch-icon",
+      href: "/logo-144x144.png",
+      sizes: "144x144",
+    },
+    {
+      rel: "apple-touch-icon",
+      href: "/logo-152x152.png",
+      sizes: "152x152",
+    },
+    {
+      rel: "apple-touch-icon",
+      href: "/logo-192x192.png",
+      sizes: "192x192",
+    },
+    {
+      rel: "apple-touch-icon",
+      href: "/logo-384x384.png",
+      sizes: "384x384",
+    },
+    {
+      rel: "apple-touch-icon",
+      href: "/logo-512x512.png",
+      sizes: "512x512",
     },
     {
       rel: "manifest",
