@@ -9,6 +9,12 @@ const nextConfig = withPWA({
     disable: process.env.NODE_ENV === "development",
   },
   reactStrictMode: true,
+  exportPathMap: async function () {
+    return {
+      "/": { page: "/" },
+      "/about": { page: "/about" },
+    };
+  },
   assetPrefix: isProd
     ? "https://cdn.statically.io/gh/patorseing/patorseing.github.io/gh-pages/"
     : "",
