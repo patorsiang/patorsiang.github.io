@@ -8,6 +8,7 @@ const nextConfig = withPWA({
     skipWaiting: true,
     disable: process.env.NODE_ENV === "development",
   },
+  trailingSlash: true,
   reactStrictMode: true,
   assetPrefix: isProd
     ? "https://cdn.statically.io/gh/patorseing/patorseing.github.io/gh-pages/"
