@@ -15,7 +15,7 @@ const nextConfig = withPWA({
   exportPathMap: function () {
     return {
       "/": { page: "/" },
-      "/api": { page: "/api" },
+      "/api/hello": { page: "/api/hello" },
     };
   },
 });
