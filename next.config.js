@@ -15,6 +15,32 @@ const nextConfig = withPWA({
       "/about": { page: "/about" },
     };
   },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // These rewrites are checked after headers/redirects
+        // and before all files including _next/public files which
+        // allows overriding page files
+        {
+          source: "/api/hello",
+          destination: "/api/hello",
+          has: [{ type: "query", key: "name" }],
+        },
+      ],
+      afterFiles: [
+        // These rewrites are checked after pages/public files
+        // are checked but before dynamic routes
+      ],
+      fallback: [
+        // These rewrites are checked after both pages/public files
+        // and dynamic routes are checked
+        {
+          source: "/:path*",
+          destination: `/404`,
+        },
+      ],
+    };
+  },
   assetPrefix: isProd
     ? "https://cdn.statically.io/gh/patorseing/patorseing.github.io/gh-pages/"
     : "",
