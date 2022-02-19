@@ -9,7 +9,6 @@ const nextConfig = withPWA({
     disable: process.env.NODE_ENV === "development",
   },
   reactStrictMode: true,
-  trailingSlash: true,
   exportPathMap: async function () {
     return {
       "/": { page: "/" },
