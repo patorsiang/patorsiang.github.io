@@ -17,7 +17,6 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Mali:300,400,500,700&display=swap"
           />
-          <title>{title}</title>
           <meta name="description" content={description} />
           <meta name="theme-color" content={theme_color} />
           <meta property="og:title" content={og.title} />
@@ -36,10 +35,6 @@ export default class MyDocument extends Document {
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="msapplication-TileColor" content={theme_color} />
           <meta name="msapplication-tap-highlight" content="no" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
 
           <link
             rel={additionalLinkTags[0].rel}

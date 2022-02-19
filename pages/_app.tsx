@@ -11,7 +11,10 @@ import "@fontsource/mali/700.css";
 import createEmotionCache from "@utility/createEmotionCache";
 
 import lightThemeOptions from "@styles/theme/lightThemeOptions";
+import DEFAULT_SEO from "@utility/next-seo.config";
+
 import "@styles/globals.css";
+
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
@@ -22,11 +25,13 @@ const lightTheme = createTheme(lightThemeOptions);
 
 const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-
+  const { title } = DEFAULT_SEO;
   return (
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
+        <title>{title}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <Component {...pageProps} />
       </ThemeProvider>
     </CacheProvider>
