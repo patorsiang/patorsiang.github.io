@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 
 import { experimentalStyled as styled } from "@mui/material/styles";
-import { Grid, Box, Link } from "@mui/material";
+import { Grid, Box, Link, Hidden } from "@mui/material";
 import {
   FacebookOutlined,
   Instagram,
@@ -17,6 +17,25 @@ const Item = styled(Box)(({ theme }) => ({
   textAlign: "center",
   height: "100%",
   lineHeight: "54px",
+}));
+
+const GridRight = styled(Grid)(({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    paddingRight: theme.spacing(1),
+  },
+  [theme.breakpoints.up("md")]: {
+    paddingRight: theme.spacing(6),
+  },
+  justifyContent: "right",
+  textAlign: "right",
+}));
+
+const ItemRight = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(1),
+  textAlign: "right",
+  height: "100%",
+  lineHeight: "54px",
+  width: "100%",
 }));
 
 const Social = [
@@ -68,128 +87,138 @@ const Home: NextPage = () => {
   return (
     <>
       <header>
-        <Grid container sx={{ bgcolor: "secondary.main" }}>
-          <Grid item xs={1}>
-            <Item>
-              <Link
-                component="button"
-                variant="body2"
-                onClick={() => {
-                  console.info("I'm a button.");
-                }}
-                underline="none"
-                color="secondary.contrastText"
-              >
-                Home
-              </Link>
-            </Item>
-          </Grid>
-          <Grid item xs={1}>
-            <Item>
-              <Link
-                component="button"
-                variant="body2"
-                onClick={() => {
-                  console.info("I'm a button.");
-                }}
-                underline="none"
-                color="secondary.contrastText"
-              >
-                About
-              </Link>
-            </Item>
-          </Grid>
-          <Grid item xs={1}>
-            <Item>
-              <Link
-                component="button"
-                variant="body2"
-                onClick={() => {
-                  console.info("I'm a button.");
-                }}
-                underline="none"
-                color="secondary.contrastText"
-              >
-                Experience
-              </Link>
-            </Item>
-          </Grid>
-          <Grid item xs={6}>
-            <Item>
-              <Link
-                component="button"
-                variant="h3"
-                onClick={() => {
-                  console.info("I'm a button.");
-                }}
-                fontWeight="700"
-                color="primary"
-                underline="none"
-              >
-                {"<NT/>"}
-              </Link>
-            </Item>
-          </Grid>
-          <Grid item xs={2} />
-          <Grid item xs={1}>
-            <Item>
-              <Link
-                component="button"
-                variant="body2"
-                onClick={() => {
-                  console.info("I'm a button.");
-                }}
-                color="secondary.contrastText"
-                fontWeight="700"
-              >
-                Download CV
-              </Link>
-            </Item>
-          </Grid>
-        </Grid>
-      </header>
-      <footer>
-        <Grid container sx={{ bgcolor: "primary.contrastText" }}>
-          <Grid item xs={3}>
-            <Item>
-              <Link
-                component="button"
-                variant="body2"
-                onClick={() => {
-                  console.info("I'm a button.");
-                }}
-                underline="none"
-                color="secondary.contrastText"
-              >
-                napatchol.tha@gmail.com
-              </Link>
-            </Item>
-          </Grid>
-          <Grid item xs={8}>
-            <Grid
+        <Hidden smDown>
+          <Grid container sx={{ bgcolor: "secondary.main" }}>
+            <Grid item xs={1}>
+              <Item>
+                <Link
+                  component="button"
+                  variant="body2"
+                  onClick={() => {
+                    console.info("I'm a button.");
+                  }}
+                  underline="none"
+                  color="secondary.contrastText"
+                >
+                  Home
+                </Link>
+              </Item>
+            </Grid>
+            <Grid item xs={1}>
+              <Item>
+                <Link
+                  component="button"
+                  variant="body2"
+                  onClick={() => {
+                    console.info("I'm a button.");
+                  }}
+                  underline="none"
+                  color="secondary.contrastText"
+                >
+                  About
+                </Link>
+              </Item>
+            </Grid>
+            <Grid item xs={1}>
+              <Item>
+                <Link
+                  component="button"
+                  variant="body2"
+                  onClick={() => {
+                    console.info("I'm a button.");
+                  }}
+                  underline="none"
+                  color="secondary.contrastText"
+                >
+                  Experience
+                </Link>
+              </Item>
+            </Grid>
+            <Grid item xs={6}>
+              <Item>
+                <Link
+                  component="button"
+                  variant="h3"
+                  onClick={() => {
+                    console.info("I'm a button.");
+                  }}
+                  fontWeight="700"
+                  color="primary"
+                  underline="none"
+                >
+                  {"<NT/>"}
+                </Link>
+              </Item>
+            </Grid>
+            <GridRight
+              item
+              xs={3}
               container
               direction="row"
-              justifyContent="center"
-              alignItems="center"
+              justifyContent="right"
+              alignItems="right"
             >
-              {Social.map((item, i) => (
-                <Grid item xs={1} key={item.name}>
-                  <Item>
-                    <Link
-                      variant="body2"
-                      underline="none"
-                      color="secondary.contrastText"
-                      href={item.url}
-                      target={item.target}
-                    >
-                      <item.icon />
-                    </Link>
-                  </Item>
-                </Grid>
-              ))}
+              <ItemRight>
+                <Link
+                  component="button"
+                  variant="body2"
+                  onClick={() => {
+                    console.info("I'm a button.");
+                  }}
+                  color="secondary.contrastText"
+                  fontWeight="700"
+                >
+                  Download CV
+                </Link>
+              </ItemRight>
+            </GridRight>
+          </Grid>
+        </Hidden>
+      </header>
+      <footer>
+        <Hidden smDown>
+          <Grid container sx={{ bgcolor: "primary.contrastText" }}>
+            <Grid item xs={3}>
+              <Item>
+                <Link
+                  component="button"
+                  variant="body2"
+                  onClick={() => {
+                    console.info("I'm a button.");
+                  }}
+                  underline="none"
+                  color="secondary.contrastText"
+                >
+                  napatchol.tha@gmail.com
+                </Link>
+              </Item>
+            </Grid>
+            <Grid item xs={8}>
+              <Grid
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                {Social.map((item, i) => (
+                  <Grid item xs={1} key={item.name}>
+                    <Item>
+                      <Link
+                        variant="body2"
+                        underline="none"
+                        color="secondary.contrastText"
+                        href={item.url}
+                        target={item.target}
+                      >
+                        <item.icon />
+                      </Link>
+                    </Item>
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        </Hidden>
         <Grid
           container
           sx={{
