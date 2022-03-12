@@ -1,7 +1,15 @@
 import type { NextPage } from "next";
 
 import { experimentalStyled as styled } from "@mui/material/styles";
-import { Grid, Box, Link, Hidden } from "@mui/material";
+import {
+  Grid,
+  Box,
+  Link,
+  Hidden,
+  SpeedDial,
+  SpeedDialIcon,
+  SpeedDialAction,
+} from "@mui/material";
 import {
   FacebookOutlined,
   Instagram,
@@ -10,7 +18,15 @@ import {
   YouTube,
   GitHub,
   SmartToyOutlined,
+  HomeRounded,
+  InfoRounded,
+  WorkRounded,
+  FileDownloadRounded,
+  WidgetsRounded,
+  MenuRounded,
 } from "@mui/icons-material";
+
+import LogoLink from "@/components/logoLink";
 
 const Item = styled(Box)(({ theme }) => ({
   padding: theme.spacing(1),
@@ -83,6 +99,15 @@ const Social = [
   },
 ];
 
+const email = "napatchol.tha@gmail.com";
+
+const actions = [
+  { icon: <HomeRounded />, name: "Home" },
+  { icon: <InfoRounded />, name: "About" },
+  { icon: <WorkRounded />, name: "Experience" },
+  { icon: <FileDownloadRounded />, name: "Download_CV" },
+];
+
 const Home: NextPage = () => {
   return (
     <>
@@ -136,18 +161,7 @@ const Home: NextPage = () => {
             </Grid>
             <Grid item xs={6}>
               <Item>
-                <Link
-                  component="button"
-                  variant="h3"
-                  onClick={() => {
-                    console.info("I'm a button.");
-                  }}
-                  fontWeight="700"
-                  color="primary"
-                  underline="none"
-                >
-                  {"<NT/>"}
-                </Link>
+                <LogoLink />
               </Item>
             </Grid>
             <GridRight
@@ -174,6 +188,50 @@ const Home: NextPage = () => {
             </GridRight>
           </Grid>
         </Hidden>
+        <Hidden smUp>
+          <Box
+            sx={{
+              height: 320,
+              transform: "translateZ(0px)",
+              flexGrow: 1,
+              backgroundColor: "secondary.main",
+            }}
+          >
+            <Grid container sx={{ bgcolor: "secondary.main" }}>
+              <Grid item xs={1}>
+                <Item>
+                  <LogoLink sx={{ margin: "8px 16px" }} />
+                </Item>
+              </Grid>
+            </Grid>
+            <SpeedDial
+              ariaLabel="menu"
+              sx={{
+                position: "absolute",
+                top: 16,
+                right: 16,
+              }}
+              icon={
+                <SpeedDialIcon
+                  openIcon={<WidgetsRounded />}
+                  icon={<MenuRounded />}
+                  color="primary"
+                  aria-label="add"
+                />
+              }
+              direction="down"
+            >
+              {actions.map((action) => (
+                <SpeedDialAction
+                  key={action.name}
+                  icon={action.icon}
+                  tooltipTitle={action.name}
+                  tooltipOpen
+                />
+              ))}
+            </SpeedDial>
+          </Box>
+        </Hidden>
       </header>
       <footer>
         <Hidden smDown>
@@ -181,15 +239,12 @@ const Home: NextPage = () => {
             <Grid item xs={3}>
               <Item>
                 <Link
-                  component="button"
                   variant="body2"
-                  onClick={() => {
-                    console.info("I'm a button.");
-                  }}
                   underline="none"
                   color="secondary.contrastText"
+                  href={`mailto:${email}`}
                 >
-                  napatchol.tha@gmail.com
+                  {email}
                 </Link>
               </Item>
             </Grid>

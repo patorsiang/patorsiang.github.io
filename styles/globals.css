@@ -14,3 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.MuiButtonBase-root {
+  background: #c4c4c4 !important;
+}
