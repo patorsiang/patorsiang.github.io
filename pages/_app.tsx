@@ -15,6 +15,8 @@ import DEFAULT_SEO from "@utility/next-seo.config";
 
 import "@styles/globals.css";
 
+import Header from "@components/header";
+
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
@@ -30,6 +32,7 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
+        <Header />
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <Component {...pageProps} />

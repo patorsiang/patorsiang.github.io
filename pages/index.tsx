@@ -1,172 +1,14 @@
 import type { NextPage } from "next";
+import { Grid, Link, Hidden } from "@mui/material";
+import { Item } from "@components/util";
 
-import { experimentalStyled as styled } from "@mui/material/styles";
-import {
-  Grid,
-  Box,
-  Link,
-  Hidden,
-  SpeedDial,
-  SpeedDialIcon,
-  SpeedDialAction,
-} from "@mui/material";
-import { WidgetsRounded, MenuRounded } from "@mui/icons-material";
+import RightTag from "@components/footer/rightTag";
 
-import LogoLink from "@components/logoLink";
-
-import { Social, email, actions } from "@res/data";
-
-const Item = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(1),
-  textAlign: "center",
-  height: "100%",
-  lineHeight: "54px",
-}));
-
-const GridRight = styled(Grid)(({ theme }) => ({
-  [theme.breakpoints.down("md")]: {
-    paddingRight: theme.spacing(1),
-  },
-  [theme.breakpoints.up("md")]: {
-    paddingRight: theme.spacing(6),
-  },
-  justifyContent: "right",
-  textAlign: "right",
-}));
-
-const ItemRight = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(1),
-  textAlign: "right",
-  height: "100%",
-  lineHeight: "54px",
-  width: "100%",
-}));
+import { Social, email } from "@res/data";
 
 const Home: NextPage = () => {
   return (
     <>
-      <header>
-        <Hidden smDown>
-          <Grid container sx={{ bgcolor: "secondary.main" }}>
-            <Grid item xs={1}>
-              <Item>
-                <Link
-                  component="button"
-                  variant="body2"
-                  onClick={() => {
-                    console.info("I'm a button.");
-                  }}
-                  underline="none"
-                  color="secondary.contrastText"
-                >
-                  Home
-                </Link>
-              </Item>
-            </Grid>
-            <Grid item xs={1}>
-              <Item>
-                <Link
-                  component="button"
-                  variant="body2"
-                  onClick={() => {
-                    console.info("I'm a button.");
-                  }}
-                  underline="none"
-                  color="secondary.contrastText"
-                >
-                  About
-                </Link>
-              </Item>
-            </Grid>
-            <Grid item xs={1}>
-              <Item>
-                <Link
-                  component="button"
-                  variant="body2"
-                  onClick={() => {
-                    console.info("I'm a button.");
-                  }}
-                  underline="none"
-                  color="secondary.contrastText"
-                >
-                  Experience
-                </Link>
-              </Item>
-            </Grid>
-            <Grid item xs={6}>
-              <Item>
-                <LogoLink />
-              </Item>
-            </Grid>
-            <GridRight
-              item
-              xs={3}
-              container
-              direction="row"
-              justifyContent="right"
-              alignItems="right"
-            >
-              <ItemRight>
-                <Link
-                  component="button"
-                  variant="body2"
-                  onClick={() => {
-                    console.info("I'm a button.");
-                  }}
-                  color="secondary.contrastText"
-                  fontWeight="700"
-                >
-                  Download CV
-                </Link>
-              </ItemRight>
-            </GridRight>
-          </Grid>
-        </Hidden>
-        <Hidden smUp>
-          <Box
-            sx={{
-              height: 320,
-              transform: "translateZ(0px)",
-              flexGrow: 1,
-              backgroundColor: "secondary.main",
-            }}
-          >
-            <Grid container sx={{ bgcolor: "secondary.main" }}>
-              <Grid item xs={1}>
-                <Item>
-                  <LogoLink sx={{ margin: "8px 16px" }} />
-                </Item>
-              </Grid>
-            </Grid>
-            <SpeedDial
-              ariaLabel="menu"
-              sx={{
-                position: "absolute",
-                top: 16,
-                right: 16,
-              }}
-              icon={
-                <SpeedDialIcon
-                  openIcon={<WidgetsRounded />}
-                  icon={<MenuRounded />}
-                  color="primary"
-                  aria-label="add"
-                />
-              }
-              direction="down"
-            >
-              {actions.map((action) => (
-                <SpeedDialAction
-                  key={action.name}
-                  icon={action.icon}
-                  tooltipTitle={action.name}
-                  tooltipOpen
-                />
-              ))}
-            </SpeedDial>
-          </Box>
-        </Hidden>
-      </header>
       <footer>
         <Hidden smDown>
           <Grid container sx={{ bgcolor: "primary.contrastText" }}>
@@ -248,26 +90,7 @@ const Home: NextPage = () => {
             </Grid>
           </Grid>
         </Hidden>
-        <Grid
-          container
-          sx={{
-            bgcolor: "primary.contrastText",
-            fontWeight: "700",
-          }}
-        >
-          <Grid
-            item
-            xs={12}
-            sx={{
-              textAlign: "center",
-              overflowWrap: "break-word",
-              padding: 1,
-            }}
-          >
-            Created by {"<Napatchol Thaipanich/> "}&copy;
-            {" " + new Date().getFullYear()}
-          </Grid>
-        </Grid>
+        <RightTag />
       </footer>
     </>
   );
