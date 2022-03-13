@@ -10,23 +10,11 @@ import {
   SpeedDialIcon,
   SpeedDialAction,
 } from "@mui/material";
-import {
-  FacebookOutlined,
-  Instagram,
-  LinkedIn,
-  Twitter,
-  YouTube,
-  GitHub,
-  SmartToyOutlined,
-  HomeRounded,
-  InfoRounded,
-  WorkRounded,
-  FileDownloadRounded,
-  WidgetsRounded,
-  MenuRounded,
-} from "@mui/icons-material";
+import { WidgetsRounded, MenuRounded } from "@mui/icons-material";
 
-import LogoLink from "@/components/logoLink";
+import LogoLink from "@components/logoLink";
+
+import { Social, email, actions } from "@res/data";
 
 const Item = styled(Box)(({ theme }) => ({
   padding: theme.spacing(1),
@@ -53,60 +41,6 @@ const ItemRight = styled(Box)(({ theme }) => ({
   lineHeight: "54px",
   width: "100%",
 }));
-
-const Social = [
-  {
-    icon: FacebookOutlined,
-    name: "Facebook",
-    url: "https://www.facebook.com/napatchol.thaipanich",
-    target: "_blank",
-  },
-  {
-    icon: Instagram,
-    name: "Instagram",
-    url: "https://www.instagram.com/patorseing/",
-    target: "_blank",
-  },
-  {
-    icon: LinkedIn,
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/in/napatchol-thaipanich/",
-    target: "_blank",
-  },
-  {
-    icon: Twitter,
-    name: "Twitter",
-    url: "https://twitter.com/SeingOrPat",
-    target: "_blank",
-  },
-  {
-    icon: YouTube,
-    name: "YouTube",
-    url: "https://www.youtube.com/channel/UCaTBr-FOe6pggqCjy47zfcA",
-    target: "_blank",
-  },
-  {
-    icon: GitHub,
-    name: "GitHub",
-    url: "https://github.com/patorseing",
-    target: "_blank",
-  },
-  {
-    icon: SmartToyOutlined,
-    name: "Line",
-    url: "#",
-    target: "",
-  },
-];
-
-const email = "napatchol.tha@gmail.com";
-
-const actions = [
-  { icon: <HomeRounded />, name: "Home" },
-  { icon: <InfoRounded />, name: "About" },
-  { icon: <WorkRounded />, name: "Experience" },
-  { icon: <FileDownloadRounded />, name: "Download_CV" },
-];
 
 const Home: NextPage = () => {
   return (
