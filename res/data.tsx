@@ -60,8 +60,8 @@ export const Social = [
 export const email = "napatchol.tha@gmail.com";
 
 export const actions = [
-  { icon: <HomeRounded />, name: "Home" },
-  { icon: <InfoRounded />, name: "About" },
-  { icon: <WorkRounded />, name: "Experience" },
-  { icon: <FileDownloadRounded />, name: "Download_CV" },
+  { icon: <HomeRounded />, name: "Home", url: "/" },
+  { icon: <InfoRounded />, name: "About", url: "/about" },
+  { icon: <WorkRounded />, name: "Experience", url: "/experience" },
+  { icon: <FileDownloadRounded />, name: "Download_CV", url: "" },
 ];
