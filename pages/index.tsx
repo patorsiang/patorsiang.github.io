@@ -274,6 +274,46 @@ const Home: NextPage = () => {
             </Grid>
           </Grid>
         </Hidden>
+        <Hidden smUp>
+          <Grid container sx={{ bgcolor: "primary.contrastText" }}>
+            <Grid item xs={12}>
+              <Item>
+                <Link
+                  variant="body2"
+                  underline="none"
+                  color="secondary.contrastText"
+                  href={`mailto:${email}`}
+                >
+                  {email}
+                </Link>
+              </Item>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                {Social.map((item, i) => (
+                  <Grid item xs={1} key={item.name}>
+                    <Item>
+                      <Link
+                        variant="body2"
+                        underline="none"
+                        color="secondary.contrastText"
+                        href={item.url}
+                        target={item.target}
+                      >
+                        <item.icon />
+                      </Link>
+                    </Item>
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+          </Grid>
+        </Hidden>
         <Grid
           container
           sx={{
@@ -281,7 +321,15 @@ const Home: NextPage = () => {
             fontWeight: "700",
           }}
         >
-          <Grid item xs={12} sx={{ textAlign: "center" }}>
+          <Grid
+            item
+            xs={12}
+            sx={{
+              textAlign: "center",
+              overflowWrap: "break-word",
+              padding: 1,
+            }}
+          >
             Created by {"<Napatchol Thaipanich/> "}&copy;
             {" " + new Date().getFullYear()}
           </Grid>
