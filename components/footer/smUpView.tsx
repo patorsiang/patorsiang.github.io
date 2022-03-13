@@ -1,11 +1,10 @@
 import { Grid, Link } from "@mui/material";
 
 import { Item } from "@components/util";
-import SocialIconBar from "@components/footer/socialIconBar";
 
 import { Social, email } from "@res/data";
 
-const SMUpViewHeader = () => (
+const SMUpView = () => (
   <Grid container sx={{ bgcolor: "primary.contrastText" }}>
     <Grid item xs={3}>
       <Item>
@@ -26,12 +25,24 @@ const SMUpViewHeader = () => (
         justifyContent="center"
         alignItems="center"
       >
-        {Social.map((item) => (
-          <SocialIconBar key={item.name} {...item} />
+        {Social.map((item, i) => (
+          <Grid item xs={1} key={item.name}>
+            <Item>
+              <Link
+                variant="body2"
+                underline="none"
+                color="secondary.contrastText"
+                href={item.url}
+                target={item.target}
+              >
+                <item.icon />
+              </Link>
+            </Item>
+          </Grid>
         ))}
       </Grid>
     </Grid>
   </Grid>
 );
 
-export default SMUpViewHeader;
+export default SMUpView;

@@ -1,60 +1,48 @@
-import {
-  Grid,
-  Box,
-  SpeedDial,
-  SpeedDialIcon,
-  SpeedDialAction,
-} from "@mui/material";
-import { WidgetsRounded, MenuRounded } from "@mui/icons-material";
+import { Grid, Link } from "@mui/material";
 
 import { Item } from "@components/util";
-import LogoLink from "@components/header/logoLink";
 
-import { actions } from "@res/data";
+import { email, Social } from "@res/data";
 
-const SMDownViewHeader = () => (
-  <Box
-    sx={{
-      height: 320,
-      transform: "translateZ(0px)",
-      flexGrow: 1,
-      backgroundColor: "secondary.main",
-    }}
-  >
-    <Grid container sx={{ bgcolor: "secondary.main" }}>
-      <Grid item xs={1}>
-        <Item>
-          <LogoLink sx={{ margin: "8px 16px" }} />
-        </Item>
+const SMDownView = () => (
+  <Grid container sx={{ bgcolor: "primary.contrastText" }}>
+    <Grid item xs={12}>
+      <Item>
+        <Link
+          variant="body2"
+          underline="none"
+          color="secondary.contrastText"
+          href={`mailto:${email}`}
+        >
+          {email}
+        </Link>
+      </Item>
+    </Grid>
+    <Grid item xs={12}>
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        {Social.map((item, i) => (
+          <Grid item xs={1} key={item.name}>
+            <Item>
+              <Link
+                variant="body2"
+                underline="none"
+                color="secondary.contrastText"
+                href={item.url}
+                target={item.target}
+              >
+                <item.icon />
+              </Link>
+            </Item>
+          </Grid>
+        ))}
       </Grid>
     </Grid>
-    <SpeedDial
-      ariaLabel="menu"
-      sx={{
-        position: "absolute",
-        top: 16,
-        right: 16,
-      }}
-      icon={
-        <SpeedDialIcon
-          openIcon={<WidgetsRounded />}
-          icon={<MenuRounded />}
-          color="primary"
-          aria-label="add"
-        />
-      }
-      direction="down"
-    >
-      {actions.map((action) => (
-        <SpeedDialAction
-          key={action.name}
-          icon={action.icon}
-          tooltipTitle={action.name}
-          tooltipOpen
-        />
-      ))}
-    </SpeedDial>
-  </Box>
+  </Grid>
 );
 
-export default SMDownViewHeader;
+export default SMDownView;

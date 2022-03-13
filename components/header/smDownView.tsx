@@ -12,7 +12,7 @@ import LogoLink from "@components/header/logoLink";
 
 import { actions } from "@res/data";
 
-const SMDownViewHeader = () => (
+const SMDownView = () => (
   <Box
     sx={{
       height: 320,
@@ -57,4 +57,4 @@ const SMDownViewHeader = () => (
   </Box>
 );
 
-export default SMDownViewHeader;
+export default SMDownView;

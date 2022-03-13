@@ -2,6 +2,7 @@ import * as React from "react";
 import type { AppProps } from "next/app";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
+import { Grid } from "@mui/material";
 
 import "@fontsource/mali/300.css";
 import "@fontsource/mali/400.css";
@@ -16,6 +17,7 @@ import DEFAULT_SEO from "@utility/next-seo.config";
 import "@styles/globals.css";
 
 import Header from "@components/header";
+import Footer from "@components/footer";
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -32,10 +34,16 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
-        <Header />
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <Component {...pageProps} />
+        <Header />
+        <Grid
+          container
+          sx={{ bgcolor: "secondary.main", position: "relative" }}
+        >
+          <Component {...pageProps} />
+        </Grid>
+        <Footer />
       </ThemeProvider>
     </CacheProvider>
   );
