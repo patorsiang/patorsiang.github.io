@@ -13,8 +13,8 @@ const nextConfig = withPWA({
     return {
       "/": { page: "/" },
       "/about": { page: "/about" },
-      "/404": { page: "/404" },
-      "/500": { page: "/500" },
+      "/NotFound": { page: "/404" },
+      "/ServerError": { page: "/500" },
     };
   },
   async rewrites() {
