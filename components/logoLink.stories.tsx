@@ -24,7 +24,7 @@ const LogoLinkTemp: ComponentStory<typeof LogoLink> = (args) => (
 
 export const LogoLinkStory = LogoLinkTemp.bind({});
 
-LogoLinkStory.args = { sx: { margin: "8px 16px" } };
+LogoLinkStory.args = { sx: { margin: "8px 16px", fontFamily: "Mali" } };
 
 LogoLinkStory.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
