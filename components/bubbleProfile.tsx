@@ -1,18 +1,7 @@
-import { Link } from "@mui/material";
+import { profileImage } from "../res/data";
 
 const BgBubble = ({}: {}) => (
-  <Link
-    component="button"
-    variant="h3"
-    onClick={() => {
-      console.info("I'm a button.");
-    }}
-    fontWeight="700"
-    color="primary"
-    underline="none"
-  >
-    {"<NT/>"}
-  </Link>
+  <img src={profileImage} loading="lazy" className="w-full rounded-[47.5%]" />
 );
 
 export default BgBubble;

@@ -12,6 +12,11 @@ import {
   FileDownloadRounded,
 } from "@mui/icons-material";
 
+// cartoon: https://drive.google.com/uc?export=view&id=1Po3wbjeWYA2qaWdVPfX2Ys4GMTCOqgX9
+
+export const profileImage =
+  "https://drive.google.com/uc?export=view&id=1G2l03joYRitU_KjbZjxcDnw99w_BI03j";
+
 export const Social = [
   {
     icon: FacebookOutlined,
