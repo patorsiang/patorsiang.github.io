@@ -1,19 +1,26 @@
 //.storybook/preview.js
-import "../styles/globals.css";
+
+import {
+  ThemeProvider as MUIThemeProvider,
+  createTheme,
+} from "@mui/material/styles";
+import { ThemeProvider } from "emotion-theming";
 
 import "@fontsource/mali/300.css";
 import "@fontsource/mali/400.css";
 import "@fontsource/mali/500.css";
 import "@fontsource/mali/700.css";
 
-import { muiTheme } from "storybook-addon-material-ui";
+import "@styles/globals.css";
 
-import lightThemeOptions from "../styles/theme/lightThemeOptions";
+import lightThemeOptions from "@styles/theme/lightThemeOptions";
 
-const lightTheme = muiTheme(lightThemeOptions);
+const theme = createTheme(lightThemeOptions);
 
-export const decorators = [lightTheme];
-
-// addDecorator((storyFn) => (
-//   <ThemeProvider theme={lightTheme}>{storyFn()}</ThemeProvider>
-// ));
+export const decorators = [
+  (Story) => (
+    <MUIThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
+    </MUIThemeProvider>
+  ),
+];

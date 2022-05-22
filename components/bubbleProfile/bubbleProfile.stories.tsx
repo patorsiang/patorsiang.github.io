@@ -22,11 +22,11 @@ const BubbleProfileTemp: ComponentStory<typeof BubbleProfile> = (args) => (
   <BubbleProfile {...args} />
 );
 
-export const LogoLinkStory = BubbleProfileTemp.bind({});
+export const BubbleProfileStory = BubbleProfileTemp.bind({});
 
-LogoLinkStory.args = { sx: { margin: "8px 16px", fontFamily: "Mali" } };
+BubbleProfileStory.args = { sx: { margin: "8px 16px", fontFamily: "Mali" } };
 
-LogoLinkStory.play = async ({ canvasElement }) => {
+BubbleProfileStory.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const logoButton = await canvas.getByRole("button", { name: /<NT\/>/i });
   await userEvent.click(logoButton);
