@@ -24,7 +24,7 @@ const BubbleProfileTemp: ComponentStory<typeof BubbleProfile> = (args) => (
 
 export const BubbleProfileStory = BubbleProfileTemp.bind({});
 
-BubbleProfileStory.args = { sx: { margin: "8px 16px", fontFamily: "Mali" } };
+BubbleProfileStory.args = { sx: {} };
 
 BubbleProfileStory.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);

@@ -1,16 +1,20 @@
 import { CSSProperties } from "react";
-import { Typography } from "@mui/material";
 
 import { profileImage } from "@res/data";
 
-import { Div } from "./bubbleProfile.style";
+import { Div, Span, Img, Introduction } from "./bubbleProfile.style";
 
 const BgBubble = ({ sx }: { sx?: CSSProperties }) => (
-  <Div className="relative" sx={sx}>
-    <Typography variant="h1" component="h2">
-      สวัสดีค่ะ Hi, I&#8217;m Napatchol Thaipanich
-    </Typography>
-    <img src={profileImage} />
+  <Div sx={sx}>
+    <Introduction className="absolute top-3">
+      สวัสดีค่ะ <br />
+      Hi, I&#8217;m&nbsp;
+      <Span>
+        Napatchol <br />
+        Thaipanich
+      </Span>
+    </Introduction>
+    <Img src={profileImage} />
   </Div>
 );
 
