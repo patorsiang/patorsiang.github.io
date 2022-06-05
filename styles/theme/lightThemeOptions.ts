@@ -18,6 +18,9 @@ const lightThemeOptions: ThemeOptions = {
       dark: "#a8aaac",
       contrastText: "#000",
     },
+    background: {
+      default: "#F1F4F6",
+    },
   },
 };
 

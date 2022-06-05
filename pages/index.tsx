@@ -1,10 +1,12 @@
 import type { NextPage } from "next";
+import { BubbleProfile } from "@components/bubbleProfile";
+import { MainBackground } from "@components/mainBackground";
 
 const Home: NextPage = () => {
   return (
-    <>
-      <h1>Hello Next.js</h1>
-    </>
+    <MainBackground>
+      <BubbleProfile />
+    </MainBackground>
   );
 };
 

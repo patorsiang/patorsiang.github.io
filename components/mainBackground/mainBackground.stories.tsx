@@ -1,7 +1,8 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { within, userEvent } from "@storybook/testing-library";
-import { BubbleProfile } from "./bubbleProfile";
+import { BubbleProfile } from "@components/bubbleProfile";
+import { MainBackground } from "./mainBackground";
 
 //👇 This default export determines where your story goes in the story list
 export default {
@@ -9,20 +10,22 @@ export default {
    * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
    * to learn how to generate automatic titles
    */
-  title: "Bubble Profile Image",
-  component: BubbleProfile,
+  title: "Background",
+  component: MainBackground,
   parameters: {
     // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof BubbleProfile>;
+} as ComponentMeta<typeof MainBackground>;
 
 //👇 We create a “template” of how args map to rendering
-const BubbleProfileTemp: ComponentStory<typeof BubbleProfile> = () => (
-  <BubbleProfile />
+const MainBackgroundTemp: ComponentStory<typeof MainBackground> = () => (
+  <MainBackground>
+    <BubbleProfile />
+  </MainBackground>
 );
 
-export const BubbleProfileStory = BubbleProfileTemp.bind({});
+export const BubbleProfileStory = MainBackgroundTemp.bind({});
 
 BubbleProfileStory.args = {};
 
