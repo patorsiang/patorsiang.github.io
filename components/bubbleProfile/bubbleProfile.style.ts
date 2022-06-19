@@ -1,10 +1,16 @@
 import { styled } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 
-export const Div = styled("div")(({ theme }) => ({
+export const FullScreen = styled("div")(({ theme }) => ({
+  width: "100wv",
+  height: "100wh",
+  padding: theme.spacing(2),
+}));
+
+export const Overall = styled("div")(({ theme }) => ({
   position: "relative",
   width: "fit-content",
-  margin: `0 auto`,
+  margin: "0 auto",
 }));
 
 export const Span = styled("span")(({ theme }) => ({

@@ -2,7 +2,7 @@ import * as React from "react";
 import type { AppProps } from "next/app";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
-
+import { MainBackground } from "@components/mainBackground";
 import "@fontsource/mali/300.css";
 import "@fontsource/mali/400.css";
 import "@fontsource/mali/500.css";
@@ -32,12 +32,19 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   return (
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={lightTheme}>
-        <CssBaseline />
-        <title>{title}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <Header />
-        <Component {...pageProps} />
-        <Footer />
+        <MainBackground>
+          <>
+            <CssBaseline />
+            <title>{title}</title>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+            <Header />
+            <Component {...pageProps} />
+            <Footer />
+          </>
+        </MainBackground>
       </ThemeProvider>
     </CacheProvider>
   );

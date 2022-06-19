@@ -3,17 +3,6 @@ import { styled } from "@mui/material/styles";
 export const Background = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   width: "100vw",
-  padding: theme.spacing(2),
-
-  ".bubbles": {
-    position: "absolute",
-    width: "100vw",
-    height: "100vh",
-    zIndex: "0",
-    overflow: "hidden",
-    top: "0",
-    left: "0",
-  },
 
   ".bubble:nth-child(even)": {
     background: theme.palette.info.light,
@@ -267,6 +256,17 @@ export const Background = styled("div")(({ theme }) => ({
       transform: " translateX(-200px)",
     },
   },
+}));
+
+export const Bubbles = styled("div")(({ theme, hidden }) => ({
+  display: hidden ? "none" : "block",
+  position: "absolute",
+  width: "100%",
+  height: "100%",
+  zIndex: "0",
+  overflow: "hidden",
+  top: "0",
+  left: "0",
 }));
 
 export const Bubble = styled("div")(({ theme }) => ({
