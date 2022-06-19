@@ -4,7 +4,7 @@ import { Typography } from "@mui/material";
 export const Div = styled("div")(({ theme }) => ({
   position: "relative",
   width: "fit-content",
-  margin: `${theme.spacing(5)} auto`,
+  margin: `0 auto`,
 }));
 
 export const Span = styled("span")(({ theme }) => ({
@@ -28,9 +28,11 @@ export const Introduction = styled(Typography)(({ theme }) => ({
   top: theme.spacing(2),
   [theme.breakpoints.up("xs")]: {
     fontSize: theme.typography.h5.fontSize,
+    top: 0,
   },
   "@media (max-width:320px)": {
     fontSize: theme.typography.h6.fontSize,
+    top: 0,
   },
   [theme.breakpoints.up("sm")]: {
     fontSize: theme.typography.h3.fontSize,
