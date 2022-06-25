@@ -28,9 +28,7 @@ const SMUpViewHeader = () => {
           <Link
             component="button"
             variant="body2"
-            onClick={() => {
-              router.push("/about");
-            }}
+            href="/#about-me"
             underline="none"
             color="secondary.contrastText"
           >

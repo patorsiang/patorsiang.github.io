@@ -19,7 +19,6 @@ const lightThemeOptions: ThemeOptions = {
       contrastText: "#000",
     },
     info: {
-      light: "#fff",
       main: "#BBD3EA",
     },
     background: {

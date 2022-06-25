@@ -5,7 +5,7 @@ export const Background = styled("div")(({ theme }) => ({
   width: "100vw",
 
   ".bubble:nth-child(even)": {
-    background: theme.palette.info.light,
+    background: theme.palette.primary.contrastText,
   },
 
   ".bubble:nth-child(1)": {

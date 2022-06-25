@@ -66,7 +66,7 @@ export const email = "napatchol.tha@gmail.com";
 
 export const actions = [
   { icon: <HomeRounded />, name: "Home", url: "/" },
-  { icon: <InfoRounded />, name: "About", url: "/about" },
+  { icon: <InfoRounded />, name: "About", url: "/#about-me" },
   { icon: <WorkRounded />, name: "Experience", url: "/experience" },
   { icon: <FileDownloadRounded />, name: "Download_CV", url: "" },
 ];
