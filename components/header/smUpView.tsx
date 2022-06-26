@@ -1,5 +1,6 @@
 import { Grid, Link } from "@mui/material";
 import { useRouter } from "next/router";
+import NextLink from "next/link";
 
 import { Item, GridRight, ItemRight } from "@components/util";
 import LogoLink from "@components/header/logoLink";
@@ -25,15 +26,16 @@ const SMUpViewHeader = () => {
       </Grid>
       <Grid item xs={1}>
         <Item>
-          <Link
-            component="button"
-            variant="body2"
-            href="/#about-me"
-            underline="none"
-            color="secondary.contrastText"
-          >
-            About
-          </Link>
+          <NextLink href="#about-me">
+            <Link
+              component="button"
+              variant="body2"
+              underline="none"
+              color="secondary.contrastText"
+            >
+              About
+            </Link>
+          </NextLink>
         </Item>
       </Grid>
       <Grid item xs={1}>
