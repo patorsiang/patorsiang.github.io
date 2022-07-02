@@ -1,12 +1,16 @@
 import React from "react";
-import { useRouter } from "next/router";
 import { Background, Bubble, Bubbles } from "./mainBackground.style";
 
-export const MainBackground = ({ children }: { children: JSX.Element }) => {
-  const router = useRouter();
+export const MainBackground = ({
+  children,
+  hidden,
+}: {
+  children: JSX.Element;
+  hidden: boolean;
+}) => {
   return (
     <Background>
-      <Bubbles hidden={router.asPath !== "/"}>
+      <Bubbles hidden={hidden}>
         {Array.from(Array(30), (_, i) => (
           <Bubble className="bubble" key={i} />
         ))}

@@ -2,27 +2,27 @@ import { styled } from "@mui/material/styles";
 
 export const Background = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
-  width: "100vw",
+  width: "100%",
 
-  ".bubble:nth-child(even)": {
+  ".bubble:nth-of-type(even)": {
     background: theme.palette.primary.contrastText,
   },
 
-  ".bubble:nth-child(1)": {
+  ".bubble:nth-of-type(1)": {
     width: "40px",
     height: "40px",
     left: "10%",
     animationDuration: "8s",
   },
 
-  ".bubble:nth-child(2)": {
+  ".bubble:nth-of-type(2)": {
     width: "50px",
     height: "50px",
     right: "10%",
     animationDuration: "10s",
   },
 
-  ".bubble:nth-child(3)": {
+  ".bubble:nth-of-type(3)": {
     width: "50px",
     height: "50px",
     left: "35%",
@@ -30,7 +30,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "2s",
   },
 
-  ".bubble:nth-child(4)": {
+  ".bubble:nth-of-type(4)": {
     width: "60px",
     height: "60px",
     right: "35%",
@@ -38,7 +38,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "5s",
   },
 
-  ".bubble:nth-child(5)": {
+  ".bubble:nth-of-type(5)": {
     width: "20px",
     height: "20px",
     left: "20%",
@@ -46,7 +46,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "1s",
   },
 
-  ".bubble:nth-child(6)": {
+  ".bubble:nth-of-type(6)": {
     width: "30px",
     height: "30px",
     right: "20%",
@@ -54,7 +54,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "3s",
   },
 
-  ".bubble:nth-child(7)": {
+  ".bubble:nth-of-type(7)": {
     width: "80px",
     height: "80px",
     left: "50%",
@@ -62,7 +62,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "0s",
   },
 
-  ".bubble:nth-child(8)": {
+  ".bubble:nth-of-type(8)": {
     width: "90px",
     height: "90px",
     right: "50%",
@@ -70,7 +70,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "2s",
   },
 
-  ".bubble:nth-child(9)": {
+  ".bubble:nth-of-type(9)": {
     width: "35px",
     height: "35px",
     left: "55%",
@@ -78,7 +78,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "1s",
   },
 
-  ".bubble:nth-child(10)": {
+  ".bubble:nth-of-type(10)": {
     width: "45px",
     height: "45px",
     right: "55%",
@@ -86,7 +86,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "3s",
   },
 
-  ".bubble:nth-child(11)": {
+  ".bubble:nth-of-type(11)": {
     width: "45px",
     height: "45px",
     left: "65%",
@@ -94,7 +94,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "3s",
   },
 
-  ".bubble:nth-child(12)": {
+  ".bubble:nth-of-type(12)": {
     width: "55px",
     height: "55px",
     right: "65%",
@@ -102,7 +102,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "5s",
   },
 
-  ".bubble:nth-child(13)": {
+  ".bubble:nth-of-type(13)": {
     width: "90px",
     height: "90px",
     left: "70%",
@@ -110,7 +110,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "2s",
   },
 
-  ".bubble:nth-child(14)": {
+  ".bubble:nth-of-type(14)": {
     width: "100px",
     height: "100px",
     right: "70%",
@@ -118,7 +118,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "4s",
   },
 
-  ".bubble:nth-child(15)": {
+  ".bubble:nth-of-type(15)": {
     width: "25px",
     height: "25px",
     left: "80%",
@@ -126,7 +126,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "2s",
   },
 
-  ".bubble:nth-child(16)": {
+  ".bubble:nth-of-type(16)": {
     width: "35px",
     height: "35px",
     right: "80%",
@@ -134,7 +134,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "4s",
   },
 
-  ".bubble:nth-child(17)": {
+  ".bubble:nth-of-type(17)": {
     width: "15px",
     height: "15px",
     left: "70%",
@@ -142,7 +142,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "1s",
   },
 
-  ".bubble:nth-child(18)": {
+  ".bubble:nth-of-type(18)": {
     width: "25px",
     height: "25px",
     right: "70%",
@@ -150,7 +150,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "3s",
   },
 
-  ".bubble:nth-child(19)": {
+  ".bubble:nth-of-type(19)": {
     width: "90px",
     height: "90px",
     left: "25%",
@@ -158,7 +158,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "4s",
   },
 
-  ".bubble:nth-child(20)": {
+  ".bubble:nth-of-type(20)": {
     width: "100px",
     height: "100px",
     right: "25%",
@@ -166,21 +166,21 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "6s",
   },
 
-  ".bubble:nth-child(21)": {
+  ".bubble:nth-of-type(21)": {
     width: "50px",
     height: "50px",
     right: "10%",
     animationDuration: "5s",
   },
 
-  ".bubble:nth-child(22)": {
+  ".bubble:nth-of-type(22)": {
     width: "40px",
     height: "40px",
     left: "10%",
     animationDuration: "6s",
   },
 
-  ".bubble:nth-child(23)": {
+  ".bubble:nth-of-type(23)": {
     width: "60px",
     height: "60px",
     right: "35%",
@@ -188,7 +188,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "2s",
   },
 
-  ".bubble:nth-child(24)": {
+  ".bubble:nth-of-type(24)": {
     width: "50px",
     height: "50px",
     left: "35%",
@@ -196,7 +196,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "1s",
   },
 
-  ".bubble:nth-child(25)": {
+  ".bubble:nth-of-type(25)": {
     width: "30px",
     height: "30px",
     right: "20%",
@@ -204,14 +204,14 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "1s",
   },
 
-  ".bubble:nth-child(26)": {
+  ".bubble:nth-of-type(26)": {
     width: "20px",
     height: "20px",
     left: "20%",
     animationDuration: "5s",
   },
 
-  ".bubble:nth-child(27)": {
+  ".bubble:nth-of-type(27)": {
     width: "90px",
     height: "90px",
     right: "50%",
@@ -219,14 +219,14 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "1s",
   },
 
-  ".bubble:nth-child(28)": {
+  ".bubble:nth-of-type(28)": {
     width: "80px",
     height: "80px",
     left: "50%",
     animationDuration: "6s",
   },
 
-  ".bubble:nth-child(29)": {
+  ".bubble:nth-of-type(29)": {
     width: "45px",
     height: "45px",
     right: "55%",
@@ -234,7 +234,7 @@ export const Background = styled("div")(({ theme }) => ({
     animationDelay: "1s",
   },
 
-  ".bubble:nth-child(30)": {
+  ".bubble:nth-of-type(30)": {
     width: "35px",
     height: "35px",
     left: "55%",
