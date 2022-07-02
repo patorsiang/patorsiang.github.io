@@ -1,11 +1,12 @@
 import { Hidden } from "@mui/material";
 
+import { Foot } from "./footer.style";
 import SMUpView from "./smUpView";
 import SMDownView from "./smDownView";
 import RightTag from "./rightTag";
 
 const Footer = () => (
-  <footer>
+  <Foot>
     <Hidden smDown>
       <SMUpView />
     </Hidden>
@@ -13,7 +14,7 @@ const Footer = () => (
       <SMDownView />
     </Hidden>
     <RightTag />
-  </footer>
+  </Foot>
 );
 
 export default Footer;

@@ -5,16 +5,7 @@ export const Section = styled("div")(({ theme }) => ({
   marginTop: theme.spacing(6),
   backgroundColor: theme.palette.primary.contrastText,
   transform: "skewY(-11deg)",
-  marginBottom: theme.spacing(6),
-  [theme.breakpoints.up("sm")]: {
-    marginBottom: theme.spacing(12),
-  },
-  [theme.breakpoints.up("lg")]: {
-    marginBottom: theme.spacing(20),
-  },
-  [theme.breakpoints.up("xl")]: {
-    marginBottom: theme.spacing(24),
-  },
+  marginBottom: theme.spacing(40),
 }));
 
 export const ContentSection = styled("div")(({ theme }) => ({

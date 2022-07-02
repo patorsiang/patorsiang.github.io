@@ -5,6 +5,7 @@ export const FullScreen = styled("div")(({ theme }) => ({
   width: "100wv",
   height: "100wh",
   padding: theme.spacing(2),
+  marginTop: theme.spacing(12),
 }));
 
 export const Overall = styled("div")(({ theme }) => ({
