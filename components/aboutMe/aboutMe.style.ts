@@ -3,12 +3,21 @@ import { Typography } from "@mui/material";
 
 export const Section = styled("div")(({ theme }) => ({
   marginTop: theme.spacing(6),
-  marginBottom: theme.spacing(24),
   backgroundColor: theme.palette.primary.contrastText,
   transform: "skewY(-11deg)",
+  marginBottom: theme.spacing(6),
+  [theme.breakpoints.up("sm")]: {
+    marginBottom: theme.spacing(12),
+  },
+  [theme.breakpoints.up("lg")]: {
+    marginBottom: theme.spacing(20),
+  },
+  [theme.breakpoints.up("xl")]: {
+    marginBottom: theme.spacing(24),
+  },
 }));
 
-export const Content = styled("div")(({ theme }) => ({
+export const ContentSection = styled("div")(({ theme }) => ({
   margin: "0 auto",
   maxWidth: "50em",
   padding: `${theme.spacing(12)} ${theme.spacing(6)}`,
@@ -31,4 +40,9 @@ export const Header = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
     fontSize: theme.typography.h3.fontSize,
   },
+}));
+
+export const Content = styled(Typography)(({ theme }) => ({
+  textIndent: theme.spacing(6),
+  lineHeight: theme.spacing(5),
 }));
