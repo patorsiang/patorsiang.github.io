@@ -8,15 +8,12 @@ import LogoLink from "@components/header/logoLink";
 const SMUpViewHeader = () => {
   const router = useRouter();
   return (
-    <Grid container sx={{ bgcolor: "secondary.main" }}>
+    <Grid container>
       <Grid item xs={1}>
         <Item>
           <Link
-            component="button"
             variant="body2"
-            onClick={() => {
-              router.push("/");
-            }}
+            href="/"
             underline="none"
             color="secondary.contrastText"
           >

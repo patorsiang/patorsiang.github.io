@@ -6,6 +6,7 @@ import {
   Span,
   Img,
   Introduction,
+  CurrentPosition,
 } from "./bubbleProfile.style";
 
 export const BubbleProfile = () => (
@@ -19,6 +20,7 @@ export const BubbleProfile = () => (
             Napatchol <br />
             Thaipanich
           </Span>
+          <CurrentPosition>Software Engineer</CurrentPosition>
         </Introduction>
         <Img src={profileImage} />
       </Overall>

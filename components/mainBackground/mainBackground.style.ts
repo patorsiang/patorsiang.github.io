@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 export const Background = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   width: "100%",
+  height: "100%",
 
   ".bubble:nth-of-type(even)": {
     background: theme.palette.primary.contrastText,

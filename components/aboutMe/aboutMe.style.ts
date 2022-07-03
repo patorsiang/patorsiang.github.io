@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { Typography } from "@mui/material";
+import { Typography, Chip } from "@mui/material";
 
 export const Section = styled("div")(({ theme }) => ({
   marginTop: theme.spacing(6),
@@ -36,4 +36,16 @@ export const Header = styled(Typography)(({ theme }) => ({
 export const Content = styled(Typography)(({ theme }) => ({
   textIndent: theme.spacing(6),
   lineHeight: theme.spacing(5),
+  textAlign: "justify",
+}));
+
+export const Tech = styled(Chip)(({ theme }) => ({
+  fontWeight: "bold",
+  margin: theme.spacing(1),
+}));
+
+export const TechList = styled("div")(({ theme }) => ({
+  display: "inline-block",
+  marginLeft: theme.spacing(6),
+  marginTop: theme.spacing(2),
 }));

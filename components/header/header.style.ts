@@ -5,4 +5,5 @@ export const Head = styled("footer")(() => ({
   top: 0,
   width: "100%",
   zIndex: 1,
+  backdropFilter: "blur(8px)",
 }));

@@ -11,7 +11,7 @@ const SMDownView = () => {
   const router = useRouter();
   return (
     <>
-      <Grid container sx={{ bgcolor: "secondary.main" }}>
+      <Grid container>
         <Grid item xs={1}>
           <Item>
             <LogoLink sx={{ margin: "8px 16px" }} />

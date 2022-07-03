@@ -30,7 +30,7 @@ export const Img = styled("img")(({ theme }) => ({
   },
 }));
 
-export const Introduction = styled(Typography)(({ theme }) => ({
+export const Introduction = styled("div")(({ theme }) => ({
   position: "absolute",
   top: theme.spacing(2),
   [theme.breakpoints.up("xs")]: {
@@ -46,5 +46,22 @@ export const Introduction = styled(Typography)(({ theme }) => ({
   },
   [theme.breakpoints.up("md")]: {
     fontSize: theme.typography.h3.fontSize,
+  },
+}));
+
+export const CurrentPosition = styled(Typography)(({ theme }) => ({
+  [theme.breakpoints.up("xs")]: {
+    fontSize: theme.typography.subtitle1.fontSize,
+    top: 0,
+  },
+  "@media (max-width:320px)": {
+    fontSize: theme.typography.subtitle2.fontSize,
+    top: 0,
+  },
+  [theme.breakpoints.up("sm")]: {
+    fontSize: theme.typography.h5.fontSize,
+  },
+  [theme.breakpoints.up("md")]: {
+    fontSize: theme.typography.h5.fontSize,
   },
 }));
