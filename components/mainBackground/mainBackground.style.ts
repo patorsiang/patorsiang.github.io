@@ -244,7 +244,7 @@ export const Background = styled("div")(({ theme }) => ({
 
   "@keyframes rise": {
     "0%": {
-      bottom: "-100px",
+      bottom: theme.spacing(10),
       transform: "translateX(0)",
     },
 
@@ -253,7 +253,7 @@ export const Background = styled("div")(({ theme }) => ({
     },
 
     "100%": {
-      bottom: "1080px",
+      bottom: "100%",
       transform: " translateX(-200px)",
     },
   },
@@ -261,7 +261,7 @@ export const Background = styled("div")(({ theme }) => ({
 
 export const Bubbles = styled("div")(({ theme, hidden }) => ({
   display: hidden ? "none" : "block",
-  position: "absolute",
+  position: "fixed",
   width: "100%",
   height: "100%",
   zIndex: "0",

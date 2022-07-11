@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 
 export const FullScreen = styled("div")(({ theme }) => ({
   width: "100wv",
-  height: "100wh",
+  height: "100%",
   padding: theme.spacing(2),
   marginTop: theme.spacing(12),
 }));
