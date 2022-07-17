@@ -11,14 +11,16 @@ const SMUpViewHeader = () => {
     <Grid container>
       <Grid item xs={1}>
         <Item>
-          <Link
-            variant="body2"
-            href="/"
-            underline="none"
-            color="secondary.contrastText"
-          >
-            Home
-          </Link>
+          <NextLink href="/">
+            <Link
+              component="button"
+              variant="body2"
+              underline="none"
+              color="secondary.contrastText"
+            >
+              Home
+            </Link>
+          </NextLink>
         </Item>
       </Grid>
       <Grid item xs={1}>

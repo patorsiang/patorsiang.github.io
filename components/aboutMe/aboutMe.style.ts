@@ -6,7 +6,7 @@ export const Section = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.primary.contrastText,
   transform: "skewY(-11deg)",
   marginBottom: theme.spacing(40),
-  position: "relative",
+  border: `${theme.spacing(1)} solid ${theme.palette.primary.dark}`,
 
   "@keyframes bottomLeft": {
     "0%": {
@@ -38,6 +38,7 @@ export const ContentSection = styled("div")(({ theme }) => ({
   maxWidth: "50em",
   padding: `${theme.spacing(12)} ${theme.spacing(6)}`,
   transform: "skewY(11deg)",
+  border: `${theme.spacing(0.25)} solid ${theme.palette.secondary.dark}`,
 }));
 
 export const Header = styled(Typography)(({ theme }) => ({
