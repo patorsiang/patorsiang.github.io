@@ -85,14 +85,3 @@ export const Content = styled(Typography)(({ theme }) => ({
   lineHeight: theme.spacing(5),
   textAlign: "justify",
 }));
-
-export const Tech = styled(Chip)(({ theme }) => ({
-  fontWeight: "bold",
-  margin: theme.spacing(1),
-}));
-
-export const TechList = styled("div")(({ theme }) => ({
-  display: "inline-block",
-  marginLeft: theme.spacing(6),
-  marginTop: theme.spacing(2),
-}));

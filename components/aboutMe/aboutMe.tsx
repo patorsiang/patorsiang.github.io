@@ -1,26 +1,7 @@
 import { Link } from "@mui/material";
-import { GrReactjs } from "react-icons/gr";
-import {
-  SiTypescript,
-  SiBootstrap,
-  SiChakraui,
-  SiRedux,
-  SiTailwindcss,
-  SiMaterialui,
-  SiRubyonrails,
-  SiPython,
-  SiNodedotjs,
-} from "react-icons/si";
 
 import { Span } from "@components/bubbleProfile/bubbleProfile.style";
-import {
-  Section,
-  ContentSection,
-  Content,
-  Header,
-  TechList,
-  Tech,
-} from "./aboutMe.style";
+import { Section, ContentSection, Content, Header } from "./aboutMe.style";
 
 export const AboutMe = () => {
   return (
@@ -30,115 +11,33 @@ export const AboutMe = () => {
           About <Span>Me</Span>
         </Header>
         <Content>
-          Hello, again. My name is Napatchol basely in Thailand. I currently am
-          a front-end developer at&nbsp;
+          สวัสดีค่ะ Hi, my name is Napatchol (Na&#183;pat&#183;chol). So you can
+          call me Pat. I'm a software engineer. Currently, I work @
           <Link
             href="https://datawow.io/"
             target="_blank"
             rel="noopener noreferrer"
+            sx={{
+              mx: 1,
+              fontWeight: "bold",
+            }}
           >
-            Data Wow
+            Data Wow Co. Ltd
           </Link>
-          , working on React, Redux, Rails, and Next.js.
+          as Front End Developer, working with React, Redux, Rails, and Next.js.
         </Content>
         <Content>
-          My passion for technology, data, and UX/XI design drives my life.
+          I am passionate about technology, data, and UX/XI design. My hobbies
+          are playing with code and learning new. My motto is &nbsp;
+          <b>"If anyone can do it, I can do it"</b> &nbsp; that is how my
+          grandpa taught my mom, and my mom taught me. Thus, I try more
+          demanding daily to improve my skill in solving code, which I like, as
+          anyone can do.
         </Content>
         <Content>
-          Here are a few technologies I&#8217;ve been working with recently:
+          I am open to working with new technologies and always looking for new
+          challenges.
         </Content>
-        <TechList>
-          <Tech
-            icon={<GrReactjs color="#62caf0" />}
-            label="Reactjs"
-            variant="outlined"
-            sx={{
-              borderColor: "#62caf0",
-              color: "#62caf0",
-            }}
-          />
-          <Tech
-            icon={<SiTypescript color="#3a63b8" />}
-            label="TypeScript"
-            variant="outlined"
-            sx={{
-              borderColor: "#3a63b8",
-              color: "#3a63b8",
-            }}
-          />
-          <Tech
-            icon={<SiRedux color="#6c34ad" />}
-            label="Redux"
-            variant="outlined"
-            sx={{
-              borderColor: "#6c34ad",
-              color: "#6c34ad",
-            }}
-          />
-          <Tech
-            icon={<SiBootstrap color="#6e00eb" />}
-            label="Bootstrap"
-            variant="outlined"
-            sx={{
-              borderColor: "#6e00eb",
-              color: "#6e00eb",
-            }}
-          />
-          <Tech
-            icon={<SiChakraui color="#65c2c7" />}
-            label="Chakra UI"
-            variant="outlined"
-            sx={{
-              borderColor: "#65c2c7",
-              color: "#65c2c7",
-            }}
-          />
-          <Tech
-            icon={<SiTailwindcss color="#49aff6" />}
-            label="Tailwindcss"
-            variant="outlined"
-            sx={{
-              borderColor: "#49aff6",
-              color: "#49aff6",
-            }}
-          />
-          <Tech
-            icon={<SiMaterialui color="#3966fe" />}
-            label="Material UI"
-            variant="outlined"
-            sx={{
-              borderColor: "#3966fe",
-              color: "#3966fe",
-            }}
-          />
-          <Tech
-            icon={<SiRubyonrails color="#ba150f" />}
-            label="Rails"
-            variant="outlined"
-            sx={{
-              borderColor: "#ba150f",
-              color: "#ba150f",
-            }}
-          />
-          <Tech
-            icon={<SiPython color="#efc93a" />}
-            label="Python"
-            variant="outlined"
-            sx={{
-              borderColor: "#efc93a",
-              color: "#efc93a",
-            }}
-          />
-          <Tech
-            icon={<SiNodedotjs color="#4e8e49" />}
-            label="Nodejs"
-            variant="outlined"
-            sx={{
-              borderColor: "#4e8e49",
-              color: "#4e8e49",
-            }}
-          />
-        </TechList>
       </ContentSection>
     </Section>
   );
