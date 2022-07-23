@@ -4,6 +4,7 @@ export const Background = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   width: "100%",
   height: "100%",
+  marginTop: theme.spacing(12),
 
   ".bubble:nth-of-type(even)": {
     background: theme.palette.primary.contrastText,

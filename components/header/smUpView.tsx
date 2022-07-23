@@ -1,12 +1,10 @@
 import { Grid, Link } from "@mui/material";
-import { useRouter } from "next/router";
 import NextLink from "next/link";
 
 import { Item, GridRight, ItemRight } from "@components/util";
 import LogoLink from "@components/header/logoLink";
 
 const SMUpViewHeader = () => {
-  const router = useRouter();
   return (
     <Grid container>
       <Grid item xs={1}>
@@ -39,17 +37,16 @@ const SMUpViewHeader = () => {
       </Grid>
       <Grid item xs={1}>
         <Item>
-          <Link
-            component="button"
-            variant="body2"
-            onClick={() => {
-              console.info("I'm a button.");
-            }}
-            underline="none"
-            color="secondary.contrastText"
-          >
-            Experience
-          </Link>
+          <NextLink href="/experience">
+            <Link
+              component="button"
+              variant="body2"
+              underline="none"
+              color="secondary.contrastText"
+            >
+              Experience
+            </Link>
+          </NextLink>
         </Item>
       </Grid>
       <Grid item xs={6}>

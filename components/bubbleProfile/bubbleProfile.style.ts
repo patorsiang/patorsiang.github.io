@@ -1,14 +1,12 @@
 import { styled } from "@mui/material/styles";
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
-export const FullScreen = styled("div")(({ theme }) => ({
+export const FullScreen = styled(Box)(() => ({
   width: "100wv",
   height: "100%",
-  padding: theme.spacing(2),
-  marginTop: theme.spacing(12),
 }));
 
-export const Overall = styled("div")(({ theme }) => ({
+export const Overall = styled(Box)(() => ({
   position: "relative",
   width: "fit-content",
   margin: "0 auto",
@@ -30,7 +28,7 @@ export const Img = styled("img")(({ theme }) => ({
   },
 }));
 
-export const Introduction = styled("div")(({ theme }) => ({
+export const Introduction = styled(Box)(({ theme }) => ({
   position: "absolute",
   top: theme.spacing(2),
   [theme.breakpoints.up("xs")]: {

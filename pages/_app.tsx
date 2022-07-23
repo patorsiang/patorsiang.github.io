@@ -38,19 +38,19 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
     <CookiesProvider>
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={lightTheme}>
-          <MainBackground hidden={router.pathname !== "/"}>
-            <>
-              <CssBaseline />
-              <title>{title}</title>
-              <meta
-                name="viewport"
-                content="width=device-width, initial-scale=1.0"
-              />
-              <Header />
+          <>
+            <CssBaseline />
+            <title>{title}</title>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+            <Header />
+            <MainBackground hidden={router.pathname !== "/"}>
               <Component {...pageProps} />
-              <Footer />
-            </>
-          </MainBackground>
+            </MainBackground>
+            <Footer />
+          </>
         </ThemeProvider>
       </CacheProvider>
     </CookiesProvider>
