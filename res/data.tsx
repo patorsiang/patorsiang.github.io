@@ -153,6 +153,7 @@ export const experience = {
       date: "Jan 2019 - May 2019",
       description:
         "As a part-time assistant in the Database Design Lab, I was responsible for helping the professor explain the database's design and the development of the database to students in the class.",
+      technologies: ["SQL", "ERD"],
     },
     {
       title: "Frontend Developer",
