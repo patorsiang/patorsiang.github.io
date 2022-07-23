@@ -36,6 +36,8 @@ export default class MyDocument extends Document {
           <meta name="msapplication-TileColor" content={theme_color} />
           <meta name="msapplication-tap-highlight" content="no" />
 
+          <link rel="shortcut icon" href="/favicon.ico" />
+
           <link
             rel={additionalLinkTags[0].rel}
             href={additionalLinkTags[0].href}
