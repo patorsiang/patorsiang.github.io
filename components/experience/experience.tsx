@@ -1,3 +1,9 @@
-import {} from "./experience.style";
+import { ExperienceSection, ExperienceHead } from "./experience.style";
 
-export const Experience = () => <>This is my Experience section.</>;
+export const Experience = () => (
+  <ExperienceSection>
+    <ExperienceHead>
+      And This is <b>&lt;Napatchol Thaipanich&gt;</b>'s experience....
+    </ExperienceHead>
+  </ExperienceSection>
+);
