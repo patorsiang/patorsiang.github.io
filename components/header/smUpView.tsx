@@ -23,7 +23,7 @@ const SMUpViewHeader = () => {
       </Grid>
       <Grid item xs={1}>
         <Item>
-          <NextLink href="#about-me">
+          <NextLink href="/#about-me">
             <Link
               component="button"
               variant="body2"

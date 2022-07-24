@@ -46,7 +46,8 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
               content="width=device-width, initial-scale=1.0"
             />
             <Header />
-            <MainBackground hidden={router.pathname !== "/"}>
+            {/* <MainBackground hidden={router.pathname !== "/"}> */}
+            <MainBackground>
               <Component {...pageProps} />
             </MainBackground>
             <Footer />

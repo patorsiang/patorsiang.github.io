@@ -6,7 +6,7 @@ export const MainBackground = ({
   hidden,
 }: {
   children: JSX.Element;
-  hidden: boolean;
+  hidden?: boolean;
 }) => {
   return (
     <Background>

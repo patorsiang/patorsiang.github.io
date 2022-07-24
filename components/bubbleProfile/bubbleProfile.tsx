@@ -22,7 +22,7 @@ export const BubbleProfile = () => (
           </Span>
           <CurrentPosition>Software Engineer</CurrentPosition>
         </Introduction>
-        <Img src={profileImage} />
+        <Img src={profileImage} alt="Napatchol Thaipanich" loading="lazy" />
       </Overall>
     </FullScreen>
     <AboutMe />
