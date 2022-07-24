@@ -4,7 +4,7 @@ import {
   LinkedIn,
   Twitter,
   // YouTube,
-  // GitHub,
+  GitHub,
   // SmartToyOutlined,
   HomeRounded,
   InfoRounded,
@@ -48,12 +48,12 @@ export const Social = [
   //   url: "https://www.youtube.com/channel/UCaTBr-FOe6pggqCjy47zfcA",
   //   target: "_blank",
   // },
-  // {
-  //   icon: GitHub,
-  //   name: "GitHub",
-  //   url: "https://github.com/patorseing",
-  //   target: "_blank",
-  // },
+  {
+    icon: GitHub,
+    name: "GitHub",
+    url: "https://github.com/patorseing",
+    target: "_blank",
+  },
   // {
   //   icon: SmartToyOutlined,
   //   name: "Line",
