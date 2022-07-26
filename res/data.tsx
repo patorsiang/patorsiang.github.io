@@ -14,8 +14,10 @@ import {
 
 // cartoon: https://drive.google.com/uc?export=view&id=1Po3wbjeWYA2qaWdVPfX2Ys4GMTCOqgX9
 
-export const profileImage =
-  "https://drive.google.com/uc?export=view&id=110DgocC9RMnx0y6occuLwMrIAGxFwg9C";
+// export const profileImage =
+//   "https://drive.google.com/uc?export=view&id=110DgocC9RMnx0y6occuLwMrIAGxFwg9C";
+
+export const profileImage = "bubbleProfile.png";
 
 export const Social = [
   {
