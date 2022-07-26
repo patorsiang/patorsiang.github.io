@@ -4,7 +4,6 @@ import { Typography, Box, Grid } from "@mui/material";
 export const ExperienceSection = styled(Box)(({ theme }) => ({
   padding: `0 ${theme.spacing(10)}  ${theme.spacing(30)}  ${theme.spacing(10)}`,
   position: "relative",
-  zIndex: 1,
 }));
 
 export const ExperienceHead = styled(Typography)(({ theme }) => ({
