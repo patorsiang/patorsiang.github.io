@@ -15,7 +15,6 @@ export const MainBackground = ({
           <Bubble className="bubble" key={i} />
         ))}
       </Bubbles>
-
       {children}
     </Background>
   );

@@ -1,8 +1,10 @@
 import { styled } from "@mui/material/styles";
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Grid } from "@mui/material";
 
 export const ExperienceSection = styled(Box)(({ theme }) => ({
   padding: `0 ${theme.spacing(10)}  ${theme.spacing(30)}  ${theme.spacing(10)}`,
+  position: "relative",
+  zIndex: 1,
 }));
 
 export const ExperienceHead = styled(Typography)(({ theme }) => ({
@@ -12,14 +14,12 @@ export const ExperienceHead = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(3),
 }));
 
-export const SectionHead = styled(Box)(({ theme }) => ({
-  fontSize: theme.typography.h5.fontSize,
-  fontWeight: "bold",
-  textTransform: "capitalize",
+export const Section = styled(Grid)(({ theme }) => ({
+  marginBottom: theme.spacing(3),
 }));
 
-export const TopicHead = styled(Box)(({ theme }) => ({
-  fontSize: theme.typography.h6.fontSize,
+export const SectionHead = styled(Box)(({ theme }) => ({
+  fontSize: theme.typography.h5.fontSize,
   fontWeight: "bold",
   textTransform: "capitalize",
 }));
@@ -36,4 +36,14 @@ export const TopicLogo = styled("img")(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
     margin: "0",
   },
+}));
+
+export const TopicHead = styled(Box)(({ theme }) => ({
+  fontSize: theme.typography.subtitle1.fontSize,
+  fontWeight: "bold",
+  textTransform: "capitalize",
+}));
+
+export const TopicDetail = styled(Box)(({ theme }) => ({
+  fontSize: theme.typography.body1.fontSize,
 }));

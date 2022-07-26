@@ -32,7 +32,6 @@ const lightTheme = createTheme(lightThemeOptions);
 const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const { title } = DEFAULT_SEO;
-  const router = useRouter();
 
   return (
     <CookiesProvider>

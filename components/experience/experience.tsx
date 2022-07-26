@@ -1,10 +1,13 @@
 import {
   ExperienceSection,
   ExperienceHead,
+  Section,
   SectionHead,
   TopicLogo,
+  TopicHead,
+  TopicDetail,
 } from "./experience.style";
-import { Grid } from "@mui/material";
+import { Grid, Link } from "@mui/material";
 import { experience } from "@res/data";
 
 export const Experience = () => (
@@ -14,13 +17,13 @@ export const Experience = () => (
     </ExperienceHead>
 
     {Object.entries(experience).map(([key, value]) => (
-      <Grid container spacing={2} key={key}>
+      <Section container spacing={2} key={key}>
         <Grid item md={2} sm={12}>
           <SectionHead>{key}</SectionHead>
         </Grid>
         <Grid item md={10} sm={12}>
           {value.map((val, key) => (
-            <Grid container spacing={2} key={key}>
+            <Section container spacing={2} key={key}>
               <Grid item md={2} sm={12}>
                 <TopicLogo
                   src={val?.image}
@@ -28,10 +31,21 @@ export const Experience = () => (
                   loading="lazy"
                 />
               </Grid>
-            </Grid>
+              <Grid item md={3} sm={3}>
+                {val?.date && <TopicHead>{val?.date}</TopicHead>}
+                {val?.issuedDate && <TopicHead>{val?.issuedDate}</TopicHead>}
+              </Grid>
+              <Grid item md={7} sm={9}>
+                <TopicHead>{val?.title}</TopicHead>
+                <TopicDetail>{val?.company}</TopicDetail>
+                <Link href={val?.link} underline="hover">
+                  Link
+                </Link>
+              </Grid>
+            </Section>
           ))}
         </Grid>
-      </Grid>
+      </Section>
     ))}
   </ExperienceSection>
 );
