@@ -112,7 +112,7 @@ export const experience: Record<
       company: "Data Wow Co., Ltd.",
       link: "https://datawow.io",
       image:
-        "https://scontent.fbkk28-1.fna.fbcdn.net/v/t39.30808-6/292254631_509388700996768_1031494251715056987_n.png?_nc_cat=103&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeENMdqDlkiv-J1MqxhnpMtznjD84zrIkrSeMPzjOsiStCXDhDW_ZLWaPhTQa0DhaHeCDP9PDcMSdcb9blYyxt5V&_nc_ohc=QSNpiR8IG18AX9MtabD&tn=w8Fo5w8eEEkYBEMp&_nc_ht=scontent.fbkk28-1.fna&oh=00_AT8r3MvgsGBGezWeVWkS4kz80XpnYs48Q6HgtL33Y8zFLw&oe=62E25702",
+        "https://media-exp2.licdn.com/dms/image/C4D0BAQGjDgKU-t7sBw/company-logo_200_200/0/1656557065462?e=2147483647&v=beta&t=1lSorQ1plRBbs9MAeZWEFUaBT3pmi3m1bpd2bsBUul0",
       type: "Full-time",
       start: "12/01/2021",
       projects: [
