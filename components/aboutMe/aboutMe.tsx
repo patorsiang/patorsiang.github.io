@@ -27,8 +27,8 @@ export const AboutMe = () => {
           as Front End Developer, working with React, Redux, Rails, and Next.js.
         </Content>
         <Content>
-          I am passionate about technology, data, and UX/XI design. My hobbies
-          are playing with code and learning new. My motto is &nbsp;
+          I am passionate about technology and data. My hobbies are playing with
+          code and learning new. My motto is &nbsp;
           <b>"If anyone can do it, I can do it"</b> &nbsp; that is how my
           grandpa taught my mom, and my mom taught me. Thus, I try more
           demanding daily to improve my skill in solving code, which I like, as
