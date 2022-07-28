@@ -74,7 +74,7 @@ export const actions = [
     icon: <FileDownloadRounded />,
     name: "Download_CV",
     externalURL:
-      "https://drive.google.com/file/d/11DruWhntYi-qCpw5uV2vujXLo5uDLe9K/view?usp=sharing",
+      "https://drive.google.com/file/d/1-NB3iE8rxRxrTH5i_o6LOty5kdd0QKPs/view?usp=sharing",
     target: "_blank",
   },
 ];
