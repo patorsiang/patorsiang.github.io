@@ -149,7 +149,7 @@ export const experience: Record<
         "Typescript",
         "NodeJS",
         "Golang",
-        "java",
+        "Java",
         "IIB",
         "PostgreSQL",
         "IBM Cloud",
