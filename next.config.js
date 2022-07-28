@@ -12,7 +12,7 @@ const nextConfig = withPWA({
   exportPathMap: async function () {
     return {
       "/": { page: "/" },
-      "/about": { page: "/about" },
+      "/experience": { page: "/experience" },
       "/404": { page: "/404" },
       "/500": { page: "/500" },
     };
