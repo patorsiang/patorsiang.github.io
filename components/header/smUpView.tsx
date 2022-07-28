@@ -64,13 +64,11 @@ const SMUpViewHeader = () => {
       >
         <ItemRight>
           <Link
-            component="button"
             variant="body2"
-            onClick={() => {
-              console.info("I'm a button.");
-            }}
             color="secondary.contrastText"
             fontWeight="700"
+            href="https://drive.google.com/file/d/1lArGEs-egVcEfRigAKJY26dijDoR13gZ/view?usp=sharing"
+            target="_blank"
           >
             Download CV
           </Link>

@@ -70,7 +70,13 @@ export const actions = [
   { icon: <HomeRounded />, name: "Home", url: "/" },
   { icon: <InfoRounded />, name: "About", url: "/#about-me" },
   { icon: <WorkRounded />, name: "Experience", url: "/experience" },
-  { icon: <FileDownloadRounded />, name: "Download_CV", url: "" },
+  {
+    icon: <FileDownloadRounded />,
+    name: "Download_CV",
+    externalURL:
+      "https://drive.google.com/file/d/1lArGEs-egVcEfRigAKJY26dijDoR13gZ/view?usp=sharing",
+    target: "_blank",
+  },
 ];
 
 export const experience: Record<

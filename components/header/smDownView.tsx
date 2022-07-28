@@ -42,7 +42,11 @@ const SMDownView = () => {
             tooltipTitle={action.name}
             tooltipOpen
             onClick={() => {
-              if (action.url) {
+              if (action?.externalURL) {
+                window.open(action.externalURL, action?.target);
+              }
+
+              if (action?.url) {
                 router.push(action.url);
               }
             }}
