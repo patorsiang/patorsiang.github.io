@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { Typography, Box, Grid } from "@mui/material";
+import { Typography, Box, Grid, Chip } from "@mui/material";
 
 export const ExperienceSection = styled(Box)(({ theme }) => ({
   padding: `0 ${theme.spacing(10)}  ${theme.spacing(30)}  ${theme.spacing(10)}`,
@@ -45,4 +45,25 @@ export const TopicHead = styled(Box)(({ theme }) => ({
 
 export const TopicDetail = styled(Box)(({ theme }) => ({
   fontSize: theme.typography.body1.fontSize,
+}));
+
+export const TopicDescription = styled(Box)(({ theme }) => ({
+  fontSize: theme.typography.body2.fontSize,
+}));
+
+export const TopicDetailHighlight = styled(Box)(({ theme }) => ({
+  fontSize: theme.typography.body1.fontSize,
+  fontWeight: "bold",
+}));
+
+export const UnorderedList = styled("ul")(() => ({
+  listStyleType: "circle",
+}));
+
+export const Technologies = styled(Box)(() => ({
+  display: "block",
+}));
+
+export const Technology = styled(Chip)(({ theme }) => ({
+  margin: theme.spacing(0.5),
 }));

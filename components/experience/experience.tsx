@@ -6,8 +6,13 @@ import {
   TopicLogo,
   TopicHead,
   TopicDetail,
+  TopicDescription,
+  UnorderedList,
+  TopicDetailHighlight,
+  Technologies,
+  Technology,
 } from "./experience.style";
-import { Grid, Link } from "@mui/material";
+import { Grid, Link, Stack } from "@mui/material";
 import { experience } from "@res/data";
 
 export const Experience = () => (
@@ -36,11 +41,85 @@ export const Experience = () => (
                 {val?.issuedDate && <TopicHead>{val?.issuedDate}</TopicHead>}
               </Grid>
               <Grid item md={7} sm={9}>
-                <TopicHead>{val?.title}</TopicHead>
-                <TopicDetail>{val?.company}</TopicDetail>
-                <Link href={val?.link} underline="hover">
-                  Link
-                </Link>
+                <Stack spacing={2}>
+                  {val?.title && <TopicHead>{val?.title}</TopicHead>}
+                  {val?.school && <TopicHead>{val?.school}</TopicHead>}
+                  {val?.company && (
+                    <TopicDetail>
+                      {val?.company} {val?.type && <>&#183; {val?.type}</>}
+                    </TopicDetail>
+                  )}
+                  {val?.description && (
+                    <TopicDescription>{val?.description}</TopicDescription>
+                  )}
+                  {val?.degree && <TopicDetail>{val?.degree}</TopicDetail>}
+                  {val?.major && (
+                    <TopicDetail>
+                      <b>Major:</b>
+                      {` ${val?.major}`}
+                    </TopicDetail>
+                  )}
+                  {val?.gpa && (
+                    <TopicDetail>
+                      <b>GPA:</b>
+                      {` ${val?.gpa}`}
+                    </TopicDetail>
+                  )}
+                  {val?.issuer && (
+                    <TopicDetail>
+                      <b>issuer:</b>
+                      {` ${val?.issuer}`}
+                    </TopicDetail>
+                  )}
+                  {val?.place && (
+                    <TopicDetail>
+                      <b>place:</b>
+                      {` ${val?.place}`}
+                    </TopicDetail>
+                  )}
+                  {val?.projects && (
+                    <>
+                      <TopicDetailHighlight>Projects</TopicDetailHighlight>
+                      <UnorderedList>
+                        {val?.projects.map((project, index) => (
+                          <li key={index}>{project}</li>
+                        ))}
+                      </UnorderedList>
+                    </>
+                  )}
+                  {val?.favoriteSubjects && (
+                    <>
+                      <TopicDetailHighlight>
+                        Favorite Subjects
+                      </TopicDetailHighlight>
+                      <UnorderedList>
+                        {val?.favoriteSubjects.map((subject, index) => (
+                          <li key={index}>{subject}</li>
+                        ))}
+                      </UnorderedList>
+                    </>
+                  )}
+                  {val?.technologies && (
+                    <>
+                      <TopicDetailHighlight>
+                        Technologies Stack (I have used)
+                      </TopicDetailHighlight>
+                      <Technologies>
+                        {val?.technologies.map((tech, index) => (
+                          <Technology
+                            key={index}
+                            label={tech}
+                            color="primary"
+                            variant="outlined"
+                          />
+                        ))}
+                      </Technologies>
+                    </>
+                  )}
+                  <Link href={val?.link} underline="hover">
+                    Link
+                  </Link>
+                </Stack>
               </Grid>
             </Section>
           ))}
