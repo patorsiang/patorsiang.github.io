@@ -12,7 +12,7 @@ export const AboutMe = () => {
         </Header>
         <Content>
           สวัสดีค่ะ Hi, my name is Napatchol (Na&#183;pat&#183;chol). So you can
-          call me Pat. I'm a software engineer. Currently, I work @
+          call me Pat. I&apos;m a software engineer. Currently, I work @
           <Link
             href="https://datawow.io/"
             target="_blank"
@@ -29,8 +29,8 @@ export const AboutMe = () => {
         <Content>
           I am passionate about technology and data. My hobbies are playing with
           code and learning new. My motto is &nbsp;
-          <b>"If anyone can do it, I can do it"</b> &nbsp; that is how my
-          grandpa taught my mom, and my mom taught me. Thus, I try more
+          <b>&quot;If anyone can do it, I can do it&quot;</b> &nbsp; that is how
+          my grandpa taught my mom, and my mom taught me. Thus, I try more
           demanding daily to improve my skill in solving code, which I like, as
           anyone can do.
         </Content>
