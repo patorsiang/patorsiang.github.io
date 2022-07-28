@@ -1,3 +1,6 @@
+import dayjs from "dayjs";
+import { Grid, Link, Stack } from "@mui/material";
+
 import {
   ExperienceSection,
   ExperienceHead,
@@ -12,7 +15,6 @@ import {
   Technologies,
   Technology,
 } from "./experience.style";
-import { Grid, Link, Stack } from "@mui/material";
 import { experience } from "@res/data";
 
 export const Experience = () => (
@@ -23,24 +25,35 @@ export const Experience = () => (
 
     {Object.entries(experience).map(([key, value]) => (
       <Section container spacing={2} key={key}>
-        <Grid item md={2} sm={12}>
+        <Grid item md={2} sm={12} xs={12}>
           <SectionHead>{key}</SectionHead>
         </Grid>
-        <Grid item md={10} sm={12}>
+        <Grid item md={10} sm={12} xs={12}>
           {value.map((val, key) => (
             <Section container spacing={2} key={key}>
-              <Grid item md={2} sm={12}>
+              <Grid item md={2} sm={12} xs={12}>
                 <TopicLogo
                   src={val?.image}
                   alt={val?.name ?? val?.title}
                   loading="lazy"
                 />
               </Grid>
-              <Grid item md={3} sm={3}>
-                {val?.date && <TopicHead>{val?.date}</TopicHead>}
-                {val?.issuedDate && <TopicHead>{val?.issuedDate}</TopicHead>}
+              <Grid item md={3} sm={3} xs={12}>
+                {val?.start && (
+                  <TopicHead>
+                    {dayjs(val?.start).format("MMM YYYY ")} -
+                    {val?.end
+                      ? dayjs(val?.end).format(" MMM YYYY ")
+                      : " Present "}
+                  </TopicHead>
+                )}
+                {val?.issuedDate && (
+                  <TopicHead>
+                    {dayjs(val?.issuedDate).format("MMM YYYY")}
+                  </TopicHead>
+                )}
               </Grid>
-              <Grid item md={7} sm={9}>
+              <Grid item md={7} sm={9} xs={12}>
                 <Stack spacing={2}>
                   {val?.title && <TopicHead>{val?.title}</TopicHead>}
                   {val?.school && <TopicHead>{val?.school}</TopicHead>}
