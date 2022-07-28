@@ -20,7 +20,7 @@ import { experience } from "@res/data";
 export const Experience = () => (
   <ExperienceSection>
     <ExperienceHead>
-      And This is <b>&lt;Napatchol Thaipanich&gt;</b>'s experience....
+      And This is <b>&lt;Napatchol Thaipanich&gt;</b>&apos;s experience....
     </ExperienceHead>
 
     {Object.entries(experience).map(([key, value]) => (
