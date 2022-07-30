@@ -4,7 +4,7 @@
 
 html,
 body {
-  @apply p-0 m-0 font-sans bg-[rgb(241,244,246)] scroll-smooth;
+  @apply p-0 m-0 font-sans scroll-smooth;
 }
 
 a {

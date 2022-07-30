@@ -13,6 +13,8 @@ import "@fontsource/mali/700.css";
 import createEmotionCache from "@utility/createEmotionCache";
 
 import lightThemeOptions from "@styles/theme/lightThemeOptions";
+import darkThemeOptions from "@styles/theme/darkThemeOptions";
+
 import DEFAULT_SEO from "@utility/next-seo.config";
 
 import "@styles/globals.css";
@@ -27,6 +29,7 @@ interface MyAppProps extends AppProps {
 const clientSideEmotionCache = createEmotionCache();
 
 const lightTheme = createTheme(lightThemeOptions);
+const darkTheme = createTheme(darkThemeOptions);
 
 const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
@@ -35,7 +38,7 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   return (
     <CookiesProvider>
       <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={lightTheme}>
+        <ThemeProvider theme={darkTheme}>
           <>
             <CssBaseline />
             <title>{title}</title>
