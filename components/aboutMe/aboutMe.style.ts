@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { Typography, Chip } from "@mui/material";
+import { Typography } from "@mui/material";
 
 export const Section = styled("div")(({ theme }) => ({
   marginTop: theme.spacing(6),

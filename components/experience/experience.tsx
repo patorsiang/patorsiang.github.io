@@ -122,14 +122,14 @@ export const Experience = () => (
                           <Technology
                             key={index}
                             label={tech}
-                            color="primary"
+                            color="info"
                             variant="outlined"
                           />
                         ))}
                       </Technologies>
                     </>
                   )}
-                  <Link href={val?.link} underline="hover">
+                  <Link href={val?.link} underline="hover" color="info">
                     Link
                   </Link>
                 </Stack>

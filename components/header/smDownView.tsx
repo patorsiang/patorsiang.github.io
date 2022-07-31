@@ -2,12 +2,20 @@ import { useRouter } from "next/router";
 import { Grid, SpeedDial, SpeedDialIcon, SpeedDialAction } from "@mui/material";
 import { WidgetsRounded, MenuRounded } from "@mui/icons-material";
 
-import { Item } from "@components/util";
+import { GridRight, Item, ItemRight } from "@components/util";
 import LogoLink from "@components/header/logoLink";
 
 import { actions } from "@res/data";
 
-const SMDownView = () => {
+import { MaterialUISwitch } from "./header.style";
+
+const SMDownView = ({
+  isDark,
+  setIsDark,
+}: {
+  isDark: boolean;
+  setIsDark: (isLight: boolean) => void;
+}) => {
   const router = useRouter();
   return (
     <>
@@ -18,6 +26,15 @@ const SMDownView = () => {
           </Item>
         </Grid>
       </Grid>
+      <MaterialUISwitch
+        sx={{
+          position: "absolute",
+          top: 28,
+          right: 75,
+        }}
+        checked={isDark}
+        onClick={() => setIsDark(!isDark)}
+      />
       <SpeedDial
         ariaLabel="menu"
         sx={{

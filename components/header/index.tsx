@@ -4,13 +4,19 @@ import { Head } from "./header.style";
 import SMUpView from "./smUpView";
 import SMDownView from "./smDownView";
 
-const Header = () => (
+const Header = ({
+  isDark,
+  setIsDark,
+}: {
+  isDark: boolean;
+  setIsDark: (isLight: boolean) => void;
+}) => (
   <Head>
     <Hidden smDown>
-      <SMUpView />
+      <SMUpView isDark={isDark} setIsDark={setIsDark} />
     </Hidden>
     <Hidden smUp>
-      <SMDownView />
+      <SMDownView isDark={isDark} setIsDark={setIsDark} />
     </Hidden>
   </Head>
 );

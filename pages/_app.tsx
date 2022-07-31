@@ -35,10 +35,12 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const { title } = DEFAULT_SEO;
 
+  const [isDark, setIsDark] = React.useState(false);
+
   return (
     <CookiesProvider>
       <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={darkTheme}>
+        <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
           <>
             <CssBaseline />
             <title>{title}</title>
@@ -46,8 +48,7 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
               name="viewport"
               content="width=device-width, initial-scale=1.0"
             />
-            <Header />
-            {/* <MainBackground hidden={router.pathname !== "/"}> */}
+            <Header isDark={isDark} setIsDark={setIsDark} />
             <MainBackground>
               <Component {...pageProps} />
             </MainBackground>

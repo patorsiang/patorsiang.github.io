@@ -4,7 +4,15 @@ import NextLink from "next/link";
 import { Item, GridRight, ItemRight } from "@components/util";
 import LogoLink from "@components/header/logoLink";
 
-const SMUpViewHeader = () => {
+import { MaterialUISwitch } from "./header.style";
+
+const SMUpViewHeader = ({
+  isDark,
+  setIsDark,
+}: {
+  isDark: boolean;
+  setIsDark: (isLight: boolean) => void;
+}) => {
   return (
     <Grid container>
       <Grid item xs={1}>
@@ -49,7 +57,7 @@ const SMUpViewHeader = () => {
           </NextLink>
         </Item>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={5}>
         <Item>
           <LogoLink />
         </Item>
@@ -72,6 +80,21 @@ const SMUpViewHeader = () => {
           >
             Download CV
           </Link>
+        </ItemRight>
+      </GridRight>
+      <GridRight
+        item
+        xs={1}
+        container
+        direction="row"
+        justifyContent="right"
+        alignItems="right"
+      >
+        <ItemRight>
+          <MaterialUISwitch
+            checked={isDark}
+            onClick={() => setIsDark(!isDark)}
+          />
         </ItemRight>
       </GridRight>
     </Grid>

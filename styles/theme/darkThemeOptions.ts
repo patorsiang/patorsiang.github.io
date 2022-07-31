@@ -13,13 +13,14 @@ const darkThemeOptions: ThemeOptions = {
       contrastText: "#000",
     },
     secondary: {
-      light: "#a8aaac",
+      light: "#f3f6f7",
       main: "#1C3D73",
-      dark: "#132a50",
+      dark: "#5179bd",
       contrastText: "#fff",
     },
     info: {
-      main: "#BBD3EA",
+      light: "#BBD3EA",
+      main: "#7db6c7",
     },
     background: {
       default: "#132a50",

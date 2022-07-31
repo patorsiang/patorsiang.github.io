@@ -272,7 +272,7 @@ export const Bubbles = styled("div")(({ theme, hidden }) => ({
 }));
 
 export const Bubble = styled("div")(({ theme }) => ({
-  background: theme.palette.info.main,
+  background: theme.palette.info.light,
   position: "absolute",
   bottom: "-100px",
   width: "40px",
