@@ -1,4 +1,4 @@
-import { Grid, Link } from "@mui/material";
+import { Stack, Link } from "@mui/material";
 import NextLink from "next/link";
 
 import { Item, GridRight, ItemRight } from "@components/util";
@@ -14,90 +14,67 @@ const SMUpViewHeader = ({
   setIsDark: (isLight: boolean) => void;
 }) => {
   return (
-    <Grid container>
-      <Grid item xs={1}>
-        <Item>
-          <NextLink href="/">
-            <Link
-              component="button"
-              variant="body2"
-              underline="none"
-              color="secondary.contrastText"
-            >
-              Home
-            </Link>
-          </NextLink>
-        </Item>
-      </Grid>
-      <Grid item xs={1}>
-        <Item>
-          <NextLink href="/#about-me">
-            <Link
-              component="button"
-              variant="body2"
-              underline="none"
-              color="secondary.contrastText"
-            >
-              About
-            </Link>
-          </NextLink>
-        </Item>
-      </Grid>
-      <Grid item xs={1}>
-        <Item>
-          <NextLink href="/experience">
-            <Link
-              component="button"
-              variant="body2"
-              underline="none"
-              color="secondary.contrastText"
-            >
-              Experience
-            </Link>
-          </NextLink>
-        </Item>
-      </Grid>
-      <Grid item xs={5}>
-        <Item>
-          <LogoLink />
-        </Item>
-      </Grid>
-      <GridRight
-        item
-        xs={3}
-        container
+    <Stack
+      direction="row"
+      justifyContent="space-between"
+      alignItems="center"
+      sx={{ mx: 2 }}
+    >
+      <Stack
         direction="row"
-        justifyContent="right"
-        alignItems="right"
+        justifyContent="space-between"
+        alignItems="center"
+        spacing={6}
       >
-        <ItemRight>
+        <NextLink href="/">
+          <Link
+            component="button"
+            variant="body2"
+            underline="none"
+            color="secondary.contrastText"
+          >
+            Home
+          </Link>
+        </NextLink>
+        <NextLink href="/#about-me">
+          <Link
+            component="button"
+            variant="body2"
+            underline="none"
+            color="secondary.contrastText"
+          >
+            About
+          </Link>
+        </NextLink>
+        <NextLink href="/experience">
+          <Link
+            component="button"
+            variant="body2"
+            underline="none"
+            color="secondary.contrastText"
+          >
+            Experience
+          </Link>
+        </NextLink>
+      </Stack>
+      <LogoLink />
+      <Stack direction="row" spacing={6}>
+        <Link
+          href="https://drive.google.com/file/d/1-NB3iE8rxRxrTH5i_o6LOty5kdd0QKPs/view?usp=sharing"
+          target="_blank"
+        >
           <Link
             variant="body2"
+            component="button"
             color="secondary.contrastText"
             fontWeight="700"
-            href="https://drive.google.com/file/d/1-NB3iE8rxRxrTH5i_o6LOty5kdd0QKPs/view?usp=sharing"
-            target="_blank"
           >
             Download CV
           </Link>
-        </ItemRight>
-      </GridRight>
-      <GridRight
-        item
-        xs={1}
-        container
-        direction="row"
-        justifyContent="right"
-        alignItems="right"
-      >
-        <ItemRight>
-          <MaterialUISwitch
-            checked={isDark}
-            onClick={() => setIsDark(!isDark)}
-          />
-        </ItemRight>
-      </GridRight>
-    </Grid>
+        </Link>
+        <MaterialUISwitch checked={isDark} onClick={() => setIsDark(!isDark)} />
+      </Stack>
+    </Stack>
   );
 };
 
