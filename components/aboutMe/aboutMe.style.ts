@@ -1,11 +1,12 @@
 import { styled } from "@mui/material/styles";
 import { Typography } from "@mui/material";
+import { isMobile } from "react-device-detect";
 
 export const Section = styled("div")(({ theme }) => ({
   marginTop: theme.spacing(6),
   backgroundColor: theme.palette.primary.contrastText,
   transform: "skewY(-11deg)",
-  marginBottom: theme.spacing(40),
+  marginBottom: isMobile ? theme.spacing(10) : theme.spacing(40),
   border: `${theme.spacing(1)} solid ${theme.palette.primary.dark}`,
 
   "@keyframes bottomLeft": {
