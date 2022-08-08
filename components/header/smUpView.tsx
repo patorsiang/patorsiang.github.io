@@ -4,6 +4,8 @@ import NextLink from "next/link";
 import { Item, GridRight, ItemRight } from "@components/util";
 import LogoLink from "@components/header/logoLink";
 
+import * as ga from "@utility/ga";
+
 import { MaterialUISwitch } from "./header.style";
 
 const SMUpViewHeader = ({
@@ -13,6 +15,15 @@ const SMUpViewHeader = ({
   isDark: boolean;
   setIsDark: (isLight: boolean) => void;
 }) => {
+  const clickCV = () => {
+    ga.event({
+      action: "view cv",
+      params: {
+        category: "header",
+      },
+    });
+  };
+
   return (
     <Stack
       direction="row"
@@ -68,6 +79,7 @@ const SMUpViewHeader = ({
             component="button"
             color="secondary.contrastText"
             fontWeight="700"
+            onClick={clickCV}
           >
             Download CV
           </Link>

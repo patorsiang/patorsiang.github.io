@@ -4,6 +4,7 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
 import { MainBackground } from "@components/mainBackground";
 import { CookiesProvider } from "react-cookie";
+import { useRouter } from "next/router";
 
 import "@fontsource/mali/300.css";
 import "@fontsource/mali/400.css";
@@ -16,6 +17,7 @@ import lightThemeOptions from "@styles/theme/lightThemeOptions";
 import darkThemeOptions from "@styles/theme/darkThemeOptions";
 
 import DEFAULT_SEO from "@utility/next-seo.config";
+import * as ga from "@utility/ga";
 
 import "@styles/globals.css";
 
@@ -32,10 +34,26 @@ const lightTheme = createTheme(lightThemeOptions);
 const darkTheme = createTheme(darkThemeOptions);
 
 const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
+  const router = useRouter();
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const { title } = DEFAULT_SEO;
 
   const [isDark, setIsDark] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      ga.pageview(url);
+    };
+    //When the component is mounted, subscribe to router changes
+    //and log those page views
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <CookiesProvider>
