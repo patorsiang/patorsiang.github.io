@@ -93,7 +93,15 @@ const SMUpViewHeader = ({
             Download CV
           </Link>
         </Link>
-        <MaterialUISwitch checked={isDark} onClick={() => setIsDark(!isDark)} />
+        <MaterialUISwitch
+          checked={isDark}
+          onClick={() => {
+            setIsDark(!isDark);
+            logEvent({
+              event: `desktop_head-switch_from_${isDark ? "dark" : "light"}`,
+            });
+          }}
+        />
       </Stack>
     </Stack>
   );

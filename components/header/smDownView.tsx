@@ -34,7 +34,13 @@ const SMDownView = ({
           right: 75,
         }}
         checked={isDark}
-        onClick={() => setIsDark(!isDark)}
+        onClick={() => {
+          logEvent({
+            event: `mobile_head-switch_from_${isDark ? "dark" : "light"}`,
+          });
+
+          setIsDark(!isDark);
+        }}
       />
       <SpeedDial
         ariaLabel="menu"
