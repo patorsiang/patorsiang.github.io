@@ -5,6 +5,8 @@ import { Item } from "@components/util";
 
 import { Social, email } from "@res/data";
 
+import { logEvent } from "@utility/ga";
+
 const SMUpView = () => (
   <Grid container sx={{ bgcolor: "primary.contrastText" }}>
     <Grid item xs={12}>
@@ -21,12 +23,17 @@ const SMUpView = () => (
               underline="none"
               color="secondary.contrastText"
               href={`mailto:${email}`}
+              onClick={() => {
+                logEvent({
+                  event: `desktop-click-email`,
+                });
+              }}
             >
               <MailOutlineIcon />
             </Link>
           </Item>
         </Grid>
-        {Social.map((item, i) => (
+        {Social.map((item) => (
           <Grid item xs={1} key={item.name}>
             <Item>
               <Link
@@ -35,6 +42,11 @@ const SMUpView = () => (
                 color="secondary.contrastText"
                 href={item.url}
                 target={item.target}
+                onClick={() => {
+                  logEvent({
+                    event: `desktop-click-${item.name}`,
+                  });
+                }}
               >
                 <item.icon />
               </Link>

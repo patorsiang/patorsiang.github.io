@@ -1,10 +1,9 @@
 import { Stack, Link } from "@mui/material";
 import NextLink from "next/link";
 
-import { Item, GridRight, ItemRight } from "@components/util";
 import LogoLink from "@components/header/logoLink";
 
-import * as ga from "@utility/ga";
+import { logEvent } from "@utility/ga";
 
 import { MaterialUISwitch } from "./header.style";
 
@@ -15,15 +14,6 @@ const SMUpViewHeader = ({
   isDark: boolean;
   setIsDark: (isLight: boolean) => void;
 }) => {
-  const clickCV = () => {
-    ga.event({
-      action: "view cv",
-      params: {
-        category: "header",
-      },
-    });
-  };
-
   return (
     <Stack
       direction="row"
@@ -43,6 +33,11 @@ const SMUpViewHeader = ({
             variant="body2"
             underline="none"
             color="secondary.contrastText"
+            onClick={() => {
+              logEvent({
+                event: `desktop-click-Home`,
+              });
+            }}
           >
             Home
           </Link>
@@ -53,6 +48,11 @@ const SMUpViewHeader = ({
             variant="body2"
             underline="none"
             color="secondary.contrastText"
+            onClick={() => {
+              logEvent({
+                event: `desktop-click-About`,
+              });
+            }}
           >
             About
           </Link>
@@ -63,6 +63,11 @@ const SMUpViewHeader = ({
             variant="body2"
             underline="none"
             color="secondary.contrastText"
+            onClick={() => {
+              logEvent({
+                event: `desktop-click-Experience`,
+              });
+            }}
           >
             Experience
           </Link>
@@ -79,7 +84,11 @@ const SMUpViewHeader = ({
             component="button"
             color="secondary.contrastText"
             fontWeight="700"
-            onClick={clickCV}
+            onClick={() => {
+              logEvent({
+                event: `desktop-click-Download CV`,
+              });
+            }}
           >
             Download CV
           </Link>

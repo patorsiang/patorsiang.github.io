@@ -2,10 +2,11 @@ import { useRouter } from "next/router";
 import { Grid, SpeedDial, SpeedDialIcon, SpeedDialAction } from "@mui/material";
 import { WidgetsRounded, MenuRounded } from "@mui/icons-material";
 
-import { GridRight, Item, ItemRight } from "@components/util";
+import { Item } from "@components/util";
 import LogoLink from "@components/header/logoLink";
 
 import { actions } from "@res/data";
+import { logEvent } from "@utility/ga";
 
 import { MaterialUISwitch } from "./header.style";
 
@@ -59,6 +60,10 @@ const SMDownView = ({
             tooltipTitle={action.name}
             tooltipOpen
             onClick={() => {
+              logEvent({
+                event: `mobile-click-${action.name}`,
+              });
+
               if (action?.externalURL) {
                 window.open(action.externalURL, action?.target);
               }

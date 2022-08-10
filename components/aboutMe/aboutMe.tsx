@@ -1,6 +1,9 @@
 import { Link } from "@mui/material";
 
 import { Span } from "@components/bubbleProfile/bubbleProfile.style";
+
+import { logEvent } from "@utility/ga";
+
 import { Section, ContentSection, Content, Header } from "./aboutMe.style";
 
 export const AboutMe = () => {
@@ -20,6 +23,11 @@ export const AboutMe = () => {
             sx={{
               mx: 1,
               fontWeight: "bold",
+            }}
+            onClick={() => {
+              logEvent({
+                event: `click-datawow`,
+              });
             }}
           >
             Data Wow Co. Ltd

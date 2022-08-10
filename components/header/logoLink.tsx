@@ -2,6 +2,8 @@ import { CSSProperties } from "react";
 import NextLink from "next/link";
 import { Link } from "@mui/material";
 
+import { logEvent } from "@utility/ga";
+
 const LogoLink = ({ sx }: { sx?: CSSProperties }) => (
   <NextLink href="/" passHref>
     <Link
@@ -11,6 +13,11 @@ const LogoLink = ({ sx }: { sx?: CSSProperties }) => (
       color="primary"
       underline="none"
       sx={sx}
+      onClick={() => {
+        logEvent({
+          event: `click-logo`,
+        });
+      }}
     >
       {"<NT/>"}
     </Link>

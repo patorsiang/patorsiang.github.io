@@ -23,7 +23,7 @@ import "@styles/globals.css";
 
 import Header from "@components/header";
 import Footer from "@components/footer";
-
+import ProductionScript from "@components/productionScript";
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
@@ -56,25 +56,28 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   }, [router.events]);
 
   return (
-    <CookiesProvider>
-      <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-          <>
-            <CssBaseline />
-            <title>{title}</title>
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1.0"
-            />
-            <Header isDark={isDark} setIsDark={setIsDark} />
-            <MainBackground>
-              <Component {...pageProps} />
-            </MainBackground>
-            <Footer />
-          </>
-        </ThemeProvider>
-      </CacheProvider>
-    </CookiesProvider>
+    <>
+      <ProductionScript />
+      <CookiesProvider>
+        <CacheProvider value={emotionCache}>
+          <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+            <>
+              <CssBaseline />
+              <title>{title}</title>
+              <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+              />
+              <Header isDark={isDark} setIsDark={setIsDark} />
+              <MainBackground>
+                <Component {...pageProps} />
+              </MainBackground>
+              <Footer />
+            </>
+          </ThemeProvider>
+        </CacheProvider>
+      </CookiesProvider>
+    </>
   );
 };
 

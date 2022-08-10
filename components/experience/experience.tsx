@@ -1,6 +1,10 @@
 import dayjs from "dayjs";
 import { Grid, Link, Stack } from "@mui/material";
 
+import { experience } from "@res/data";
+
+import { logEvent } from "@utility/ga";
+
 import {
   ExperienceSection,
   ExperienceHead,
@@ -15,7 +19,6 @@ import {
   Technologies,
   Technology,
 } from "./experience.style";
-import { experience } from "@res/data";
 
 export const Experience = () => (
   <ExperienceSection>
@@ -129,7 +132,16 @@ export const Experience = () => (
                       </Technologies>
                     </>
                   )}
-                  <Link href={val?.link} underline="hover" color="info">
+                  <Link
+                    href={val?.link}
+                    underline="hover"
+                    color="info"
+                    onClick={() => {
+                      logEvent({
+                        event: `click-${val?.name ?? val?.title}`,
+                      });
+                    }}
+                  >
                     Link
                   </Link>
                 </Stack>
