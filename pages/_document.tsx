@@ -5,7 +5,6 @@ import createEmotionServer from "@emotion/server/create-instance";
 import createEmotionCache from "@utility/createEmotionCache";
 
 import DEFAULT_SEO from "@utility/next-seo.config";
-
 export default class MyDocument extends Document {
   render() {
     const { title, description, og, additionalLinkTags, theme_color } =
@@ -13,6 +12,11 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <link
+            rel="preload"
+            as="style"
+            href="https://fonts.googleapis.com/css?family=Mali:300,400,500,700&display=swap"
+          />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Mali:300,400,500,700&display=swap"
