@@ -26,7 +26,7 @@ export const AboutMe = () => {
             }}
             onClick={() => {
               logEvent({
-                event: `click-datawow`,
+                event: `about-click-datawow`,
               });
             }}
           >

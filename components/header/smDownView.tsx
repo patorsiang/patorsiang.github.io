@@ -61,7 +61,7 @@ const SMDownView = ({
             tooltipOpen
             onClick={() => {
               logEvent({
-                event: `mobile-click-${action.name}`,
+                event: `mobile_head-click-${action.name}`,
               });
 
               if (action?.externalURL) {

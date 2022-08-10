@@ -25,7 +25,7 @@ const SMUpView = () => (
               href={`mailto:${email}`}
               onClick={() => {
                 logEvent({
-                  event: `desktop-click-email`,
+                  event: `desktop_foot-click-email`,
                 });
               }}
             >
@@ -44,7 +44,7 @@ const SMUpView = () => (
                 target={item.target}
                 onClick={() => {
                   logEvent({
-                    event: `desktop-click-${item.name}`,
+                    event: `desktop_foot-click-${item.name}`,
                   });
                 }}
               >

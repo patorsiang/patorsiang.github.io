@@ -35,7 +35,7 @@ const SMUpViewHeader = ({
             color="secondary.contrastText"
             onClick={() => {
               logEvent({
-                event: `desktop-click-Home`,
+                event: `desktop_head-click-Home`,
               });
             }}
           >
@@ -50,7 +50,7 @@ const SMUpViewHeader = ({
             color="secondary.contrastText"
             onClick={() => {
               logEvent({
-                event: `desktop-click-About`,
+                event: `desktop_head-click-About`,
               });
             }}
           >
@@ -65,7 +65,7 @@ const SMUpViewHeader = ({
             color="secondary.contrastText"
             onClick={() => {
               logEvent({
-                event: `desktop-click-Experience`,
+                event: `desktop_head-click-Experience`,
               });
             }}
           >
@@ -86,7 +86,7 @@ const SMUpViewHeader = ({
             fontWeight="700"
             onClick={() => {
               logEvent({
-                event: `desktop-click-Download CV`,
+                event: `desktop_head-click-Download CV`,
               });
             }}
           >

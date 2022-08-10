@@ -1,13 +1,3 @@
-// log the pageview with their URL
-export const pageview = (url: string) => {
-  logEvent({
-    event: "pageview",
-    page: {
-      url,
-    },
-  });
-};
-
 // log specific events happening.
 export const logEvent = ({
   event,

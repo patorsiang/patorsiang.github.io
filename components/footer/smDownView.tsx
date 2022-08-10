@@ -17,7 +17,7 @@ const SMDownView = () => (
           href={`mailto:${email}`}
           onClick={() => {
             logEvent({
-              event: `mobile-click-email`,
+              event: `mobile_footer-click-email`,
             });
           }}
         >
@@ -43,7 +43,7 @@ const SMDownView = () => (
                 target={item.target}
                 onClick={() => {
                   logEvent({
-                    event: `mobile-click-${item.name}`,
+                    event: `mobile_footer-click-${item.name}`,
                   });
                 }}
               >

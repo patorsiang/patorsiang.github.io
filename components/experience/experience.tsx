@@ -134,11 +134,14 @@ export const Experience = () => (
                   )}
                   <Link
                     href={val?.link}
+                    target="_blank"
                     underline="hover"
                     color="info"
                     onClick={() => {
                       logEvent({
-                        event: `click-${val?.name ?? val?.title}`,
+                        event: `experience-click-${
+                          val?.school ?? val?.company ?? val?.title
+                        }`,
                       });
                     }}
                   >
