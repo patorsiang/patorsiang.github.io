@@ -4,7 +4,6 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
 import { MainBackground } from "@components/mainBackground";
 import { CookiesProvider } from "react-cookie";
-import { useRouter } from "next/router";
 
 import "@fontsource/mali/300.css";
 import "@fontsource/mali/400.css";
@@ -17,7 +16,6 @@ import lightThemeOptions from "@styles/theme/lightThemeOptions";
 import darkThemeOptions from "@styles/theme/darkThemeOptions";
 
 import DEFAULT_SEO from "@utility/next-seo.config";
-import * as ga from "@utility/ga";
 
 import "@styles/globals.css";
 
@@ -34,7 +32,6 @@ const lightTheme = createTheme(lightThemeOptions);
 const darkTheme = createTheme(darkThemeOptions);
 
 const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
-  const router = useRouter();
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const { title } = DEFAULT_SEO;
 
