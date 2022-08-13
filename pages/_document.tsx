@@ -5,6 +5,8 @@ import createEmotionServer from "@emotion/server/create-instance";
 import createEmotionCache from "@utility/createEmotionCache";
 
 import DEFAULT_SEO from "@utility/next-seo.config";
+
+import { profileImage } from "@res/data";
 export default class MyDocument extends Document {
   render() {
     const { title, description, og, additionalLinkTags, theme_color } =
@@ -21,6 +23,9 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Mali:300,400,500,700&display=swap"
           />
+          <link rel="preload" as="image" href={`/${profileImage}.png`} />
+          <link rel="preload" as="image" href={`/${profileImage}.jpg`} />
+          <link rel="preload" as="image" href={`/${profileImage}.webp`} />
           <meta name="description" content={description} />
           <meta name="theme-color" content={theme_color} />
           <meta property="og:title" content={og.title} />

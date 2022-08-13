@@ -22,7 +22,19 @@ export const BubbleProfile = () => (
           </Span>
           <CurrentPosition>Software Engineer</CurrentPosition>
         </Introduction>
-        <Img src={profileImage} alt="Napatchol Thaipanich" loading="lazy" />
+        <picture>
+          <source type="image/png" srcSet={`${profileImage}.png`} />
+          <source type="image/jpg" srcSet={`${profileImage}.jpg`} />
+          <source type="image/webp" srcSet={`${profileImage}.webp`} />
+          <Img
+            src={`${profileImage}.png`}
+            alt="Napatchol Thaipanich"
+            loading="lazy"
+            width="100%"
+            height="100%"
+            property="og:image"
+          />
+        </picture>
       </Overall>
     </FullScreen>
     <AboutMe />

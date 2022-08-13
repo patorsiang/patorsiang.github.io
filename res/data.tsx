@@ -17,7 +17,7 @@ import {
 // export const profileImage =
 //   "https://drive.google.com/uc?export=view&id=110DgocC9RMnx0y6occuLwMrIAGxFwg9C";
 
-export const profileImage = "bubbleProfile.png";
+export const profileImage = "/bubbleProfile";
 
 export const Social = [
   {
