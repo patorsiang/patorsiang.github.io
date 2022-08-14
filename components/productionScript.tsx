@@ -1,7 +1,7 @@
 import Script from "next/script";
 
 const ProductionScript = () => {
-  if (process.env.NEXT_PUBLIC_NODE_ENV !== "production") return null;
+  if (process.env.NODE_ENV !== "production") return null;
 
   return (
     <Script id="google-tag-manager" strategy="afterInteractive">

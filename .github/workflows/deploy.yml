@@ -28,11 +28,10 @@ jobs:
 
       - name: Build
         run: |
+          touch .env.local
+          echo NEXT_PUBLIC_FB_CLIENT_API_KEY=${{ secrets.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }} >> .env.local
           yarn run build
           yarn run export
-        env:
-          REACT_APP_INSTAGRAM_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }}
-          REACT_APP_SMTP_SECURE_TOKEN: ${{ secrets.NEXT_PUBLIC_NODE_ENV }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
