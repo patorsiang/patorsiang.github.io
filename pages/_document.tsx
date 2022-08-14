@@ -23,9 +23,9 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Mali:300,400,500,700&display=swap"
           />
-          <link rel="preload" as="image" href={`/${profileImage}.png`} />
-          <link rel="preload" as="image" href={`/${profileImage}.jpg`} />
-          <link rel="preload" as="image" href={`/${profileImage}.webp`} />
+          <link rel="preload" as="image" href={`${profileImage}.png`} />
+          <link rel="preload" as="image" href={`${profileImage}.jpg`} />
+          <link rel="preload" as="image" href={`${profileImage}.webp`} />
           <meta name="description" content={description} />
           <meta name="theme-color" content={theme_color} />
           <meta property="og:title" content={og.title} />
