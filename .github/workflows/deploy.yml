@@ -30,6 +30,10 @@ jobs:
         run: |
           yarn run build
           yarn run export
+        env:
+          REACT_APP_INSTAGRAM_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID }}
+          REACT_APP_SMTP_SECURE_TOKEN: ${{ secrets.NEXT_PUBLIC_NODE_ENV }}
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
