@@ -1,12 +1,17 @@
 import { styled } from "@mui/material/styles";
 import { Switch } from "@mui/material";
 
-export const Head = styled("footer")(() => ({
+export const Head = styled("footer")(({ theme }) => ({
   position: "fixed",
   top: 0,
   width: "100%",
   zIndex: 1,
   backdropFilter: "blur(8px)",
+  padding: "0 0.5rem",
+
+  [theme.breakpoints.up("md")]: {
+    padding: "0.5rem",
+  },
 }));
 
 export const MaterialUISwitch = styled(Switch)(({ theme }) => ({

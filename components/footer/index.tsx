@@ -10,13 +10,7 @@ const Footer = () => {
   const footRef = useRef<HTMLDivElement>(null);
   const [marginTop, setMarginTop] = useState(false);
   useEffect(() => {
-    if (
-      footRef.current &&
-      window?.innerHeight - footRef?.current?.getBoundingClientRect()?.bottom >
-        0
-    ) {
-      setMarginTop(true);
-    }
+    setMarginTop(window?.innerHeight > 1000);
   });
 
   return (
