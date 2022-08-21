@@ -6,8 +6,12 @@ export const Section = styled("div")(({ theme }) => ({
   marginTop: theme.spacing(6),
   backgroundColor: theme.palette.primary.contrastText,
   transform: "skewY(-11deg)",
-  marginBottom: isMobile ? theme.spacing(10) : theme.spacing(40),
+  marginBottom: theme.spacing(10),
   border: `${theme.spacing(1)} solid ${theme.palette.primary.dark}`,
+
+  [theme.breakpoints.up("sm")]: {
+    marginBottom: theme.spacing(40),
+  },
 
   "@keyframes bottomLeft": {
     "0%": {

@@ -2,8 +2,12 @@ import { styled } from "@mui/material/styles";
 import { Typography, Box, Grid, Chip } from "@mui/material";
 
 export const ExperienceSection = styled(Box)(({ theme }) => ({
-  padding: `0 ${theme.spacing(10)}  ${theme.spacing(30)}  ${theme.spacing(10)}`,
+  padding: `0 ${theme.spacing(10)}`,
   position: "relative",
+
+  [theme.breakpoints.up("sm")]: {
+    paddingBottom: theme.spacing(30),
+  },
 }));
 
 export const ExperienceHead = styled(Typography)(({ theme }) => ({
