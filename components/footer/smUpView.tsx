@@ -28,6 +28,7 @@ const SMUpView = () => (
                   event: `desktop_foot-click-email`,
                 });
               }}
+              aria-label="email"
             >
               <MailOutlineIcon />
             </Link>
@@ -47,6 +48,7 @@ const SMUpView = () => (
                     event: `desktop_foot-click-${item.name}`,
                   });
                 }}
+                aria-label={item.name}
               >
                 <item.icon />
               </Link>

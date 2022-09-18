@@ -15,6 +15,7 @@ const SMDownView = () => (
           underline="none"
           color="secondary.contrastText"
           href={`mailto:${email}`}
+          aria-label="email"
           onClick={() => {
             logEvent({
               event: `mobile_footer-click-email`,
@@ -46,6 +47,7 @@ const SMDownView = () => (
                     event: `mobile_footer-click-${item.name}`,
                   });
                 }}
+                aria-label={item.name}
               >
                 <item.icon />
               </Link>

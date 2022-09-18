@@ -93,6 +93,7 @@ const SMUpViewHeader = ({
             Download CV
           </Link>
         </Link>
+
         <MaterialUISwitch
           checked={isDark}
           onClick={() => {
@@ -101,6 +102,7 @@ const SMUpViewHeader = ({
               event: `desktop_head-switch_from_${isDark ? "dark" : "light"}`,
             });
           }}
+          inputProps={{ "aria-label": "dask or light" }}
         />
       </Stack>
     </Stack>

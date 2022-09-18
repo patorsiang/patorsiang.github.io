@@ -41,6 +41,7 @@ const SMDownView = ({
 
           setIsDark(!isDark);
         }}
+        inputProps={{ "aria-label": "dask or light" }}
       />
       <SpeedDial
         ariaLabel="menu"
@@ -54,7 +55,6 @@ const SMDownView = ({
             openIcon={<WidgetsRounded />}
             icon={<MenuRounded />}
             color="primary"
-            aria-label="add"
           />
         }
         direction="down"
