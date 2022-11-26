@@ -99,6 +99,7 @@ export default class MyDocument extends Document {
             rel={additionalLinkTags[10].rel}
             href={additionalLinkTags[10].href}
           />
+          <script async type="text/javascript" src="/js/newrelic.js" />
         </Head>
         <body>
           <Main />
