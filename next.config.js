@@ -1,7 +1,7 @@
 const withPWA = require("next-pwa");
 /** @type {import('next').NextConfig} */
 const isProd = process.env.NODE_ENV === "production";
-const defaultQuery = { __nextDefaultLocale: "", path: "" };
+// const defaultQuery = { __nextDefaultLocale: "", path: "" };
 const nextConfig = withPWA({
   pwa: {
     dest: "public",
@@ -13,13 +13,12 @@ const nextConfig = withPWA({
   trailingSlash: true,
   exportPathMap: async function () {
     return {
-      "/": { page: "/", query: defaultQuery },
+      "/": { page: "/" },
       "/experience": {
         page: "/experience",
-        query: defaultQuery,
       },
-      "/404": { page: "/404", query: defaultQuery },
-      "/500": { page: "/500", query: defaultQuery },
+      "/404": { page: "/404" },
+      "/500": { page: "/500" },
     };
   },
   async rewrites() {
