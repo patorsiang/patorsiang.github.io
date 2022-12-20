@@ -72,9 +72,9 @@ export const actions = [
   { icon: <WorkRounded />, name: "Experience", url: "/experience" },
   {
     icon: <FileDownloadRounded />,
-    name: "Download_CV",
+    name: "Download CV",
     externalURL:
-      "https://drive.google.com/file/d/1-NB3iE8rxRxrTH5i_o6LOty5kdd0QKPs/view?usp=sharing",
+      "https://drive.google.com/file/d/1nONtcBEnOeLFr6OZroM4U0IK31oSrCNJ/view?usp=sharing",
     target: "_blank",
   },
 ];

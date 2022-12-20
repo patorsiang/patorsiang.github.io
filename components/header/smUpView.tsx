@@ -4,6 +4,7 @@ import NextLink from "next/link";
 import LogoLink from "@components/header/logoLink";
 
 import { logEvent } from "@utility/ga";
+import { actions } from "@res/data";
 
 import { MaterialUISwitch } from "./header.style";
 
@@ -27,58 +28,30 @@ const SMUpViewHeader = ({
         alignItems="center"
         spacing={6}
       >
-        <NextLink href="/">
-          <Link
-            component="button"
-            variant="body2"
-            underline="none"
-            color="secondary.contrastText"
-            onClick={() => {
-              logEvent({
-                event: `desktop_head-click-Home`,
-              });
-            }}
-          >
-            Home
-          </Link>
-        </NextLink>
-        <NextLink href="/#about-me">
-          <Link
-            component="button"
-            variant="body2"
-            underline="none"
-            color="secondary.contrastText"
-            onClick={() => {
-              logEvent({
-                event: `desktop_head-click-About`,
-              });
-            }}
-          >
-            About
-          </Link>
-        </NextLink>
-        <NextLink href="/experience">
-          <Link
-            component="button"
-            variant="body2"
-            underline="none"
-            color="secondary.contrastText"
-            onClick={() => {
-              logEvent({
-                event: `desktop_head-click-Experience`,
-              });
-            }}
-          >
-            Experience
-          </Link>
-        </NextLink>
+        {actions.map(
+          (action) =>
+            action?.url && (
+              <NextLink href={action.url} key={action.name}>
+                <Link
+                  component="button"
+                  variant="body2"
+                  underline="none"
+                  color="secondary.contrastText"
+                  onClick={() => {
+                    logEvent({
+                      event: `desktop_head-click-${action.name}`,
+                    });
+                  }}
+                >
+                  {action.name}
+                </Link>
+              </NextLink>
+            )
+        )}
       </Stack>
       <LogoLink />
       <Stack direction="row" spacing={6}>
-        <Link
-          href="https://drive.google.com/file/d/1-NB3iE8rxRxrTH5i_o6LOty5kdd0QKPs/view?usp=sharing"
-          target="_blank"
-        >
+        <Link href={actions[3].externalURL} target="_blank">
           <Link
             variant="body2"
             component="button"
@@ -86,11 +59,11 @@ const SMUpViewHeader = ({
             fontWeight="700"
             onClick={() => {
               logEvent({
-                event: `desktop_head-click-Download CV`,
+                event: `desktop_head-click-${actions[3].name}`,
               });
             }}
           >
-            Download CV
+            {actions[3].name}
           </Link>
         </Link>
 
