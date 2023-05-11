@@ -18,8 +18,6 @@
 # misc
 .DS_Store
 *.pem
-gh-pages
-gh-pages.pub
 
 # debug
 npm-debug.log*
@@ -27,19 +25,11 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env*.local
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
-
-# pwa
-sw*
-workbox*
-
-.env*
+next-env.d.ts
