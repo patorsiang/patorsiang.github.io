@@ -1,18 +1,24 @@
-import "@/app/globals.css";
+import "./globals.css";
 
-import { noto_sans_th, noto_sans_kr } from "@/app/fonts";
 import meta from "@/public/manifest.json";
+
+import { noto_sans_th, noto_sans_kr } from "./fonts";
 
 export const metadata = meta;
 
+export async function generateStaticParams() {
+  return [{ lang: "en" }, { lang: "th" }, { lang: "kr" }];
+}
+
 export default async function RootLayout({
   children,
+  params: { lang },
 }: {
   children: React.ReactNode;
+  params: { lang: string };
 }) {
-  const locale = "";
   return (
-    <html lang={locale ?? "en"}>
+    <html lang={lang}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="name" content={metadata.name} />
@@ -34,8 +40,7 @@ export default async function RootLayout({
       </head>
       <body
         className={
-          // locale === "kr" ? noto_sans_kr.className :
-          noto_sans_th.className
+          lang === "kr" ? noto_sans_kr.className : noto_sans_th.className
         }
         suppressHydrationWarning={true}
       >
