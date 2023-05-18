@@ -4,11 +4,33 @@ import meta from "@/public/manifest.json";
 
 import { noto_sans_th, noto_sans_kr } from "./fonts";
 
-export const metadata = meta;
+import { locales } from "@/i18n-config";
 
-export async function generateStaticParams() {
-  return [{ lang: "en" }, { lang: "th" }, { lang: "kr" }];
-}
+export const metadata = {
+  title: meta.name,
+  description: meta.description,
+  applicationName: meta.short_name,
+  authors: [{ name: meta.author }],
+  keywords: meta.description.split(" ").join(","),
+  referrer: "origin",
+  themeColor: meta.theme_color,
+  colorScheme: "dark",
+  viewport: { width: "device-width", initialScale: 1 },
+  creator: meta.author,
+  publisher: "github page",
+  icons: meta.icons
+    .map(({ sizes, src, ...icon }) => [
+      { rel: "icon", size: sizes, url: src, ...icon },
+      { rel: "apple-touch-icon", size: sizes, url: src, ...icon },
+    ])
+    .flat(),
+  manifest: "/manifest.json",
+  openGraph: {
+    card: meta.name,
+    creator: meta.author,
+    images: meta.icons[meta.icons.length - 1].src,
+  },
+};
 
 export default async function RootLayout({
   children,
@@ -20,23 +42,20 @@ export default async function RootLayout({
   return (
     <html lang={lang}>
       <head>
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="name" content={metadata.name} />
-        <meta name="title" content={metadata.short_name} />
-        <meta name="description" content={metadata.description} />
-        <meta
-          name="keywords"
-          content={metadata.description.split(" ").join(",")}
-        />
-        <meta name="author" content={metadata.author} />
-        <meta name="theme-color" content={metadata.theme_color} />
-        <meta charSet="utf-8" />
-        <meta httpEquiv="Content-Language" content="en-us,th,ko" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="name" content={meta.name} />
+        <meta name="title" content={meta.short_name} />
+        <meta name="description" content={meta.description} />
+        <meta httpEquiv="Content-Language" content={locales.join(",")} />
         <link rel="shortcut icon" href="icons/favicon.ico" />
-        <meta property="og:title" content={metadata.short_name} />
-        <meta property="og:description" content={metadata.description} />
+        <meta property="og:title" content={meta.short_name} />
+        <meta property="og:description" content={meta.description} />
         <meta property="og:image" content="icons/maskable_icon.png" />
+        {[36, 48, 57, 72, 96, 144, 192].map((pixel) => (
+          <LinkIcon pixel={pixel} ty="android" key={`android_${pixel}`} />
+        ))}
+        {[60, 72, 76, 114, 120, 144, 152, 180].map((pixel) => (
+          <LinkIcon pixel={pixel} ty="apple" key={`apple_${pixel}`} />
+        ))}
       </head>
       <body
         className={
@@ -49,3 +68,22 @@ export default async function RootLayout({
     </html>
   );
 }
+
+const LinkIcon = ({
+  pixel,
+  ty,
+}: {
+  pixel: string | number;
+  ty: "apple" | "android";
+}) => {
+  const sizes = `${pixel}x${pixel}`;
+  const href = `/icons/favicons/${ty}_${sizes}`;
+  return (
+    <link
+      rel={ty === "apple" ? "apple-touch-icon" : "icon"}
+      href={href}
+      type="image/png"
+      sizes={sizes}
+    />
+  );
+};

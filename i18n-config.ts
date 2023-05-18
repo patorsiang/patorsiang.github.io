@@ -1,4 +1,4 @@
-const locales = ["en", "th", "kr"];
+export const locales = ["en", "th", "kr"];
 
 export const i18n = {
   defaultLocale: locales[0],
