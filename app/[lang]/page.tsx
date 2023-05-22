@@ -18,5 +18,5 @@ export default async function Page({
   params: { lang: string };
 }) {
   const dict = await getDictionary(lang); // en
-  return <button>{dict.Index.title}</button>; // Add to Cart
+  return dict.Index.title; // Add to Cart
 }
