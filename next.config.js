@@ -11,10 +11,6 @@ const withPWA = require("next-pwa")({
 const nextConfig = withPWA({
   reactStrictMode: true,
   swcMinify: true,
-  backForwardCache: {
-    backForwardCache: true,
-    duration: 60000, // 60 seconds
-  },
   // Disable eslint during builds
   eslint: {
     ignoreDuringBuilds: true,
