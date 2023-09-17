@@ -1,8 +1,11 @@
-import { Metadata } from "next";
+import { Container } from "@mui/material";
 
 import { getDictionary } from "@/utils/getDictionaries";
 
-export const metadata: Metadata = {
+import { defaultMetadata } from "@/utils/defaultMeta";
+
+export const metadata = {
+  ...defaultMetadata,
   title: "About | Napatchol",
   description: "",
   openGraph: {
@@ -18,5 +21,5 @@ export default async function Page({
   params: { lang: string };
 }) {
   const dict = await getDictionary(lang);
-  return dict.Index.title;
+  return <Container maxWidth="lg">{dict.Index.title}</Container>;
 }

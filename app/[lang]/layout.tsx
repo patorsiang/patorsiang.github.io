@@ -1,6 +1,9 @@
 import "../globals.css";
 
-import { noto_sans_th, noto_sans_kr } from "../fonts";
+import { sans_th, sans_kr } from "../fonts";
+
+import { Header } from "@/components/ColorMode";
+import { Box } from "@mui/material";
 
 export default async function RootLayout({
   children,
@@ -12,12 +15,19 @@ export default async function RootLayout({
   return (
     <html lang={lang}>
       <body
-        className={
-          lang === "kr" ? noto_sans_kr.className : noto_sans_th.className
-        }
+        className={lang === "kr" ? sans_kr.className : sans_th.className}
         suppressHydrationWarning={true}
       >
-        {children}
+        <Header />
+        <Box
+          sx={{
+            minHeight: "100vh",
+            bgcolor: "background.default",
+            color: "text.primary",
+          }}
+        >
+          {children}
+        </Box>
       </body>
     </html>
   );

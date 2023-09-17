@@ -1,13 +1,13 @@
-import { Noto_Sans_Thai, Noto_Sans_KR } from "next/font/google";
+import { IBM_Plex_Sans_Thai, IBM_Plex_Sans_KR } from "next/font/google";
 
-export const noto_sans_th = Noto_Sans_Thai({
+export const sans_th = IBM_Plex_Sans_Thai({
   weight: ["400", "500", "700"],
   style: ["normal"],
   display: "swap",
   subsets: ["latin"],
 });
 
-export const noto_sans_kr = Noto_Sans_KR({
+export const sans_kr = IBM_Plex_Sans_KR({
   weight: ["400", "500", "700"],
   style: ["normal"],
   display: "swap",
