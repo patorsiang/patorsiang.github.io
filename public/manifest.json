@@ -4,7 +4,7 @@
   "start_url": "/",
   "display": "standalone",
   "background_color": "#5B89B3",
-  "theme_color": "#22577E",
+  "theme_color": "#263238",
   "orientation": "portrait-primary",
   "description": "A portfolio website showcasing the work and skills of Napatchol Thaipanich",
   "shortcuts": [

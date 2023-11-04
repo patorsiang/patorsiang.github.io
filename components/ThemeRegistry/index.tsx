@@ -8,6 +8,8 @@ import { CacheProvider } from "@emotion/react";
 import { ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CssBaseline from "@mui/material/CssBaseline";
+import { blueGrey } from "@mui/material/colors";
+
 import { theme } from "./theme";
 
 import { ColorModeContext } from "@/components/ColorMode";
@@ -75,6 +77,13 @@ export default function ThemeRegistry(props: {
 
   return (
     <CacheProvider value={cache}>
+      <style jsx>{`
+        html {
+          background: ${mode === "light"
+            ? blueGrey[900]
+            : blueGrey[900]} !important;
+        }
+      `}</style>
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={colorTheme}>
           <CssBaseline />
