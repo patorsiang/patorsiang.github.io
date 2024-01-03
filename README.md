@@ -10,6 +10,8 @@ npm run dev
 yarn dev
 # or
 pnpm dev
+# or
+bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -26,14 +28,6 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Customize Next.js 13 by me
-
-- to update Next.js v12 to v13
-- to set PWA
-- to set SEO
-- to set up the internationalization
-- to set not-found
 
 ## Deploy on Vercel
 
