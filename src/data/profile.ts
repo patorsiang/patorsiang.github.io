@@ -9,6 +9,7 @@ export const data: {
   };
   info: { [key: string]: Array<University | Award | Work | Activity> };
   etc: { [key: string]: { [key: string]: string } | Array<string> };
+  references: Array<{ [key: string]: string }>;
 } = {
   name: "Napatchol Thaipanich",
   address:
@@ -206,6 +207,31 @@ export const data: {
       "Swimming",
     ],
   },
+  references: [
+    {
+      Title: "Asst. Prof. Dr.",
+      Name: "Charnyote",
+      Surname: "Pluempitiwiriyawej",
+      Position: "ASSISTANT PROFESSOR",
+      "Workplace Address": `Faculty of ICT, Mahidol University
+999 Phuttamonthon 4 Road, Salaya , Nakhon Pathom 73170 THAILAND`,
+      "Contact Number": "+66 2 441 0909",
+      "Email (Official)":
+        "charnyote.plu@mahidol.ac.th; charnyote.plu@mahidol.edu",
+    },
+
+    {
+      Title: "Dr.",
+      Name: "Woraluck",
+      Surname: "Wongse-ek",
+      Position: "INSTRUCTOR",
+      "Workplace Address": `Faculty of ICT, Mahidol University
+999 Phuttamonthon 4 Road, Salaya , Nakhon Pathom 73170 THAILAND`,
+      "Contact Number": "+66 2 441 0909",
+      "Email (Official)":
+        "woraluck.won@mahidol.ac.th; woraluck.won@mahidol.edu",
+    },
+  ],
 };
 
 export type { University, Award, Work, Activity };

@@ -12,6 +12,8 @@ import {
   dateStyle,
   subheaderStyle,
   smallHeaderStyle,
+  highlightStyle,
+  bodyStyle,
 } from "./config";
 import { listDescription } from "./lib";
 
@@ -165,8 +167,21 @@ export async function GET() {
   // last hr
   doc.cell({ borderWidth: 0.25 });
 
-  // References upon request
-  // doc.text(headerStyle).add("References upon request");
+  // References
+  doc
+    .text(headerStyle)
+    .add(data.references.length ? "References" : "References upon request");
+
+  data.references.forEach((val, idx) => {
+    const refDetails = Object.entries(val);
+    doc.text(highlightStyle).add(`reference #${idx + 1}`);
+    refDetails.forEach(([key, ref], idx) => {
+      const refDetail = doc.text(`${key}: ${ref}`, bodyStyle);
+      if (idx === refDetails.length - 1) {
+        refDetail.br();
+      }
+    });
+  });
 
   const buf = await doc.asBuffer();
 

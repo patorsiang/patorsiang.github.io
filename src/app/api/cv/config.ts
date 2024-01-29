@@ -47,3 +47,11 @@ export const smallHeaderStyle = {
   font: fonts.HelveticaBold,
   lineHeight,
 };
+
+export const highlightStyle = {
+  font: fonts.HelveticaOblique,
+};
+
+export const bodyStyle = {
+  fontSize: fontSize.subtitle,
+};
