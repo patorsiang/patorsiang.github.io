@@ -1,4 +1,3 @@
-import pdf from "pdfjs";
 import { Data, University, Award, Work, Activity } from "./profile.d";
 
 export const data: Data = {
@@ -226,4 +225,4 @@ export const data: Data = {
   ],
 };
 
-export type { University, Award, Work, Activity };
+export type { Data, University, Award, Work, Activity };

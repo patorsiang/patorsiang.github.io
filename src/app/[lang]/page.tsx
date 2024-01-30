@@ -1,12 +1,9 @@
-import Image from "next/image";
+import Main from "@/components/main";
 
-import { getDictionary } from "@/utils/getDictionaries";
+export async function generateStaticParams() {
+  return [{ lang: "th" }, { lang: "en" }, { lang: "kr" }, { lang: "" }];
+}
 
-export default async function Page({
-  params: { lang },
-}: {
-  params: { lang: string };
-}) {
-  // const dict = await getDictionary(lang);
-  return lang;
+export default async function Page({ params }: { params: { lang: string } }) {
+  return <Main lang={params.lang} />;
 }
