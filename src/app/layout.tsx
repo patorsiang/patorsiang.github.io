@@ -1,8 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { IBM_Plex_Sans_KR, IBM_Plex_Sans_Thai_Looped } from "next/font/google";
+import { clsx } from "clsx";
+
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const fontTH = IBM_Plex_Sans_Thai_Looped({
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  subsets: ["latin", "thai"],
+});
+
+const fontKR = IBM_Plex_Sans_KR({
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+});
 
 export const viewport: Viewport = {
   themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#4682b4" }],
@@ -34,7 +44,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={clsx(fontTH.className, fontKR.className)}>
+        {children}
+      </body>
     </html>
   );
 }

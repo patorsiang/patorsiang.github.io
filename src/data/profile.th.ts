@@ -1,9 +1,9 @@
 import pdf from "pdfjs";
-import { Data, University, Award, Work, Activity } from "./profile.d";
+import { Data } from "./profile.d";
 
 export const data: Data = {
-  name: "Napatchol Thaipanich",
-  nickname: "Pat",
+  name: "ณภัทรชล ไทพาณิชย์",
+  nickname: "ภัทร",
   address:
     "432/38 Chapter One Midtown Condo Ladprao 24, Ladprao Road, Chomphon, Chatuchak, Bangkok, Thailand 10900",
   contact: {
@@ -225,5 +225,3 @@ export const data: Data = {
     },
   ],
 };
-
-export type { University, Award, Work, Activity };

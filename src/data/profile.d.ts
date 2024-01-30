@@ -27,3 +27,15 @@ export type Activity = {
   name: string;
   description: Array<string>;
 };
+
+export type Data = {
+  name: string;
+  nickname: string;
+  address: string;
+  contact: {
+    [key: string]: string | { name: string; opt: pdf.TextOptions };
+  };
+  info: { [key: string]: Array<University | Award | Work | Activity> };
+  etc: { [key: string]: { [key: string]: string } | Array<string> };
+  references: Array<{ [key: string]: string }>;
+};
