@@ -37,6 +37,14 @@ export const metadata: Metadata = {
   ],
 };
 
+export const dynamic = "auto";
+export const dynamicParams = true;
+export const revalidate = false;
+export const fetchCache = "auto";
+export const runtime = "nodejs";
+export const preferredRegion = "auto";
+export const maxDuration = 5;
+
 export default function RootLayout({
   children,
 }: {
@@ -50,11 +58,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-export const dynamic = "auto";
-export const dynamicParams = true;
-export const revalidate = false;
-export const fetchCache = "auto";
-export const runtime = "nodejs";
-export const preferredRegion = "auto";
-export const maxDuration = 5;
