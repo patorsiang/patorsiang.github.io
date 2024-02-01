@@ -15,7 +15,7 @@ const fontKR = IBM_Plex_Sans_KR({
 });
 
 export const viewport: Viewport = {
-  themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#4682b4" }],
+  themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#193441" }],
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,

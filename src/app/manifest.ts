@@ -17,8 +17,8 @@ export default function manifest():
     scope: "/",
     start_url: "/",
     display: "standalone",
-    background_color: "#4682b4",
-    theme_color: "#4682b4",
+    background_color: "#193441",
+    theme_color: "#193441",
     icons: [
       {
         src: "/favicon.ico",

@@ -3,16 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 30, 41, 59;
+  --foreground-hover-rgb: 100, 116, 139;
+  --background-start-rgb: 246, 241, 241;
+  --background-end-rgb: 175, 211, 226;
+  --secondary-start-rgb: 20, 108, 148;
+  --secondary-end-rgb: 25, 167, 206;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 226, 232, 240;
+    --foreground-hover-rgb: 100, 116, 139;
+    --background-start-rgb: 54, 103, 166;
+    --background-end-rgb: 25, 52, 65;
+    --secondary-start-rgb: 29, 93, 155;
+    --secondary-end-rgb: 189, 216, 241;
   }
 }
 
@@ -27,7 +33,11 @@ body {
 }
 
 .text-404 {
-  background: linear-gradient(to right, rgb(0, 168, 1253), #fff 50%);
+  background: linear-gradient(
+    to right,
+    rgb(var(--secondary-start-rgb)),
+    rgb(var(--secondary-end-rgb)) 50%
+  );
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -36,9 +46,17 @@ body {
 .btn {
   @apply font-bold py-2 px-4 rounded;
 }
-.btn-blue {
-  @apply bg-blue-500 text-white;
+
+.btn-back-404 {
+  @apply text-gray-800;
+  background-color: rgb(var(--secondary-end-rgb));
 }
-.btn-blue:hover {
-  @apply bg-blue-700;
+
+.btn-back-404:hover {
+  @apply text-gray-300;
+  background-color: rgb(var(--secondary-start-rgb));
+}
+
+.lnk:hover {
+  color: rgb(var(--foreground-hover-rgb));
 }

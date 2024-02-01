@@ -7,7 +7,14 @@ export const data: Data = {
     "432/38 Chapter One Midtown Condo Ladprao 24, Ladprao Road, Chomphon, Chatuchak, Bangkok, Thailand 10900",
   contact: {
     Tel: "(+66)0959390164",
-    Email: "napatchol.tha@gmail.com",
+    Email: {
+      name: "napatchol.tha@gmail.com",
+      opt: {
+        link: "mailto:napatchol.tha@gmail.com?subject=%5Bpatorseing%2Egithub%2Eio%5D contact by seeing the info from the CV&body=Name%3D%3CInsert Your Name%3E%0D%0ATel%3D%3CInsert Your Tel%3E%0D%0ADetail%3A%0D%0A",
+        underline: true,
+        color: 0x569cd6,
+      },
+    },
     LinkedIn: {
       name: "napatchol-thaipanich",
       opt: {
