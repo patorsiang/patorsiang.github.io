@@ -20,12 +20,14 @@ export default async function Main({ lang }: { lang?: string }) {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {/* Avatar */}
+      {/* https://avataaars.io/?avatarStyle=Circle&topType=LongHairBob&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=Heather&eyeType=Default&eyebrowType=Default&mouthType=Eating&skinColor=Light */}
       <Image
-        src="https://avataaars.io/?avatarStyle=Circle&topType=LongHairBob&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=Heather&eyeType=Default&eyebrowType=Default&mouthType=Eating&skinColor=Light"
+        src="/imgs/avataaars.svg"
         alt="My Avatar"
-        className="h-auto w-2/4 max-sm:w-3/4 md:w-1/4"
+        className={"h-auto w-2/4 max-sm:w-3/4 md:w-1/4"}
         width={100}
         height={100}
+        priority
       />
 
       {/* Name */}
@@ -41,6 +43,7 @@ export default async function Main({ lang }: { lang?: string }) {
             href={info.contact[key].opt.link}
             target="_blank"
             className="cursor-pointer lnk"
+            aria-label={`Click ${key}`}
           >
             <Icon size={iconSize} />
           </Link>
