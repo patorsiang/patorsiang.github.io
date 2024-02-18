@@ -1,5 +1,3 @@
-import { clsx } from "clsx";
-
 export const CharacterAnimation = ({
   word,
   idx,
@@ -12,7 +10,7 @@ export const CharacterAnimation = ({
   return characters.map((char, index) => (
     <span
       key={`char_${idx}_${index}`}
-      className={`animate-[slideIn_2s_ease-in] inline-block text-gray-700 animation-delay-0`}
+      className={`animate-[slideIn_2s_ease-in] inline-block animation-delay-0`}
       style={{
         animationDelay: `${0.1 * (index + 1) * (idx + 1)}s`,
       }}
@@ -26,7 +24,8 @@ export const TextAnimation = ({ text }: { text: string }) => {
   const words = text.split(" ");
 
   return words.map((word, index) => (
-    <span key={index} className={clsx("inline", { "ms-4": index !== 0 })}>
+    <span key={index} className="inline">
+      {index ? " " : ""}
       <CharacterAnimation word={word} idx={index} />
     </span>
   ));

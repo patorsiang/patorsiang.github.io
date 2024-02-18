@@ -34,7 +34,7 @@ export default async function Main({ lang }: { lang?: string }) {
       />
 
       {/* Name */}
-      <h1 className="font-bold text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+      <h1 className="flex flex-wrap gap-2 font-bold justify-center text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
         <TextAnimation text={`${info.name} (${info.nickname})`} />
       </h1>
 
