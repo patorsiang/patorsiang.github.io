@@ -4,6 +4,8 @@ import Link from "next/link";
 import { HiOutlineMail } from "react-icons/hi";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
+import { TextAnimation } from "./animation";
+
 import { getDictionary } from "@/utils/getDictionaries";
 
 const iconSize = "2.5em";
@@ -33,8 +35,14 @@ export default async function Main({ lang }: { lang?: string }) {
 
       {/* Name */}
       <h1 className="font-bold text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-        {info.name} ({info.nickname})
+        <TextAnimation text={`${info.name} (${info.nickname})`} />
       </h1>
+
+      {/* Subtitle */}
+      <h2
+        className="text-center text-sx md:text-xl"
+        dangerouslySetInnerHTML={{ __html: info.subtitle }}
+      />
 
       {/* Contact */}
       <div className="flex items-center justify-between gap-10">
@@ -50,12 +58,6 @@ export default async function Main({ lang }: { lang?: string }) {
           </Link>
         ))}
       </div>
-
-      {/* Subtitle */}
-      <h2
-        className="text-center text-sx md:text-xl"
-        dangerouslySetInnerHTML={{ __html: info.subtitle }}
-      />
 
       <h1 className="text-2x1 font-bold text-center">
         It is in the process to update the website
