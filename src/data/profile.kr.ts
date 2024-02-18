@@ -4,6 +4,8 @@ import { Data } from "./profile.d";
 export const data: Data = {
   name: "나팥촐 타이파닟",
   nickname: "팥",
+  subtitle:
+    "코드를 통해 나의 열정을 공유하는 소프트웨어 개발자입니다. <br/>함께 놀라운 것을 만들어 봅시다!",
   address:
     "432/38 Chapter One Midtown Condo Ladprao 24, Ladprao Road, Chomphon, Chatuchak, Bangkok, Thailand 10900",
   contact: {

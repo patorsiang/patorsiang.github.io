@@ -4,6 +4,8 @@ import { Data } from "./profile.d";
 export const data: Data = {
   name: "ณภัทรชล ไทพาณิชย์",
   nickname: "ภัทร",
+  subtitle:
+    "นักพัฒนาซอฟต์แวร์ที่แบ่งปันความหลงใหลของฉันผ่านโค้ด <br/>มาสร้างสิ่งที่น่าทึ่งด้วยกัน!",
   address:
     "432/38 Chapter One Midtown Condo Ladprao 24, Ladprao Road, Chomphon, Chatuchak, Bangkok, Thailand 10900",
   contact: {

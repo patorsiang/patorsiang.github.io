@@ -8,6 +8,7 @@ import { getDictionary } from "@/utils/getDictionaries";
 
 const iconSize = "2.5em";
 
+// Contact Icons
 const contactIcons = {
   Email: HiOutlineMail,
   LinkedIn: FaLinkedin,
@@ -49,6 +50,12 @@ export default async function Main({ lang }: { lang?: string }) {
           </Link>
         ))}
       </div>
+
+      {/* Subtitle */}
+      <h2
+        className="text-center text-sx md:text-xl"
+        dangerouslySetInnerHTML={{ __html: info.subtitle }}
+      />
 
       <h1 className="text-2x1 font-bold text-center">
         It is in the process to update the website

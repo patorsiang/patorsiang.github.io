@@ -31,6 +31,7 @@ export type Activity = {
 export type Data = {
   name: string;
   nickname: string;
+  subtitle: string;
   address: string;
   contact: {
     [key: string]: string | { name: string; opt: pdf.TextOptions };
