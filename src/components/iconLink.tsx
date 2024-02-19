@@ -1,20 +1,24 @@
 import { ReactNode } from "react";
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 
 export const IconLink = ({
-  link,
   label,
   children,
+  target,
+  disabled,
+  ...props
 }: {
-  link: string;
+  target?: string;
+  disabled?: boolean;
   label: string;
   children: ReactNode;
-}) => (
+} & LinkProps) => (
   <Link
-    href={link}
-    target="_blank"
-    className="cursor-pointer lnk tooltip"
+    {...props}
+    target={target}
+    className={`cursor-pointer lnk tooltip ${disabled ? "disabled" : ""}`}
     aria-label={`Click ${label}`}
+    aria-disabled={disabled}
   >
     {children}
     <span className="tooltipText">{label}</span>

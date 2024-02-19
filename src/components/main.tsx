@@ -1,22 +1,12 @@
 import Image from "next/image";
 
-import { HiOutlineMail } from "react-icons/hi";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { IoDownload } from "react-icons/io5";
-
 import { TextAnimation } from "./animation";
 import { IconLink } from "./iconLink";
+import { DownloadCVLink } from "./downloadCV";
+
+import { contactIcons, iconSize } from "@/constants";
 
 import { getDictionary } from "@/utils/getDictionaries";
-
-const iconSize = "2.5em";
-
-// Contact Icons
-const contactIcons = {
-  Email: HiOutlineMail,
-  LinkedIn: FaLinkedin,
-  Github: FaGithub,
-};
 
 export default async function Main({ lang }: { lang?: string }) {
   const info = await getDictionary(lang ?? "en");
@@ -48,13 +38,16 @@ export default async function Main({ lang }: { lang?: string }) {
       {/* Contact */}
       <div className="flex items-center justify-between gap-10">
         {Object.entries(contactIcons).map(([key, Icon]) => (
-          <IconLink key={key} link={info.contact[key].opt.link} label={key}>
+          <IconLink
+            key={key}
+            href={info.contact[key].opt.link}
+            label={key}
+            target="_blank"
+          >
             <Icon size={iconSize} />
           </IconLink>
         ))}
-        <IconLink key="CV" link="/api/cv" label="CV">
-          <IoDownload size={iconSize} />
-        </IconLink>
+        <DownloadCVLink />
       </div>
 
       <h1 className="text-2x1 font-bold text-center">
