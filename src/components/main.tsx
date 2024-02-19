@@ -1,10 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import { HiOutlineMail } from "react-icons/hi";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { IoDownload } from "react-icons/io5";
 
 import { TextAnimation } from "./animation";
+import { IconLink } from "./iconLink";
 
 import { getDictionary } from "@/utils/getDictionaries";
 
@@ -47,16 +48,13 @@ export default async function Main({ lang }: { lang?: string }) {
       {/* Contact */}
       <div className="flex items-center justify-between gap-10">
         {Object.entries(contactIcons).map(([key, Icon]) => (
-          <Link
-            key={key}
-            href={info.contact[key].opt.link}
-            target="_blank"
-            className="cursor-pointer lnk"
-            aria-label={`Click ${key}`}
-          >
+          <IconLink key={key} link={info.contact[key].opt.link} label={key}>
             <Icon size={iconSize} />
-          </Link>
+          </IconLink>
         ))}
+        <IconLink key="CV" link="/api/cv" label="CV">
+          <IoDownload size={iconSize} />
+        </IconLink>
       </div>
 
       <h1 className="text-2x1 font-bold text-center">
