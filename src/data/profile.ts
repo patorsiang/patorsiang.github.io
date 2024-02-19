@@ -3,8 +3,10 @@ import { Data, University, Award, Work, Activity } from "./profile.d";
 export const data: Data = {
   name: "Napatchol Thaipanich",
   nickname: "Pat",
-  subtitle:
-    "A software developer sharing my passions through code. <br/>Let's build something remarkable together!",
+  subtitle: `A software developer sharing my passions through code.
+  <br/>
+  <br/>
+  "Let's build something remarkable together!"`,
   address:
     "432/38 Chapter One Midtown Condo Ladprao 24, Ladprao Road, Chomphon, Chatuchak, Bangkok, Thailand 10900",
   contact: {

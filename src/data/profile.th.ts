@@ -4,8 +4,9 @@ import { Data } from "./profile.d";
 export const data: Data = {
   name: "ณภัทรชล ไทพาณิชย์",
   nickname: "ภัทร",
-  subtitle:
-    "นักพัฒนาซอฟต์แวร์ที่แบ่งปันความหลงใหลของฉันผ่านโค้ด <br/>มาสร้างสิ่งที่น่าทึ่งด้วยกัน!",
+  subtitle: `นักพัฒนาซอฟต์แวร์ที่แบ่งปันความหลงใหลของฉันผ่านโค้ด <br/>
+  <br/>
+  มาสร้างสิ่งที่น่าทึ่งด้วยกัน!`,
   address:
     "432/38 Chapter One Midtown Condo Ladprao 24, Ladprao Road, Chomphon, Chatuchak, Bangkok, Thailand 10900",
   contact: {
@@ -13,7 +14,7 @@ export const data: Data = {
     Email: {
       name: "napatchol.tha@gmail.com",
       opt: {
-        link: "mailto:napatchol.tha@gmail.com?subject=%5Bpatorseing%2Egithub%2Eio%5D contact by seeing the info from the CV&body=Name%3D%3CInsert Your Name%3E%0D%0ATel%3D%3CInsert Your Tel%3E%0D%0ADetail%3A%0D%0A",
+        link: "mailto:napatchol.tha@gmail.com?subject=%5Bpatorseing%2Egithub%2Eio%5D ติดต่อโดยดูข้อมูลจาก CV&body=ชื่อ%3D%3Cใส่ชื่อของคุณ%3E%0D%0Aเบอร์ติดต่อกลับ%3D%3Cใส่เบอร์โทรของคุณ%3E%0D%0Aรายละเอียด%3A%0D%0A",
         underline: true,
         color: 0x569cd6,
       },

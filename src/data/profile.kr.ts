@@ -4,8 +4,7 @@ import { Data } from "./profile.d";
 export const data: Data = {
   name: "나팥촐 타이파닟",
   nickname: "팥",
-  subtitle:
-    "코드를 통해 나의 열정을 공유하는 소프트웨어 개발자입니다. <br/>함께 놀라운 것을 만들어 봅시다!",
+  subtitle: `코드를 통해 나의 열정을 공유하는 소프트웨어 개발자입니다. <br/><br/>"함께 놀라운 것을 만들어 봅시다!"`,
   address:
     "432/38 Chapter One Midtown Condo Ladprao 24, Ladprao Road, Chomphon, Chatuchak, Bangkok, Thailand 10900",
   contact: {
@@ -13,7 +12,7 @@ export const data: Data = {
     Email: {
       name: "napatchol.tha@gmail.com",
       opt: {
-        link: "mailto:napatchol.tha@gmail.com?subject=%5Bpatorseing%2Egithub%2Eio%5D contact by seeing the info from the CV&body=Name%3D%3CInsert Your Name%3E%0D%0ATel%3D%3CInsert Your Tel%3E%0D%0ADetail%3A%0D%0A",
+        link: "mailto:napatchol.tha@gmail.com?subject=%5Bpatorseing%2Egithub%2Eio%5D 이력서의 정보를 보고 연락하세요.&body=성함%3D%3C당신의 성함을 입력하세요.%3E%0D%0A전화%3D%3C전화번호를 입력하세요.%3E%0D%0A세부 사항%3A%0D%0A",
         underline: true,
         color: 0x569cd6,
       },

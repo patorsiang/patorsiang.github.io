@@ -21,7 +21,7 @@ export default async function Main({ lang }: { lang?: string }) {
   const info = await getDictionary(lang ?? "en");
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center p-24 gap-8">
       {/* Avatar */}
       {/* https://avataaars.io/?avatarStyle=Circle&topType=LongHairBob&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=Heather&eyeType=Default&eyebrowType=Default&mouthType=Eating&skinColor=Light */}
       <Image
@@ -34,7 +34,7 @@ export default async function Main({ lang }: { lang?: string }) {
       />
 
       {/* Name */}
-      <h1 className="flex flex-wrap gap-2 font-bold justify-center text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+      <h1 className="flex flex-wrap gap-4 gap-y-2 font-bold justify-center text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
         <TextAnimation text={`${info.name} (${info.nickname})`} />
       </h1>
 

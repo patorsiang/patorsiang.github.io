@@ -5,7 +5,16 @@ export const CharacterAnimation = ({
   word: string;
   idx: number;
 }) => {
-  const characters = word.split("");
+  const characters = word
+    .split("")
+    .reduce((accumulator: Array<string>, character: string) => {
+      if (/[\u0E31\u0E34\u0E4c]/u.test(character)) {
+        accumulator[accumulator.length - 1] += character;
+      } else {
+        accumulator.push(character);
+      }
+      return accumulator;
+    }, []);
 
   return characters.map((char, index) => (
     <span
