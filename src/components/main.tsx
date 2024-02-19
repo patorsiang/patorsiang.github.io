@@ -36,7 +36,7 @@ export default async function Main({ lang }: { lang?: string }) {
       />
 
       {/* Contact */}
-      <div className="flex items-center justify-between gap-10">
+      <div className="flex flex-wrap items-center gap-10 justify-center">
         {Object.entries(contactIcons).map(([key, Icon]) => (
           <IconLink
             key={key}
@@ -49,6 +49,8 @@ export default async function Main({ lang }: { lang?: string }) {
         ))}
         <DownloadCVLink />
       </div>
+
+      <hr className="max-w-[150px] w-full border-4" />
 
       <h1 className="text-2x1 font-bold text-center">
         It is in the process to update the website
