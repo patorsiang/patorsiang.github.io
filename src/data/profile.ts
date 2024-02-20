@@ -61,11 +61,11 @@ export const data: Data = {
       },
       {
         date: "2022",
-        name: "Women Thailand Cyber Top Talent 2022, the top 4 by NCSA & HUAWEI",
+        name: "Women Thailand Cyber Top Talent 2022 by NCSA & HUAWEI • Top 4",
       },
       {
         date: "2020",
-        name: "CJE Hackathon 2020 Generation 1, the top 3 by Botnoi Consulting",
+        name: "CJE Hackathon 2020 Generation 1 by Botnoi Consulting • Top 3",
       },
       {
         date: "2015 - 2019",
@@ -94,7 +94,7 @@ export const data: Data = {
       },
       {
         date: "2013",
-        name: "Certifiate of Merit, Class Distinction, The Royal Australian Chemical Institute",
+        name: "Certificate of Merit, Class Distinction, The Royal Australian Chemical Institute",
       },
     ],
     "Work Experience": [
@@ -104,7 +104,7 @@ export const data: Data = {
         type: "Freelance",
         location: "Bangkok, Thailand",
         description: [
-          "Collected requirement from a client.",
+          "Collected requirements from a client.",
           "Helped a client to get a solution.",
           "Separated tasks and estimated time for each task.",
           "Coded, Packed, Hosted, and Maintained a website.",
@@ -129,9 +129,9 @@ export const data: Data = {
         company: "Bank of Thailand",
         location: "Bangkok, Thailand",
         description: [
-          "DLTBond: We use Blockchain (Hyperledger Fabric) to distribute a chance to purchase the government bond for every person by not giving the bank the quota to the selling agent. I design, develop, regulate, and supervise the system with the team.",
-          "ISO20022: The new standard for payment messaging, which will apply to the central core of the payment system in November 2025, includes Thailand, which also has to be shifted. So I am involved in getting BA's requirement to Analyze and Develop the plan with the team and Test the flow with the team.",
-          "RPA: RPA stands for Robotic process automation. Bank of Thailand also applies RPA to reduce the time spent on routine tasks and has time to use in the value task. I am involved in Analysis, Adjust and Improve the process and develop the flow by UiPath as an RPA developer.",
+          "DLTBond: We use Blockchain (Hyperledger Fabric) to give every person a chance to purchase government bonds by not giving the bank the quota to the selling agent. I design, develop, regulate, and supervise the system with the team.",
+          "ISO20022: The new standard for payment messaging, which will apply to the central core of the payment system in November 2025, includes Thailand, which also has to be shifted. So, I am involved in getting BA's requirement to Analyze and Develop the plan with the team and Test the flow with the team.",
+          "RPA: RPA stands for Robotic process automation. Bank of Thailand also applies RPA to reduce the time spent on routine tasks and has time to use in the value task. I am involved in analyzing, adjusting, and improving the process and developing the flow by UiPath as an RPA developer.",
         ],
       },
       {
@@ -141,7 +141,7 @@ export const data: Data = {
         company: "Kasikorn Business Technology Group (KBTG)",
         location: "Bangkok, Thailand",
         description: [
-          "Time D(onation): It is about the use case of blockchain to solve the social problem. This project uses the Stellar blockchain to create a Time D token on the platform to exchange volunteer service and keep track of volunteer service to give a reward. I am in brainstorm the idea, design, and develop the prototype with the team.",
+          "Time D(onation): It is about the use case of blockchain to solve the social problem. This project uses the Stellar blockchain to create a Time D token on the platform to exchange volunteer service and keep track of volunteer service to give a reward. I brainstormed the idea and designed and developed the prototype with the team.",
         ],
       },
       {
@@ -151,7 +151,7 @@ export const data: Data = {
         company: "BeID Corporation Co., Ltd.",
         location: "Bangkok, Thailand",
         description: [
-          "About developing in dashboard and landing page in React.JS",
+          "About developing a dashboard and landing page in React.JS",
         ],
       },
     ],
@@ -193,7 +193,7 @@ export const data: Data = {
       "Queue Management": "RabbitMQ",
     },
     Languages: {
-      English: "IELTS: band 6", // "IELTS: band 6",
+      English: "IELTS: band 6; Listening: 6 Reading 5 Writing 6 Speaking 6", // "IELTS: band 6",
       Korean: "TOPIK: level 1",
       Thai: "mother tongue",
     },
@@ -234,6 +234,14 @@ export const data: Data = {
         "woraluck.won@mahidol.ac.th; woraluck.won@mahidol.edu",
     },
   ],
+  frontEnd: {
+    topic: {
+      description: "Description",
+      favoriteSubject: "Favorite Subject",
+      major: "Major",
+      gpa: "GPA",
+    },
+  },
 };
 
 export type { Data, University, Award, Work, Activity };

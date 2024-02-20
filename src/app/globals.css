@@ -128,3 +128,7 @@ hr {
 
   @apply top-[2px] h-full w-[3px] left-[18px] lg:top-[5px] lg:w-[5px] lg:left-[20px];
 }
+
+.timeline-sub {
+  color: rgb(var(--foreground-hover-rgb));
+}

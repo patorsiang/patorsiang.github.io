@@ -58,7 +58,9 @@ export default async function Main({ lang }: { lang?: string }) {
 
       <hr className="max-w-[150px] w-full border-2 lg:border-4" />
 
+      {/* Experience information */}
       <section className="flex flex-col gap-4">
+        {/* Topic for Large Monitor */}
         <div className="hidden lg:grid lg:gap-6 lg:grid-cols-3">
           {Object.keys(info.info).map((topic) => (
             <h3
@@ -69,35 +71,55 @@ export default async function Main({ lang }: { lang?: string }) {
             </h3>
           ))}
         </div>
+        {/* Topic and detail for all screen */}
         <div className="grid gap-6 grid-cols-1 lg:grid-cols-3">
           {Object.entries(info.info).map(([topic, detail]) => (
             <div key={topic} className="flex flex-col gap-4">
+              {/* Topic for smaller than large monitor */}
               <h3 className="leading-loose underline underline-offset-8 decoration-[3px] font-bold text-md sm:text-lg md:text-xl lg:text-2xl lg:hidden">
                 {topic}
               </h3>
+              {/* Started Detail Section */}
               <ul>
                 {detail.map((infoItem) => (
+                  // timeline list
                   <li
                     key={`${infoItem.date}_${
                       infoItem?.degree ?? infoItem?.title ?? infoItem?.name
                     }`}
                     className="timeline_item grid"
                   >
-                    <h4 className="font-bold text-sm sm:text-sm md:text-md lg:text-lg">
+                    {/* Education: degree - school || Work or Activity : title or name */}
+                    <h4 className="font-bold text-sm md:text-md lg:text-lg">
                       {infoItem?.degree
                         ? `${infoItem?.degree} - ${infoItem?.school}`
                         : infoItem?.title ?? infoItem?.name}
                     </h4>
+
+                    {/* Education: university */}
                     {infoItem?.university && <h5>{infoItem?.university}</h5>}
-                    <h5>
+
+                    {/* Work: type • company • date */}
+                    <h5 className="text-sx md:text-sm lg:text-md timeline-sub">
                       {infoItem?.type && <>{infoItem?.type} &#8226; </>}
                       {infoItem?.company && <>{infoItem?.company} &#8226; </>}
                       {infoItem.date}
                     </h5>
-                    <h5>{infoItem?.location}</h5>
+
+                    {/* Work: location */}
+                    <h5 className="text-sx md:text-sm lg:text-md timeline-sub">
+                      {infoItem?.location}
+                    </h5>
+
+                    {/* Description */}
                     {infoItem?.description && (
                       <>
-                        <h6>Description</h6>
+                        <h6>
+                          {
+                            (info?.frontEnd?.topic as { description?: string })
+                              ?.description
+                          }
+                        </h6>
                         <ul className="list-disc list-inside">
                           {infoItem?.description.map((desc, idx) => (
                             <li key={`desc-${idx}`}>{desc}</li>
@@ -105,9 +127,19 @@ export default async function Main({ lang }: { lang?: string }) {
                         </ul>
                       </>
                     )}
+
+                    {/* Education: Favorite Subjects */}
                     {infoItem?.favoriteSubjects && (
                       <>
-                        <h6>Favorite Subject</h6>
+                        <h6>
+                          {
+                            (
+                              info?.frontEnd?.topic as {
+                                favoriteSubject?: string;
+                              }
+                            )?.favoriteSubject
+                          }
+                        </h6>
                         <ul className="list-disc list-inside">
                           {infoItem?.favoriteSubjects?.map((subject) => (
                             <li key={subject}>{subject}</li>
@@ -115,16 +147,36 @@ export default async function Main({ lang }: { lang?: string }) {
                         </ul>
                       </>
                     )}
+
+                    {/* Education: Major and GPA */}
                     <div className="flex flex-wrap gap-2">
                       {infoItem?.major && (
                         <>
-                          <h6>Major: </h6>
+                          <h6>
+                            {
+                              (
+                                info?.frontEnd?.topic as {
+                                  major?: string;
+                                }
+                              )?.major
+                            }
+                            :
+                          </h6>
                           <p>{infoItem?.major}</p>
                         </>
                       )}
                       {infoItem?.gpa && (
                         <>
-                          <h6>GPA: </h6>
+                          <h6>
+                            {
+                              (
+                                info?.frontEnd?.topic as {
+                                  gpa?: string;
+                                }
+                              )?.gpa
+                            }
+                            :{" "}
+                          </h6>
                           <p>{infoItem?.gpa}</p>
                         </>
                       )}

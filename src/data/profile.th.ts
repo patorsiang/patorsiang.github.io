@@ -6,9 +6,9 @@ export const data: Data = {
   nickname: "ภัทร",
   subtitle: `นักพัฒนาซอฟต์แวร์ที่แบ่งปันความหลงใหลของฉันผ่านโค้ด <br/>
   <br/>
-  มาสร้างสิ่งที่น่าทึ่งด้วยกัน!`,
+  "มาสร้างสิ่งที่น่าทึ่งด้วยกัน!"`,
   address:
-    "432/38 Chapter One Midtown Condo Ladprao 24, Ladprao Road, Chomphon, Chatuchak, Bangkok, Thailand 10900",
+    "432/38 แชปเตอร์วันมิดทาวน์คอนโด ลาดพร้าว 24 ถนนลาดพร้าว จอมพล จตุจักร กรุงเทพฯ 10900",
   contact: {
     Tel: "(+66)0959390164",
     Email: {
@@ -37,12 +37,12 @@ export const data: Data = {
     },
   },
   info: {
-    "Education and Awards": [
+    การศึกษาและรางวัล: [
       {
         date: "2015 - 2023",
-        school: "Faculty of Law",
-        university: "Ramkhamhaeng University",
-        degree: "Bachelor of Laws (LL.B.)",
+        school: "คณะนิติศาสตร์",
+        university: "มหาวิทยาลัยรามคำแหง",
+        degree: "นิติศาสตรบัณฑิต (น.บ.)",
         // gpa: "2.8",
         favoriteSubjects: [
           // "KOR1001 - KOR2002 Fundamental Korean",
@@ -51,64 +51,64 @@ export const data: Data = {
           // "LAW4009 Law on Intellectual Property 1",
           // "LAW4010 International Trade Law",
           // "LAW4053 Law Related to Computer",
-          "Fundamental Korean",
-          "Civil and Commercial Law: Family",
-          "Civil and Commercial Law: Succession",
-          "Law on Intellectual Property 1",
-          "International Trade Law",
-          "Law Related to Computer",
+          "ภาษาเกาหลีพื้นฐาน",
+          "กฎหมายแพ่งและพาณิชย์ว่าด้วยครอบครัว",
+          "กฎหมายแพ่งและพาณิชย์ว่าด้วยมรดก",
+          "กฎหมายเกี่ยวกับทรัพย์สินทางปัญญา 1",
+          "กฎหมายการค้าระหว่างประเทศ",
+          "กฎหมายที่เกี่ยวกับคอมพิวเตอร์",
         ],
       },
       {
         date: "2022",
-        name: "Women Thailand Cyber Top Talent 2022, the top 4 by NCSA & HUAWEI",
+        name: "Women Thailand Cyber Top Talent 2022 • การแข่งขันด้านความมั่นคงปลอดภัยไซเบอร์ สำหรับ ผู้หญิง, จัดโดย NCSA & HUAWEI • อันดับที่ 4",
       },
       {
         date: "2020",
-        name: "CJE Hackathon 2020 Generation 1, the top 3 by Botnoi Consulting",
+        name: "CJE Hackathon 2020 รุ่นที่ 1 โดย Botnoi Consulting • อันดับที่ 3",
       },
       {
         date: "2015 - 2019",
-        school: "Faculty of Information and Communication Technology",
-        university: "Mahidol University",
-        degree: "Bachelor of Science (B.Sc.)",
-        major: "Database and Intelligent Systems (DB)",
+        school: "คณะเทคโนโลยีสารสนเทศและการสื่อสาร",
+        university: "มหาวิทยาลัยมหิดล",
+        degree: "วิทยาศาสตรบัณฑิต (วท.บ.)",
+        major: "ระบบฐานข้อมูลและระบบเชิงปัญญา",
         gpa: "3.18",
         favoriteSubjects: [
-          "Web Programming",
-          "Computer Organization and Architecture",
-          "Data Structures and Algorithm Analysis",
-          "Database Management Systems",
-          "Information Storage and Retrieval",
-          "Database Design",
-          "Human-Computer Interface",
-          "Digital Image processing",
+          "การเขียนโปรแกรมเว็บ",
+          "โครงสร้างและสถาปัตยกรรมคอมพิวเตอร์",
+          "โครงสร้างข้อมูลและการวิเคราะห์ขั้นตอนวิธี",
+          "ระบบการจัดการฐานข้อมูล",
+          "การเก็บและการค้นคืนสารสนเทศ",
+          "การออกแบบฐานข้อมูล",
+          "ส่วนต่อประสานระหว่างมนุษย์กับคอมพิวเตอร์",
+          "การประมวลผลภาพดิจิทัล",
         ],
       },
       {
         date: "2013 - 2015",
         school:
-          "Kasetsart University Laboratory School, Center for Educational Research and Development",
-        degree: "High School",
-        major: "Science-Math",
+          "โรงเรียนปฏิบัติการมหาวิทยาลัยเกษตรศาสตร์ ศูนย์วิจัยและพัฒนาการศึกษา",
+        degree: "มัธยมปลาย",
+        major: "วิทย์-คณิต",
       },
       {
         date: "2013",
-        name: "Certifiate of Merit, Class Distinction, The Royal Australian Chemical Institute",
+        name: "Certifiate of Merit, Class Distinction, The Royal Australian Chemical Institute • ประกาศนียบัตรคุณธรรม ประเภทดีเด่น สถาบันเคมีแห่งออสเตรเลีย",
       },
     ],
-    "Work Experience": [
+    ประสบการณ์การทำงาน: [
       {
-        date: "04/2023 - Current",
+        date: "04/2023 - ปัจจุบัน",
         title: "Frontend Developer",
         type: "Freelance",
-        location: "Bangkok, Thailand",
+        location: "กรุงเทพ, ประเทศไทย",
         description: [
-          "Collected requirement from a client.",
-          "Helped a client to get a solution.",
-          "Separated tasks and estimated time for each task.",
-          "Coded, Packed, Hosted, and Maintained a website.",
-          "Example: Pruxus: maintained their website, Data Wow Co., Ltd.: built a dashboard for their client.",
+          "รวบรวมความต้องการจากลูกค้า",
+          "ได้ช่วยลูกค้าหาทางแก้ไข",
+          "แตกงานและประเมินเวลาสำหรับแต่ละงาน",
+          "เขียนโค้ด บรรจุ โฮสต์ และดูแลรักษาเว็บไซต์",
+          "ตัวอย่าง: Pruxus: ดูแลเว็บไซต์, Data Wow Co., Ltd.: สร้างแดชบอร์ดสำหรับลูกค้า",
         ],
       },
       {
@@ -116,10 +116,10 @@ export const data: Data = {
         title: "Frontend Developer",
         type: "Full-time",
         company: "Data Wow Co., Ltd.",
-        location: "Bangkok, Thailand",
+        location: "กรุงเทพ, ประเทศไทย",
         description: [
-          "PDPA (Such as Cookie wow, PDPA Pro, PDPA Prokit, and PDPA Learn) Develop websites related to PDPA (Personal Data Protection Act)",
-          "Etc. (Develop a website for Data Wow Co., Ltd. and external customers, such as dashboards, reports, chat storage (line chatbot), online mock exam platforms, etc.)",
+          "PDPA (เช่น Cookie wow, PDPA Pro, PDPA Prokit และ PDPA Learn) พัฒนาเว็บไซต์ที่เกี่ยวข้องกับ PDPA (พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล)",
+          "เป็นต้น (พัฒนาเว็บไซต์ของบริษัท ดาต้าว้าว จำกัด และลูกค้าภายนอก เช่น แดชบอร์ด รายงาน ที่เก็บแชท (แชทบอทไลน์) แพลตฟอร์มข้อสอบจำลองออนไลน์ เป็นต้น)",
         ],
       },
       {
@@ -127,11 +127,11 @@ export const data: Data = {
         title: "System Analyst",
         type: "Full-time",
         company: "Bank of Thailand",
-        location: "Bangkok, Thailand",
+        location: "กรุงเทพ, ประเทศไทย",
         description: [
-          "DLTBond: We use Blockchain (Hyperledger Fabric) to distribute a chance to purchase the government bond for every person by not giving the bank the quota to the selling agent. I design, develop, regulate, and supervise the system with the team.",
-          "ISO20022: The new standard for payment messaging, which will apply to the central core of the payment system in November 2025, includes Thailand, which also has to be shifted. So I am involved in getting BA's requirement to Analyze and Develop the plan with the team and Test the flow with the team.",
-          "RPA: RPA stands for Robotic process automation. Bank of Thailand also applies RPA to reduce the time spent on routine tasks and has time to use in the value task. I am involved in Analysis, Adjust and Improve the process and develop the flow by UiPath as an RPA developer.",
+          "DLTBond: เราใช้ Blockchain (Hyperledger Fabric) เพื่อให้ทุกคนมีโอกาสซื้อพันธบัตรรัฐบาล โดยไม่ให้โควต้าแก่ธนาคารแก่ตัวแทนขาย ฉันออกแบบ พัฒนา ควบคุม และดูแลระบบร่วมกับทีมงาน",
+          "ISO20022: มาตรฐานใหม่สำหรับการส่งข้อความการชำระเงิน ซึ่งจะนำไปใช้กับแกนกลางของระบบการชำระเงินในเดือนพฤศจิกายน 2568 รวมถึงประเทศไทยด้วย ซึ่งก็ต้องมีการเปลี่ยนแปลงเช่นกัน ดังนั้นฉันจึงมีส่วนร่วมในการรับข้อกำหนดของ BA เพื่อวิเคราะห์และพัฒนาแผนร่วมกับทีมและทดสอบโฟลว์ร่วมกับทีม",
+          "RPA: RPA ย่อมาจากกระบวนการอัตโนมัติของหุ่นยนต์ ธปท.ยังได้นำ RPA มาใช้เพื่อลดเวลาในการทำงานประจำและมีเวลานำไปใช้ในงานที่มีคุณค่า ฉันมีส่วนร่วมในการวิเคราะห์ ปรับเปลี่ยน และปรับปรุงกระบวนการและพัฒนาโฟลว์โดย UiPath ในฐานะนักพัฒนา RPA",
         ],
       },
       {
@@ -139,9 +139,9 @@ export const data: Data = {
         title: "Blockchain Developer, KBTG Develop Bootcamp 2019",
         type: "Internship",
         company: "Kasikorn Business Technology Group (KBTG)",
-        location: "Bangkok, Thailand",
+        location: "กรุงเทพ, ประเทศไทย",
         description: [
-          "Time D(onation): It is about the use case of blockchain to solve the social problem. This project uses the Stellar blockchain to create a Time D token on the platform to exchange volunteer service and keep track of volunteer service to give a reward. I am in brainstorm the idea, design, and develop the prototype with the team.",
+          "Time D(onation): เป็นเรื่องเกี่ยวกับการใช้บล็อคเชนในการแก้ปัญหาสังคม โปรเจ็กต์นี้ใช้บล็อคเชน Stellar เพื่อสร้างโทเค็น Time D บนแพลตฟอร์มเพื่อแลกเปลี่ยนบริการอาสาสมัครและติดตามการบริการอาสาสมัครเพื่อให้รางวัล ฉันระดมความคิดและออกแบบและพัฒนาต้นแบบร่วมกับทีมงาน",
         ],
       },
       {
@@ -149,38 +149,36 @@ export const data: Data = {
         title: "Frontend Developer",
         type: "Internship",
         company: "BeID Corporation Co., Ltd.",
-        location: "Bangkok, Thailand",
-        description: [
-          "About developing in dashboard and landing page in React.JS",
-        ],
+        location: "กรุงเทพ, ประเทศไทย",
+        description: ["เกี่ยวกับการพัฒนาแดชบอร์ดและแลนดิ้งเพจใน React.JS"],
       },
     ],
-    "Extra-Curricular Activities": [
+    กิจกรรมนอกหลักสูตร: [
       {
-        date: "2020 - Current",
+        date: "2020 - ปัจจุบัน",
         name: "Member of Sec-Girl",
         description: [
-          "Sec-Girl is the community that includes female cyber security stakeholders in order to share knowledge and encourage women in Thailand to work in the cyber security sector.",
-          "Volunteering in a public cyber security workshop attracts 50 - 100 participants, which anyone with basic knowledge can join by registering.",
-          "Joined cyber security competitions on behalf of Sec-Girl, such as Women Thailand Cyber Top Talent 2022 by NCSA & HUAWEI.",
+          "Sec-Girl เป็นชุมชนที่รวมผู้มีส่วนได้ส่วนเสียด้านความปลอดภัยทางไซเบอร์หญิงเพื่อแบ่งปันความรู้และสนับสนุนให้ผู้หญิงในประเทศไทยทำงานในภาคความปลอดภัยทางไซเบอร์",
+          "อาสาสมัครในการประชุมเชิงปฏิบัติการด้านความปลอดภัยทางไซเบอร์สาธารณะดึงดูดผู้เข้าร่วมได้ 50 - 100 คน ซึ่งทุกคนที่มีความรู้พื้นฐานสามารถเข้าร่วมได้โดยการลงทะเบียน",
+          "เข้าร่วมการแข่งขันด้านความปลอดภัยทางไซเบอร์ในนามของ Sec-Girl เช่น Women Thailand Cyber Top Talent 2022 โดย NCSA & HUAWEI",
         ],
       },
       {
         date: "2023",
-        name: "Selected to participate in the competition, Line Hack 2023, 1 of the final 8 teams in the general public",
+        name: "ได้รับเลือกเข้าร่วมการแข่งขัน Line Hack 2023 1 ใน 8 ทีมสุดท้าย แก่ประชาชนทั่วไป",
       },
       {
         date: "2021",
-        name: 'Selected to participate in the competition, "13th Find the best telecommunications and ICT skills in honor of His Majesty", 1 of the final 30 teams in the general public',
+        name: "ได้รับคัดเลือกเข้าร่วมการแข่งขัน “ค้นหาสุดยอดทักษะโทรคมนาคมและไอซีทีเฉลิมพระเกียรติ ครั้งที่ 13” 1 ใน 30 ทีมสุดท้าย ของประชาชนทั่วไป",
       },
       {
         date: "2018",
-        name: 'Participated in the "Group Corporate Website Design Contest Activity" by Samut Sakhon Phatthana Mueang (Social Enterprise) x MUICT',
+        name: 'ร่วมกิจกรรม "กิจกรรมประกวดออกแบบเว็บไซต์กลุ่มองค์กร" โดย สมุทรสาครพัฒนาเมือง (วิสาหกิจเพื่อสังคม) x MUICT',
       },
     ],
   },
   etc: {
-    "Computer Skills": {
+    ความถนัดทางด้านคอมพิวเตอร์: {
       Language:
         "Javascript, Python, HTML, Java, PHP, TypeScript, Go (Programming Language), CSS, Tailwind CSS, SQL",
       Framework:
@@ -192,21 +190,21 @@ export const data: Data = {
         "Redis, MongoDB, PostgreSQL, MSSQL, ER Diagram, Database Design",
       "Queue Management": "RabbitMQ",
     },
-    Languages: {
-      English: "", // "IELTS: band 5.5",
-      Korean: "TOPIK: level 1",
-      Thai: "mother tongue",
+    ภาษา: {
+      ภาษาอังกฤษ: "IELTS: band 6; Listening: 6 Reading 5 Writing 6 Speaking 6",
+      ภาษาเกาหลี: "TOPIK: level 1",
+      ภาษาไทย: "ภาษาแม่",
     },
     Interests: [
-      "Law",
+      "กฎหมาย",
       "CTF (Capture The Flag)",
-      "Piano",
-      "Photographing",
-      "Traveling (experience includes Macau, Hong Kong, Japan, Singapore)",
-      "Cooking",
-      "Table Tennis",
-      "Badminton",
-      "Swimming",
+      "เปียโน",
+      "การถ่ายภาพ",
+      "ท่องเที่ยว (ประสบการณ์รวมมาเก๊า ฮ่องกง ญี่ปุ่น สิงคโปร์)",
+      "การทำอาหาร",
+      "ปิงปอง",
+      "แบดมินตัน",
+      "ว่ายน้ำ",
     ],
   },
   references: [
@@ -234,4 +232,12 @@ export const data: Data = {
         "woraluck.won@mahidol.ac.th; woraluck.won@mahidol.edu",
     },
   ],
+  frontEnd: {
+    topic: {
+      description: "คำอธิบาย",
+      favoriteSubject: "วิชาที่ชื่นชอบ",
+      major: "วิชาเอก",
+      gpa: "เกรดเฉลี่ย",
+    },
+  },
 };

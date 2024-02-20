@@ -43,4 +43,5 @@ export type Data = {
   info: { [key: string]: Array<Info> };
   etc: { [key: string]: { [key: string]: string } | Array<string> };
   references: Array<{ [key: string]: string }>;
+  frontEnd: { [key: string]: string | { [key: string]: string } };
 };
