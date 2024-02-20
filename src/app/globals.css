@@ -95,3 +95,36 @@ body {
 .tooltip:hover .tooltipText {
   visibility: visible;
 }
+
+hr {
+  border-color: rgb(var(--foreground-rgb));
+}
+
+.timeline_item {
+  list-style: none;
+  position: relative;
+  padding: 0;
+  padding-left: 60px;
+}
+
+.timeline_item::before {
+  content: " ";
+  border-radius: 50%;
+  position: absolute;
+  left: 15px;
+  background: rgb(var(--foreground-rgb));
+
+  @apply top-[2px] w-[10px] h-[10px] lg:top-[5px] lg:w-[15px] lg:h-[15px];
+}
+
+.timeline_item:not(:last-child) {
+  padding-bottom: 30px;
+}
+
+.timeline_item:not(:last-child)::after {
+  content: "  ";
+  position: absolute;
+  background: rgb(var(--foreground-rgb));
+
+  @apply top-[2px] h-full w-[3px] left-[18px] lg:top-[5px] lg:w-[5px] lg:left-[20px];
+}

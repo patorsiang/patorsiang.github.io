@@ -28,15 +28,19 @@ export type Activity = {
   description: Array<string>;
 };
 
+export type Contact = { name: string; opt: pdf.TextOptions };
+
+export type Info = Partial<University & Award & Work & Activity>;
+
 export type Data = {
   name: string;
   nickname: string;
   subtitle: string;
   address: string;
   contact: {
-    [key: string]: string | { name: string; opt: pdf.TextOptions };
+    [key: string]: string | Contact;
   };
-  info: { [key: string]: Array<University | Award | Work | Activity> };
+  info: { [key: string]: Array<Info> };
   etc: { [key: string]: { [key: string]: string } | Array<string> };
   references: Array<{ [key: string]: string }>;
 };
