@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   ],
 };
 
-export const dynamic = "auto";
+export const dynamic = "force-static";
 export const dynamicParams = true;
 export const revalidate = false;
 export const fetchCache = "auto";
