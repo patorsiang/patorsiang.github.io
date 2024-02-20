@@ -1,3 +1,7 @@
+const createNextIntlPlugin = require("next-intl/plugin");
+
+const withNextIntl = createNextIntlPlugin("./i18n.ts");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
@@ -20,4 +24,4 @@ const withPWA = require("next-pwa")({
 });
 
 // Export the combined configuration for Next.js with PWA support
-module.exports = withPWA(nextConfig);
+module.exports = withNextIntl(withPWA(nextConfig));

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 
 import { TextAnimation } from "./animation";
 import { IconLink } from "./iconLink";
@@ -12,6 +13,7 @@ import { Contact } from "@/data/profile.d";
 
 export default async function Main({ lang }: { lang?: string }) {
   const info = await getDictionary(lang ?? "en");
+  const t = await getTranslations("Index.topic");
 
   return (
     <main className="flex min-h-screen flex-col items-center gap-8 p-12">
@@ -114,12 +116,7 @@ export default async function Main({ lang }: { lang?: string }) {
                     {/* Description */}
                     {infoItem?.description && (
                       <>
-                        <h6>
-                          {
-                            (info?.frontEnd?.topic as { description?: string })
-                              ?.description
-                          }
-                        </h6>
+                        <h6>{t("description")}</h6>
                         <ul className="list-disc list-inside">
                           {infoItem?.description.map((desc, idx) => (
                             <li key={`desc-${idx}`}>{desc}</li>
@@ -131,15 +128,7 @@ export default async function Main({ lang }: { lang?: string }) {
                     {/* Education: Favorite Subjects */}
                     {infoItem?.favoriteSubjects && (
                       <>
-                        <h6>
-                          {
-                            (
-                              info?.frontEnd?.topic as {
-                                favoriteSubject?: string;
-                              }
-                            )?.favoriteSubject
-                          }
-                        </h6>
+                        <h6>{t("favoriteSubject")}</h6>
                         <ul className="list-disc list-inside">
                           {infoItem?.favoriteSubjects?.map((subject) => (
                             <li key={subject}>{subject}</li>
@@ -152,16 +141,7 @@ export default async function Main({ lang }: { lang?: string }) {
                     <div className="flex flex-wrap gap-2">
                       {infoItem?.major && (
                         <>
-                          <h6>
-                            {
-                              (
-                                info?.frontEnd?.topic as {
-                                  major?: string;
-                                }
-                              )?.major
-                            }
-                            :
-                          </h6>
+                          <h6>{t("gpa")}</h6>
                           <p>{infoItem?.major}</p>
                         </>
                       )}
