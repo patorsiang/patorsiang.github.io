@@ -1,11 +1,19 @@
 import createMiddleware from "next-intl/middleware";
 
-export default createMiddleware({
-  // A list of all locales that are supported
-  locales: ["en", "th", "kr"],
+import { i18n } from "./i18n";
 
-  // Used when no locale matches
-  defaultLocale: "en",
+export default createMiddleware({
+  ...i18n,
+  localePrefix: "always",
+  pathnames: {
+    "/": "/en",
+  },
+  domains: [
+    {
+      domain: "patorseing.github.io/",
+      ...i18n,
+    },
+  ],
 });
 
 export const config = {

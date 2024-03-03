@@ -1,5 +1,6 @@
-import Main from "@/components/main";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return <Main />;
+// Redirect the user to the default locale when `/` is requested
+export default function RootPage() {
+  redirect("/en");
 }

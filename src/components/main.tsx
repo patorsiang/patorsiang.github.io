@@ -114,7 +114,7 @@ export default async function Main({ lang }: { lang?: string }) {
                     </h5>
 
                     {/* Description */}
-                    {infoItem?.description && (
+                    {/* {infoItem?.description && (
                       <>
                         <h6>{t("description")}</h6>
                         <ul className="list-disc list-inside">
@@ -123,10 +123,10 @@ export default async function Main({ lang }: { lang?: string }) {
                           ))}
                         </ul>
                       </>
-                    )}
+                    )} */}
 
                     {/* Education: Favorite Subjects */}
-                    {infoItem?.favoriteSubjects && (
+                    {/* {infoItem?.favoriteSubjects && (
                       <>
                         <h6>{t("favoriteSubject")}</h6>
                         <ul className="list-disc list-inside">
@@ -135,7 +135,7 @@ export default async function Main({ lang }: { lang?: string }) {
                           ))}
                         </ul>
                       </>
-                    )}
+                    )} */}
 
                     {/* Education: Major and GPA */}
                     <div className="flex flex-wrap gap-2">
