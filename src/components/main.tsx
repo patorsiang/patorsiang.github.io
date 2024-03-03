@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
+import { get } from "lodash";
 
 import { TextAnimation } from "./animation";
 import { IconLink } from "./iconLink";
@@ -30,13 +31,15 @@ export default async function Main({ lang }: { lang?: string }) {
 
       {/* Name */}
       <h1 className="flex flex-wrap gap-4 gap-y-2 font-bold justify-center text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-        <TextAnimation text={`${info.name} (${info.nickname})`} />
+        <TextAnimation
+          text={`${get(info, "name")} (${get(info, "nickname")})`}
+        />
       </h1>
 
       {/* Subtitle */}
       <h2
         className="text-center text-sx md:text-xl"
-        dangerouslySetInnerHTML={{ __html: info.subtitle }}
+        dangerouslySetInnerHTML={{ __html: get(info, "subtitle") }}
       />
 
       {/* Contact */}
@@ -44,11 +47,7 @@ export default async function Main({ lang }: { lang?: string }) {
         {Object.entries(contactIcons).map(([key, Icon]) => (
           <IconLink
             key={key}
-            href={
-              typeof info.contact[key] === "object"
-                ? (info.contact[key] as Contact)?.opt?.link
-                : ""
-            }
+            href={get(info, `contact.${key}.opt.link`) ?? ""}
             label={key}
             target="_blank"
           >
@@ -64,7 +63,7 @@ export default async function Main({ lang }: { lang?: string }) {
       <section className="flex flex-col gap-4">
         {/* Topic for Large Monitor */}
         <div className="hidden lg:grid lg:gap-6 lg:grid-cols-3">
-          {Object.keys(info.info).map((topic) => (
+          {Object.keys(get(info, "info")).map((topic) => (
             <h3
               key={topic}
               className="leading-loose underline underline-offset-8 decoration-[3px] font-bold text-md sm:text-lg md:text-xl lg:text-2xl"
@@ -75,7 +74,7 @@ export default async function Main({ lang }: { lang?: string }) {
         </div>
         {/* Topic and detail for all screen */}
         <div className="grid gap-6 grid-cols-1 lg:grid-cols-3">
-          {Object.entries(info.info).map(([topic, detail]) => (
+          {Object.entries(get(info, "info")).map(([topic, detail]) => (
             <div key={topic} className="flex flex-col gap-4">
               {/* Topic for smaller than large monitor */}
               <h3 className="leading-loose underline underline-offset-8 decoration-[3px] font-bold text-md sm:text-lg md:text-xl lg:text-2xl lg:hidden">
@@ -86,78 +85,56 @@ export default async function Main({ lang }: { lang?: string }) {
                 {detail.map((infoItem) => (
                   // timeline list
                   <li
-                    key={`${infoItem.date}_${
-                      infoItem?.degree ?? infoItem?.title ?? infoItem?.name
+                    key={`${get(infoItem, "date")}_${
+                      get(infoItem, "degree") ??
+                      get(infoItem, "title") ??
+                      get(infoItem, "name")
                     }`}
                     className="timeline_item grid"
                   >
                     {/* Education: degree - school || Work or Activity : title or name */}
                     <h4 className="font-bold text-sm md:text-md lg:text-lg">
-                      {infoItem?.degree
-                        ? `${infoItem?.degree} - ${infoItem?.school}`
-                        : infoItem?.title ?? infoItem?.name}
+                      {get(infoItem, "degree")
+                        ? `${get(infoItem, "degree")} - ${get(
+                            infoItem,
+                            "school"
+                          )}`
+                        : get(infoItem, "title") ?? get(infoItem, "name")}
                     </h4>
 
                     {/* Education: university */}
-                    {infoItem?.university && <h5>{infoItem?.university}</h5>}
+                    {get(infoItem, "university") && (
+                      <h5>{get(infoItem, "university")}</h5>
+                    )}
 
                     {/* Work: type • company • date */}
                     <h5 className="text-sx md:text-sm lg:text-md timeline-sub">
-                      {infoItem?.type && <>{infoItem?.type} &#8226; </>}
-                      {infoItem?.company && <>{infoItem?.company} &#8226; </>}
-                      {infoItem.date}
+                      {get(infoItem, "type") && (
+                        <>{get(infoItem, "type")} &#8226; </>
+                      )}
+                      {get(infoItem, "company") && (
+                        <>{get(infoItem, "company")} &#8226; </>
+                      )}
+                      {get(infoItem, "date")}
                     </h5>
 
                     {/* Work: location */}
                     <h5 className="text-sx md:text-sm lg:text-md timeline-sub">
-                      {infoItem?.location}
+                      {get(infoItem, "location")}
                     </h5>
-
-                    {/* Description */}
-                    {/* {infoItem?.description && (
-                      <>
-                        <h6>{t("description")}</h6>
-                        <ul className="list-disc list-inside">
-                          {infoItem?.description.map((desc, idx) => (
-                            <li key={`desc-${idx}`}>{desc}</li>
-                          ))}
-                        </ul>
-                      </>
-                    )} */}
-
-                    {/* Education: Favorite Subjects */}
-                    {/* {infoItem?.favoriteSubjects && (
-                      <>
-                        <h6>{t("favoriteSubject")}</h6>
-                        <ul className="list-disc list-inside">
-                          {infoItem?.favoriteSubjects?.map((subject) => (
-                            <li key={subject}>{subject}</li>
-                          ))}
-                        </ul>
-                      </>
-                    )} */}
 
                     {/* Education: Major and GPA */}
                     <div className="flex flex-wrap gap-2">
                       {infoItem?.major && (
                         <>
-                          <h6>{t("gpa")}</h6>
-                          <p>{infoItem?.major}</p>
+                          <h6>{t("major")}: </h6>
+                          <p>{get(infoItem, "major")}</p>
                         </>
                       )}
-                      {infoItem?.gpa && (
+                      {get(infoItem, "gpa") && (
                         <>
-                          <h6>
-                            {
-                              (
-                                info?.frontEnd?.topic as {
-                                  gpa?: string;
-                                }
-                              )?.gpa
-                            }
-                            :{" "}
-                          </h6>
-                          <p>{infoItem?.gpa}</p>
+                          <h6>{t("gpa")}: </h6>
+                          <p>{get(infoItem, "gpa")}</p>
                         </>
                       )}
                     </div>

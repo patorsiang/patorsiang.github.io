@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import pdf from "pdfjs";
+import { get } from "lodash";
 
 import { data, University, Award, Work, Activity } from "@/data/profile";
 
