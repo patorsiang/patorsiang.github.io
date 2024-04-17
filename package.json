@@ -10,29 +10,29 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
-    "autoprefixer": "^10.4.17",
+    "autoprefixer": "^10.4.19",
     "clsx": "^2.1.0",
     "lodash": "^4.17.21",
     "negotiator": "^0.6.3",
-    "next": "14.0.4",
-    "next-intl": "^3.9.0",
+    "next": "14.2.1",
+    "next-intl": "^3.11.1",
     "next-pwa": "^5.6.0",
     "next-secure-headers": "^2.2.0",
     "pdfjs": "^2.5.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^5.0.1"
+    "react-icons": "^5.1.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.202",
+    "@types/lodash": "^4.17.0",
     "@types/negotiator": "^0.6.3",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.0.4",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "@types/node": "^20.12.7",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "14.2.1",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.5"
   }
 }
