@@ -35,6 +35,7 @@ export type Info = Partial<University & Award & Work & Activity>;
 export type Data = {
   name: string;
   nickname: string;
+  position: string;
   subtitle: string;
   address: string;
   contact: {

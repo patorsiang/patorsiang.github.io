@@ -1,5 +1,6 @@
 {
   "Index": {
+    "introduction": "저는 {nickname}, {fullName}입니다",
     "topic": {
       "description": "설명",
       "favoriteSubject": "좋아하는 과목",
