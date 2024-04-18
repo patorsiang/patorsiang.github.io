@@ -8,7 +8,7 @@ export const data: Data = {
   I am deeply passionate about technology and data. I desire to learn new things and share my passion through code. My motto is "If anyone can do it, I can do it." My grandfather passed down this lesson to my mother and me, and the lesson has stayed with me ever since. I make it a point to work daily to improve my coding skills.
   <br/>
   <br/>
-  I am looking for an exciting project. "Let's build something remarkable together!"`,
+  I am looking for an exciting project. <b>"Let's build something remarkable together!"</b>`,
   address:
     "432/38 Chapter One Midtown Condo Ladprao 24, Ladprao Road, Chomphon, Chatuchak, Bangkok, Thailand 10900",
   contact: {

@@ -1,18 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Sans_KR, IBM_Plex_Sans_Thai_Looped } from "next/font/google";
-import { clsx } from "clsx";
+import { Ubuntu_Mono } from "next/font/google";
+
+import { fontEN } from "@/constants";
 
 import "./globals.css";
-
-const fontTH = IBM_Plex_Sans_Thai_Looped({
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
-  subsets: ["latin", "thai"],
-});
-
-const fontKR = IBM_Plex_Sans_KR({
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
-  subsets: ["latin"],
-});
 
 export const viewport: Viewport = {
   themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#193441" }],
@@ -51,10 +42,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={clsx(fontTH.className, fontKR.className)}>
-        {children}
-      </body>
+    <html>
+      <body className={fontEN.className}>{children}</body>
     </html>
   );
 }

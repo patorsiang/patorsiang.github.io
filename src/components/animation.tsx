@@ -10,7 +10,7 @@ export const CharacterAnimation = ({
   const characters = word
     .split("")
     .reduce((accumulator: Array<string>, character: string) => {
-      if (/[\u0E31\u0E34\u0E4c\u0E37\u0E48]/u.test(character)) {
+      if (/[\u0E31\u0E34\u0E4c\u0E37\u0E48\u0E35]/u.test(character)) {
         accumulator[accumulator.length - 1] += character;
       } else {
         accumulator.push(character);

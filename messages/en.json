@@ -1,6 +1,6 @@
 {
   "Index": {
-    "introduction": "I'm {nickname}, {fullName},",
+    "introduction": "Hello. I'm {nickname}, {fullName},",
     "topic": {
       "description": "Description",
       "favoriteSubject": "Favorite Subject",
