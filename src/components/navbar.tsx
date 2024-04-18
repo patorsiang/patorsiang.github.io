@@ -23,7 +23,7 @@ export default function Navbar({ lang }: { lang: string }) {
           <li className="nav_list-item">
             <a
               className={clsx({ active: currentPath === path })}
-              href={`/${lang}/${path ?? ""}`}
+              href={`/${lang}${`/${path}` ?? ""}`}
             >
               {title}
             </a>
