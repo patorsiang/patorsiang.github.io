@@ -9,6 +9,8 @@
   --background-end-rgb: 175, 211, 226;
   --secondary-start-rgb: 20, 108, 148;
   --secondary-end-rgb: 25, 167, 206;
+  --button-active-rgb: 0, 0, 0, 0.19;
+  --button-hover-rgb: 0, 0, 0, 0.37;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,6 +21,8 @@
     --background-end-rgb: 25, 52, 65;
     --secondary-start-rgb: 29, 93, 155;
     --secondary-end-rgb: 189, 216, 241;
+    --button-active-rgb: 255, 255, 255, 0.25;
+    --button-hover-rgb: 255, 255, 255, 0.19;
   }
 }
 
@@ -30,6 +34,8 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+
+  @apply min-h-screen;
 }
 
 .text-404 {
@@ -132,4 +138,22 @@ hr {
 
 .timeline-sub {
   color: rgb(var(--foreground-hover-rgb));
+}
+
+.nav_list {
+  @apply flex gap-1 justify-end py-5 px-3;
+}
+
+.nav_list-item a {
+  color: rgb(var(--foreground-rgb));
+
+  @apply block text-center no-underline p-1 px-3 rounded-full;
+}
+
+.nav_list-item a:hover {
+  background-color: rgb(var(--button-hover-rgb));
+}
+
+.nav_list-item .active {
+  background-color: rgb(var(--button-active-rgb));
 }

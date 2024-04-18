@@ -2,9 +2,9 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { get } from "lodash";
 
-import { TextAnimation } from "./animation";
-import { IconLink } from "./iconLink";
-import { DownloadCVLink } from "./downloadCV";
+import { TextAnimation } from "../animation";
+import { IconLink } from "../iconLink";
+import { DownloadCVLink } from "../downloadCV";
 
 import { contactIcons, iconSize } from "@/constants";
 
@@ -15,24 +15,22 @@ export default async function Main({ lang }: { lang?: string }) {
   const t = await getTranslations("Index");
 
   return (
-    // <main className="flex min-h-screen flex-col items-center gap-8 p-12">
-    <main className="flex min-h-screen flex-col items-center justify-between gap-10 p-12 md:p-24 sm:px-24 md:px-48 lg:px-64">
+    <main className="flex flex-col items-center justify-between gap-10 p-12 pt-[calc(3rem-75px)] md:p-24 lg:py-[calc(6rem-75px)] sm:px-24 md:px-48 lg:px-64">
       {/* Avatar */}
       {/* https://avataaars.io/?avatarStyle=Circle&topType=LongHairBob&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=Heather&eyeType=Default&eyebrowType=Default&mouthType=Eating&skinColor=Light */}
       <Image
         src="/imgs/avataaars.svg"
         alt="My Avatar"
-        className={"h-auto w-3/4 md:w-1/4"}
+        className={"drop-shadow-2xl h-auto w-3/4 sm:w-2/4 lg:w-1/4"}
         width={100}
         height={100}
         priority
       />
-
+      <h1 className="flex flex-wrap gap-4 gap-y-2 justify-center text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+        <TextAnimation text="Hello World!" />
+      </h1>
       {/* Name */}
       <section className="flex flex-wrap gap-4 gap-y-2 font-bold justify-center text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-        <h1 className="flex flex-wrap gap-4 gap-y-2 justify-center">
-          <TextAnimation text="Hello World!" />
-        </h1>
         <h1 className="flex flex-wrap gap-4 gap-y-2 justify-center">
           <TextAnimation
             text={t("introduction", {
@@ -46,7 +44,6 @@ export default async function Main({ lang }: { lang?: string }) {
           <TextAnimation text={get(info, "position")} />
         </h1>
       </section>
-
       {/* Contact */}
       <section className="w-full max-w-60 flex flex-wrap justify-evenly">
         {Object.entries(contactIcons).map(([key, Icon]) => (
@@ -61,7 +58,6 @@ export default async function Main({ lang }: { lang?: string }) {
         ))}
         <DownloadCVLink />
       </section>
-
       {/* Subtitle */}
       <h2
         className="text-sx md:text-base lg:text-lg text-justify"

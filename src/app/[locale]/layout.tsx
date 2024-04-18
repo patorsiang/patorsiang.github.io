@@ -1,6 +1,8 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import { clsx } from "clsx";
 
+import Navbar from "@/components/navbar";
+
 import { fontEN, fontKR, fontTH } from "@/constants";
 import { locales } from "#/i18n";
 
@@ -27,10 +29,7 @@ export default function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className={clsx(font)}>
-        {children}
-        {locale}
-      </body>
+      <body className={clsx(...font)}>{children}</body>
     </html>
   );
 }
