@@ -15,7 +15,7 @@ export default async function Main({ lang }: { lang?: string }) {
   const t = await getTranslations("Index");
 
   return (
-    <main className="flex flex-col items-center justify-between gap-10 p-12 pt-[calc(3rem-75px)] md:p-24 lg:py-[calc(6rem-75px)] sm:px-24 md:px-48 lg:px-64">
+    <main className="flex flex-col items-center justify-between gap-10 p-12 pt-0 md:p-24 lg:pt-0 sm:px-24 md:px-48 lg:px-64">
       {/* Avatar */}
       {/* https://avataaars.io/?avatarStyle=Circle&topType=LongHairBob&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=Heather&eyeType=Default&eyebrowType=Default&mouthType=Eating&skinColor=Light */}
       <Image
@@ -26,11 +26,13 @@ export default async function Main({ lang }: { lang?: string }) {
         height={100}
         priority
       />
-      <h1 className="flex flex-wrap gap-4 gap-y-2 justify-center text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-        <TextAnimation text="Hello World!" />
-      </h1>
+      <div className="typewriter">
+        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+          Hello World!
+        </p>
+      </div>
       {/* Name */}
-      <section className="flex flex-wrap gap-4 gap-y-2 font-bold justify-center text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+      <section className=" flex flex-wrap gap-4 gap-y-2 font-bold justify-center text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
         <h1 className="flex flex-wrap gap-4 gap-y-2 justify-center">
           <TextAnimation
             text={t("introduction", {

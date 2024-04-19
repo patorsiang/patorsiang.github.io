@@ -11,6 +11,7 @@
   --secondary-end-rgb: 25, 167, 206;
   --button-active-rgb: 0, 0, 0, 0.19;
   --button-hover-rgb: 0, 0, 0, 0.37;
+  --button-shadow-rgb: 255, 255, 255, 0.1;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,6 +24,7 @@
     --secondary-end-rgb: 189, 216, 241;
     --button-active-rgb: 255, 255, 255, 0.25;
     --button-hover-rgb: 255, 255, 255, 0.19;
+    --button-shadow-rgb: 0, 0, 0, 0.1;
   }
 }
 
@@ -150,10 +152,46 @@ hr {
   @apply block text-center no-underline p-1 px-3 rounded-full;
 }
 
+.nav_list-item a:hover,
+.nav_list-item .active {
+  box-shadow: 0 4px 30px rgba(var(--button-shadow-rgb));
+  @apply backdrop-opacity-10;
+}
+
 .nav_list-item a:hover {
   background-color: rgb(var(--button-hover-rgb));
 }
 
 .nav_list-item .active {
   background-color: rgb(var(--button-active-rgb));
+}
+
+.typewriter p {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em; /* Adjust as needed */
+  animation: typing 3.5s steps(12, end), blink-caret 0.75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
 }
