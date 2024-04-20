@@ -2,18 +2,23 @@
 
 import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
+import { locales } from "#/i18n";
+import clsx from "clsx";
 
 export default function LanguageBar({ lang }: { lang: string }) {
   const router = useRouter();
   const pathname = usePathname();
   const currentPath = pathname.trim().split("/")[2];
+  const currentLang = pathname.trim().split("/")[1];
 
   const [show, setShow] = useState(false);
 
   function switchLocale(locale: string) {
     // e.g. '/en/about' or '/fr/contact'
-    const newPath = `/${locale}${currentPath ? "/" + currentPath : ""}`;
-    router.push(newPath, { scroll: false });
+    if (locale !== currentLang) {
+      const newPath = `/${locale}${currentPath ? "/" + currentPath : ""}`;
+      router.push(newPath, { scroll: false });
+    }
   }
 
   return (
@@ -43,11 +48,15 @@ export default function LanguageBar({ lang }: { lang: string }) {
 
       {show && (
         <div className="lang-dropdown-content">
-          <button onClick={() => switchLocale("en")}>en</button>
-
-          <button onClick={() => switchLocale("th")}>th</button>
-
-          <button onClick={() => switchLocale("kr")}>kr</button>
+          {locales.map((lang) => (
+            <button
+              key={lang}
+              onClick={() => switchLocale(lang)}
+              className={clsx({ isActive: lang === currentLang })}
+            >
+              {lang}
+            </button>
+          ))}
         </div>
       )}
     </div>
