@@ -1,10 +1,10 @@
 import Layout from "@/components/layout";
-import Maintenance from "@/components/page/maintenance";
+import AboutMe from "@/components/page/aboutMe";
 
 export default async function Page({ params }: { params: { locale: string } }) {
   return (
     <Layout lang={params.locale}>
-      <Maintenance />
+      <AboutMe lang={params.locale} />
     </Layout>
   );
 }

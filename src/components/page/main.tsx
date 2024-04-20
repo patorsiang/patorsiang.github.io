@@ -15,7 +15,7 @@ export default async function Main({ lang }: { lang?: string }) {
   const t = await getTranslations("Index");
 
   return (
-    <main className="flex flex-col items-center justify-between gap-10 pb-12 px-12 sm:px-24 md:px-48 lg:px-64">
+    <main className="self-container">
       {/* Avatar */}
       {/* https://avataaars.io/?avatarStyle=Circle&topType=LongHairBob&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=Heather&eyeType=Default&eyebrowType=Default&mouthType=Eating&skinColor=Light */}
       <div className="w-3/4 sm:w-2/4 lg:w-1/4">
