@@ -12,6 +12,8 @@
   --button-active-rgb: 0, 0, 0, 0.19;
   --button-hover-rgb: 0, 0, 0, 0.37;
   --button-shadow-rgb: 255, 255, 255, 0.1;
+  --dropdown-btn-rgb: 75 147 219;
+  --dropdown-hover-btn-rgb: 97, 158, 219;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,6 +27,8 @@
     --button-active-rgb: 255, 255, 255, 0.25;
     --button-hover-rgb: 255, 255, 255, 0.19;
     --button-shadow-rgb: 0, 0, 0, 0.1;
+    --dropdown-btn-rgb: 119, 169, 219;
+    --dropdown-hover-btn-rgb: 75, 147, 219;
   }
 }
 
@@ -194,4 +198,48 @@ hr {
   50% {
     border-color: orange;
   }
+}
+
+.lang-dropdown-btn {
+  background-color: rgb(var(--dropdown-btn-rgb));
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.lang-dropdown-btn:hover,
+.lang-dropdown-btn:focus {
+  background-color: rgb(var(--dropdown-hover-btn-rgb));
+}
+
+.lang-dropdown {
+  position: absolute;
+  display: inline-block;
+
+  @apply drop-shadow-2xl;
+}
+
+.lang-dropdown button {
+  min-width: 100%;
+}
+
+.lang-dropdown-content button:hover {
+  background-color: #ddd;
+}
+
+.lang-dropdown-content {
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100%;
+  overflow: auto;
+  z-index: 1;
+}
+
+.lang-dropdown-content button {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }

@@ -15,17 +15,19 @@ export default async function Main({ lang }: { lang?: string }) {
   const t = await getTranslations("Index");
 
   return (
-    <main className="flex flex-col items-center justify-between gap-10 p-12 pt-0 md:p-24 lg:pt-0 sm:px-24 md:px-48 lg:px-64">
+    <main className="flex flex-col items-center justify-between gap-10 pb-12 px-12 sm:px-24 md:px-48 lg:px-64">
       {/* Avatar */}
       {/* https://avataaars.io/?avatarStyle=Circle&topType=LongHairBob&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=Heather&eyeType=Default&eyebrowType=Default&mouthType=Eating&skinColor=Light */}
-      <Image
-        src="/imgs/avataaars.svg"
-        alt="My Avatar"
-        className={"drop-shadow-2xl h-auto w-3/4 sm:w-2/4 lg:w-1/4"}
-        width={100}
-        height={100}
-        priority
-      />
+      <div className="w-3/4 sm:w-2/4 lg:w-1/4">
+        <Image
+          src="/imgs/avataaars.svg"
+          alt="My Avatar"
+          className={"drop-shadow-2xl w-full h-full"}
+          width={100}
+          height={100}
+          priority
+        />
+      </div>
       <div className="typewriter">
         <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
           Hello World!

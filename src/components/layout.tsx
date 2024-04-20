@@ -1,4 +1,5 @@
 import Navbar from "./navbar";
+import LanguageBar from "./langBar";
 
 export default function Layout({
   children,
@@ -10,7 +11,7 @@ export default function Layout({
   return (
     <>
       <Navbar lang={lang} />
-      {/* TODO: theme */}
+      <LanguageBar lang={lang} />
       {/* TODO: language */}
       {children}
     </>
