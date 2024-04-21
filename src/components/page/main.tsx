@@ -15,24 +15,22 @@ export default async function Main() {
     <main className="self-container">
       {/* Avatar */}
       {/* https://avataaars.io/?avatarStyle=Circle&topType=LongHairBob&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=Heather&eyeType=Default&eyebrowType=Default&mouthType=Eating&skinColor=Light */}
-      <div className="w-3/4 sm:w-2/4 lg:w-1/4">
+      <div className="main-avatar">
         <Image
           src="/imgs/avataaars.svg"
           alt="My Avatar"
-          className={"drop-shadow-2xl w-full h-full"}
+          className={"main-avatar-image"}
           width={100}
           height={100}
           priority
         />
       </div>
       <div className="typewriter">
-        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-          Hello World!
-        </p>
+        <p className="main-h1">Hello World!</p>
       </div>
       {/* Name */}
-      <section className=" flex flex-wrap gap-4 gap-y-2 font-bold justify-center text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-        <h1 className="flex flex-wrap gap-4 gap-y-2 justify-center">
+      <section className="main-introduction main-h1">
+        <h1 className="main-introduction-h1">
           <TextAnimation
             text={t("introduction", {
               nickname: t_info("nickname"),
@@ -41,12 +39,12 @@ export default async function Main() {
             delay={0.01}
           />
         </h1>
-        <h1 className="flex flex-wrap gap-4 gap-y-2">
+        <h1 className="main-introduction-h1">
           <TextAnimation text={t_info("position")} />
         </h1>
       </section>
       {/* Contact */}
-      <section className="w-full max-w-60 flex flex-wrap justify-evenly">
+      <section className="main-social-media">
         {Object.entries(contactIcons).map(([key, Icon]) => (
           <IconLink
             key={key}
@@ -61,7 +59,7 @@ export default async function Main() {
       </section>
       {/* Subtitle */}
       <h2
-        className="text-sx md:text-base lg:text-lg text-justify"
+        className="main-introduction-subheading"
         dangerouslySetInnerHTML={{ __html: t_info.raw("subtitle") }}
       />
     </main>

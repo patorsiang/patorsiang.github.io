@@ -109,10 +109,6 @@ body {
   visibility: visible;
 }
 
-hr {
-  border-color: rgb(var(--foreground-rgb));
-}
-
 .timeline_item {
   list-style: none;
   position: relative;
@@ -142,7 +138,15 @@ hr {
   @apply top-[2px] h-full w-[3px] left-[18px] lg:top-[5px] lg:w-[5px] lg:left-[20px];
 }
 
-.timeline-sub {
+.timeline-header {
+  @apply font-bold text-sm md:text-base lg:text-lg;
+}
+
+.timeline-subheader {
+  @apply text-sm lg:text-base;
+}
+
+.timeline-subheader--color {
   color: rgb(var(--foreground-hover-rgb));
 }
 
@@ -250,4 +254,57 @@ hr {
 
 .self-container {
   @apply flex flex-col items-center justify-between gap-10 pb-12 px-12 sm:px-24 md:px-48 lg:px-64;
+}
+
+.main-avatar {
+  @apply w-3/4 sm:w-2/4 lg:w-1/4;
+}
+
+.main-avatar-image {
+  @apply drop-shadow-2xl w-full h-full;
+}
+
+.main-h1 {
+  @apply text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl;
+}
+
+.main-introduction {
+  @apply flex flex-wrap gap-4 gap-y-2 font-bold justify-center text-center;
+}
+
+.main-introduction-h1 {
+  @apply flex flex-wrap gap-4 gap-y-2 justify-center;
+}
+
+.main-social-media {
+  @apply w-full max-w-60 flex flex-wrap justify-evenly;
+}
+
+.main-introduction-subheading {
+  @apply text-sm md:text-base lg:text-lg text-justify;
+}
+
+.about-h1 {
+  @apply font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl;
+}
+
+.about-hr {
+  border-color: rgb(var(--foreground-rgb));
+  @apply max-w-[150px] w-full border-2 lg:border-4;
+}
+
+.about-section {
+  @apply flex flex-col gap-4;
+}
+
+.about-section-header {
+  @apply leading-loose underline underline-offset-8 decoration-[3px] font-bold text-base sm:text-lg md:text-xl lg:text-2xl p-6;
+}
+
+.about-section-education-details {
+  @apply flex flex-wrap gap-2;
+}
+
+.about-section-description {
+  @apply list-disc list-inside;
 }

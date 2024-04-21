@@ -6,24 +6,22 @@ import { Info } from "@/data/profile.d";
 
 export default async function AboutMe() {
   const t = await getTranslations("Index.topic");
-
+  const t_head = await getTranslations("Index");
   const t_info = await getTranslations("");
 
   return (
     <main className="self-container">
-      <hr className="max-w-[150px] w-full border-2 lg:border-4" />
-
+      <h1 className="about-h1">{t_head("About Me")}</h1>
+      <hr className="about-hr" />
       {/* Experience information */}
-      <section className="flex flex-col gap-4">
+      <section className="about-section">
         {/* Topic and detail for all screen */}
 
         {Object.entries(t_info.raw("info")).map(([topic, detail]) => {
           return (
-            <div key={topic} className="flex flex-col gap-4">
+            <div key={topic}>
               {/* Topic for smaller than large monitor */}
-              <h3 className="leading-loose underline underline-offset-8 decoration-[3px] font-bold text-md sm:text-lg md:text-xl lg:text-2xl p-6">
-                {topic}
-              </h3>
+              <h2 className="about-section-header">{topic}</h2>
               {/* Started Detail Section */}
               <ul>
                 {(detail as Array<Info>).map((infoItem) => (
@@ -34,10 +32,10 @@ export default async function AboutMe() {
                       get(infoItem, "title") ??
                       get(infoItem, "name")
                     }`}
-                    className="timeline_item grid"
+                    className="timeline-subheader timeline_item grid"
                   >
                     {/* Education: degree - school || Work or Activity : title or name */}
-                    <h4 className="font-bold text-sm md:text-md lg:text-lg">
+                    <h4 className="timeline-header">
                       {get(infoItem, "degree")
                         ? `${get(infoItem, "degree")} - ${get(
                             infoItem,
@@ -47,12 +45,10 @@ export default async function AboutMe() {
                     </h4>
 
                     {/* Education: university */}
-                    {get(infoItem, "university") && (
-                      <h5>{get(infoItem, "university")}</h5>
-                    )}
+                    <h5>{get(infoItem, "university")}</h5>
 
                     {/* Work: type • company • date */}
-                    <h5 className="text-sx md:text-sm lg:text-md timeline-sub">
+                    <h5 className="timeline-subheader--color">
                       {get(infoItem, "type") && (
                         <>{get(infoItem, "type")} &#8226; </>
                       )}
@@ -63,12 +59,10 @@ export default async function AboutMe() {
                     </h5>
 
                     {/* Work: location */}
-                    <h5 className="text-sx md:text-sm lg:text-md timeline-sub">
-                      {get(infoItem, "location")}
-                    </h5>
+                    <h5>{get(infoItem, "location")}</h5>
 
                     {/* Education: Major and GPA */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="about-section-education-details">
                       {infoItem?.major && (
                         <>
                           <h6>{t("major")}: </h6>
@@ -84,7 +78,7 @@ export default async function AboutMe() {
                     </div>
 
                     {/* Education: favorite subject */}
-                    <ul className="list-disc list-inside">
+                    <ul className="about-section-description">
                       {get(infoItem, "favoriteSubjects") && (
                         <>
                           <h6 className="font-bold">

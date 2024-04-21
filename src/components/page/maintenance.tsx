@@ -18,7 +18,7 @@ export default async function Maintenance() {
         height={100}
         priority
       />
-      <h1 className="flex flex-wrap gap-4 gap-y-2 justify-center text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+      <h1 className="main-introduction text-center main-h1">
         This part is in the process of maintaining.
       </h1>
     </main>
