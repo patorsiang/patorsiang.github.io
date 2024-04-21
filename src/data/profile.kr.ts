@@ -16,7 +16,7 @@ export const data: Data = {
     Email: {
       name: "napatchol.tha@gmail.com",
       opt: {
-        link: "mailto:napatchol.tha@gmail.com?subject=%5Bpatorseing%2Egithub%2Eio%5D 이력서의 정보를 보고 연락하세요.&body=성함%3D%3C당신의 성함을 입력하세요.%3E%0D%0A전화%3D%3C전화번호를 입력하세요.%3E%0D%0A세부 사항%3A%0D%0A",
+        link: "mailto:napatchol.tha@gmail.com?subject=%5Bpatorsiang%2Egithub%2Eio%5D 이력서의 정보를 보고 연락하세요.&body=성함%3D%3C당신의 성함을 입력하세요.%3E%0D%0A전화%3D%3C전화번호를 입력하세요.%3E%0D%0A세부 사항%3A%0D%0A",
         underline: true,
         color: 0x569cd6,
       },
@@ -30,9 +30,9 @@ export const data: Data = {
       },
     },
     Github: {
-      name: "patorseing",
+      name: "patorsiang",
       opt: {
-        link: "https://github.com/patorseing",
+        link: "https://github.com/patorsiang",
         underline: true,
         color: 0x569cd6,
       },

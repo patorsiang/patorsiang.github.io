@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/api/",
     },
-    sitemap: "https://patorseing.github.io/sitemap.xml",
+    sitemap: "https://patorsiang.github.io/sitemap.xml",
   };
 }

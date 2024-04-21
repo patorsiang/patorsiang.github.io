@@ -10,7 +10,7 @@ export default createMiddleware({
   },
   domains: [
     {
-      domain: "patorseing.github.io/",
+      domain: "patorsiang.github.io/",
       ...i18n,
     },
   ],

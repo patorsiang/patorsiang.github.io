@@ -8,7 +8,7 @@ export async function generateStaticParams() {
 export default async function Page({ params }: { params: { locale: string } }) {
   return (
     <Layout lang={params.locale}>
-      <Main lang={params.locale} />
+      <Main />
     </Layout>
   );
 }

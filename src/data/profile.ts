@@ -4,8 +4,7 @@ export const data: Data = {
   name: "Napatchol Thaipanich",
   nickname: "Pat",
   position: "Software Developer",
-  subtitle: `
-  I am deeply passionate about technology and data. I desire to learn new things and share my passion through code. My motto is "If anyone can do it, I can do it." My grandfather passed down this lesson to my mother and me, and the lesson has stayed with me ever since. I make it a point to work daily to improve my coding skills.
+  subtitle: `I am deeply passionate about technology and data. I desire to learn new things and share my passion through code. My motto is "If anyone can do it, I can do it." My grandfather passed down this lesson to my mother and me, and the lesson has stayed with me ever since. I make it a point to work daily to improve my coding skills.
   <br/>
   <br/>
   I am looking for an exciting project. <b>"Let's build something remarkable together!"</b>`,
@@ -16,7 +15,7 @@ export const data: Data = {
     Email: {
       name: "napatchol.tha@gmail.com",
       opt: {
-        link: "mailto:napatchol.tha@gmail.com?subject=%5Bpatorseing%2Egithub%2Eio%5D contact by seeing the info from the CV&body=Name%3D%3CInsert Your Name%3E%0D%0ATel%3D%3CInsert Your Tel%3E%0D%0ADetail%3A%0D%0A",
+        link: "mailto:napatchol.tha@gmail.com?subject=%5Bpatorsiang%2Egithub%2Eio%5D contact by seeing the info from the CV&body=Name%3D%3CInsert Your Name%3E%0D%0ATel%3D%3CInsert Your Tel%3E%0D%0ADetail%3A%0D%0A",
         underline: true,
         color: 0x569cd6,
       },
@@ -30,9 +29,9 @@ export const data: Data = {
       },
     },
     Github: {
-      name: "patorseing",
+      name: "patorsiang",
       opt: {
-        link: "https://github.com/patorseing",
+        link: "https://github.com/patorsiang",
         underline: true,
         color: 0x569cd6,
       },
