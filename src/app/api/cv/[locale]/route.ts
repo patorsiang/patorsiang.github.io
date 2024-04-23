@@ -1,5 +1,4 @@
-import { getDictionary } from "@/utils/getDictionaries";
-import { headers } from "next/headers";
+// import { headers } from "next/headers";
 import pdf from "pdfjs";
 import { get } from "lodash";
 
@@ -8,12 +7,20 @@ import { locales } from "#/i18n";
 import { getStyle } from "./config";
 
 import { listDescription } from "./lib";
+import { getDictionary } from "@/utils/getDictionaries";
+import { generateStaticParamsFunc } from "@/utils/generateStaticParams";
 
 import { Data, University, Award, Activity, Work } from "@/data/profile.d";
 
-export async function GET() {
-  const headersList = headers();
-  const language = headersList.get("accept-language");
+export const generateStaticParams = () => generateStaticParamsFunc();
+
+export async function GET(
+  request: Request,
+  { params: { locale } }: { params: { locale: string } }
+) {
+  // const headersList = headers();
+  // const language = headersList.get("accept-language");
+  const language = locale;
 
   if (!locales.includes(language as any))
     return new Response("not found", { status: 404 });
@@ -233,6 +240,6 @@ export async function GET() {
   const blob = new Blob([buf], { type: contentType });
 
   return new Response(blob, {
-    headers: { ...headersList, "Content-Type": contentType },
+    headers: { "Content-Type": contentType },
   });
 }
