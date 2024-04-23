@@ -1,12 +1,18 @@
 {
-  "Index": {
-    "introduction": "안녕하세요. 저는 {nickname}, {fullName}입니다.",
-    "About Me": "나에 대해서",
-    "topic": {
-      "description": "설명",
-      "favoriteSubject": "좋아하는 과목",
-      "major": "주요한",
-      "gpa": "평점"
-    }
+  "home": {
+    "introduction": "안녕하세요. 저는 {nickname}, {fullName}입니다."
+  },
+  "aboutMe": {
+    "title": "나에 대해서",
+    "description": "설명",
+    "favoriteSubject": "좋아하는 과목",
+    "major": "주요한",
+    "gpa": "평점"
+  },
+  "topic": {
+    "description": "설명",
+    "favoriteSubject": "좋아하는 과목",
+    "major": "주요한",
+    "gpa": "평점"
   }
 }

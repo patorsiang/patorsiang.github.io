@@ -1,14 +1,10 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import { clsx } from "clsx";
 
-import Navbar from "@/components/navbar";
-
 import { fontEN, fontKR, fontTH } from "@/constants";
-import { locales } from "#/i18n";
+import { generateStaticParamsFunc } from "@/utils/generateStaticParams";
 
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
+export const generateStaticParams = () => generateStaticParamsFunc();
 
 export default function LocaleLayout({
   children,

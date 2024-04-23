@@ -1,12 +1,18 @@
 {
-  "Index": {
-    "introduction": "Hello. I'm {nickname}, {fullName},",
-    "About Me": "About Me",
-    "topic": {
-      "description": "Description",
-      "favoriteSubject": "Favorite Subject",
-      "major": "Major",
-      "gpa": "GPA"
-    }
+  "home": {
+    "introduction": "Hello. I'm {nickname}, {fullName},"
+  },
+  "aboutMe": {
+    "title": "About Me",
+    "description": "Description",
+    "favoriteSubject": "Favorite Subject",
+    "major": "Major",
+    "gpa": "GPA"
+  },
+  "topic": {
+    "description": "Description",
+    "favoriteSubject": "Favorite Subject",
+    "major": "Major",
+    "gpa": "GPA"
   }
 }

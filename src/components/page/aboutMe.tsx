@@ -5,13 +5,12 @@ import { get } from "lodash";
 import { Info } from "@/data/profile.d";
 
 export default async function AboutMe() {
-  const t = await getTranslations("Index.topic");
-  const t_head = await getTranslations("Index");
-  const t_info = await getTranslations("");
+  const t = await getTranslations("page.aboutMe");
+  const t_info = await getTranslations("detail");
 
   return (
     <main className="self-container">
-      <h1 className="about-h1">{t_head("About Me")}</h1>
+      <h1 className="about-h1">{t("title")}</h1>
       <hr className="about-hr" />
       {/* Experience information */}
       <section className="about-section">

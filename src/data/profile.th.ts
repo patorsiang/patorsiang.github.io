@@ -1,4 +1,3 @@
-import pdf from "pdfjs";
 import { Data } from "./profile.d";
 
 export const data: Data = {
@@ -234,12 +233,4 @@ export const data: Data = {
         "woraluck.won@mahidol.ac.th; woraluck.won@mahidol.edu",
     },
   ],
-  frontEnd: {
-    topic: {
-      description: "คำอธิบาย",
-      favoriteSubject: "วิชาที่ชื่นชอบ",
-      major: "วิชาเอก",
-      gpa: "เกรดเฉลี่ย",
-    },
-  },
 };

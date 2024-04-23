@@ -1,14 +1,13 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { clsx } from "clsx";
 
 import Link from "next/link";
 
-export default function Navbar({ lang }: { lang: string }) {
-  const pathname = usePathname();
+import { useSplitPathname } from "@/utils/hooks/useSplitPathname";
 
-  const currentPath = pathname.trim().split("/")[2];
+export default function Navbar({ lang }: { lang: string }) {
+  const { currentPath } = useSplitPathname();
 
   const menus = [
     { title: "/home" },

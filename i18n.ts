@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
+import { getDictionary } from "@/utils/getDictionaries";
 
 export const locales = ["en", "th", "kr"];
 export const defaultLocale = locales[0];
@@ -16,11 +17,6 @@ export default getRequestConfig(async ({ locale = "en" }) => {
   if (!locales.includes(locale as any)) notFound();
 
   return {
-    messages: {
-      ...(await import(
-        `@/data/profile${locale === "en" ? "" : `.${locale}`}.ts`
-      ).then((module) => module.data)),
-      ...(await import(`./messages/${locale}.json`)).default,
-    },
+    messages: await getDictionary(locale),
   };
 });

@@ -1,15 +1,16 @@
 "use client";
 
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { locales } from "#/i18n";
 import clsx from "clsx";
+
+import { locales } from "#/i18n";
+
+import { useSplitPathname } from "@/utils/hooks/useSplitPathname";
 
 export default function LanguageBar({ lang }: { lang: string }) {
   const router = useRouter();
-  const pathname = usePathname();
-  const currentPath = pathname.trim().split("/")[2];
-  const currentLang = pathname.trim().split("/")[1];
+  const { currentPath, currentLang } = useSplitPathname();
 
   const [show, setShow] = useState(false);
 

@@ -8,8 +8,8 @@ import { DownloadCVLink } from "../downloadCV";
 import { contactIcons, iconSize } from "@/constants";
 
 export default async function Main() {
-  const t = await getTranslations("Index");
-  const t_info = await getTranslations("");
+  const t = await getTranslations("page.home");
+  const t_info = await getTranslations("detail");
 
   return (
     <main className="self-container">

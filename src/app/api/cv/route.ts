@@ -1,34 +1,60 @@
-import { NextResponse } from "next/server";
-
+import { getDictionary } from "@/utils/getDictionaries";
+import { headers } from "next/headers";
 import pdf from "pdfjs";
 import { get } from "lodash";
 
-import { data, University, Award, Work, Activity } from "@/data/profile";
+import { locales } from "#/i18n";
 
-import {
-  fonts,
-  fontSize,
-  lineHeight,
-  headerStyle,
-  dateStyle,
-  subheaderStyle,
-  smallHeaderStyle,
-  highlightStyle,
-  bodyStyle,
-} from "./config";
+import { getStyle } from "./config";
+
 import { listDescription } from "./lib";
 
-export async function GET() {
-  const { name } = data;
+import { Data, University, Award, Activity, Work } from "@/data/profile.d";
 
+export async function GET() {
+  const headersList = headers();
+  const language = headersList.get("accept-language");
+
+  if (!locales.includes(language as any))
+    return new Response("not found", { status: 404 });
+
+  const style = getStyle(language);
+
+  const dateStyle = {
+    fontSize: style.fontSize.subtitle,
+    font: style.fontFamily.regular,
+    lineHeight: style.lineHeight,
+  };
+
+  const headerStyle = {
+    fontSize: style.fontSize.header,
+    font: style.fontFamily.bold,
+    lineHeight: style.lineHeight,
+  };
+
+  const subheaderStyle = {
+    fontSize: style.fontSize.subtitle,
+    font: style.fontFamily.bold,
+    lineHeight: style.lineHeight,
+  };
+
+  const { page, detail } = await getDictionary(language ?? "en");
+  const {
+    name,
+    address,
+    contact: contacts,
+    info,
+    etc,
+    references,
+  } = detail as Data;
   const doc = new pdf.Document({
-    font: fonts.Helvetica,
+    font: style.fontFamily.regular,
     paddingLeft: 1 * pdf.cm,
     paddingRight: 1 * pdf.cm,
     properties: {
-      title: `${name}'s cv`,
-      author: name,
-      subject: `${name}'s cv`,
+      title: `napatchol thaipanich's cv`,
+      author: "napatchol thaipanich",
+      subject: `napatchol thaipanich's cv`,
       keywords: name,
       creationDate: new Date(),
     },
@@ -37,10 +63,10 @@ export async function GET() {
   // Name
   doc
     .text({
-      fontSize: fontSize.title,
-      font: fonts.HelveticaBold,
+      fontSize: style.fontSize.title,
+      font: style.fontFamily.bold,
       textAlign: "center",
-      lineHeight,
+      lineHeight: style.lineHeight,
     })
     .add(name);
 
@@ -48,13 +74,14 @@ export async function GET() {
   const addressAndContact = doc
     .cell({ paddingBottom: 0.5 * pdf.cm })
     .text({
-      fontSize: fontSize.subtitle,
+      fontSize: style.fontSize.subtitle,
       textAlign: "center",
+      lineHeight: style.lineHeight,
     })
-    .add(data.address)
+    .add(address)
     .br();
 
-  const contact = Object.entries(data.contact);
+  const contact = Object.entries(contacts);
 
   contact.forEach(([key, val], idx) => {
     addressAndContact
@@ -70,7 +97,7 @@ export async function GET() {
   doc.cell({ borderWidth: 0.5 });
 
   // Education and  Awards, Work Experience, Extra-Curricular Activities
-  Object.entries(data.info).forEach(([key, val]) => {
+  Object.entries(info).forEach(([key, val]) => {
     doc.text(headerStyle).add(key);
     Object.values(val).forEach((val) => {
       const table = doc.table({
@@ -96,9 +123,15 @@ export async function GET() {
         if (uniDetail?.major || uniDetail?.gpa) {
           detail
             .br()
-            .add(uniDetail?.major ? "Major:" : "", subheaderStyle)
+            .add(
+              uniDetail?.major ? `${get(page, "aboutMe.major")}:` : "",
+              subheaderStyle
+            )
             .add(uniDetail?.major ?? "")
-            .add(uniDetail?.gpa ? "GPA:" : "", subheaderStyle)
+            .add(
+              uniDetail?.gpa ? `${get(page, "aboutMe.gpa")}:` : "",
+              subheaderStyle
+            )
             .add(uniDetail?.gpa ?? "");
         }
 
@@ -106,34 +139,37 @@ export async function GET() {
           detail
             .br()
             .add(
-              uniDetail.favoriteSubjects ? "Favorite Subject: " : "",
+              uniDetail.favoriteSubjects
+                ? `${get(page, "aboutMe.favoriteSubject")}:`
+                : "",
               subheaderStyle
             )
             .add(uniDetail.favoriteSubjects.join(", "));
         }
       }
-      // Awards & Extra-Curricular Activities
+      // // Awards & Extra-Curricular Activities
       else if ((val as Award)?.name) {
         const awardDetail = val as Award;
         // special for Extra-Curricular Activities
         detail.add(
           awardDetail.name,
           key === "Extra-Curricular Activities"
-            ? { font: fonts.HelveticaBold }
+            ? { font: style.fontFamily.bold }
             : {}
         );
         listDescription(detail, val as Activity);
       }
-      // Work Experience
+      // // Work Experience
       else {
         const { title, type, company, location } = val as Work;
         detail
           .add([title, type].join(", "), subheaderStyle)
           .br()
-          .add(
-            [company, location].filter((val) => val).join(", "),
-            smallHeaderStyle
-          );
+          .add([company, location].filter((val) => val).join(", "), {
+            fontSize: style.fontSize.smallHeader,
+            font: style.fontFamily.bold,
+            lineHeight: style.lineHeight,
+          });
 
         listDescription(detail, val as Work);
       }
@@ -143,7 +179,7 @@ export async function GET() {
   });
 
   // other, such as hobby
-  Object.entries(data.etc).forEach(([key, val]) => {
+  Object.entries(etc).forEach(([key, val]) => {
     const table = doc.table({
       widths: [90, null],
       paddingBottom: 5,
@@ -171,13 +207,19 @@ export async function GET() {
   // References
   doc
     .text(headerStyle)
-    .add(data.references.length ? "References" : "References upon request");
+    .add(references.length ? "References" : "References upon request");
 
-  data.references.forEach((val, idx) => {
+  references.forEach((val, idx) => {
     const refDetails = Object.entries(val);
-    doc.text(highlightStyle).add(`reference #${idx + 1}`);
+    doc
+      .text({
+        font: style.fontFamily.oblique,
+      })
+      .add(`reference #${idx + 1}`);
     refDetails.forEach(([key, ref], idx) => {
-      const refDetail = doc.text(`${key}: ${ref}`, bodyStyle);
+      const refDetail = doc.text(`${key}: ${ref}`, {
+        fontSize: style.fontSize.subtitle,
+      });
       if (idx === refDetails.length - 1) {
         refDetail.br();
       }
@@ -190,9 +232,7 @@ export async function GET() {
 
   const blob = new Blob([buf], { type: contentType });
 
-  const headers = new Headers();
-
-  headers.set("Content-Type", contentType);
-
-  return new NextResponse(blob, { status: 200, statusText: "OK", headers });
+  return new Response(blob, {
+    headers: { ...headersList, "Content-Type": contentType },
+  });
 }

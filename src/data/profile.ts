@@ -235,14 +235,6 @@ export const data: Data = {
         "woraluck.won@mahidol.ac.th; woraluck.won@mahidol.edu",
     },
   ],
-  frontEnd: {
-    topic: {
-      description: "Description",
-      favoriteSubject: "Favorite Subject",
-      major: "Major",
-      gpa: "GPA",
-    },
-  },
 };
 
 export type { Data, University, Award, Work, Activity };

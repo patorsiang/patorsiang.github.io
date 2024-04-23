@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Ubuntu_Mono } from "next/font/google";
 
 import { fontEN } from "@/constants";
 

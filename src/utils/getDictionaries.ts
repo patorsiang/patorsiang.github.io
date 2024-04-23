@@ -1,7 +1,8 @@
 "use server-only";
-import { Data } from "@/data/profile";
 
-export const getDictionary = async (locale: string): Promise<Data> =>
-  import(`@/data/profile${locale === "en" ? "" : `.${locale}`}.ts`).then(
-    (module) => module.data
-  );
+export const getDictionary = async (locale: string) => ({
+  page: (await import(`#/messages/${locale}.json`)).default,
+  detail: await import(
+    `@/data/profile${locale === "en" ? "" : `.${locale}`}.ts`
+  ).then((module) => module.data),
+});
