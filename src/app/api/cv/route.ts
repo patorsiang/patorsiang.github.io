@@ -18,7 +18,7 @@ export async function GET() {
   if (!locales.includes(language as any))
     return new Response("not found", { status: 404 });
 
-  const style = getStyle(language);
+  const style = getStyle(language ?? "en");
 
   const dateStyle = {
     fontSize: style.fontSize.subtitle,

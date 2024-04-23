@@ -42,17 +42,18 @@ export const getFontSize = (start: number) => ({
 export const getStyle = (locale?: string | null) => {
   const fontSize = getFontSize(12);
   const lineHeight = 1.5;
+  const defaultStyle = {
+    fontFamily: {
+      regular: fonts.Helvetica,
+      bold: fonts.HelveticaBold,
+      oblique: fonts.HelveticaOblique,
+    },
+    fontSize,
+    lineHeight,
+  };
   switch (locale) {
     case "en":
-      return {
-        fontFamily: {
-          regular: fonts.Helvetica,
-          bold: fonts.HelveticaBold,
-          oblique: fonts.HelveticaOblique,
-        },
-        fontSize,
-        lineHeight,
-      };
+      return defaultStyle;
 
     case "th":
       return {
@@ -75,5 +76,8 @@ export const getStyle = (locale?: string | null) => {
         fontSize,
         lineHeight,
       };
+
+    default:
+      return defaultStyle;
   }
 };
