@@ -32,6 +32,12 @@
   }
 }
 
+@layer components {
+  .padding-container {
+    @apply px-12  sm:px-24 md:px-48 lg:px-64;
+  }
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -253,7 +259,7 @@ body {
 }
 
 .self-container {
-  @apply flex flex-col items-center justify-between gap-10 pb-12 px-12 sm:px-24 md:px-48 lg:px-64;
+  @apply flex flex-col items-center justify-between gap-10 padding-container;
 }
 
 .main-avatar {
@@ -307,4 +313,15 @@ body {
 
 .about-section-description {
   @apply list-disc list-inside;
+}
+
+.chip {
+  color: rgb(var(--foreground-rgb));
+  border-color: rgb(var(--foreground-rgb));
+
+  @apply flex gap-1 border-solid border-2 rounded-full py-0.5 px-1 cursor-default;
+}
+
+footer {
+  @apply w-full flex flex-wrap gap-1 items-center text-center justify-center py-8 padding-container;
 }
