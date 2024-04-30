@@ -36,6 +36,14 @@
   .padding-container {
     @apply px-12  sm:px-24 md:px-48 lg:px-64;
   }
+
+  .text-p-responsive {
+    @apply text-sm md:text-base lg:text-lg;
+  }
+
+  .text-h1-responsive {
+    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
+  }
 }
 
 body {
@@ -145,7 +153,7 @@ body {
 }
 
 .timeline-header {
-  @apply font-bold text-sm md:text-base lg:text-lg;
+  @apply font-bold text-p-responsive;
 }
 
 .timeline-subheader {
@@ -271,7 +279,7 @@ body {
 }
 
 .main-h1 {
-  @apply text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl;
+  @apply text-h1-responsive xl:text-4xl 2xl:text-5xl;
 }
 
 .main-introduction {
@@ -287,11 +295,11 @@ body {
 }
 
 .main-introduction-subheading {
-  @apply text-sm md:text-base lg:text-lg text-justify;
+  @apply text-p-responsive text-justify;
 }
 
 .about-h1 {
-  @apply font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl;
+  @apply font-bold text-h1-responsive;
 }
 
 .about-hr {
@@ -323,5 +331,5 @@ body {
 }
 
 footer {
-  @apply w-full flex flex-wrap gap-1 items-center text-center justify-center py-8 padding-container;
+  @apply w-full flex flex-wrap gap-1 items-center text-center justify-center py-8 padding-container text-p-responsive;
 }
