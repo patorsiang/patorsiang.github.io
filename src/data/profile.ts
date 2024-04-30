@@ -40,9 +40,17 @@ export const data: Data = {
   info: {
     "Education and Awards": [
       {
+        date: "Expected start: September 2024 – Expected completion: September 2026",
+        school: "School of Computing",
+        university: "University of Kent",
+        location: "Canterbury, UK",
+        degree: "MSc Advanced Computer Science with Placement year",
+      },
+      {
         date: "2015 - 2023",
         school: "Faculty of Law",
         university: "Ramkhamhaeng University",
+        location: "Bangkok, Thailand",
         degree: "Bachelor of Laws (LL.B.)",
         // gpa: "2.8",
         favoriteSubjects: [
@@ -72,6 +80,7 @@ export const data: Data = {
         date: "2015 - 2019",
         school: "Faculty of Information and Communication Technology",
         university: "Mahidol University",
+        location: "Nakhon Pathom, Thailand",
         degree: "Bachelor of Science (B.Sc.)",
         major: "Database and Intelligent Systems (DB)",
         gpa: "3.18",

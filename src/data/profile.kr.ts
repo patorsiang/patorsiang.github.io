@@ -40,10 +40,18 @@ export const data: Data = {
   info: {
     "교육 및 수상": [
       {
+        date: "2024년 9월 - 완공 예정 : 2025년 9월",
+        school: "컴퓨팅 학교",
+        university: "켄트대학교",
+        location: "영국 캔터베리",
+        degree: "배치 연도가 포함된 석사 고급 컴퓨터 과학",
+      },
+      {
         date: "2015 - 2023",
         school: "법학부",
         university: "람캄행대학교",
         degree: "법학사(LL.B.)",
+        location: "방콕, 태국",
         // gpa: "2.8",
         favoriteSubjects: [
           // "KOR1001 - KOR2002 Fundamental Korean",
@@ -72,6 +80,7 @@ export const data: Data = {
         date: "2015 - 2019",
         school: "정보통신기술학부",
         university: "마히돌대학교",
+        location: "나콘빠톰, 태국",
         degree: "과학 학사(B.Sc.)",
         major: "데이터베이스 및 지능형 시스템(DB)",
         gpa: "3.18",
@@ -89,6 +98,7 @@ export const data: Data = {
       {
         date: "2013 - 2015",
         school: "카셋삳대학교 실험실 학교, 교육 연구 개발 센터",
+        location: "방콕, 태국",
         degree: "고등학교",
         major: "과학-수학",
       },
