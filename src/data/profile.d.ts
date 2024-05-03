@@ -1,6 +1,7 @@
 export type University = {
   date: string;
   school: string;
+  location: string;
   degree: string;
   university?: string;
   gpa?: string;
@@ -37,11 +38,15 @@ export type Data = {
   nickname: string;
   position: string;
   subtitle: string;
+  summary: string;
   address: string;
+  shortAddress: string;
   contact: {
     [key: string]: string | Contact;
   };
   info: { [key: string]: Array<Info> };
   etc: { [key: string]: { [key: string]: string } | Array<string> };
   references: Array<{ [key: string]: string }>;
+  sortedInfoForVacancy: Array<string>;
+  sortedInfoForEducation: Array<string>;
 };

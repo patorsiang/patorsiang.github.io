@@ -6,6 +6,10 @@ import HelveticaBoldOblique from "pdfjs/font/Helvetica-BoldOblique";
 import HelveticaOblique from "pdfjs/font/Helvetica-Oblique";
 import Helvetica from "pdfjs/font/Helvetica";
 
+import { locales } from "#/i18n";
+
+export const types = ["academic", "work"];
+
 export const fonts = {
   Symbol,
   Helvetica,
@@ -39,7 +43,7 @@ export const getFontSize = (start: number) => ({
   smallHeader: start - 4,
 });
 
-export const getStyle = (locale?: string | null) => {
+export const getTokenStyle = (locale: (typeof locales)[number]) => {
   const fontSize = getFontSize(12);
   const lineHeight = 1.5;
   const defaultStyle = {
@@ -76,8 +80,86 @@ export const getStyle = (locale?: string | null) => {
         fontSize,
         lineHeight,
       };
-
     default:
       return defaultStyle;
   }
+};
+
+export const color = {
+  primary: 0x000000,
+  main: 0x0b5394,
+  sub: 0x5b5b5b,
+  sub2: 0x999999,
+  heading: 0x23649e,
+  hr: 0xbcbcbc,
+};
+
+export const getStyle = ({
+  type,
+  locale,
+}: {
+  type: (typeof types)[number];
+  locale: (typeof locales)[number];
+}) => {
+  const style = getTokenStyle(locale ?? "en");
+
+  const nameStyle = {
+    fontSize: style.fontSize.title,
+    font: style.fontFamily.bold,
+    textAlign: "center" as pdf.TextAlignment,
+    lineHeight: style.lineHeight,
+    color: type === "academic" ? color.primary : color.main,
+  };
+
+  const dateStyle = {
+    fontSize: style.fontSize.subtitle,
+    font: style.fontFamily.regular,
+    lineHeight: style.lineHeight,
+  };
+
+  const headerStyle = {
+    fontSize: style.fontSize.header,
+    font: style.fontFamily.bold,
+    lineHeight: style.lineHeight,
+    color: type === "academic" ? color.primary : color.main,
+  };
+
+  const subheaderStyle = {
+    fontSize: style.fontSize.subtitle,
+    font: style.fontFamily.bold,
+    lineHeight: style.lineHeight,
+  };
+
+  const addressStyle = {
+    fontSize: style.fontSize.subtitle,
+    textAlign: "center" as pdf.TextAlignment,
+    lineHeight: style.lineHeight,
+  };
+
+  const summaryStyle = {
+    fontSize: style.fontSize.subtitle,
+    textAlign: "justify" as pdf.TextAlignment,
+    lineHeight: style.lineHeight,
+    color: type === "academic" ? color.primary : color.sub,
+  };
+
+  const normalHrStyle = {
+    borderWidth: 0.25,
+    color: type === "academic" ? color.primary : color.hr,
+  };
+  const mainHrStyle = {
+    borderWidth: 0.5,
+    color: type === "academic" ? color.primary : color.hr,
+  };
+
+  return {
+    nameStyle,
+    addressStyle,
+    summaryStyle,
+    dateStyle,
+    headerStyle,
+    subheaderStyle,
+    normalHrStyle,
+    mainHrStyle,
+  };
 };

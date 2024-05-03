@@ -10,8 +10,12 @@ export const data: Data = {
   I am looking for an exciting project. <b>"Let's build something remarkable together!"</b>`,
   address:
     "432/38 Chapter One Midtown Condo Ladprao 24, Ladprao Road, Chomphon, Chatuchak, Bangkok, Thailand 10900",
+  shortAddress: "Bangkok, Thailand",
+  // shortAddress: "Canterbury, UK",
+  summary:
+    'Passionate Software Developer with a background in technology and data. Dedicated to continuous learning and improvement, with a motto of "If anyone can do it, I can do it." Experienced in front-end development, system analysis, and blockchain technologies. Proven track record in frontend development, with experience ranging from freelance projects to full-time roles in both corporate and Thai governmental settings. Seeking opportunities to leverage skills and expertise in building innovative solutions.',
   contact: {
-    Tel: "(+66)0959390164",
+    Tel: "+66-959-390-164",
     Email: {
       name: "napatchol.tha@gmail.com",
       opt: {
@@ -44,7 +48,7 @@ export const data: Data = {
         school: "School of Computing",
         university: "University of Kent",
         location: "Canterbury, UK",
-        degree: "MSc Advanced Computer Science with Placement year",
+        degree: "MSc Advanced Computer Science with an Industrial Placement",
       },
       {
         date: "2015 - 2023",
@@ -99,6 +103,7 @@ export const data: Data = {
         date: "2013 - 2015",
         school:
           "Kasetsart University Laboratory School, Center for Educational Research and Development",
+        location: "Bangkok, Thailand",
         degree: "High School",
         major: "Science-Math",
       },
@@ -243,6 +248,16 @@ export const data: Data = {
       "Email (Official)":
         "woraluck.won@mahidol.ac.th; woraluck.won@mahidol.edu",
     },
+  ],
+  sortedInfoForVacancy: [
+    "Work Experience",
+    "Education and Awards",
+    "Extra-Curricular Activities",
+  ],
+  sortedInfoForEducation: [
+    "Education and Awards",
+    "Work Experience",
+    "Extra-Curricular Activities",
   ],
 };
 

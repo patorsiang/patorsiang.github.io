@@ -8,10 +8,13 @@ export const data: Data = {
    <br/>
    <br/>
    저는 흥미로운 프로젝트를 찾고 있습니다. <b>"함께 놀라운 것을 만들어 보자!"</b>`,
+  summary:
+    "Motivated Software Developer with a deep passion for technology and data. Known for a strong work ethic and a continuous drive to learn and improve coding skills. Proven track record in frontend development, with experience ranging from freelance projects to full-time roles in both corporate and governmental settings. Skilled in a variety of programming languages, frameworks, and hosting platforms. Adept at collaborating with cross-functional teams to deliver innovative solutions. Seeking challenging opportunities to contribute expertise and build remarkable projects.",
   address:
     "432/38 Chapter One Midtown Condo Ladprao 24, Ladprao Road, Chomphon, 짜뚜짝, 방콕, 태국 10900",
+  shortAddress: "방콕, 태국",
   contact: {
-    Tel: "(+66)0959390164",
+    Tel: "+66-959-390-164",
     Email: {
       name: "napatchol.tha@gmail.com",
       opt: {
@@ -44,7 +47,7 @@ export const data: Data = {
         school: "컴퓨팅 학교",
         university: "켄트대학교",
         location: "영국 캔터베리",
-        degree: "배치 연도가 포함된 석사 고급 컴퓨터 과학",
+        degree: "산업 배치를 통한 석사 고급 컴퓨터 과학",
       },
       {
         date: "2015 - 2023",
@@ -242,4 +245,6 @@ export const data: Data = {
         "woraluck.won@mahidol.ac.th; woraluck.won@mahidol.edu",
     },
   ],
+  sortedInfoForVacancy: ["업무 경험", "교육 및 수상", "교과 외 활동"],
+  sortedInfoForEducation: ["교육 및 수상", "업무 경험", "교과 외 활동"],
 };

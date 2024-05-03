@@ -8,10 +8,13 @@ export const data: Data = {
    <br/>
    <br/>
    ฉันกำลังมองหาโครงการที่น่าตื่นเต้น <b>"มาสร้างสิ่งที่น่าทึ่งด้วยกัน!"</b>`,
+  summary:
+    "Motivated Software Developer with a deep passion for technology and data. Known for a strong work ethic and a continuous drive to learn and improve coding skills. Proven track record in frontend development, with experience ranging from freelance projects to full-time roles in both corporate and governmental settings. Skilled in a variety of programming languages, frameworks, and hosting platforms. Adept at collaborating with cross-functional teams to deliver innovative solutions. Seeking challenging opportunities to contribute expertise and build remarkable projects.",
   address:
     "432/38 แชปเตอร์วันมิดทาวน์คอนโด ลาดพร้าว 24 ถนนลาดพร้าว จอมพล จตุจักร กรุงเทพฯ 10900",
+  shortAddress: "กรุงเทพ, ประเทศไทย",
   contact: {
-    Tel: "(+66)0959390164",
+    Tel: "+66-959-390-164",
     Email: {
       name: "napatchol.tha@gmail.com",
       opt: {
@@ -242,5 +245,15 @@ export const data: Data = {
       "Email (Official)":
         "woraluck.won@mahidol.ac.th; woraluck.won@mahidol.edu",
     },
+  ],
+  sortedInfoForVacancy: [
+    "ประสบการณ์การทำงาน",
+    "การศึกษาและรางวัล",
+    "กิจกรรมนอกหลักสูตร",
+  ],
+  sortedInfoForEducation: [
+    "การศึกษาและรางวัล",
+    "ประสบการณ์การทำงาน",
+    "กิจกรรมนอกหลักสูตร",
   ],
 };

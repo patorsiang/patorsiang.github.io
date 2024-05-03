@@ -19,7 +19,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 226, 232, 240;
-    --foreground-hover-rgb: 100, 116, 139;
+    --foreground-hover-rgb: 166, 167, 167;
     --background-start-rgb: 54, 103, 166;
     --background-end-rgb: 25, 52, 65;
     --secondary-start-rgb: 29, 93, 155;

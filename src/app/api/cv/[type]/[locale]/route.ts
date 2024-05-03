@@ -1,54 +1,49 @@
-// import { headers } from "next/headers";
+import { NextRequest } from "next/server";
+
 import pdf from "pdfjs";
 import { get } from "lodash";
 
 import { locales } from "#/i18n";
 
-import { getStyle } from "./config";
+import { types, getStyle, getTokenStyle } from "@/app/api/config";
 
-import { listDescription } from "./lib";
+import { listDescription } from "@/app/api/lib";
 import { getDictionary } from "@/utils/getDictionaries";
-import { generateStaticParamsFunc } from "@/utils/generateStaticParams";
 
 import { Data, University, Award, Activity, Work } from "@/data/profile.d";
 
-export const generateStaticParams = () => generateStaticParamsFunc();
+export const generateStaticParams = () => {
+  return types.flatMap((type) => locales.map((locale) => ({ type, locale })));
+};
 
 export async function GET(
-  request: Request,
-  { params: { locale } }: { params: { locale: string } }
+  request: NextRequest,
+  { params: { type, locale } }: { params: { type: string; locale: string } }
 ) {
-  // const headersList = headers();
-  // const language = headersList.get("accept-language");
-  const language = locale;
-
-  if (!locales.includes(language as any))
+  if (!locales.includes(locale as any))
     return new Response("not found", { status: 404 });
 
-  const style = getStyle(language ?? "en");
+  const style = getTokenStyle(locale ?? "en");
+  const {
+    nameStyle,
+    addressStyle,
+    summaryStyle,
+    dateStyle,
+    headerStyle,
+    subheaderStyle,
+    normalHrStyle,
+    mainHrStyle,
+  } = getStyle({
+    type,
+    locale,
+  });
 
-  const dateStyle = {
-    fontSize: style.fontSize.subtitle,
-    font: style.fontFamily.regular,
-    lineHeight: style.lineHeight,
-  };
-
-  const headerStyle = {
-    fontSize: style.fontSize.header,
-    font: style.fontFamily.bold,
-    lineHeight: style.lineHeight,
-  };
-
-  const subheaderStyle = {
-    fontSize: style.fontSize.subtitle,
-    font: style.fontFamily.bold,
-    lineHeight: style.lineHeight,
-  };
-
-  const { page, detail } = await getDictionary(language ?? "en");
+  const { page, detail } = await getDictionary(locale ?? "en");
   const {
     name,
+    summary,
     address,
+    shortAddress,
     contact: contacts,
     info,
     etc,
@@ -56,8 +51,7 @@ export async function GET(
   } = detail as Data;
   const doc = new pdf.Document({
     font: style.fontFamily.regular,
-    paddingLeft: 1 * pdf.cm,
-    paddingRight: 1 * pdf.cm,
+    ...(type === "work" ? { padding: 1 * pdf.cm } : {}),
     properties: {
       title: `napatchol thaipanich's cv`,
       author: "napatchol thaipanich",
@@ -68,40 +62,31 @@ export async function GET(
   });
 
   // Name
-  doc
-    .text({
-      fontSize: style.fontSize.title,
-      font: style.fontFamily.bold,
-      textAlign: "center",
-      lineHeight: style.lineHeight,
-    })
-    .add(name);
+  doc.text(nameStyle).add(name);
 
   // Address and contact
   const addressAndContact = doc
-    .cell({ paddingBottom: 0.5 * pdf.cm })
-    .text({
-      fontSize: style.fontSize.subtitle,
-      textAlign: "center",
-      lineHeight: style.lineHeight,
-    })
-    .add(address)
+    .text(addressStyle)
+    .add(type === "academic" ? address : shortAddress)
     .br();
-
   const contact = Object.entries(contacts);
 
-  contact.forEach(([key, val], idx) => {
+  contact.forEach(([key, val]) => {
     addressAndContact
       .add(typeof val === "object" ? `${key}: ` : "")
       .add(
-        (typeof val === "object" ? val.name : `${key}: ${val}`) +
-          (idx + 1 === contact.length ? "" : "; "),
+        typeof val === "object" ? val.name : `${key}: ${val}`,
         typeof val === "object" ? val.opt : {}
       );
   });
+  addressAndContact.br();
+  // Summary
+  if (type === "work") {
+    doc.text(summaryStyle).add(summary).br();
+  }
 
   // main hr
-  doc.cell({ borderWidth: 0.5 });
+  doc.cell(mainHrStyle);
 
   // Education and  Awards, Work Experience, Extra-Curricular Activities
   Object.entries(info).forEach(([key, val]) => {
@@ -119,42 +104,39 @@ export async function GET(
 
       // Education
       if ((val as University)?.school) {
-        const uniDetail = val as University;
+        const { school, university, degree, major, gpa, favoriteSubjects } =
+          val as University;
         detail.add(
-          `${uniDetail.school}${
-            uniDetail?.university ? `, ${uniDetail?.university}` : ""
-          }${uniDetail?.degree ? `, ${uniDetail?.degree}` : ""}`,
+          [school, university, degree].filter((temp) => temp).join(", "),
           subheaderStyle
         );
 
-        if (uniDetail?.major || uniDetail?.gpa) {
-          detail
-            .br()
-            .add(
-              uniDetail?.major ? `${get(page, "aboutMe.major")}:` : "",
-              subheaderStyle
-            )
-            .add(uniDetail?.major ?? "")
-            .add(
-              uniDetail?.gpa ? `${get(page, "aboutMe.gpa")}:` : "",
-              subheaderStyle
-            )
-            .add(uniDetail?.gpa ?? "");
+        const moreDetails: { [key: string]: string } = {};
+
+        if (!!major) {
+          moreDetails[get(page, "aboutMe.major")] = major;
+        }
+        if (!!gpa) {
+          moreDetails[get(page, "aboutMe.gpa")] = gpa;
         }
 
-        if (uniDetail?.favoriteSubjects) {
+        Object.entries(moreDetails).forEach((details) => {
+          detail.add(`${details[0]}: `, subheaderStyle).add(details[1] ?? "");
+        });
+
+        if (favoriteSubjects) {
           detail
             .br()
             .add(
-              uniDetail.favoriteSubjects
+              favoriteSubjects
                 ? `${get(page, "aboutMe.favoriteSubject")}:`
                 : "",
               subheaderStyle
             )
-            .add(uniDetail.favoriteSubjects.join(", "));
+            .add(favoriteSubjects.join(", "));
         }
       }
-      // // Awards & Extra-Curricular Activities
+      // Awards & Extra-Curricular Activities
       else if ((val as Award)?.name) {
         const awardDetail = val as Award;
         // special for Extra-Curricular Activities
@@ -166,7 +148,7 @@ export async function GET(
         );
         listDescription(detail, val as Activity);
       }
-      // // Work Experience
+      // Work Experience
       else {
         const { title, type, company, location } = val as Work;
         detail
@@ -182,7 +164,7 @@ export async function GET(
       }
     });
     // hr
-    doc.cell({ borderWidth: 0.25 });
+    doc.cell(normalHrStyle);
   });
 
   // other, such as hobby
@@ -209,29 +191,31 @@ export async function GET(
   });
 
   // last hr
-  doc.cell({ borderWidth: 0.25 });
+  doc.cell(normalHrStyle);
 
   // References
-  doc
-    .text(headerStyle)
-    .add(references.length ? "References" : "References upon request");
-
-  references.forEach((val, idx) => {
-    const refDetails = Object.entries(val);
+  if (type === "academic") {
     doc
-      .text({
-        font: style.fontFamily.oblique,
-      })
-      .add(`reference #${idx + 1}`);
-    refDetails.forEach(([key, ref], idx) => {
-      const refDetail = doc.text(`${key}: ${ref}`, {
-        fontSize: style.fontSize.subtitle,
+      .text(headerStyle)
+      .add(references.length ? "References" : "References upon request");
+
+    references.forEach((val, idx) => {
+      const refDetails = Object.entries(val);
+      doc
+        .text({
+          font: style.fontFamily.oblique,
+        })
+        .add(`reference #${idx + 1}`);
+      refDetails.forEach(([key, ref], idx) => {
+        const refDetail = doc.text(`${key}: ${ref}`, {
+          fontSize: style.fontSize.subtitle,
+        });
+        if (idx === refDetails.length - 1) {
+          refDetail.br();
+        }
       });
-      if (idx === refDetails.length - 1) {
-        refDetail.br();
-      }
     });
-  });
+  }
 
   const buf = await doc.asBuffer();
 
