@@ -164,8 +164,16 @@ body {
   color: rgb(var(--foreground-hover-rgb));
 }
 
+.nav {
+  @apply flex w-full py-5 px-3 justify-between;
+}
+
+.nav_icon {
+  @apply my-auto text-5xl;
+}
+
 .nav_list {
-  @apply flex gap-1 justify-end py-5 px-3;
+  @apply flex gap-1 justify-end my-auto;
 }
 
 .nav_list-item a {

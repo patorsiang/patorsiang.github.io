@@ -17,6 +17,9 @@ export default function Navbar({ lang }: { lang: string }) {
 
   return (
     <nav className="nav">
+      <Link className="nav_icon" href={`/${lang}`}>
+        NT
+      </Link>
       <ul className="nav_list">
         {menus.map(({ title, path }) => (
           <li className="nav_list-item" key={title}>
