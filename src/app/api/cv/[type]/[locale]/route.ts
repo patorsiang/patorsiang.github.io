@@ -33,6 +33,7 @@ export async function GET(
     subheaderStyle,
     normalHrStyle,
     mainHrStyle,
+    locationStyle,
   } = getStyle({
     type,
     locale,
@@ -48,6 +49,8 @@ export async function GET(
     info,
     etc,
     references,
+    sortedInfoForVacancy,
+    sortedInfoForEducation,
   } = detail as Data;
   const doc = new pdf.Document({
     font: style.fontFamily.regular,
@@ -88,28 +91,27 @@ export async function GET(
   // main hr
   doc.cell(mainHrStyle);
 
-  // Education and  Awards, Work Experience, Extra-Curricular Activities
-  Object.entries(info).forEach(([key, val]) => {
-    doc.text(headerStyle).add(key);
-    Object.values(val).forEach((val) => {
-      const table = doc.table({
-        widths: [90, null],
-        paddingBottom: 5,
-      });
-      const tr = table.row();
+  // Education and Awards, Work Experience, Extra-Curricular Activities
+  (type === "work" ? sortedInfoForVacancy : sortedInfoForEducation).map(
+    (topic, index, root) => {
+      doc.text(headerStyle).add(topic);
+      Object.values(info[topic]).forEach((val) => {
+        const table = doc.table({
+          widths: [90, null],
+          paddingBottom: 5,
+        });
+        const tr = table.row();
+        tr.cell(val.date, dateStyle);
+        const detail = tr.cell().text(dateStyle);
 
-      tr.cell(val.date, dateStyle);
-
-      const detail = tr.cell().text(dateStyle);
-
-      // Education
-      if ((val as University)?.school) {
         const { school, university, degree, major, gpa, favoriteSubjects } =
           val as University;
-        detail.add(
-          [school, university, degree].filter((temp) => temp).join(", "),
-          subheaderStyle
+        const { name } = val as Award;
+        const { title: position, type, company, location } = val as Work;
+        const title = [school, university, degree, position, type].filter(
+          (x) => x
         );
+        const address = [company, location].filter((x) => x);
 
         const moreDetails: { [key: string]: string } = {};
 
@@ -120,9 +122,24 @@ export async function GET(
           moreDetails[get(page, "aboutMe.gpa")] = gpa;
         }
 
-        Object.entries(moreDetails).forEach((details) => {
-          detail.add(`${details[0]}: `, subheaderStyle).add(details[1] ?? "");
-        });
+        if (title.length) {
+          detail.add(title.filter((temp) => temp).join(", "), subheaderStyle);
+        } else {
+          detail.add(name, index === root.length - 1 ? subheaderStyle : {});
+        }
+
+        if (address.length) {
+          detail.br().add(address.join(","), locationStyle);
+        }
+
+        if (Object.keys(moreDetails).length) {
+          detail.br();
+          Object.entries(moreDetails).forEach((details) => {
+            detail.add(`${details[0]}: `, subheaderStyle).add(details[1] ?? "");
+          });
+        }
+
+        listDescription(detail, val as Activity);
 
         if (favoriteSubjects) {
           detail
@@ -135,37 +152,10 @@ export async function GET(
             )
             .add(favoriteSubjects.join(", "));
         }
-      }
-      // Awards & Extra-Curricular Activities
-      else if ((val as Award)?.name) {
-        const awardDetail = val as Award;
-        // special for Extra-Curricular Activities
-        detail.add(
-          awardDetail.name,
-          key === "Extra-Curricular Activities"
-            ? { font: style.fontFamily.bold }
-            : {}
-        );
-        listDescription(detail, val as Activity);
-      }
-      // Work Experience
-      else {
-        const { title, type, company, location } = val as Work;
-        detail
-          .add([title, type].join(", "), subheaderStyle)
-          .br()
-          .add([company, location].filter((val) => val).join(", "), {
-            fontSize: style.fontSize.smallHeader,
-            font: style.fontFamily.bold,
-            lineHeight: style.lineHeight,
-          });
-
-        listDescription(detail, val as Work);
-      }
-    });
-    // hr
-    doc.cell(normalHrStyle);
-  });
+      });
+      doc.cell(normalHrStyle);
+    }
+  );
 
   // other, such as hobby
   Object.entries(etc).forEach(([key, val]) => {

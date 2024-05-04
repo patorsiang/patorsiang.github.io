@@ -18,7 +18,7 @@ export const DownloadCVLink = () => {
   const downloadFile = async () => {
     setIsLoading(true); // Start loading
     try {
-      const response = await fetch(`/api/work/cv/${currentLang}`);
+      const response = await fetch(`/api/cv/work/${currentLang}`);
       if (!response.ok) throw new Error("Network response was not ok");
 
       const blob = await response.blob();

@@ -152,6 +152,12 @@ export const getStyle = ({
     color: type === "academic" ? color.primary : color.hr,
   };
 
+  const locationStyle = {
+    fontSize: style.fontSize.smallHeader,
+    font: style.fontFamily.bold,
+    lineHeight: style.lineHeight,
+  };
+
   return {
     nameStyle,
     addressStyle,
@@ -161,5 +167,6 @@ export const getStyle = ({
     subheaderStyle,
     normalHrStyle,
     mainHrStyle,
+    locationStyle,
   };
 };
