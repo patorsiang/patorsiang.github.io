@@ -1,7 +1,11 @@
-import { Data, University, Award, Work, Activity } from "./profile.d";
+import type { Metadata } from "next";
+
+import { Data, University, Award, Work, Activity, Contact } from "./profile.d";
+
+export const myName = "Napatchol Thaipanich";
 
 export const data: Data = {
-  name: "Napatchol Thaipanich",
+  name: myName,
   nickname: "Pat",
   position: "Software Developer",
   subtitle: `I am deeply passionate about technology and data. I desire to learn new things and share my passion through code. My motto is "If anyone can do it, I can do it." My grandfather passed down this lesson to my mother and me, and the lesson has stayed with me ever since. I make it a point to work daily to improve my coding skills.
@@ -262,3 +266,18 @@ export const data: Data = {
 };
 
 export type { Data, University, Award, Work, Activity };
+
+export const metadata: Metadata = {
+  title: myName,
+  description: `${myName}'s Profile`,
+  generator: "Next.js",
+  manifest: "/manifest.json",
+  keywords: [myName],
+  authors: [
+    { name: myName },
+    {
+      name: myName,
+      url: (data.contact.LinkedIn as Contact).opt.link,
+    },
+  ],
+};

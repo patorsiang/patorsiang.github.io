@@ -1,8 +1,11 @@
-import type { Metadata, Viewport } from "next";
+import type { Viewport } from "next";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 import { fontEN } from "@/constants";
 
 import "./globals.css";
+
+export { metadata } from "@/data/profile";
 
 export const viewport: Viewport = {
   themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#193441" }],
@@ -10,21 +13,6 @@ export const viewport: Viewport = {
   initialScale: 1,
   // maximumScale: 1,
   // userScalable: false,
-};
-
-export const metadata: Metadata = {
-  title: "Napatchol Thaipanich",
-  description: "Napatchol Thaipanich's Profile",
-  generator: "Next.js",
-  manifest: "/manifest.json",
-  keywords: ["Napatchol Thaipanich"],
-  authors: [
-    { name: "Napatchol Thaipanich" },
-    {
-      name: "Napatchol Thaipanich",
-      url: "https://www.linkedin.com/in/napatchol-thaipanich/",
-    },
-  ],
 };
 
 export const dynamic = "force-static";
@@ -42,6 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html>
+      <GoogleTagManager gtmId="G-XG777MV585" />
       <body className={fontEN.className}>{children}</body>
     </html>
   );

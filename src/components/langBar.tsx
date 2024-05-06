@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import clsx from "clsx";
 
+import { sendGTMEvent } from "@next/third-parties/google";
+
 import { locales } from "#/i18n";
 
 import { useSplitPathname } from "@/utils/hooks/useSplitPathname";
@@ -52,7 +54,10 @@ export default function LanguageBar({ lang }: { lang: string }) {
           {locales.map((lang) => (
             <button
               key={lang}
-              onClick={() => switchLocale(lang)}
+              onClick={() => {
+                sendGTMEvent({ event: "changedLanguage", value: lang });
+                switchLocale(lang);
+              }}
               className={clsx({ isActive: lang === currentLang })}
             >
               {lang}

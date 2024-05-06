@@ -111,6 +111,14 @@ export const getStyle = ({
     color: type === "academic" ? color.primary : color.main,
   };
 
+  const positionStyle = {
+    fontSize: style.fontSize.subtitle,
+    font: style.fontFamily.bold,
+    textAlign: "center" as pdf.TextAlignment,
+    lineHeight: style.lineHeight,
+    color: type === "academic" ? color.primary : color.main,
+  };
+
   const dateStyle = {
     fontSize: style.fontSize.subtitle,
     font: style.fontFamily.regular,
@@ -160,6 +168,7 @@ export const getStyle = ({
 
   return {
     nameStyle,
+    positionStyle,
     addressStyle,
     summaryStyle,
     dateStyle,

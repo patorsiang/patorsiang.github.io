@@ -10,6 +10,7 @@ import { types, getStyle, getTokenStyle } from "@/app/api/config";
 import { listDescription } from "@/app/api/lib";
 import { getDictionary } from "@/utils/getDictionaries";
 
+import { myName } from "@/data/profile";
 import { Data, University, Award, Activity, Work } from "@/data/profile.d";
 
 export const generateStaticParams = () => {
@@ -26,6 +27,7 @@ export async function GET(
   const style = getTokenStyle(locale ?? "en");
   const {
     nameStyle,
+    positionStyle,
     addressStyle,
     summaryStyle,
     dateStyle,
@@ -42,6 +44,7 @@ export async function GET(
   const { page, detail } = await getDictionary(locale ?? "en");
   const {
     name,
+    position,
     summary,
     address,
     shortAddress,
@@ -56,10 +59,10 @@ export async function GET(
     font: style.fontFamily.regular,
     ...(type === "work" ? { padding: 1 * pdf.cm } : {}),
     properties: {
-      title: `napatchol thaipanich's cv`,
-      author: "napatchol thaipanich",
-      subject: `napatchol thaipanich's cv`,
-      keywords: name,
+      title: `${myName}'s cv`,
+      author: myName,
+      subject: `${myName}'s cv`,
+      keywords: myName,
       creationDate: new Date(),
     },
   });
@@ -67,12 +70,21 @@ export async function GET(
   // Name
   doc.text(nameStyle).add(name);
 
+  if (type === "work") {
+    // Position
+    doc.text(positionStyle).add(position);
+  }
+
   // Address and contact
   const addressAndContact = doc
     .text(addressStyle)
     .add(type === "academic" ? address : shortAddress)
     .br();
   const contact = Object.entries(contacts);
+
+  // if (type === "academic") {
+  //   addressAndContact.br();
+  // }
 
   contact.forEach(([key, val]) => {
     addressAndContact

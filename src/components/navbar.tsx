@@ -1,4 +1,5 @@
 "use client";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 import { clsx } from "clsx";
 
@@ -17,7 +18,11 @@ export default function Navbar({ lang }: { lang: string }) {
 
   return (
     <nav className="nav">
-      <Link className="nav_icon" href={`/${lang}`}>
+      <Link
+        className="nav_icon"
+        href={`/${lang}`}
+        onClick={() => sendGTMEvent({ event: "changedPage", value: "NT" })}
+      >
         NT
       </Link>
       <ul className="nav_list">
@@ -25,6 +30,9 @@ export default function Navbar({ lang }: { lang: string }) {
           <li className="nav_list-item" key={title}>
             <Link
               className={clsx({ active: currentPath === path })}
+              onClick={() =>
+                sendGTMEvent({ event: "changedPage", value: title })
+              }
               href={`/${lang}${path ? "/" + path : ""}`}
             >
               {title}
