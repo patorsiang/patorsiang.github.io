@@ -9,6 +9,7 @@ export const IconLink = ({
   children,
   target,
   disabled,
+  onClick,
   ...props
 }: {
   target?: string;
@@ -22,7 +23,12 @@ export const IconLink = ({
     className={`cursor-pointer lnk tooltip ${disabled ? "disabled" : ""}`}
     aria-label={`Click ${label}`}
     aria-disabled={disabled}
-    onClick={() => sendGTMEvent({ event: "clicked_icon", value: label })}
+    onClick={(e) => {
+      if (onClick) {
+        onClick(e);
+      }
+      sendGTMEvent({ event: "clicked_icon", value: label });
+    }}
   >
     {children}
     <span className="tooltipText">{label}</span>
