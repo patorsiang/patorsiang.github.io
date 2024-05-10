@@ -55,7 +55,7 @@ export default function LanguageBar({ lang }: { lang: string }) {
             <button
               key={lang}
               onClick={() => {
-                sendGTMEvent({ event: "changedLanguage", value: lang });
+                sendGTMEvent({ event: "changed_language", value: lang });
                 switchLocale(lang);
               }}
               className={clsx({ isActive: lang === currentLang })}

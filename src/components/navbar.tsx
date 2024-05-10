@@ -21,7 +21,7 @@ export default function Navbar({ lang }: { lang: string }) {
       <Link
         className="nav_icon"
         href={`/${lang}`}
-        onClick={() => sendGTMEvent({ event: "changedPage", value: "NT" })}
+        onClick={() => sendGTMEvent({ event: "changed_page", value: "NT" })}
       >
         NT
       </Link>
@@ -31,7 +31,7 @@ export default function Navbar({ lang }: { lang: string }) {
             <Link
               className={clsx({ active: currentPath === path })}
               onClick={() =>
-                sendGTMEvent({ event: "changedPage", value: title })
+                sendGTMEvent({ event: "changed_page", value: title })
               }
               href={`/${lang}${path ? "/" + path : ""}`}
             >
