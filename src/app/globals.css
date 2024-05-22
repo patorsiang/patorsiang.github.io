@@ -165,15 +165,15 @@ body {
 }
 
 .nav {
-  @apply flex w-full py-5 px-3 justify-between;
+  @apply flex w-full py-5 px-3 justify-between flex-wrap gap-4;
 }
 
 .nav_icon {
-  @apply my-auto text-5xl;
+  @apply my-auto text-5xl text-center xs:w-full;
 }
 
 .nav_list {
-  @apply flex gap-1 justify-end my-auto;
+  @apply flex gap-1 justify-end my-auto flex-wrap xs:m-auto;
 }
 
 .nav_list-item a {
