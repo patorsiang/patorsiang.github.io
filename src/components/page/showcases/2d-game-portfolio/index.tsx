@@ -1,7 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { useEffect } from "react";
 
 import kaboom from "kaboom";
 
@@ -11,8 +11,19 @@ import { scaleFactor } from "@/constants";
 
 export default function GamePortfolio() {
   const t = useTranslations("page.game");
+
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const dialogUIRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLParagraphElement>(null);
+  const closeBtn = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
-    const k = kaboom();
+    const k = kaboom({
+      global: false,
+      touchToMouse: true,
+      canvas: canvasRef.current !== null ? canvasRef.current : undefined,
+      debug: false, // set to false once ready for production
+    });
 
     // Step 1: assets
     const folder = "/assets/2d-game-portfolio";
@@ -89,12 +100,41 @@ export default function GamePortfolio() {
             // Step 2.4.2: set the dialog box
             if (boundary.name) {
               player.onCollide(boundary.name, () => {
-                // player.isInDialogue = true;
-                // displayDialogue(
-                //   dialogueData[boundary.name],
-                //   () => (player.isInDialogue = false)
-                // );
-                console.log(boundary.name);
+                player.isInDialogue = true;
+                dialogUIRef.current!.style.display = "block";
+                let text = t(boundary.name);
+                let index = 0;
+                let currentText = "";
+
+                const intervalRef = setInterval(() => {
+                  if (index < text.length) {
+                    currentText += text[index];
+                    dialogRef.current!.innerHTML = currentText;
+                    index++;
+                    return;
+                  }
+
+                  clearInterval(intervalRef);
+                }, 1);
+
+                function onCloseBtnClick() {
+                  player.isInDialogue = false;
+                  dialogUIRef.current!.style.display = "none";
+                  dialogRef.current!.innerHTML = "";
+                  clearInterval(intervalRef);
+                  closeBtn.current?.removeEventListener(
+                    "click",
+                    onCloseBtnClick
+                  );
+                }
+
+                closeBtn.current?.addEventListener("click", onCloseBtnClick);
+
+                addEventListener("keypress", (key) => {
+                  if (key.code === "Enter") {
+                    closeBtn.current?.click();
+                  }
+                });
               });
             }
           }
@@ -252,5 +292,26 @@ export default function GamePortfolio() {
     k.go("main");
   }, []);
 
-  return <></>;
+  return (
+    <>
+      <h1 className="text-[#eeeeee] absolute top-5 left-5 text-xl">
+        Tap/Click around to move
+      </h1>
+      <canvas ref={canvasRef} />
+
+      <div className="hidden" ref={dialogUIRef}>
+        <div className="absolute left-10 right-10 bottom-10 min-h-10 bg-white border-r-4 outline p-10 flex flex-col flex-wrap justify-start items-start tracking-widest drop-shadow-[0_0_0.75rem_rgb(112,112,112)]">
+          <p className="m-0 select-none text-2xl" ref={dialogRef} />
+          <div className="self-end mt-4">
+            <button
+              className="border-none rounded p-4 bg-[#eeeeee]"
+              ref={closeBtn}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }

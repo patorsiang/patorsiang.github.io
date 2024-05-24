@@ -10,10 +10,6 @@
     "gpa": "GPA"
   },
   "game": {
-    "title": "Game",
-    "description": "Description",
-    "favoriteSubject": "Favorite Subject",
-    "major": "Major",
-    "gpa": "GPA"
+    "pet": "I have had one cat. I called her \"meow\""
   }
 }
