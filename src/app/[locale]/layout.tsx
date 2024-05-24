@@ -1,4 +1,6 @@
-import { unstable_setRequestLocale } from "next-intl/server";
+import { getMessages, unstable_setRequestLocale } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+
 import { clsx } from "clsx";
 
 import { fontEN, fontKR, fontTH } from "@/constants";
@@ -6,7 +8,7 @@ import { generateStaticParamsFunc } from "@/utils/generateStaticParams";
 
 export const generateStaticParams = () => generateStaticParamsFunc();
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
   params: { locale },
 }: {
@@ -14,6 +16,8 @@ export default function LocaleLayout({
   params: { locale: string };
 }) {
   unstable_setRequestLocale(locale);
+
+  const messages = await getMessages();
 
   const font = [
     locale === "th"
@@ -25,7 +29,11 @@ export default function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className={clsx(...font)}>{children}</body>
+      <body className={clsx(...font)}>
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </body>
     </html>
   );
 }

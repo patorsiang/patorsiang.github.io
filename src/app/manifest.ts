@@ -7,7 +7,7 @@ export default function manifest():
         src: string;
         type: string;
         sizes: string;
-        form_factor: string;
+        form_factor?: string;
       }>;
     } {
   return {
@@ -88,16 +88,20 @@ export default function manifest():
     ],
     screenshots: [
       {
-        src: "/screenshots/1.png",
+        src: "/screenshots/mobile.png",
         type: "image/png",
-        sizes: "540x720",
-        form_factor: "wide",
+        sizes: "412x897",
       },
       {
-        src: "/screenshots/1.png",
+        src: "/screenshots/tablet.png",
         type: "image/png",
-        sizes: "540x720",
-        form_factor: "narrow",
+        sizes: "1025x799",
+      },
+      {
+        src: "/screenshots/laptop.png",
+        type: "image/png",
+        sizes: "686x991",
+        form_factor: "wide",
       },
     ],
   };
