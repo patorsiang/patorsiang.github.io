@@ -1,5 +1,5 @@
 import { Text } from "pdfjs";
-import { Work, Activity } from "@/data/profile";
+import { Work, Activity } from "@/data/types/profile";
 
 export const listDescription = (doc: Text, data: Activity | Work) => {
   const description = data?.description;

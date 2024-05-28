@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 
 import { get } from "lodash";
 
-import { Info } from "@/data/profile.d";
+import { Info } from "@/data/types/profile";
 
 export default async function AboutMe() {
   const t = await getTranslations("page.aboutMe");

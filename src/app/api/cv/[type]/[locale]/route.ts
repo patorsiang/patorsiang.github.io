@@ -11,7 +11,7 @@ import { listDescription } from "@/app/api/lib";
 import { getDictionary } from "@/utils/getDictionaries";
 
 import { myName } from "@/data/profile";
-import { Data, University, Award, Activity, Work } from "@/data/profile.d";
+import { Data, University, Award, Activity, Work } from "@/data/types/profile";
 
 export const generateStaticParams = () => {
   return types.flatMap((type) => locales.map((locale) => ({ type, locale })));
