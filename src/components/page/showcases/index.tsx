@@ -32,7 +32,7 @@ export default function Showcases() {
         {data.map((ele, id) => (
           <div
             key={id}
-            className="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-full"
+            className="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-full h-max"
           >
             <div className="relative aspect-video mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
               <Image
