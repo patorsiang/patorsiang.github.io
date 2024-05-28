@@ -36,5 +36,15 @@
     "sofa": "I like taking a short nap during the day to recharge and recover my memory and my creativity.",
     "pet": "I had a cat. She was a white and orange cat, and I didn't know her breed. I loved her very much, but she has passed away.",
     "exit": "Bye Bye!!!"
+  },
+  "showcases": {
+    "title": "side-project",
+    "link": "visit",
+    "items": [
+      {
+        "title": "My 2d-portfolio-game",
+        "description": "I tried using kaboom.js and Tiled.app following the steps from freecodecamp."
+      }
+    ]
   }
 }
