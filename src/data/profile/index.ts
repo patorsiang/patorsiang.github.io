@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { Data, University, Award, Work, Activity, Contact } from "./profile.d";
+import { Data, Contact } from "@/data/types/profile";
 
 export const myName = "Napatchol Thaipanich";
 
@@ -264,8 +264,6 @@ export const data: Data = {
     "Extra-Curricular Activities",
   ],
 };
-
-export type { Data, University, Award, Work, Activity };
 
 export const metadata: Metadata = {
   title: myName,

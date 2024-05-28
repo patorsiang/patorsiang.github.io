@@ -1,4 +1,4 @@
-import { Data } from "./profile.d";
+import { Data } from "@/data/types/profile";
 
 export const data: Data = {
   name: "나팥촐 타이파닟",

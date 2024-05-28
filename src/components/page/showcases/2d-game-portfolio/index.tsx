@@ -1,15 +1,22 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 import kaboom from "kaboom";
 
+import { IoInformationCircleOutline } from "react-icons/io5";
+
 import { setCamScale } from "@/utils/game";
+import { useSplitPathname } from "@/utils/hooks/useSplitPathname";
 
 import { scaleFactor } from "@/constants";
 
 export default function GamePortfolio() {
+  const router = useRouter();
+  const { currentLang } = useSplitPathname();
+
   const t = useTranslations("page.game");
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -118,14 +125,18 @@ export default function GamePortfolio() {
                 }, 1);
 
                 function onCloseBtnClick() {
-                  player.isInDialogue = false;
-                  dialogUIRef.current!.style.display = "none";
-                  dialogRef.current!.innerHTML = "";
                   clearInterval(intervalRef);
                   closeBtn.current?.removeEventListener(
                     "click",
                     onCloseBtnClick
                   );
+                  if (boundary.name === "exit") {
+                    const newPath = `/${currentLang}/showcases`;
+                    router.push(newPath, { scroll: false });
+                  }
+                  player.isInDialogue = false;
+                  dialogUIRef.current!.style.display = "none";
+                  dialogRef.current!.innerHTML = "";
                 }
 
                 closeBtn.current?.addEventListener("click", onCloseBtnClick);
@@ -294,9 +305,22 @@ export default function GamePortfolio() {
 
   return (
     <>
-      <h1 className="text-[#eeeeee] absolute top-5 left-5 text-xl">
+      <h1 className="text-[#eeeeee] absolute top-5 left-14 text-xl">
         Tap/Click around to move
       </h1>
+
+      <div className="absolute bottom-5 right-14">
+        <span className="tooltip">
+          <IoInformationCircleOutline
+            size="1.25em"
+            className="text-[#eeeeee] text-xl"
+          />
+          <span className="tooltipText">
+            Powered by Kaboom.js, Tiled.app, kenney.nl
+          </span>
+        </span>
+      </div>
+
       <canvas ref={canvasRef} />
 
       <div className="hidden" ref={dialogUIRef}>
