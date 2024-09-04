@@ -4,12 +4,12 @@ export const data: Data = {
   name: "나팥촐 타이파닟",
   nickname: "팥",
   position: "Software Developer",
-  subtitle: `저는 기술과 데이터에 깊은 관심을 갖고 있습니다. 나는 새로운 것을 배우고 코드를 통해 나의 열정을 공유하고 싶습니다. 내 좌우명은 '누구든지 할 수 있다면 나도 할 수 있다'이다. 나의 할아버지는 이 교훈을 어머니와 나에게 물려주셨고, 그 교훈은 그 이후로 계속해서 나에게 남아 있습니다. 나는 코딩 기술을 향상시키기 위해 매일 노력하는 것을 중요하게 생각합니다.
+  subtitle: `저는 언어와 기술과 데이터에 깊은 관심을 갖고 있습니다. 나는 새로운 것을 배우고 코드를 통해 나의 열정을 공유하고 싶습니다. 내 좌우명은 '누구든지 할 수 있다면 나도 할 수 있다'이다. 나의 할아버지는 이 교훈을 어머니와 나에게 물려주셨고, 그 교훈은 그 이후로 계속해서 나에게 남아 있습니다. 나는 코딩 기술을 향상시키기 위해 매일 노력하는 것을 중요하게 생각합니다.
    <br/>
    <br/>
    저는 흥미로운 프로젝트를 찾고 있습니다. <b>"함께 놀라운 것을 만들어 보자!"</b>`,
   summary:
-    "Motivated Software Developer with a deep passion for technology and data. Known for a strong work ethic and a continuous drive to learn and improve coding skills. Proven track record in frontend development, with experience ranging from freelance projects to full-time roles in both corporate and governmental settings. Skilled in a variety of programming languages, frameworks, and hosting platforms. Adept at collaborating with cross-functional teams to deliver innovative solutions. Seeking challenging opportunities to contribute expertise and build remarkable projects.",
+    "기술과 데이터 분야의 배경을 가진 열정적인 소프트웨어 개발자. 평생 학습에 전념하며, 도전을 즐기고 결단력이 있으면 무엇이든 가능하다는 믿음에 의해 움직입니다. 저는 제 기술을 기여하고 긍정적인 영향을 미치는 혁신적인 솔루션을 구축하고 싶습니다.",
   address:
     "432/38 Chapter One Midtown Condo Ladprao 24, Ladprao Road, Chomphon, 짜뚜짝, 방콕, 태국 10900",
   shortAddress: "방콕, 태국",
@@ -107,12 +107,12 @@ export const data: Data = {
       },
       {
         date: "2013",
-        name: "왕립 호주 화학 연구소(Royal Australian Chemical Institute",
+        name: "Certificate of Merit, Class Distinction, The Royal Australian Chemical Institute",
       },
     ],
     "업무 경험": [
       {
-        date: "04/2023 - 현재의",
+        date: "06/2023 - 05/2024",
         title: "Frontend Developer",
         type: "Freelance",
         location: "방콕, 태국",
@@ -204,8 +204,8 @@ export const data: Data = {
       "Queue Management": "RabbitMQ",
     },
     언어: {
-      영어: "IELTS: band 6; Listening: 6 Reading 5 Writing 6 Speaking 6",
-      한국인: "TOPIK: level 1",
+      영어: "IELTS: band 6; Listening: 6 Reading 6.5 Writing 6 Speaking 5.5",
+      한국인: "TOPIK: level 1; Sejong: 2A",
       태국어: "모국어",
     },
     Interests: [

@@ -8,16 +8,16 @@ export const data: Data = {
   name: myName,
   nickname: "Pat",
   position: "Software Developer",
-  subtitle: `I am deeply passionate about technology and data. I desire to learn new things and share my passion through code. My motto is "If anyone can do it, I can do it." My grandfather passed down this lesson to my mother and me, and the lesson has stayed with me ever since. I make it a point to work daily to improve my coding skills.
+  subtitle: `I am deeply passionate about language, technology and data. I desire to learn new things and share my passion through code. My motto is "If anyone can do it, I can do it." My grandfather passed down this lesson to my mother and me, and the lesson has stayed with me ever since. I make it a point to work daily to improve my coding skills.
   <br/>
   <br/>
   I am looking for an exciting project. <b>"Let's build something remarkable together!"</b>`,
   address:
     "432/38 Chapter One Midtown Condo Ladprao 24, Ladprao Road, Chomphon, Chatuchak, Bangkok, Thailand 10900",
-  shortAddress: "Bangkok, Thailand",
-  // shortAddress: "Canterbury, UK",
+  // shortAddress: "Bangkok, Thailand",
+  shortAddress: "Canterbury, UK",
   summary:
-    'Passionate Software Developer with a background in technology and data. Dedicated to continuous learning and improvement, with a motto of "If anyone can do it, I can do it." Experienced in front-end development, system analysis, and blockchain technologies. Proven track record in frontend development, with experience ranging from freelance projects to full-time roles in both corporate and Thai governmental settings. Seeking opportunities to leverage skills and expertise in building innovative solutions.',
+    "Passionate Software Developer with a background in technology and data. Committed to lifelong learning, I thrive on challenges and am driven by the belief that with determination, anything is possible. I am eager to contribute my skills and build innovative solutions that make a positive impact.",
   contact: {
     Tel: "+66-959-390-164",
     Email: {
@@ -118,7 +118,7 @@ export const data: Data = {
     ],
     "Work Experience": [
       {
-        date: "04/2023 - Current",
+        date: "06/2023 - 05/2024",
         title: "Frontend Developer",
         type: "Freelance",
         location: "Bangkok, Thailand",
@@ -212,8 +212,8 @@ export const data: Data = {
       "Queue Management": "RabbitMQ",
     },
     Languages: {
-      English: "IELTS: band 6; Listening: 6 Reading 5 Writing 6 Speaking 6", // "IELTS: band 6",
-      Korean: "TOPIK: level 1",
+      English: "IELTS: band 6; Listening: 6 Reading 6.5 Writing 6 Speaking 5.5", // "IELTS: band 6",
+      Korean: "TOPIK: level 1; Sejong: 2A",
       Thai: "mother tongue",
     },
     Interests: [

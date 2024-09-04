@@ -4,12 +4,12 @@ export const data: Data = {
   name: "ณภัทรชล ไทพาณิชย์",
   nickname: "ภัทร",
   position: "Software Developer",
-  subtitle: `ฉันหลงใหลในเทคโนโลยีและข้อมูลอย่างลึกซึ้ง ฉันปรารถนาที่จะเรียนรู้สิ่งใหม่ ๆ และแบ่งปันความหลงใหลของฉันผ่านการเขียนโค้ด คำขวัญของฉันคือ "ถ้าใครทำได้ ฉันก็ทำได้" ตาของฉันส่งต่อบทเรียนนี้ให้กับแม่และฉัน และบทเรียนนี้ก็ยังคงอยู่กับฉันนับตั้งแต่นั้นเป็นต้นมา ฉันตั้งใจทำงานทุกวันเพื่อพัฒนาทักษะการเขียนโค้ด
+  subtitle: `ฉันหลงใหลในภาษา,เทคโนโลยีและข้อมูลอย่างลึกซึ้ง ฉันปรารถนาที่จะเรียนรู้สิ่งใหม่ ๆ และแบ่งปันความหลงใหลของฉันผ่านการเขียนโค้ด คำขวัญของฉันคือ "ถ้าใครทำได้ ฉันก็ทำได้" ตาของฉันส่งต่อบทเรียนนี้ให้กับแม่และฉัน และบทเรียนนี้ก็ยังคงอยู่กับฉันนับตั้งแต่นั้นเป็นต้นมา ฉันตั้งใจทำงานทุกวันเพื่อพัฒนาทักษะการเขียนโค้ด
    <br/>
    <br/>
    ฉันกำลังมองหาโครงการที่น่าตื่นเต้น <b>"มาสร้างสิ่งที่น่าทึ่งด้วยกัน!"</b>`,
   summary:
-    "Motivated Software Developer with a deep passion for technology and data. Known for a strong work ethic and a continuous drive to learn and improve coding skills. Proven track record in frontend development, with experience ranging from freelance projects to full-time roles in both corporate and governmental settings. Skilled in a variety of programming languages, frameworks, and hosting platforms. Adept at collaborating with cross-functional teams to deliver innovative solutions. Seeking challenging opportunities to contribute expertise and build remarkable projects.",
+    "นักพัฒนาซอฟต์แวร์ที่หลงใหลในเทคโนโลยีและข้อมูล มุ่งมั่นที่จะเรียนรู้ตลอดชีวิต มุ่งมั่นต่อความท้าทาย และเชื่อมั่นว่าทุกสิ่งเป็นไปได้ด้วยความมุ่งมั่น ฉันกระตือรือร้นที่จะนำทักษะของฉันมาแบ่งปันและสร้างโซลูชันที่สร้างสรรค์ซึ่งส่งผลกระทบเชิงบวก",
   address:
     "432/38 แชปเตอร์วันมิดทาวน์คอนโด ลาดพร้าว 24 ถนนลาดพร้าว จอมพล จตุจักร กรุงเทพฯ 10900",
   shortAddress: "กรุงเทพ, ประเทศไทย",
@@ -113,7 +113,7 @@ export const data: Data = {
     ],
     ประสบการณ์การทำงาน: [
       {
-        date: "04/2023 - ปัจจุบัน",
+        date: "06/2023 - 05/2024",
         title: "Frontend Developer",
         type: "Freelance",
         location: "กรุงเทพ, ประเทศไทย",
@@ -205,8 +205,9 @@ export const data: Data = {
       "Queue Management": "RabbitMQ",
     },
     ภาษา: {
-      ภาษาอังกฤษ: "IELTS: band 6; Listening: 6 Reading 5 Writing 6 Speaking 6",
-      ภาษาเกาหลี: "TOPIK: level 1",
+      ภาษาอังกฤษ:
+        "IELTS: band 6; Listening: 6 Reading 6.5 Writing 6 Speaking 5.5",
+      ภาษาเกาหลี: "TOPIK: level 1; Sejong: 2A",
       ภาษาไทย: "ภาษาแม่",
     },
     Interests: [
