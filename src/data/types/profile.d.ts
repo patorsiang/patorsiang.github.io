@@ -21,6 +21,7 @@ export type Work = {
   company?: string;
   location: string;
   description: Array<string>;
+  shortDescription: Array<string>;
 };
 
 export type Activity = {

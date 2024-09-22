@@ -7,7 +7,7 @@ import { locales } from "#/i18n";
 
 import { types, getStyle, getTokenStyle } from "@/app/api/config";
 
-import { listDescription } from "@/app/api/lib";
+import { listDescription, interestingThings } from "@/app/api/lib";
 import { getDictionary } from "@/utils/getDictionaries";
 
 import { myName } from "@/data/profile";
@@ -18,7 +18,7 @@ export const generateStaticParams = () => {
 };
 
 export async function GET(
-  request: NextRequest,
+  _request: NextRequest,
   { params: { type, locale } }: { params: { type: string; locale: string } }
 ) {
   if (!locales.includes(locale as any))
@@ -81,10 +81,6 @@ export async function GET(
     .add(type === "academic" ? address : shortAddress)
     .br();
   const contact = Object.entries(contacts);
-
-  // if (type === "academic") {
-  //   addressAndContact.br();
-  // }
 
   contact.forEach(([key, val]) => {
     addressAndContact
@@ -170,27 +166,7 @@ export async function GET(
   );
 
   // other, such as hobby
-  Object.entries(etc).forEach(([key, val]) => {
-    const table = doc.table({
-      widths: [90, null],
-      paddingBottom: 5,
-    });
-
-    const tr = table.row();
-
-    tr.cell(key, headerStyle);
-
-    const details = tr.cell();
-    if (Array.isArray(val)) {
-      details.text(val.join(", "), dateStyle);
-    } else {
-      Object.entries(val)
-        .map(([key, val]) => `${key}${val ? ": " + val : ""}`)
-        .forEach((val) => {
-          details.text(val, dateStyle);
-        });
-    }
-  });
+  interestingThings(etc, doc, { headerStyle, dateStyle });
 
   // last hr
   doc.cell(normalHrStyle);

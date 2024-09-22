@@ -8,6 +8,7 @@ export const data: Data = {
   name: myName,
   nickname: "Pat",
   position: "Software Developer",
+  // position: "IT Support Assistant",
   subtitle: `I am deeply passionate about language, technology and data. I desire to learn new things and share my passion through code. My motto is "If anyone can do it, I can do it." My grandfather passed down this lesson to my mother and me, and the lesson has stayed with me ever since. I make it a point to work daily to improve my coding skills.
   <br/>
   <br/>
@@ -18,12 +19,17 @@ export const data: Data = {
   shortAddress: "Canterbury, UK",
   summary:
     "Passionate Software Developer with a background in technology and data. Committed to lifelong learning, I thrive on challenges and am driven by the belief that with determination, anything is possible. I am eager to contribute my skills and build innovative solutions that make a positive impact.",
+  // summary:
+  //   "MSc Advanced Computer Science student At the University of Kent with a passion for technology and data. Committed to lifelong learning, I thrive on challenges and am driven by the belief that with determination, anything is possible. I am eager to contribute my skills and build innovative solutions that make a positive impact.",
   contact: {
-    Tel: "+66-959-390-164",
+    // Tel: "+66-959-390-164",
+    Tel: "+44-758-744-6870",
     Email: {
       name: "napatchol.tha@gmail.com",
+      // name: "nt375@kent.ac.uk",
       opt: {
         link: "mailto:napatchol.tha@gmail.com?subject=%5Bpatorsiang%2Egithub%2Eio%5D contact by seeing the info from the CV&body=Name%3D%3CInsert Your Name%3E%0D%0ATel%3D%3CInsert Your Tel%3E%0D%0ADetail%3A%0D%0A",
+        // link: "mailto:nt375@kent.ac.uk",
         underline: true,
         color: 0x569cd6,
       },
@@ -48,7 +54,7 @@ export const data: Data = {
   info: {
     "Education and Awards": [
       {
-        date: "Expected start: September 2024 – Expected completion: September 2026",
+        date: "14/09/2024 - 14/09/2026",
         school: "School of Computing",
         university: "University of Kent",
         location: "Canterbury, UK",
@@ -129,6 +135,11 @@ export const data: Data = {
           "Coded, Packed, Hosted, and Maintained a website.",
           "Example: Pruxus: maintained their website, Data Wow Co., Ltd.: built a dashboard for their client.",
         ],
+        shortDescription: [
+          "Helped clients to get a solution by collecting requirements from them",
+          "Created, Packed, Hosted, and Maintained a website.",
+          "Example: Pruxus: maintained their website, Data Wow Co., Ltd.: built a dashboard for their client.",
+        ],
       },
       {
         date: "12/2021 - 04/2023",
@@ -139,6 +150,10 @@ export const data: Data = {
         description: [
           "PDPA (Such as Cookie wow, PDPA Pro, PDPA Prokit, and PDPA Learn) Develop websites related to PDPA (Personal Data Protection Act)",
           "Etc. (Develop a website for Data Wow Co., Ltd. and external customers, such as dashboards, reports, chat storage (line chatbot), online mock exam platforms, etc.)",
+        ],
+        shortDescription: [
+          "Develop webs related to PDPA (Personal Data Protection Act)",
+          "and others such as dashboards, chat storage (line chatbot), online mock exam platforms, etc.)",
         ],
       },
       {
@@ -152,6 +167,11 @@ export const data: Data = {
           "ISO20022: The new standard for payment messaging, which will apply to the central core of the payment system in November 2025, includes Thailand, which also has to be shifted. So, I am involved in getting BA's requirement to Analyze and Develop the plan with the team and Test the flow with the team.",
           "RPA: RPA stands for Robotic process automation. Bank of Thailand also applies RPA to reduce the time spent on routine tasks and has time to use in the value task. I am involved in analyzing, adjusting, and improving the process and developing the flow by UiPath as an RPA developer.",
         ],
+        shortDescription: [
+          "Developed government bonds selling core system for country",
+          "Maintained the system for support new standard, ISO20022",
+          "Created automatic process by UiPath as an RPA developer.",
+        ],
       },
       {
         date: "06/2019 - 08/2019",
@@ -162,6 +182,9 @@ export const data: Data = {
         description: [
           "Time D(onation): It is about the use case of blockchain to solve the social problem. This project uses the Stellar blockchain to create a Time D token on the platform to exchange volunteer service and keep track of volunteer service to give a reward. I brainstormed the idea and designed and developed the prototype with the team.",
         ],
+        shortDescription: [
+          "Setup POC project named the Time D(onation): using blockchain to solve the social problem.",
+        ],
       },
       {
         date: "06/2018 - 07/2018",
@@ -170,6 +193,9 @@ export const data: Data = {
         company: "BeID Corporation Co., Ltd.",
         location: "Bangkok, Thailand",
         description: [
+          "About developing a dashboard and landing page in React.JS",
+        ],
+        shortDescription: [
           "About developing a dashboard and landing page in React.JS",
         ],
       },
