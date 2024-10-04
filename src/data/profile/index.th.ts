@@ -56,7 +56,7 @@ export const data: Data = {
         location: "กรุงเทพ, ประเทศไทย",
         degree: "นิติศาสตรบัณฑิต (น.บ.)",
         // gpa: "2.8",
-        favoriteSubjects: [
+        focus: [
           // "KOR1001 - KOR2002 Fundamental Korean",
           // "LAW3003 Civil and Commercial Law: Family",
           // "LAW3009 Civil and Commercial Law: Succession",
@@ -87,7 +87,7 @@ export const data: Data = {
         major: "ระบบฐานข้อมูลและระบบเชิงปัญญา",
         location: "นครปฐม, ประเทศไทย",
         gpa: "3.18",
-        favoriteSubjects: [
+        focus: [
           "การเขียนโปรแกรมเว็บ",
           "โครงสร้างและสถาปัตยกรรมคอมพิวเตอร์",
           "โครงสร้างข้อมูลและการวิเคราะห์ขั้นตอนวิธี",
@@ -205,8 +205,7 @@ export const data: Data = {
       "Queue Management": "RabbitMQ",
     },
     ภาษา: {
-      ภาษาอังกฤษ:
-        "IELTS: band 6; Listening: 6 Reading 6.5 Writing 6 Speaking 5.5",
+      ภาษาอังกฤษ: "IELTS: band 6",
       ภาษาเกาหลี: "TOPIK: level 1; Sejong: 2A",
       ภาษาไทย: "ภาษาแม่",
     },

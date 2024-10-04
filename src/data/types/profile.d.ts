@@ -6,7 +6,7 @@ export type University = {
   university?: string;
   gpa?: string;
   major?: string;
-  favoriteSubjects?: Array<string>;
+  focus?: Array<string>;
 };
 
 export type Award = {

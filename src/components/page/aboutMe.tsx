@@ -76,14 +76,14 @@ export default async function AboutMe() {
                       )}
                     </div>
 
-                    {/* Education: favorite subject */}
+                    {/* Education: Focus */}
                     <ul className="about-section-description">
-                      {get(infoItem, "favoriteSubjects") && (
+                      {get(infoItem, "focus") && (
                         <>
                           <h6 className="font-bold">
                             {t("favoriteSubject")}:{" "}
                           </h6>
-                          {infoItem?.favoriteSubjects?.map((subject) => (
+                          {infoItem?.focus?.map((subject) => (
                             <li key={subject}>{subject}</li>
                           ))}
                         </>

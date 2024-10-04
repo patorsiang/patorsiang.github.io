@@ -36,6 +36,8 @@ export async function GET(
     normalHrStyle,
     mainHrStyle,
     locationStyle,
+    spaceHrStyle,
+    spaceHeaderStyle,
   } = getStyle({
     type,
     locale,
@@ -102,7 +104,7 @@ export async function GET(
   // Education and Awards, Work Experience, Extra-Curricular Activities
   (type === "work" ? sortedInfoForVacancy : sortedInfoForEducation).map(
     (topic, index, root) => {
-      doc.text(headerStyle).add(topic);
+      doc.cell(spaceHeaderStyle).text(headerStyle).add(topic);
       Object.values(info[topic]).forEach((val) => {
         const table = doc.table({
           widths: [90, null],
@@ -112,7 +114,7 @@ export async function GET(
         tr.cell(val.date, dateStyle);
         const detail = tr.cell().text(dateStyle);
 
-        const { school, university, degree, major, gpa, favoriteSubjects } =
+        const { school, university, degree, major, gpa, focus } =
           val as University;
         const { name } = val as Award;
         const { title: position, type, company, location } = val as Work;
@@ -149,24 +151,23 @@ export async function GET(
 
         listDescription(detail, val as Activity);
 
-        if (favoriteSubjects) {
+        if (focus) {
           detail
             .br()
             .add(
-              favoriteSubjects
-                ? `${get(page, "aboutMe.favoriteSubject")}:`
-                : "",
+              focus ? `${get(page, "aboutMe.favoriteSubject")}:` : "",
               subheaderStyle
             )
-            .add(favoriteSubjects.join(", "));
+            .add(focus.join(", "));
         }
       });
+      doc.cell(spaceHrStyle);
       doc.cell(normalHrStyle);
     }
   );
 
   // other, such as hobby
-  interestingThings(etc, doc, { headerStyle, dateStyle });
+  interestingThings(etc, doc, { headerStyle, dateStyle, spaceHrStyle });
 
   // last hr
   doc.cell(normalHrStyle);

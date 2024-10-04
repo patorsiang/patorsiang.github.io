@@ -166,6 +166,17 @@ export const getStyle = ({
     lineHeight: style.lineHeight,
   };
 
+  const spacePaddingValue = 10;
+
+  const spaceHrStyle = {
+    paddingTop: spacePaddingValue,
+  };
+
+  const spaceHeaderStyle = {
+    paddingTop: spacePaddingValue,
+    paddingBottom: spacePaddingValue,
+  };
+
   return {
     nameStyle,
     positionStyle,
@@ -177,5 +188,7 @@ export const getStyle = ({
     normalHrStyle,
     mainHrStyle,
     locationStyle,
+    spaceHrStyle,
+    spaceHeaderStyle,
   };
 };

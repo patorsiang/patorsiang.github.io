@@ -56,7 +56,7 @@ export const data: Data = {
         degree: "법학사(LL.B.)",
         location: "방콕, 태국",
         // gpa: "2.8",
-        favoriteSubjects: [
+        focus: [
           // "KOR1001 - KOR2002 Fundamental Korean",
           // "LAW3003 Civil and Commercial Law: Family",
           // "LAW3009 Civil and Commercial Law: Succession",
@@ -87,7 +87,7 @@ export const data: Data = {
         degree: "과학 학사(B.Sc.)",
         major: "데이터베이스 및 지능형 시스템(DB)",
         gpa: "3.18",
-        favoriteSubjects: [
+        focus: [
           "웹 프로그래밍",
           "컴퓨터 조직 및 아키텍처",
           "데이터 구조 및 알고리즘 분석",
@@ -204,7 +204,7 @@ export const data: Data = {
       "Queue Management": "RabbitMQ",
     },
     언어: {
-      영어: "IELTS: band 6; Listening: 6 Reading 6.5 Writing 6 Speaking 5.5",
+      영어: "IELTS: band 6",
       한국인: "TOPIK: level 1; Sejong: 2A",
       태국어: "모국어",
     },

@@ -16,6 +16,7 @@ type Styles = {
     font?: Font;
     lineHeight?: number;
     color?: number;
+    paddingTop?: number;
   };
 };
 
@@ -28,8 +29,10 @@ export const interestingThings = (
         };
   },
   doc: Document,
-  { headerStyle, dateStyle }: Styles
+  { headerStyle, dateStyle, spaceHrStyle }: Styles
 ) => {
+  doc.cell(spaceHrStyle);
+
   Object.entries(etc).forEach(([key, val]) => {
     const table = doc.table({
       widths: [90, null],
@@ -51,6 +54,8 @@ export const interestingThings = (
         });
     }
   });
+
+  doc.cell(spaceHrStyle);
 };
 
 export const partTimeFormat = (

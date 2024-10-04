@@ -18,7 +18,8 @@ export const data: Data = {
   // shortAddress: "Bangkok, Thailand",
   shortAddress: "Canterbury, UK",
   summary:
-    "Passionate Software Developer with a background in technology and data. Committed to lifelong learning, I thrive on challenges and am driven by the belief that with determination, anything is possible. I am eager to contribute my skills and build innovative solutions that make a positive impact.",
+    // "Passionate Software Developer with a background in technology and data. Committed to lifelong learning, I thrive on challenges and am driven by the belief that with determination, anything is possible. I am eager to contribute my skills and build innovative solutions that make a positive impact.",
+    "Dedicated Software Developer with a passion for learning and exploring technology and data. Eager to embrace new challenges and driven by the belief that with determination, anything is achievable. Committed to creating innovative solutions and working together to build impactful and meaningful projects.",
   // summary:
   //   "MSc Advanced Computer Science student At the University of Kent with a passion for technology and data. Committed to lifelong learning, I thrive on challenges and am driven by the belief that with determination, anything is possible. I am eager to contribute my skills and build innovative solutions that make a positive impact.",
   contact: {
@@ -59,6 +60,7 @@ export const data: Data = {
         university: "University of Kent",
         location: "Canterbury, UK",
         degree: "MSc Advanced Computer Science with an Industrial Placement",
+        focus: ["Artificial Intelligence Development", "Computer Security"],
       },
       {
         date: "2015 - 2023",
@@ -67,17 +69,17 @@ export const data: Data = {
         location: "Bangkok, Thailand",
         degree: "Bachelor of Laws (LL.B.)",
         // gpa: "2.8",
-        favoriteSubjects: [
+        focus: [
           // "KOR1001 - KOR2002 Fundamental Korean",
           // "LAW3003 Civil and Commercial Law: Family",
           // "LAW3009 Civil and Commercial Law: Succession",
           // "LAW4009 Law on Intellectual Property 1",
           // "LAW4010 International Trade Law",
           // "LAW4053 Law Related to Computer",
-          "Fundamental Korean",
+          // "Fundamental Korean",
           "Civil and Commercial Law: Family",
           "Civil and Commercial Law: Succession",
-          "Law on Intellectual Property 1",
+          "Law on Intellectual Property",
           "International Trade Law",
           "Law Related to Computer",
         ],
@@ -98,7 +100,7 @@ export const data: Data = {
         degree: "Bachelor of Science (B.Sc.)",
         major: "Database and Intelligent Systems (DB)",
         gpa: "3.18",
-        favoriteSubjects: [
+        focus: [
           "Web Programming",
           "Computer Organization and Architecture",
           "Data Structures and Algorithm Analysis",
@@ -129,11 +131,10 @@ export const data: Data = {
         type: "Freelance",
         location: "Bangkok, Thailand",
         description: [
-          "Collected requirements from a client.",
-          "Helped a client to get a solution.",
-          "Separated tasks and estimated time for each task.",
-          "Coded, Packed, Hosted, and Maintained a website.",
-          "Example: Pruxus: maintained their website, Data Wow Co., Ltd.: built a dashboard for their client.",
+          "Collected and analyzed client requirements, providing tailored solutions.",
+          "Delegated tasks, estimated timelines, and delivered completed projects.",
+          "Developed, packaged, hosted, and maintained websites for clients.",
+          "Examples: Maintained website for Pruxus, built a dashboard for Data Wow Co., Ltd.",
         ],
         shortDescription: [
           "Helped clients to get a solution by collecting requirements from them",
@@ -148,8 +149,8 @@ export const data: Data = {
         company: "Data Wow Co., Ltd.",
         location: "Bangkok, Thailand",
         description: [
-          "PDPA (Such as Cookie wow, PDPA Pro, PDPA Prokit, and PDPA Learn) Develop websites related to PDPA (Personal Data Protection Act)",
-          "Etc. (Develop a website for Data Wow Co., Ltd. and external customers, such as dashboards, reports, chat storage (line chatbot), online mock exam platforms, etc.)",
+          "Developed PDPA-related websites, including Cookie Wow, PDPA Pro, PDPA Prokit, and PDPA Learn.",
+          "Built websites, dashboards, and online platforms for internal and external clients, including chat storage for Line Chatbot and online mock exam platforms.",
         ],
         shortDescription: [
           "Develop webs related to PDPA (Personal Data Protection Act)",
@@ -163,9 +164,9 @@ export const data: Data = {
         company: "Bank of Thailand",
         location: "Bangkok, Thailand",
         description: [
-          "DLTBond: We use Blockchain (Hyperledger Fabric) to give every person a chance to purchase government bonds by not giving the bank the quota to the selling agent. I design, develop, regulate, and supervise the system with the team.",
-          "ISO20022: The new standard for payment messaging, which will apply to the central core of the payment system in November 2025, includes Thailand, which also has to be shifted. So, I am involved in getting BA's requirement to Analyze and Develop the plan with the team and Test the flow with the team.",
-          "RPA: RPA stands for Robotic process automation. Bank of Thailand also applies RPA to reduce the time spent on routine tasks and has time to use in the value task. I am involved in analyzing, adjusting, and improving the process and developing the flow by UiPath as an RPA developer.",
+          "Led the design, development, and maintenance of DLTBond, utilizing blockchain technology to democratize government bond purchasing.",
+          "Contributed to ISO20022 migration, including requirement analysis, planning, and system testing.",
+          "Implemented Robotic Process Automation (RPA) using UiPath to optimize routine tasks and improve efficiency.",
         ],
         shortDescription: [
           "Developed government bonds selling core system for country",
@@ -180,7 +181,7 @@ export const data: Data = {
         company: "Kasikorn Business Technology Group (KBTG)",
         location: "Bangkok, Thailand",
         description: [
-          "Time D(onation): It is about the use case of blockchain to solve the social problem. This project uses the Stellar blockchain to create a Time D token on the platform to exchange volunteer service and keep track of volunteer service to give a reward. I brainstormed the idea and designed and developed the prototype with the team.",
+          "Developed Time D(onation), a blockchain-based project for volunteer service tracking and reward management using Stellar blockchain.",
         ],
         shortDescription: [
           "Setup POC project named the Time D(onation): using blockchain to solve the social problem.",
@@ -192,9 +193,7 @@ export const data: Data = {
         type: "Internship",
         company: "BeID Corporation Co., Ltd.",
         location: "Bangkok, Thailand",
-        description: [
-          "About developing a dashboard and landing page in React.JS",
-        ],
+        description: ["Developed a dashboard and landing page using React.js."],
         shortDescription: [
           "About developing a dashboard and landing page in React.JS",
         ],
@@ -238,7 +237,7 @@ export const data: Data = {
       "Queue Management": "RabbitMQ",
     },
     Languages: {
-      English: "IELTS: band 6; Listening: 6 Reading 6.5 Writing 6 Speaking 5.5", // "IELTS: band 6",
+      English: "IELTS: band 6",
       Korean: "TOPIK: level 1; Sejong: 2A",
       Thai: "mother tongue",
     },
