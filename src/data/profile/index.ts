@@ -25,16 +25,26 @@ export const data: Data = {
   contact: {
     // Tel: "+66-959-390-164",
     Tel: "+44-758-744-6870",
-    Email: {
-      name: "napatchol.tha@gmail.com",
-      // name: "nt375@kent.ac.uk",
-      opt: {
-        link: "mailto:napatchol.tha@gmail.com?subject=%5Bpatorsiang%2Egithub%2Eio%5D contact by seeing the info from the CV&body=Name%3D%3CInsert Your Name%3E%0D%0ATel%3D%3CInsert Your Tel%3E%0D%0ADetail%3A%0D%0A",
-        // link: "mailto:nt375@kent.ac.uk",
-        underline: true,
-        color: 0x569cd6,
+    Email: [
+      {
+        name: "napatchol.tha@gmail.com",
+        // name: "nt375@kent.ac.uk",
+        opt: {
+          link: "mailto:napatchol.tha@gmail.com?subject=%5Bpatorsiang%2Egithub%2Eio%5D contact by seeing the info from the CV&body=Name%3D%3CInsert Your Name%3E%0D%0ATel%3D%3CInsert Your Tel%3E%0D%0ADetail%3A%0D%0A",
+          // link: "mailto:nt375@kent.ac.uk",
+          underline: true,
+          color: 0x569cd6,
+        },
       },
-    },
+      {
+        name: "nt375@kent.ac.uk",
+        opt: {
+          link: "mailto:nt375@kent.ac.uk",
+          underline: true,
+          color: 0x569cd6,
+        },
+      },
+    ],
     LinkedIn: {
       name: "napatchol-thaipanich",
       opt: {

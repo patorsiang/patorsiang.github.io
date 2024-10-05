@@ -2,6 +2,7 @@ import { NextRequest } from "next/server";
 
 import pdf from "pdfjs";
 import { get } from "lodash";
+import fs from "fs-extra";
 
 import { locales } from "#/i18n";
 
@@ -69,6 +70,13 @@ export async function GET(
     },
   });
 
+  // qr code
+  const jpegImage = fs.readFileSync(process.cwd() + "/public/imgs/qrcode.jpg");
+
+  const image = new pdf.Image(jpegImage);
+
+  doc.image(image, { width: 64, wrap: false, y: 830, x: 510 });
+
   // Name
   doc.text(nameStyle).add(name);
 
@@ -85,12 +93,21 @@ export async function GET(
   const contact = Object.entries(contacts);
 
   contact.forEach(([key, val]) => {
-    addressAndContact
-      .add(typeof val === "object" ? `${key}: ` : "")
-      .add(
+    addressAndContact.add(typeof val === "object" ? `${key}: ` : "");
+    if (Array.isArray(val)) {
+      val.forEach((contact, i) => {
+        addressAndContact.add(
+          contact.name,
+          typeof contact === "object" ? contact.opt : {}
+        );
+        if (i < val.length - 1) addressAndContact.add(",");
+      });
+    } else {
+      addressAndContact.add(
         typeof val === "object" ? val.name : `${key}: ${val}`,
         typeof val === "object" ? val.opt : {}
       );
+    }
   });
   addressAndContact.br();
   // Summary

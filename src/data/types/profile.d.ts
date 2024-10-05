@@ -43,7 +43,7 @@ export type Data = {
   address: string;
   shortAddress: string;
   contact: {
-    [key: string]: string | Contact;
+    [key: string]: string | Contact | Array<Contact>;
   };
   info: { [key: string]: Array<Info> };
   etc: { [key: string]: { [key: string]: string } | Array<string> };
