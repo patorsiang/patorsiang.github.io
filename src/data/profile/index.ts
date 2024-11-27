@@ -141,7 +141,7 @@ export const data: Data = {
         type: "Freelance",
         location: "Bangkok, Thailand",
         description: [
-          "Collected and analyzed client requirements, providing tailored solutions.",
+          "Collected client requirements by asking clients targeted questions to identify their requirements and preferences, including translating client words into technical specifications and suggested solutions.",
           "Delegated tasks, estimated timelines, and delivered completed projects.",
           "Developed, packaged, hosted, and maintained websites for clients.",
           "Examples: Maintained website for Pruxus, built a dashboard for Data Wow Co., Ltd.",
@@ -221,15 +221,15 @@ export const data: Data = {
       },
       {
         date: "2023",
-        name: "Selected to participate in the competition, Line Hack 2023, 1 of the final 8 teams in the general public",
+        name: "Selected to participate in the competition Line Hack 2023, reaching the final round in the general public category as 1 of the top 8 teams.",
       },
       {
         date: "2021",
-        name: 'Selected to participate in the competition, "13th Find the best telecommunications and ICT skills in honor of His Majesty", 1 of the final 30 teams in the general public',
+        name: 'Selected to participate in the competition "13th Find the Best Telecommunications and ICT Skills in Honor of His Majesty", reaching the final round in the general public category as 1 of the top 30 teams',
       },
       {
         date: "2018",
-        name: 'Participated in the "Group Corporate Website Design Contest Activity" by Samut Sakhon Phatthana Mueang (Social Enterprise) x MUICT',
+        name: 'Participated in the "Group Corporate Website Design Contest Activity" organized by Samut Sakhon Phatthana Mueang (Social Enterprise) in collaboration with MUICT',
       },
     ],
   },
@@ -238,7 +238,7 @@ export const data: Data = {
       Language:
         "Javascript, Python, HTML, Java, PHP, TypeScript, Go (Programming Language), CSS, Tailwind CSS, SQL",
       Framework:
-        "React.js, Vue.js, Angular.js, TypeScript, Next.js, Node.js, Express.js, UiPath",
+        "React.js, Vue.js, Angular.js, Next.js, Node.js, Express.js, UiPath",
       Hosting:
         "AWS Amplify, IBM Cloud, Firebase, GCP (Google Cloud Platform), Microsoft Azure",
       Blockchain: "IBM Hyperledger Fabric, Stellar Blockchain",
