@@ -8,7 +8,7 @@ export const data: Data = {
   name: myName,
   nickname: "Pat",
   position: "Software Developer",
-  // position: "IT Support Assistant",
+  // position: "Machine Learning Intern",
   subtitle: `I am deeply passionate about language, technology and data. I desire to learn new things and share my passion through code. My motto is "If anyone can do it, I can do it." My grandfather passed down this lesson to my mother and me, and the lesson has stayed with me ever since. I make it a point to work daily to improve my coding skills.
   <br/>
   <br/>
@@ -18,8 +18,8 @@ export const data: Data = {
   // shortAddress: "Bangkok, Thailand",
   shortAddress: "Canterbury, UK",
   summary:
-    // "Passionate Software Developer with a background in technology and data. Committed to lifelong learning, I thrive on challenges and am driven by the belief that with determination, anything is possible. I am eager to contribute my skills and build innovative solutions that make a positive impact.",
-    "Dedicated Software Developer with a passion for learning and exploring technology and data. Eager to embrace new challenges and driven by the belief that with determination, anything is achievable. Committed to creating innovative solutions and working together to build impactful and meaningful projects.",
+    "Passionate Software Developer with a background in technology and data. Committed to lifelong learning, I thrive on challenges and am driven by the belief that with determination, anything is possible. I am eager to contribute my skills and build innovative solutions that make a positive impact.",
+  // "Passionate Machine Learning Intern with a strong curiosity for data-driven insights and AI innovation. Eager to explore new challenges in machine learning, model development, and optimization. Committed to continuous learning and applying cutting-edge techniques to create impactful and intelligent solutions.",
   // summary:
   //   "MSc Advanced Computer Science student At the University of Kent with a passion for technology and data. Committed to lifelong learning, I thrive on challenges and am driven by the belief that with determination, anything is possible. I am eager to contribute my skills and build innovative solutions that make a positive impact.",
   contact: {
@@ -65,12 +65,22 @@ export const data: Data = {
   info: {
     "Education and Awards": [
       {
-        date: "14/09/2024 - 14/09/2026",
+        // date: "14/09/2024 - 14/09/2026",
+        date: "14/09/2024 - 14/09/2025",
         school: "School of Computing",
         university: "University of Kent",
         location: "Canterbury, UK",
-        degree: "MSc Advanced Computer Science with an Industrial Placement",
-        focus: ["Artificial Intelligence Development", "Computer Security"],
+        // degree: "MSc Advanced Computer Science with an Industrial Placement",
+        degree: "MSc Advanced Computer Science",
+        focus: [
+          "Java",
+          "Python",
+          "Artificial Intelligence System Implementation",
+          "Deep Learning",
+          "Computer Security",
+          "Introduction to Quantum Computing & Quantum Cryptography",
+          "Internet of Things and Mobile Devices",
+        ],
       },
       {
         date: "2015 - 2023",
