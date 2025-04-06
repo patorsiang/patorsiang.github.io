@@ -11,6 +11,7 @@ export type University = {
     title: string;
     skills: Array<string>;
     description: Array<string>;
+    shortDescription: string;
     link?: string;
   }>;
 };

@@ -18,10 +18,10 @@ export const data: Data = {
   // shortAddress: "Bangkok, Thailand",
   shortAddress: "Canterbury, UK",
   summary:
-    "Passionate Software Developer with a background in technology and data. Committed to lifelong learning, I thrive on challenges and am driven by the belief that with determination, anything is possible. I am eager to contribute my skills and build innovative solutions that make a positive impact.",
-  // "Passionate Machine Learning Intern with a strong curiosity for data-driven insights and AI innovation. Eager to explore new challenges in machine learning, model development, and optimization. Committed to continuous learning and applying cutting-edge techniques to create impactful and intelligent solutions.",
-  // summary:
-  //   "MSc Advanced Computer Science student At the University of Kent with a passion for technology and data. Committed to lifelong learning, I thrive on challenges and am driven by the belief that with determination, anything is possible. I am eager to contribute my skills and build innovative solutions that make a positive impact.",
+    // "Passionate Software Developer with a background in technology and data. Committed to lifelong learning, I thrive on challenges and am driven by the belief that with determination, anything is possible. I am eager to contribute my skills and build innovative solutions that make a positive impact.",
+    // "Passionate Machine Learning Intern with a strong curiosity for data-driven insights and AI innovation. Eager to explore new challenges in machine learning, model development, and optimization. Committed to continuous learning and applying cutting-edge techniques to create impactful and intelligent solutions.",
+    // "MSc Advanced Computer Science student at the University of Kent, passionate about technology and data. Driven, curious, and eager to build impactful, innovative solutions through continuous learning and challenge.",
+    "Passionate about technology and data. Curious, eager to build impactful, innovative solutions through continuous learning & challenge.",
   contact: {
     // Tel: "+66-959-390-164",
     Tel: "+44-758-744-6870",
@@ -89,6 +89,8 @@ export const data: Data = {
               "Developed a smart shoe prototype using Arduino and sensors to monitor foot pressure, step count, and falling detection.",
               "Implemented a web app with bluetooth web API and mqtt (websocket) for real-time data visualization and analysis.",
             ],
+            shortDescription:
+              "Developed a smart shoe prototype using Arduino and sensors connected to a web app (next.js).",
             link: "https://github.com/patorsiang/smart-shoe",
           },
           {
@@ -97,6 +99,8 @@ export const data: Data = {
             description: [
               "Implemented an image classification model using EfficientNetV2 for the Food 101 dataset.",
             ],
+            shortDescription:
+              "Implemented an image classification model using EfficientNetV2 for the Food 101 dataset.",
             link: "https://github.com/patorsiang/AI-System---Food-Image-Classification-for-Nutritional-Estimation",
           },
           {
@@ -105,6 +109,8 @@ export const data: Data = {
             description: [
               "Developed a vending machine application using Java, implementing OOP principles and design patterns.",
             ],
+            shortDescription:
+              "Developed a vending machine application using Java, implementing OOP principles and design patterns.",
             link: "https://github.com/patorsiang/Java-Assignment-Vending-Machine",
           },
           {
@@ -113,6 +119,8 @@ export const data: Data = {
             description: [
               "Implemented RSA encryption and decryption algorithms in Python.",
             ],
+            shortDescription:
+              "Implemented RSA encryption and decryption algorithms in Python.",
             link: "https://github.com/patorsiang/ComSec-RSA-Assignment",
           },
           {
@@ -124,6 +132,8 @@ export const data: Data = {
               "Developed an API interface and data parser for the model.",
               "Utilized various machine learning algorithms and techniques for data analysis.",
             ],
+            shortDescription:
+              "Developed a machine learning model to detect and categorize cryptocurrency rug pull scams.",
           },
         ],
       },
@@ -291,7 +301,7 @@ export const data: Data = {
   etc: {
     "Computer Skills": {
       Language:
-        "Javascript, Python, HTML, Java, PHP, TypeScript, Go (Programming Language), CSS, Tailwind CSS, SQL, C++",
+        "Javascript, Python, HTML, Java, PHP, TypeScript, Go (Programming Language), C++, CSS, Tailwind CSS, SQL",
       Framework:
         "React.js, Vue.js, Angular.js, Next.js, Node.js, Express.js, UiPath",
       Hosting:

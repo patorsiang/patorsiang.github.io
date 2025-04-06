@@ -131,7 +131,7 @@ export async function GET(
         tr.cell(val.date, dateStyle);
         const detail = tr.cell().text(dateStyle);
 
-        const { school, university, degree, major, gpa, focus } =
+        const { school, university, degree, major, gpa, focus, projects } =
           val as University;
         const { name } = val as Award;
         const { title: position, type, company, location } = val as Work;
@@ -176,6 +176,23 @@ export async function GET(
               subheaderStyle
             )
             .add(focus.join(", "));
+        }
+
+        if (projects) {
+          detail
+            .br()
+            .add(
+              projects ? `${get(page, "aboutMe.projects")}:` : "",
+              subheaderStyle
+            )
+            .br();
+
+          projects.forEach((project, idx) => {
+            detail.add(`- ${project.title}: `).add(project.shortDescription);
+            if (idx < projects.length - 1) {
+              detail.br();
+            }
+          });
         }
       });
       doc.cell(spaceHrStyle);
