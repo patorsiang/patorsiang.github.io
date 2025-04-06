@@ -88,11 +88,47 @@ export default async function AboutMe() {
                           ))}
                         </>
                       )}
+
                       {get(infoItem, "description") && (
                         <>
                           <h6 className="font-bold">{t("description")}: </h6>
                           {infoItem?.description?.map((subject) => (
                             <li key={subject}>{subject}</li>
+                          ))}
+                        </>
+                      )}
+
+                      {/* Projects */}
+                      {get(infoItem, "projects") && (
+                        <>
+                          <h6 className="font-bold">{t("projects")}: </h6>
+                          {infoItem?.projects?.map((project) => (
+                            <li key={project?.title}>
+                              <b>{project?.title}</b>
+                              {project?.link && (
+                                <a
+                                  href={project?.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="about-section-project-link"
+                                >
+                                  &lt;{t("seeProject")}&gt;
+                                </a>
+                              )}
+
+                              {project?.skills?.length > 0 && (
+                                <p className="about-section-project-skills">
+                                  <b>{t("skills")}: </b>
+                                  {project?.skills?.join(", ")}
+                                </p>
+                              )}
+
+                              <ul className="ul-in-ul">
+                                {project?.description?.map((desc) => (
+                                  <li key={desc}>{desc}</li>
+                                ))}
+                              </ul>
+                            </li>
                           ))}
                         </>
                       )}

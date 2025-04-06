@@ -7,7 +7,10 @@
     "description": "Description",
     "favoriteSubject": "Focus",
     "major": "Major",
-    "gpa": "GPA"
+    "gpa": "GPA",
+    "projects": "Project",
+    "seeProject": "source code",
+    "skills": "Skill"
   },
   "game": {
     "degree1": "I studied at Kasetsart University Laboratory School Center for Education Research and Development (KUS) from age 5 to 17. I majored in science and math. I like computer subjects very much because I like playing computer games, so I would like to learn how to develop something of my own.",

@@ -7,6 +7,12 @@ export type University = {
   gpa?: string;
   major?: string;
   focus?: Array<string>;
+  projects?: Array<{
+    title: string;
+    skills: Array<string>;
+    description: Array<string>;
+    link?: string;
+  }>;
 };
 
 export type Award = {

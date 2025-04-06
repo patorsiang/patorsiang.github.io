@@ -81,6 +81,51 @@ export const data: Data = {
           "Introduction to Quantum Computing & Quantum Cryptography",
           "Internet of Things and Mobile Devices",
         ],
+        projects: [
+          {
+            title: "Smart Shoe",
+            skills: ["Arduino (C++)", "Next.js", "MQTT", "WebSocket"],
+            description: [
+              "Developed a smart shoe prototype using Arduino and sensors to monitor foot pressure, step count, and falling detection.",
+              "Implemented a web app with bluetooth web API and mqtt (websocket) for real-time data visualization and analysis.",
+            ],
+            link: "https://github.com/patorsiang/smart-shoe",
+          },
+          {
+            title: "Food 101 - Image Classification with EfficientNetV2",
+            skills: ["Python", "TensorFlow", "EfficientNetV2"],
+            description: [
+              "Implemented an image classification model using EfficientNetV2 for the Food 101 dataset.",
+            ],
+            link: "https://github.com/patorsiang/AI-System---Food-Image-Classification-for-Nutritional-Estimation",
+          },
+          {
+            title: "Vending-Machine",
+            skills: ["Java", "OOP", "Design Patterns"],
+            description: [
+              "Developed a vending machine application using Java, implementing OOP principles and design patterns.",
+            ],
+            link: "https://github.com/patorsiang/Java-Assignment-Vending-Machine",
+          },
+          {
+            title: "RSA Encryption and Decryption",
+            skills: ["Python", "RSA", "Cryptography"],
+            description: [
+              "Implemented RSA encryption and decryption algorithms in Python.",
+            ],
+            link: "https://github.com/patorsiang/ComSec-RSA-Assignment",
+          },
+          {
+            title:
+              "Automated Detection and Categorisation of Cryptocurrency Rug Pull Scams",
+            skills: ["Python", "Machine Learning"],
+            description: [
+              "Developed a machine learning model to detect and categorize cryptocurrency rug pull scams.",
+              "Developed an API interface and data parser for the model.",
+              "Utilized various machine learning algorithms and techniques for data analysis.",
+            ],
+          },
+        ],
       },
       {
         date: "2015 - 2023",
@@ -246,7 +291,7 @@ export const data: Data = {
   etc: {
     "Computer Skills": {
       Language:
-        "Javascript, Python, HTML, Java, PHP, TypeScript, Go (Programming Language), CSS, Tailwind CSS, SQL",
+        "Javascript, Python, HTML, Java, PHP, TypeScript, Go (Programming Language), CSS, Tailwind CSS, SQL, C++",
       Framework:
         "React.js, Vue.js, Angular.js, Next.js, Node.js, Express.js, UiPath",
       Hosting:

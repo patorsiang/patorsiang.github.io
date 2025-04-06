@@ -7,7 +7,10 @@
     "description": "설명",
     "favoriteSubject": "좋아하는 과목",
     "major": "주요한",
-    "gpa": "평점"
+    "gpa": "평점",
+    "projects": "Project",
+    "seeProject": "source code",
+    "skills": "Skill"
   },
   "game": {
     "degree1": "저는 5세부터 17세까지 Kasetsart University Laboratory School Center for Education Research and Development(KUS)에서 공부했습니다. 저는 과학과 수학을 전공했습니다. 저는 컴퓨터 게임을 좋아하기 때문에 컴퓨터 과목을 매우 좋아합니다. 나만의 것을 개발하는 방법을 배우고 싶습니다.",

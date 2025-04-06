@@ -48,6 +48,41 @@ export const data: Data = {
         university: "มหาวิทยาลัยเคนท์",
         location: "แคนเทอร์เบอรี, สหราชอาณาจักร",
         degree: "ปริญญาโทวิทยาการคอมพิวเตอร์ขั้นสูง หลักสูตรฝึกงาน",
+        projects: [
+          {
+            title: "Smart Shoe",
+            skills: ["Arduino (C++)", "Next.js", "MQTT", "WebSocket"],
+            description: [
+              "Developed a smart shoe prototype using Arduino and sensors to monitor foot pressure, step count, and falling detection.",
+              "Implemented a web app with bluetooth web API and mqtt (websocket) for real-time data visualization and analysis.",
+            ],
+            link: "https://github.com/patorsiang/smart-shoe",
+          },
+          {
+            title: "Food 101 - Image Classification with EfficientNetV2",
+            skills: ["Python", "TensorFlow", "EfficientNetV2"],
+            description: [
+              "Implemented an image classification model using EfficientNetV2 for the Food 101 dataset.",
+            ],
+            link: "https://github.com/patorsiang/AI-System---Food-Image-Classification-for-Nutritional-Estimation",
+          },
+          {
+            title: "Vending-Machine",
+            skills: ["Java", "OOP", "Design Patterns"],
+            description: [
+              "Developed a vending machine application using Java, implementing OOP principles and design patterns.",
+            ],
+            link: "https://github.com/patorsiang/Java-Assignment-Vending-Machine",
+          },
+          {
+            title: "RSA Encryption and Decryption",
+            skills: ["Python", "RSA", "Cryptography"],
+            description: [
+              "Implemented RSA encryption and decryption algorithms in Python.",
+            ],
+            link: "https://github.com/patorsiang/ComSec-RSA-Assignment",
+          },
+        ],
       },
       {
         date: "2015 - 2023",

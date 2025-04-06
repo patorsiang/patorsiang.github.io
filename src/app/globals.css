@@ -341,3 +341,15 @@ body {
 footer {
   @apply w-full flex flex-wrap gap-1 items-center text-center justify-center py-8 padding-container text-p-responsive;
 }
+
+.ul-in-ul {
+  @apply list-[circle] indent-8 list-inside;
+}
+
+.about-section-project-skills {
+  @apply indent-5;
+}
+
+.about-section-project-link {
+  @apply ml-2 hover:underline;
+}
