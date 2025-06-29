@@ -56,6 +56,8 @@ export const data: Data = {
               "Developed a smart shoe prototype using Arduino and sensors to monitor foot pressure, step count, and falling detection.",
               "Implemented a web app with bluetooth web API and mqtt (websocket) for real-time data visualization and analysis.",
             ],
+            shortDescription:
+              "Developed a smart shoe prototype using Arduino and sensors connected to a web app (next.js).",
             link: "https://github.com/patorsiang/smart-shoe",
           },
           {
@@ -64,6 +66,8 @@ export const data: Data = {
             description: [
               "Implemented an image classification model using EfficientNetV2 for the Food 101 dataset.",
             ],
+            shortDescription:
+              "Implemented an image classification model using EfficientNetV2 for the Food 101 dataset.",
             link: "https://github.com/patorsiang/AI-System---Food-Image-Classification-for-Nutritional-Estimation",
           },
           {
@@ -72,6 +76,8 @@ export const data: Data = {
             description: [
               "Developed a vending machine application using Java, implementing OOP principles and design patterns.",
             ],
+            shortDescription:
+              "Developed a vending machine application using Java, implementing OOP principles and design patterns.",
             link: "https://github.com/patorsiang/Java-Assignment-Vending-Machine",
           },
           {
@@ -80,7 +86,21 @@ export const data: Data = {
             description: [
               "Implemented RSA encryption and decryption algorithms in Python.",
             ],
+            shortDescription:
+              "Implemented RSA encryption and decryption algorithms in Python.",
             link: "https://github.com/patorsiang/ComSec-RSA-Assignment",
+          },
+          {
+            title:
+              "Automated Detection and Categorisation of Cryptocurrency Rug Pull Scams",
+            skills: ["Python", "Machine Learning"],
+            description: [
+              "Developed a machine learning model to detect and categorize cryptocurrency rug pull scams.",
+              "Developed an API interface and data parser for the model.",
+              "Utilized various machine learning algorithms and techniques for data analysis.",
+            ],
+            shortDescription:
+              "Developed a machine learning model to detect and categorize cryptocurrency rug pull scams.",
           },
         ],
       },

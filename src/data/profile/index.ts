@@ -15,16 +15,16 @@ export const data: Data = {
   I am looking for an exciting project. <b>"Let's build something remarkable together!"</b>`,
   address:
     "432/38 Chapter One Midtown Condo Ladprao 24, Ladprao Road, Chomphon, Chatuchak, Bangkok, Thailand 10900",
-  // shortAddress: "Bangkok, Thailand",
-  shortAddress: "Canterbury, UK",
+  shortAddress: "Bangkok, Thailand",
+  // shortAddress: "Canterbury, UK",
   summary:
     // "Passionate Software Developer with a background in technology and data. Committed to lifelong learning, I thrive on challenges and am driven by the belief that with determination, anything is possible. I am eager to contribute my skills and build innovative solutions that make a positive impact.",
     // "Passionate Machine Learning Intern with a strong curiosity for data-driven insights and AI innovation. Eager to explore new challenges in machine learning, model development, and optimization. Committed to continuous learning and applying cutting-edge techniques to create impactful and intelligent solutions.",
     // "MSc Advanced Computer Science student at the University of Kent, passionate about technology and data. Driven, curious, and eager to build impactful, innovative solutions through continuous learning and challenge.",
     "Passionate about technology and data. Curious, eager to build impactful, innovative solutions through continuous learning & challenge.",
   contact: {
-    // Tel: "+66-959-390-164",
-    Tel: "+44-758-744-6870",
+    Tel: "+66-959-390-164",
+    // Tel: "+44-758-744-6870",
     Email: [
       {
         name: "napatchol.tha@gmail.com",
