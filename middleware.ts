@@ -11,7 +11,8 @@ export default createMiddleware({
   domains: [
     {
       domain: "patorsiang.github.io/",
-      ...i18n,
+      locales: [...i18n.locales],
+      defaultLocale: "en",
     },
   ],
 });
