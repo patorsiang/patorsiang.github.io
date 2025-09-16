@@ -25,7 +25,7 @@ export async function GET(
   if (!locales.includes(locale as any))
     return new Response("not found", { status: 404 });
 
-  const style = getTokenStyle(locale ?? "en");
+  const style = getTokenStyle((locale ?? "en") as "en" | "th" | "kr");
   const {
     nameStyle,
     positionStyle,
@@ -41,7 +41,7 @@ export async function GET(
     spaceHeaderStyle,
   } = getStyle({
     type,
-    locale,
+    locale: (locale ?? "en") as "en" | "th" | "kr",
   });
 
   const { page, detail } = await getDictionary(locale ?? "en");
@@ -234,7 +234,11 @@ export async function GET(
 
   const contentType = "application/pdf";
 
-  const blob = new Blob([buf], { type: contentType });
+  const arrayBuffer = buf.buffer.slice(
+    buf.byteOffset,
+    buf.byteOffset + buf.byteLength
+  );
+  const blob = new Blob([arrayBuffer as ArrayBuffer], { type: contentType });
 
   return new Response(blob, {
     headers: { "Content-Type": contentType },
