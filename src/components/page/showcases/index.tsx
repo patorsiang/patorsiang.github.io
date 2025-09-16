@@ -37,8 +37,7 @@ export default function Showcases() {
             <div className="relative aspect-video mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl bg-blue-gray-500 shadow-blue-gray-500/40">
               <Image
                 className={"main-avatar-image"}
-                width={100}
-                height={100}
+                fill={true}
                 priority
                 {...ele.image}
               />

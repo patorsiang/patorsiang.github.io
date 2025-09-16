@@ -48,7 +48,11 @@ export default async function Main() {
         {Object.entries(contactIcons).map(([key, Icon]) => (
           <IconLink
             key={key}
-            href={t_info(`contact.${key}.opt.link`) ?? ""}
+            href={
+              key == "Email"
+                ? t_info(`contact.${key}.0.opt.link`)
+                : t_info(`contact.${key}.opt.link`) ?? ""
+            }
             label={key}
             target="_blank"
           >

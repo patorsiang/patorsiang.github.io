@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
 import { getDictionary } from "@/utils/getDictionaries";
 
-export const locales = ["en", "th", "kr"];
+export const locales = ["en", "th", "kr"] as const;
 export const defaultLocale = locales[0];
 
 export const i18n = {

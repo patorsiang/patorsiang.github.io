@@ -17,7 +17,7 @@ export default async function LocaleLayout({
 }) {
   unstable_setRequestLocale(locale);
 
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
 
   const font = [
     locale === "th"

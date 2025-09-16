@@ -16,9 +16,9 @@ export default function Footer() {
   ];
   return (
     <footer>
-      <p className="my-auto font-semibold">Powered by</p>
+      <p className="my-auto font-semibold text-xs">Powered by</p>
       {techList.map(({ icon: Icon, label }) => (
-        <div className="chip" key={label}>
+        <div className="chip text-xs" key={label}>
           <Icon size={iconSize} />
           <p>{label}</p>
         </div>

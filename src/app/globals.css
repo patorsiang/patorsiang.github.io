@@ -283,7 +283,7 @@ body {
 }
 
 .main-avatar-image {
-  @apply drop-shadow-2xl w-full h-full;
+  @apply w-full h-full;
 }
 
 .main-h1 {

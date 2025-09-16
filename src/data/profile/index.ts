@@ -369,7 +369,6 @@ export const metadata: Metadata = {
   title: myName,
   description: `${myName}'s Profile`,
   generator: "Next.js",
-  manifest: "/manifest.json",
   keywords: [myName],
   authors: [
     { name: myName },
