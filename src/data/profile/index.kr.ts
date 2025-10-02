@@ -1,30 +1,45 @@
-import { Data } from "@/data/types/profile";
+import type { Metadata } from "next";
+
+import { Data, Contact } from "@/data/types/profile";
+
+export const myName = "Napatchol Thaipanich";
 
 export const data: Data = {
-  name: "나팥촐 타이파닟",
-  nickname: "팥",
+  name: myName,
+  nickname: "Pat",
   position: "Software Developer",
-  subtitle: `저는 언어와 기술과 데이터에 깊은 관심을 갖고 있습니다. 나는 새로운 것을 배우고 코드를 통해 나의 열정을 공유하고 싶습니다. 내 좌우명은 '누구든지 할 수 있다면 나도 할 수 있다'이다. 나의 할아버지는 이 교훈을 어머니와 나에게 물려주셨고, 그 교훈은 그 이후로 계속해서 나에게 남아 있습니다. 나는 코딩 기술을 향상시키기 위해 매일 노력하는 것을 중요하게 생각합니다.
-   <br/>
-   <br/>
-   저는 흥미로운 프로젝트를 찾고 있습니다. <b>"함께 놀라운 것을 만들어 보자!"</b>`,
-  summary:
-    "기술과 데이터 분야의 배경을 가진 열정적인 소프트웨어 개발자. 평생 학습에 전념하며, 도전을 즐기고 결단력이 있으면 무엇이든 가능하다는 믿음에 의해 움직입니다. 저는 제 기술을 기여하고 긍정적인 영향을 미치는 혁신적인 솔루션을 구축하고 싶습니다.",
-  address:
-    "432/38 Chapter One Midtown Condo Ladprao 24, Ladprao Road, Chomphon, 짜뚜짝, 방콕, 태국 10900",
-  shortAddress: "방콕, 태국",
+  subtitle: `저는 “밧(Pat)” 나파촌 타이파니치이며, 켄트대학교에서 컴퓨터과학 석사 과정을 밟고 있는 소프트웨어 개발자입니다 (2025년 졸업 예정).
+3년 이상의 프런트엔드 개발 경험을 통해 Data Wow Co., Ltd.와 태국 중앙은행에서 핀테크 시스템, 개인정보보호(PDPA) 플랫폼, 내부 및 고객용 대시보드를 개발한 바 있습니다.
+<br/>
+<br/>
+제 기술 스택은 React, Next.js, JavaScript/TypeScript, Python(FastAPI, TensorFlow, scikit-learn), 클라우드 플랫폼(AWS, GCP, Azure) 등을 포함합니다. 또한 머신러닝(이미지 분류, 블록체인 사기 탐지), IoT 프로토타이핑, 암호학 프로젝트 경험도 보유하고 있습니다.
+<br/>
+<br/>
+저는 마히돌 대학교 정보통신기술학 학사와 람캄행 대학교 법학 학사 학위를 함께 보유하고 있어, 기술·보안·법률을 아우르는 다학제적 관점을 가지고 있습니다.
+<br/>
+<br/>
+저는 기술과 데이터에 깊은 열정을 가지고 있으며, 할아버지께서 물려주신 좌우명은 “누군가 할 수 있다면, 나도 할 수 있다”입니다. 이 마음가짐으로 매일 코딩 연습, CTF 챌린지, 지속적인 학습에 임하고 있습니다.
+<br/>
+<br/>
+앞으로 저는 태국, 영국, 유럽연합, 싱가포르, 호주 등에서 소프트웨어 개발, 머신러닝, 사이버 보안 분야의 기회를 찾고 있습니다. <b>함께 놀라운 것을 만들어 갑시다!</b>`,
+  address: "Bangkok, Thailand | University of Kent, Canterbury, UK",
   contact: {
-    Tel: "+66-959-390-164",
-    Email: {
-      name: "napatchol.tha@gmail.com",
-      opt: {
-        link: "mailto:napatchol.tha@gmail.com?subject=%5Bpatorsiang%2Egithub%2Eio%5D 이력서의 정보를 보고 연락하세요.&body=성함%3D%3C당신의 성함을 입력하세요.%3E%0D%0A전화%3D%3C전화번호를 입력하세요.%3E%0D%0A세부 사항%3A%0D%0A",
-        underline: true,
-        color: 0x569cd6,
+    Tel: "+66-959-390-164 (WhatsApp, Line, Telegram)",
+    // Tel: "+44-758-744-6870",
+    Email: [
+      {
+        name: "napatchol.tha@gmail.com",
+        // name: "nt375@kent.ac.uk",
+        opt: {
+          link: "mailto:napatchol.tha@gmail.com?subject=%5Bpatorsiang%2Egithub%2Eio%5D contact by seeing the info from the CV&body=Name%3D%3CInsert Your Name%3E%0D%0ATel%3D%3CInsert Your Tel%3E%0D%0ADetail%3A%0D%0A",
+          // link: "mailto:nt375@kent.ac.uk",
+          underline: true,
+          color: 0x569cd6,
+        },
       },
-    },
+    ],
     LinkedIn: {
-      name: "napatchol-thaipanich",
+      name: "linkedin.com/in/napatchol-thaipanich",
       opt: {
         link: "https://www.linkedin.com/in/napatchol-thaipanich",
         underline: true,
@@ -32,7 +47,7 @@ export const data: Data = {
       },
     },
     Github: {
-      name: "patorsiang",
+      name: "github.com/patorsiang",
       opt: {
         link: "https://github.com/patorsiang",
         underline: true,
@@ -40,143 +55,130 @@ export const data: Data = {
       },
     },
   },
-  info: {
-    "교육 및 수상": [
+  history: {
+    Education: [
       {
-        date: "2024년 9월 - 완공 예정 : 2025년 9월",
-        school: "컴퓨팅 학교",
-        university: "켄트대학교",
-        location: "영국 캔터베리",
-        degree: "산업 배치를 통한 석사 고급 컴퓨터 과학",
-        projects: [
+        degree: "MSc Advanced Computer Science (on track for Distinction)",
+        school: "School of Computing",
+        university: "University of Kent",
+        location: "Canterbury, UK",
+        date: "09/2024 - 09/2025",
+        modules: [
+          "Introduction to Quantum Computing & Quantum Cryptography",
+          "Introduction to Artificial Intelligence",
+          "AI Systems Implementation",
+          "Programming for Artificial Intelligence",
+          "Internet of Things and Mobile Devices",
+          "Deep Learning",
+          "Advanced Java for Programmers",
+          "Computer Security",
+        ],
+        project: [
           {
-            title: "Smart Shoe",
-            skills: ["Arduino (C++)", "Next.js", "MQTT", "WebSocket"],
-            description: [
-              "Developed a smart shoe prototype using Arduino and sensors to monitor foot pressure, step count, and falling detection.",
-              "Implemented a web app with bluetooth web API and mqtt (websocket) for real-time data visualization and analysis.",
+            title: "Cryptocurrency Rug Pull Detection",
+            desc: "Designed a machine learning system to detect and categorize fraudulent blockchain projects.",
+            tag: "Dissertation",
+            skill: [
+              "Fast API",
+              "Python",
+              "React.js",
+              "Redis",
+              "TensorFlow",
+              "Docker",
             ],
-            shortDescription:
-              "Developed a smart shoe prototype using Arduino and sensors connected to a web app (next.js).",
-            link: "https://github.com/patorsiang/smart-shoe",
+            url: "https://github.com/patorsiang/rugpull-detection-msc-kent-2025",
           },
           {
-            title: "Food 101 - Image Classification with EfficientNetV2",
-            skills: ["Python", "TensorFlow", "EfficientNetV2"],
-            description: [
-              "Implemented an image classification model using EfficientNetV2 for the Food 101 dataset.",
-            ],
-            shortDescription:
-              "Implemented an image classification model using EfficientNetV2 for the Food 101 dataset.",
-            link: "https://github.com/patorsiang/AI-System---Food-Image-Classification-for-Nutritional-Estimation",
+            title: "Smart Shoe Prototype",
+            desc: "Built a smart shoe with Arduino sensors, integrated with a Next.js app for real-time gait monitoring and fall detection.",
+            tag: "Internet of Things and Mobile Devices",
+            skill: ["C++", "Next.js"],
+            url: "https://github.com/patorsiang/smart-shoe",
           },
           {
-            title: "Vending-Machine",
-            skills: ["Java", "OOP", "Design Patterns"],
-            description: [
-              "Developed a vending machine application using Java, implementing OOP principles and design patterns.",
-            ],
-            shortDescription:
-              "Developed a vending machine application using Java, implementing OOP principles and design patterns.",
-            link: "https://github.com/patorsiang/Java-Assignment-Vending-Machine",
+            title: "Food101 Image Classification",
+            desc: "Implemented transfer learning with EfficientNetV2, achieving high accuracy on a 100K-image dataset.",
+            tag: "AI Systems Implementation",
+            skill: ["Python", "TensorFlow"],
+            url: "https://github.com/patorsiang/AI-System---Food-Image-Classification-for-Nutritional-Estimation",
           },
           {
-            title: "RSA Encryption and Decryption",
-            skills: ["Python", "RSA", "Cryptography"],
-            description: [
-              "Implemented RSA encryption and decryption algorithms in Python.",
-            ],
-            shortDescription:
-              "Implemented RSA encryption and decryption algorithms in Python.",
-            link: "https://github.com/patorsiang/ComSec-RSA-Assignment",
+            title: "Vending Machine Simulator",
+            desc: "Developed a Java OOP system with design patterns to model transactions and inventory management.",
+            tag: "OOP",
+            skill: ["Java"],
+            url: "https://github.com/patorsiang/Java-Assignment-Vending-Machine",
           },
           {
-            title:
-              "Automated Detection and Categorisation of Cryptocurrency Rug Pull Scams",
-            skills: ["Python", "Machine Learning"],
-            description: [
-              "Developed a machine learning model to detect and categorize cryptocurrency rug pull scams.",
-              "Developed an API interface and data parser for the model.",
-              "Utilized various machine learning algorithms and techniques for data analysis.",
-            ],
-            shortDescription:
-              "Developed a machine learning model to detect and categorize cryptocurrency rug pull scams.",
+            title: "RSA Cryptosystem",
+            desc: "Implemented RSA encryption/decryption in Python to demonstrate cryptographic fundamentals.",
+            tag: "Cryptography",
+            skill: ["Python"],
+            url: "https://github.com/patorsiang/ComSec-RSA-Assignment",
           },
         ],
       },
       {
+        degree: "B.Sc. Information & Communication Technology",
+        school: "Faculty of Information and Communication Technology",
+        university: "Mahidol University",
+        location: "Nakhon Pathom, Thailand",
+        major: "Database & Intelligent Systems",
+        date: "07/2015 - 06/2019",
+        GPA: "3.18/4.00",
+        modules: [
+          "Problem Solving Techniques",
+          "Web Programming",
+          "Human Computer Interface",
+          "Digital Image Processing",
+          "Database Design",
+          "Information Storage & Retrieval",
+          "Computer Organization & Architecture",
+          "Data Structure & Algorithm Analysis",
+        ],
+        project: [
+          {
+            title: "CHI - Cultural Heritage Progressive Web App",
+            desc: "Developed a progressive web application (PWA) enabling cultural knowledge exchange about Indian heritage. The app runs on web and mobile devices, supports offline use, and was built as a collaboration between Mahidol University’s ICT faculty and the Institute for Languages and Cultures of Asia (Bharat Center).",
+            tag: "Senior Project",
+            skill: ["PWA", "JavaScript", "Node.js", "MongoDB"],
+            url: "https://github.com/patorsiang/chi",
+          },
+        ],
+      },
+      {
+        degree: "LL.B. Bachelor of Laws",
+        school: "Faculty of Law",
+        university: "Ramkhamhaeng University",
+        location: "Bangkok, Thailand",
         date: "2015 - 2023",
-        school: "법학부",
-        university: "람캄행대학교",
-        degree: "법학사(LL.B.)",
-        location: "방콕, 태국",
-        // gpa: "2.8",
-        focus: [
-          // "KOR1001 - KOR2002 Fundamental Korean",
-          // "LAW3003 Civil and Commercial Law: Family",
-          // "LAW3009 Civil and Commercial Law: Succession",
-          // "LAW4009 Law on Intellectual Property 1",
-          // "LAW4010 International Trade Law",
-          // "LAW4053 Law Related to Computer",
-          "기초한국어",
-          "민법 및 상법: 가족",
-          "민법 및 상법: 승계",
-          "지적재산권법 1",
-          "국제무역법",
-          "컴퓨터 관련 법률",
+        modules: [
+          "Civil and Commercial Law: Family",
+          "Civil and Commercial Law: Succession",
+          "Law on Intellectual Property",
+          "International Trade Law",
+          "Law Related to Computer",
         ],
       },
       {
-        date: "2022",
-        name: "NCSA 및 HUAWEI가 선정한 2022년 태국 여성 사이버 최고 인재 • 상위 4위",
-      },
-      {
-        date: "2020",
-        name: "Botnoi Consulting의 CJE Hackathon 2020 1세대 • 상위 3위",
-      },
-      {
-        date: "2015 - 2019",
-        school: "정보통신기술학부",
-        university: "마히돌대학교",
-        location: "나콘빠톰, 태국",
-        degree: "과학 학사(B.Sc.)",
-        major: "데이터베이스 및 지능형 시스템(DB)",
-        gpa: "3.18",
-        focus: [
-          "웹 프로그래밍",
-          "컴퓨터 조직 및 아키텍처",
-          "데이터 구조 및 알고리즘 분석",
-          "데이터베이스 관리 시스템",
-          "정보 저장 및 검색",
-          "데이터베이스 디자인",
-          "인간-컴퓨터 인터페이스",
-          "디지털 이미지 처리",
-        ],
-      },
-      {
+        degree: "High School",
+        school:
+          "Kasetsart University Laboratory School, Center for Educational Research and Development",
+        location: "Bangkok, Thailand",
+        major: "Science-Math",
         date: "2013 - 2015",
-        school: "카셋삳대학교 실험실 학교, 교육 연구 개발 센터",
-        location: "방콕, 태국",
-        degree: "고등학교",
-        major: "과학-수학",
-      },
-      {
-        date: "2013",
-        name: "Certificate of Merit, Class Distinction, The Royal Australian Chemical Institute",
       },
     ],
-    "업무 경험": [
+    "Work Experience": [
       {
         date: "06/2023 - 05/2024",
         title: "Frontend Developer",
         type: "Freelance",
-        location: "방콕, 태국",
-        description: [
-          "클라이언트로부터 수집된 요구사항.",
-          "클라이언트가 솔루션을 찾을 수 있도록 도왔습니다.",
-          "분리된 작업과 각 작업에 대한 예상 시간.",
-          "웹사이트를 코딩하고, 압축하고, 호스팅하고 유지관리했습니다.",
-          "예: Pruxus: 웹사이트를 유지관리하고 있는 Data Wow Co., Ltd.: 클라이언트를 위한 대시보드를 구축했습니다.",
+        location: "Bangkok, Thailand",
+        desc: [
+          "Collected client requirements and translated them into technical specifications and solutions.",
+          "Designed, built, and deployed responsive websites using React.js, Next.js, and cloud hosting platforms.",
+          "Maintained corporate website for Pruxus and built a client analytics dashboard for Data Wow.",
         ],
       },
       {
@@ -184,10 +186,11 @@ export const data: Data = {
         title: "Frontend Developer",
         type: "Full-time",
         company: "Data Wow Co., Ltd.",
-        location: "방콕, 태국",
-        description: [
-          "PDPA(쿠키와우, PDPA Pro, PDPA Prokit, PDPA Learn 등) PDPA(개인정보보호법) 관련 웹사이트 개발",
-          "기타 ((주)데이타와우 및 외부고객을 위한 대시보드, 보고서, 채팅스토리지(라인챗봇), 온라인 모의고사 플랫폼 등 홈페이지 개발)",
+        location: "Bangkok, Thailand",
+        desc: [
+          "Built PDPA compliance platforms (Cookie Wow, PDPA Pro) using modern frameworks, improving user access to privacy controls.",
+          "Designed dashboards and online platforms, including chat storage systems for LINE bots and mock exam platforms, with real-time data handling.",
+          "Worked in agile teams, delivering production-ready code under strict deadlines.",
         ],
       },
       {
@@ -195,11 +198,11 @@ export const data: Data = {
         title: "System Analyst",
         type: "Full-time",
         company: "Bank of Thailand",
-        location: "방콕, 태국",
-        description: [
-          "DLTBond: 우리는 블록체인(Hyperledger Fabric)을 사용하여 판매 대리인에게 은행에 할당량을 주지 않고 모든 사람에게 국채 구매 기회를 분배합니다. 나는 팀과 함께 시스템을 설계, 개발, 규제 및 감독합니다.",
-          "ISO20022: 2025년 11월 결제 시스템의 핵심 핵심에 적용될 결제 메시징의 새로운 표준에는 태국도 포함되어 있으며, 이 표준도 변경되어야 합니다. 그래서 저는 BA의 요구 사항을 분석하고 계획을 개발하는 데 참여하고 있습니다. 팀과 함께 흐름을 테스트해 보세요.",
-          "RPA: RPA는 로봇 프로세스 자동화를 의미합니다. 태국 은행도 RPA를 적용하여 일상적인 작업에 소요되는 시간을 줄이고 가치 작업에 사용할 시간을 갖습니다. 저는 프로세스 분석, 조정 및 개선에 참여하고 다음을 통해 흐름을 개발합니다. RPA 개발자로서의 UiPath.",
+        location: "Bangkok, Thailand",
+        desc: [
+          "Contributed to DLTBond, a blockchain-based government bond platform, ensuring scalability and security for thousands of users.",
+          "Contributed to ISO 20022 migration, analyzing requirements and performing system testing.",
+          "Automated workflows using UiPath RPA, reducing repetitive manual tasks workloads",
         ],
       },
       {
@@ -207,9 +210,9 @@ export const data: Data = {
         title: "Blockchain Developer, KBTG Develop Bootcamp 2019",
         type: "Internship",
         company: "Kasikorn Business Technology Group (KBTG)",
-        location: "방콕, 태국",
-        description: [
-          "Time D(onation): 사회 문제를 해결하기 위해 블록체인을 사용하는 사례에 관한 것입니다. 이 프로젝트는 Stellar 블록체인을 사용하여 플랫폼에서 Time D 토큰을 생성하여 자원 봉사를 교환하고 자원 봉사를 추적하여 보상을 제공합니다. 팀과 함께 아이디어를 브레인스토밍하고, 디자인하고, 프로토타입을 개발하고 있습니다.",
+        location: "Bangkok, Thailand",
+        desc: [
+          "Designed and implemented Time Donation, a blockchain proof-of-concept application developed collaboratively in an Agile team within 3 months, showcasing research-driven application of Stellar technology to social impact.",
         ],
       },
       {
@@ -217,89 +220,132 @@ export const data: Data = {
         title: "Frontend Developer",
         type: "Internship",
         company: "BeID Corporation Co., Ltd.",
-        location: "방콕, 태국",
-        description: ["React.JS의 대시보드 및 랜딩 페이지 개발 정보"],
+        location: "Bangkok, Thailand",
+        desc: ["Developed a dashboard and landing page using React.js."],
       },
     ],
-    "교과 외 활동": [
-      {
-        date: "2020 - 현재의",
-        name: "Sec-Girl의 멤버이다",
-        description: [
-          "Sec-Girl은 지식을 공유하고 태국 여성이 사이버 보안 분야에서 일하도록 장려하기 위해 여성 사이버 보안 이해관계자가 포함된 커뮤니티입니다.",
-          "공공 사이버 보안 워크숍 자원봉사에는 50~100명의 참가자가 참여하며 기본 지식이 있는 사람이라면 누구나 등록을 통해 참여할 수 있습니다.",
-          "NCSA 및 HUAWEI가 주최하는 Women Thai Cyber Top Talent 2022 등 Sec-Girl을 대신하여 사이버 보안 대회에 참가했습니다.",
-        ],
-      },
-      {
-        date: "2023",
-        name: "일반인 최종 8팀 중 1팀, Line Hack 2023 대회 참가로 선정",
-      },
-      {
-        date: "2021",
-        name: "제13회 일반국민 최종 30팀 중 '국왕 폐하께 최고의 통신·ICT 기술을 찾아드립니다' 대회 참가로 선정",
-      },
-      {
-        date: "2018",
-        name: 'Samut Sakhon Phatthana Mueang(사회적 기업) x MUICT의 "그룹 기업 웹사이트 디자인 공모전 활동" 참여',
-      },
-    ],
-  },
-  etc: {
-    "Computer Skills": {
-      Language:
-        "Javascript, Python, HTML, Java, PHP, TypeScript, Go (Programming Language), CSS, Tailwind CSS, SQL",
-      Framework:
-        "React.js, Vue.js, Angular.js, TypeScript, Next.js, Node.js, Express.js, UiPath",
-      Hosting:
-        "AWS Amplify, IBM Cloud, Firebase, GCP (Google Cloud Platform), Microsoft Azure",
-      Blockchain: "IBM Hyperledger Fabric, Stellar Blockchain",
-      Database:
-        "Redis, MongoDB, PostgreSQL, MSSQL, ER Diagram, Database Design",
-      "Queue Management": "RabbitMQ",
+    "Awards & Activities": {
+      "Cybersecurity Competitions": [
+        {
+          title: "Top 4 - Women Thailand Cyber Top Talent 2022 (NCSA & Huawei)",
+        },
+      ],
+      Hackathon: [
+        { title: "Finalist - LINE Hack 2023 (Top 8 teams)" },
+        { title: "3rd Place - CJE Hackathon 2020 (Botnoi Consulting)" },
+      ],
+      Community: [
+        {
+          title:
+            "Active member of Sec-Girl, a women-in-cybersecurity group, volunteering in public workshops",
+        },
+      ],
     },
-    언어: {
-      영어: "IELTS: band 6",
-      한국인: "TOPIK: level 1; Sejong: 2A",
-      태국어: "모국어",
+    Skill: {
+      "Programming & Fundamentals": [
+        "Java",
+        "Python",
+        "JavaScript/TypeScript",
+        "C++",
+        "Go",
+        "SQL",
+        "CSS",
+        "HTML",
+        "OOP",
+      ],
+      "Frameworks & Tools": [
+        "React.js",
+        "Next.js",
+        "Node.js",
+        "Express.js",
+        "FastAPI",
+        "Git",
+        "Docker",
+        "UiPath",
+      ],
+      "Machine Learning & AI": [
+        "TensorFlow",
+        "scikit-learn",
+        "Pandas",
+        "NumPy",
+        "Transfer learning",
+        "",
+      ],
+      "Cloud & Infrastructure": [
+        "AWS",
+        "GCP",
+        "Azure",
+        "Firebase",
+        "IBM Cloud",
+        "RabbitMQ",
+        "Redis",
+      ],
+      "Security & Blockchain": [
+        "RSA cryptography",
+        "blockchain dev (Stellar, Hyperledger)",
+        "Linux command line",
+      ],
+      Databases: [
+        "PostgreSQL",
+        "MongoDB",
+        "MSSQL",
+        "ER modeling & query optimization",
+      ],
+    },
+    Languages: {
+      English: "Upper-Intermediate (CEFR B2)",
+      Korean: "Elementary (TOPIK: level 1; Sejong: 2A)",
+      Thai: "Native",
     },
     Interests: [
-      "법",
-      "CTF(깃발 탈취)",
-      "피아노",
-      "촬영",
-      "여행(마카오, 홍콩, 일본, 싱가포르 등의 경험)",
-      "요리",
-      "탁구",
-      "배드민턴",
-      "수영",
+      "Law",
+      "CTF (Capture The Flag)",
+      "Piano",
+      "Photographing",
+      "Traveling (experience includes Macau, Hong Kong, Japan, Singapore)",
+      "Cooking",
+      "Table Tennis",
+      "Badminton",
+      "Swimming",
     ],
   },
-  references: [
-    {
-      Title: "Asst. Prof. Dr.",
-      Name: "Charnyote",
-      Surname: "Pluempitiwiriyawej",
-      Position: "ASSISTANT PROFESSOR",
-      "Workplace Address": `Faculty of ICT, Mahidol University
-999 Phuttamonthon 4 Road, Salaya , Nakhon Pathom 73170 THAILAND`,
-      "Contact Number": "+66 2 441 0909",
-      "Email (Official)":
-        "charnyote.plu@mahidol.ac.th; charnyote.plu@mahidol.edu",
-    },
+  //   references: [
+  //     {
+  //       Title: "Asst. Prof. Dr.",
+  //       Name: "Charnyote",
+  //       Surname: "Pluempitiwiriyawej",
+  //       Position: "ASSISTANT PROFESSOR",
+  //       "Workplace Address": `Faculty of ICT, Mahidol University
+  // 999 Phuttamonthon 4 Road, Salaya , Nakhon Pathom 73170 THAILAND`,
+  //       "Contact Number": "+66 2 441 0909",
+  //       "Email (Official)":
+  //         "charnyote.plu@mahidol.ac.th; charnyote.plu@mahidol.edu",
+  //     },
 
+  //     {
+  //       Title: "Dr.",
+  //       Name: "Woraluck",
+  //       Surname: "Wongse-ek",
+  //       Position: "INSTRUCTOR",
+  //       "Workplace Address": `Faculty of ICT, Mahidol University
+  // 999 Phuttamonthon 4 Road, Salaya , Nakhon Pathom 73170 THAILAND`,
+  //       "Contact Number": "+66 2 441 0909",
+  //       "Email (Official)":
+  //         "woraluck.won@mahidol.ac.th; woraluck.won@mahidol.edu",
+  //     },
+  //   ],
+};
+
+export const metadata: Metadata = {
+  title: myName,
+  description: `${myName}'s Profile`,
+  generator: "Next.js",
+  keywords: [myName],
+  authors: [
+    { name: myName },
     {
-      Title: "Dr.",
-      Name: "Woraluck",
-      Surname: "Wongse-ek",
-      Position: "INSTRUCTOR",
-      "Workplace Address": `Faculty of ICT, Mahidol University
-999 Phuttamonthon 4 Road, Salaya , Nakhon Pathom 73170 THAILAND`,
-      "Contact Number": "+66 2 441 0909",
-      "Email (Official)":
-        "woraluck.won@mahidol.ac.th; woraluck.won@mahidol.edu",
+      name: myName,
+      url: (data.contact.LinkedIn as Contact).opt.link,
     },
   ],
-  sortedInfoForVacancy: ["업무 경험", "교육 및 수상", "교과 외 활동"],
-  sortedInfoForEducation: ["교육 및 수상", "업무 경험", "교과 외 활동"],
 };

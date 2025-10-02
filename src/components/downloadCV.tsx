@@ -18,7 +18,7 @@ export const DownloadCVLink = () => {
   const downloadFile = async () => {
     setIsLoading(true); // Start loading
     try {
-      const response = await fetch(`/api/cv/work/${currentLang}`);
+      const response = await fetch(`/api/cv/se`);
       if (!response.ok) throw new Error("Network response was not ok");
 
       const blob = await response.blob();
@@ -26,7 +26,7 @@ export const DownloadCVLink = () => {
 
       const a = document.createElement("a");
       a.href = url;
-      a.download = `napatchol's cv (${currentLang}).pdf`; // Specify the filename
+      a.download = `napatchol's cv.pdf`; // Specify the filename
       document.body.appendChild(a);
       a.click();
 

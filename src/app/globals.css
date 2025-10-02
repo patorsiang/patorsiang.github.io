@@ -331,6 +331,14 @@ body {
   @apply list-disc list-inside;
 }
 
+.about-section-ul {
+  @apply list-disc;
+}
+
+.about-section-li {
+  @apply ml-10;
+}
+
 .chip {
   color: rgb(var(--foreground-rgb));
   border-color: rgb(var(--foreground-rgb));
@@ -346,8 +354,8 @@ footer {
   @apply list-[circle] indent-8 list-inside;
 }
 
-.about-section-project-skills {
-  @apply indent-5;
+.about-section-subtopic {
+  @apply ml-5 text-p-responsive;
 }
 
 .about-section-project-link {

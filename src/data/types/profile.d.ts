@@ -1,60 +1,52 @@
-export type University = {
-  date: string;
-  school: string;
-  location: string;
+export type Contact = { name: string; opt: pdf.TextOptions };
+
+export type Project = {
+  title: string;
+  desc: string;
+  tag: string;
+  skill: Array<string>;
+  url: string;
+};
+
+export type Education = {
   degree: string;
+  school: string;
   university?: string;
-  gpa?: string;
-  major?: string;
-  focus?: Array<string>;
-  projects?: Array<{
-    title: string;
-    skills: Array<string>;
-    description: Array<string>;
-    shortDescription: string;
-    link?: string;
-  }>;
-};
-
-export type Award = {
+  location: string;
   date: string;
-  name: string;
+  major?: string;
+  GPA?: string;
+  modules?: Array<string>;
+  project?: Array<Project>;
 };
 
-export type Work = {
+export type WorkExperience = {
   date: string;
   title: string;
   type: string;
-  company?: string;
   location: string;
-  description: Array<string>;
-  shortDescription: Array<string>;
+  desc: Array<string>;
+  company?: string;
 };
 
-export type Activity = {
-  date: string;
-  name: string;
-  description: Array<string>;
+export type Activities = {
+  [key: string]: Array<string> | Array<{ title }> | string;
 };
 
-export type Contact = { name: string; opt: pdf.TextOptions };
+export type Interests = Array<string>;
 
-export type Info = Partial<University & Award & Work & Activity>;
+export type Info = {
+  [key: string]: Array<Education | WorkExperience> | Activities | Interests;
+};
 
 export type Data = {
   name: string;
   nickname: string;
   position: string;
   subtitle: string;
-  summary: string;
   address: string;
-  shortAddress: string;
   contact: {
     [key: string]: string | Contact | Array<Contact>;
   };
-  info: { [key: string]: Array<Info> };
-  etc: { [key: string]: { [key: string]: string } | Array<string> };
-  references: Array<{ [key: string]: string }>;
-  sortedInfoForVacancy: Array<string>;
-  sortedInfoForEducation: Array<string>;
+  history: Info;
 };
