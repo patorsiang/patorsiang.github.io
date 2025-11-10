@@ -178,7 +178,7 @@ export const data: Data = {
         desc: [
           "Collected client requirements and translated them into technical specifications and solutions.",
           "Designed, built, and deployed responsive websites using React.js, Next.js, and cloud hosting platforms.",
-          "Maintained corporate website for Pruxus and built a client analytics dashboard for Data Wow.",
+          "Maintained corporate website for Pruxus (WordPress) and built a client analytics dashboard for Data Wow (Next.js)",
         ],
       },
       {
@@ -188,7 +188,7 @@ export const data: Data = {
         company: "Data Wow Co., Ltd.",
         location: "Bangkok, Thailand",
         desc: [
-          "Built PDPA compliance platforms (Cookie Wow, PDPA Pro) using modern frameworks, improving user access to privacy controls.",
+          "Built PDPA compliance platforms (Cookie Wow, PDPA Pro) using modern frameworks (Next.js with Ruby), improving user access to privacy controls. Mostly deployed on AWS.",
           "Designed dashboards and online platforms, including chat storage systems for LINE bots and mock exam platforms, with real-time data handling.",
           "Worked in agile teams, delivering production-ready code under strict deadlines.",
         ],
@@ -200,8 +200,8 @@ export const data: Data = {
         company: "Bank of Thailand",
         location: "Bangkok, Thailand",
         desc: [
-          "Contributed to DLTBond, a blockchain-based government bond platform, ensuring scalability and security for thousands of users.",
-          "Contributed to ISO 20022 migration, analyzing requirements and performing system testing.",
+          "Contributed to DLTBond, a blockchain-based government bond platform, DLTBond, using Angular.js (monitoring), Node.js (TLS-secured backend), and Golang with IBM Hyperledger Fabric.",
+          "Contributed to ISO 20022 migration (updating JAVA and analysing requirements following SWIFT standard) and performing system testing.",
           "Automated workflows using UiPath RPA, reducing repetitive manual tasks workloads",
         ],
       },
@@ -212,7 +212,7 @@ export const data: Data = {
         company: "Kasikorn Business Technology Group (KBTG)",
         location: "Bangkok, Thailand",
         desc: [
-          "Designed and implemented Time Donation, a blockchain proof-of-concept application developed collaboratively in an Agile team within 3 months, showcasing research-driven application of Stellar technology to social impact.",
+          "Built Time Donation, a blockchain proof-of-concept using React.js (frontend) and Golang (Stellar SDK backend), developed in an Agile 3-month sprint for social impact.",
         ],
       },
       {
@@ -293,7 +293,7 @@ export const data: Data = {
       ],
     },
     Languages: {
-      English: "Upper-Intermediate (CEFR B2)",
+      English: "IELTS 6 (CEFR B2 - Upper Intermediate)",
       Korean: "Elementary (TOPIK: level 1; Sejong: 2A)",
       Thai: "Native",
     },
@@ -302,7 +302,7 @@ export const data: Data = {
       "CTF (Capture The Flag)",
       "Piano",
       "Photographing",
-      "Traveling (experience includes Macau, Hong Kong, Japan, Singapore)",
+      "Traveling",
       "Cooking",
       "Table Tennis",
       "Badminton",
