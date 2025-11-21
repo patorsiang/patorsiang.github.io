@@ -58,7 +58,7 @@ export const data: Data = {
   history: {
     Education: [
       {
-        degree: "MSc Advanced Computer Science (on track for Distinction)",
+        degree: "MSc Advanced Computer Science (Distinction)",
         school: "School of Computing",
         university: "University of Kent",
         location: "Canterbury, UK",
