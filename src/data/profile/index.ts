@@ -8,19 +8,15 @@ export const data: Data = {
   name: myName,
   nickname: "Pat",
   position: "Software Developer",
-  subtitle: `I'm “Pat” Napatchol Thaipanich, a software developer and MSc Advanced Computer Science student at the University of Kent (graduating 2025). With over three years of experience as a Frontend Developer at Data Wow Co., Ltd. and the Bank of Thailand, I’ve worked on fintech systems, PDPA compliance platforms, and dashboards that support both internal and client-facing applications.
+  subtitle: `A software developer with a mainly front-end background and experience working on real-world systems in both government and start-up environments.
   <br/>
   <br/>
-  My technical toolkit includes React, Next.js, JavaScript/TypeScript, Python (FastAPI, TensorFlow, scikit-learn), and cloud platforms (AWS, GCP, Azure). I also bring hands-on project experience in machine learning (image classification, blockchain fraud detection), IoT prototyping, and cryptography.
+  I’ve contributed to a government blockchain-based financial system like BOT scripless bond, and dashboards, monitoring portals, and internal platforms. My focus has been on building interfaces that are clear, reliable, and practical to use.
+  <br/>
+  My experience includes front-end development with React, Next.js, and Angular, along with some exposure to back-end, blockchain, and machine-learning projects. I’m used to working closely with product owners, designers, and engineers to understand requirements and turn them into workable solutions.
   <br/>
   <br/>
-  Alongside my technical background, I hold a Bachelor of Science in ICT (Mahidol University) and a Bachelor of Laws (Ramkhamhaeng University), giving me a unique multidisciplinary perspective that bridges technology, security, and legal considerations.
-  <br/>
-  <br/>
-  I'm deeply passionate about technology and data. My motto, passed down from my grandfather, is “If anyone can do it, I can do it.” I apply this mindset daily in my coding practice, CTF challenges, and continuous learning.
-  <br/>
-  <br/>
-  As I look ahead, I'm open to opportunities in software development, machine learning, or cybersecurity across Thailand, the UK, the EU, Singapore, and Australia. <b>Let's build something remarkable together!</b>
+  I’m interested in fintech, govtech, cybersecurity, and related product-driven domains, and I’m currently looking for a software engineering role where I can keep learning and contribute meaningfully to the team and the product. <b>Let's build something remarkable together!</b>
   `,
   address: "Bangkok, Thailand | University of Kent, Canterbury, UK",
   contact: {
