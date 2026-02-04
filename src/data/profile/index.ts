@@ -7,7 +7,7 @@ export const myName = "Napatchol Thaipanich";
 export const data: Data = {
   name: myName,
   nickname: "Pat",
-  position: "Software Developer",
+  position: "Junior Software Developer",
   subtitle: `A software developer with a mainly front-end background and experience working on real-world systems in both government and start-up environments.
   <br/>
   <br/>
