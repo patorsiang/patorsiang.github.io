@@ -32,3 +32,5 @@ export const fontKR = Noto_Sans_KR({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
   subsets: ["latin"],
 });
+
+export const scaleFactor = 3;
