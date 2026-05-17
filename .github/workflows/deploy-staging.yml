@@ -15,10 +15,8 @@ concurrency:
 
 jobs:
   deploy-staging:
-    name: Deploy portfolio-web to Vercel Staging
+    name: Deploy portfolio-web to Vercel Preview
     runs-on: ubuntu-latest
-    environment:
-      name: staging
 
     steps:
       - name: Checkout
@@ -38,7 +36,7 @@ jobs:
       - name: Install Vercel CLI
         run: bun add -g vercel
 
-      - name: Pull Vercel environment
+      - name: Pull Vercel preview environment
         run: |
           vercel pull \
             --yes \
@@ -53,8 +51,11 @@ jobs:
         working-directory: apps/portfolio-web
 
       - name: Deploy to Vercel Preview
+        id: deploy
         run: |
-          vercel deploy \
+          url=$(vercel deploy \
             --prebuilt \
-            --token=${{ secrets.VERCEL_TOKEN }}
+            --token=${{ secrets.VERCEL_TOKEN }})
+          echo "Preview URL: $url"
+          echo "url=$url" >> "$GITHUB_OUTPUT"
         working-directory: apps/portfolio-web
