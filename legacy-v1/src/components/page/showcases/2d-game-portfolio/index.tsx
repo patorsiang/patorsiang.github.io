@@ -18,11 +18,18 @@ export default function GamePortfolio() {
   const { currentLang } = useSplitPathname();
 
   const t = useTranslations("page.game");
+  const currentLangRef = useRef(currentLang);
+  const routerRef = useRef(router);
+  const tRef = useRef(t);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const dialogUIRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLParagraphElement>(null);
   const closeBtn = useRef<HTMLButtonElement>(null);
+
+  currentLangRef.current = currentLang;
+  routerRef.current = router;
+  tRef.current = t;
 
   useEffect(() => {
     const k = kaboom({
@@ -109,7 +116,7 @@ export default function GamePortfolio() {
               player.onCollide(boundary.name, () => {
                 player.isInDialogue = true;
                 dialogUIRef.current!.style.display = "block";
-                let text = t(boundary.name);
+                let text = tRef.current(boundary.name);
                 let index = 0;
                 let currentText = "";
 
@@ -131,8 +138,8 @@ export default function GamePortfolio() {
                     onCloseBtnClick
                   );
                   if (boundary.name === "exit") {
-                    const newPath = `/${currentLang}/showcases`;
-                    router.push(newPath, { scroll: false });
+                    const newPath = `/${currentLangRef.current}/showcases`;
+                    routerRef.current.push(newPath, { scroll: false });
                   }
                   player.isInDialogue = false;
                   dialogUIRef.current!.style.display = "none";

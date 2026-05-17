@@ -1,0 +1,17 @@
+name: Deploy Staging
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  placeholder:
+    name: Staging Deployment Placeholder
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deployment not configured
+        run: |
+          echo "Staging deployment is intentionally not configured yet."
+          echo "Future target: apps/portfolio-web."

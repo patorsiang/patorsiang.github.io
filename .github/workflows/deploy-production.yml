@@ -1,0 +1,17 @@
+name: Deploy Production
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  placeholder:
+    name: Production Deployment Placeholder
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deployment not configured
+        run: |
+          echo "Production deployment is intentionally not configured yet."
+          echo "Future target: apps/portfolio-web."

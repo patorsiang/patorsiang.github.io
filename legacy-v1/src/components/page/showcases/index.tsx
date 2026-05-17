@@ -39,7 +39,8 @@ export default function Showcases() {
                 className={"main-avatar-image"}
                 fill={true}
                 priority
-                {...ele.image}
+                src={ele.image.src}
+                alt={ele.image.alt}
               />
             </div>
 
