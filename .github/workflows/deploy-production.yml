@@ -17,9 +17,6 @@ jobs:
   deploy-production:
     name: Deploy portfolio-web to Vercel Production
     runs-on: ubuntu-latest
-    environment:
-      name: production
-      url: ${{ steps.deploy.outputs.url }}
 
     steps:
       - name: Checkout
@@ -58,5 +55,6 @@ jobs:
             --prebuilt \
             --prod \
             --token=${{ secrets.VERCEL_TOKEN }})
+          echo "Production URL: $url"
           echo "url=$url" >> "$GITHUB_OUTPUT"
         working-directory: apps/portfolio-web
