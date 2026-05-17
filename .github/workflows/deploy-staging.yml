@@ -4,14 +4,21 @@ on:
   push:
     branches:
       - feat/portfolio-platform-2026
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: staging-deploy
+  group: staging-deploy-${{ github.ref }}
   cancel-in-progress: true
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
   deploy-staging:
@@ -29,9 +36,6 @@ jobs:
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
-
-      - name: Build portfolio-web
-        run: bun run build:portfolio
 
       - name: Install Vercel CLI
         run: bun add -g vercel
