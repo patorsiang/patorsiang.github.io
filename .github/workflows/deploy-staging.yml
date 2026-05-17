@@ -25,6 +25,10 @@ jobs:
     name: Deploy portfolio-web to Vercel Preview
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: apps/portfolio-web
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,9 +40,11 @@ jobs:
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
+        working-directory: .
 
       - name: Install Vercel CLI
         run: bun add -g vercel
+        working-directory: .
 
       - name: Pull Vercel preview environment
         run: |
@@ -50,7 +56,6 @@ jobs:
       - name: Build Vercel preview artifact
         run: |
           vercel build \
-            --cwd apps/portfolio-web \
             --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy to Vercel Preview
@@ -58,7 +63,6 @@ jobs:
         run: |
           url=$(vercel deploy \
             --prebuilt \
-            --cwd apps/portfolio-web \
             --token=${{ secrets.VERCEL_TOKEN }})
           echo "Preview URL: $url"
           echo "url=$url" >> "$GITHUB_OUTPUT"
