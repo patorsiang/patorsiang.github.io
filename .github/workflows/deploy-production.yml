@@ -22,6 +22,10 @@ jobs:
     name: Deploy portfolio-web to Vercel Production
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: apps/portfolio-web
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,9 +37,11 @@ jobs:
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
+        working-directory: .
 
       - name: Install Vercel CLI
         run: bun add -g vercel
+        working-directory: .
 
       - name: Pull Vercel project settings
         run: |
@@ -48,7 +54,6 @@ jobs:
         run: |
           vercel build \
             --prod \
-            --cwd apps/portfolio-web \
             --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy to Vercel Production
@@ -57,7 +62,6 @@ jobs:
           url=$(vercel deploy \
             --prebuilt \
             --prod \
-            --cwd apps/portfolio-web \
             --token=${{ secrets.VERCEL_TOKEN }})
           echo "Production URL: $url"
           echo "url=$url" >> "$GITHUB_OUTPUT"
