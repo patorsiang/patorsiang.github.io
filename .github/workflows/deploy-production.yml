@@ -13,6 +13,10 @@ concurrency:
   group: production-deploy
   cancel-in-progress: false
 
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
 jobs:
   deploy-production:
     name: Deploy portfolio-web to Vercel Production
@@ -33,7 +37,7 @@ jobs:
       - name: Install Vercel CLI
         run: bun add -g vercel
 
-      - name: Pull Vercel environment
+      - name: Pull Vercel project settings
         run: |
           vercel pull \
             --yes \
