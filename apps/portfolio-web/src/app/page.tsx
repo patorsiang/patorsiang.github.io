@@ -24,10 +24,10 @@ export default function Home() {
               {profile.handle}
             </p>
             <h1 className="mt-4 text-4xl font-semibold leading-tight text-zinc-950 sm:text-6xl">
-              {profile.name}
+              {profile.name.en}
             </h1>
-            <p className="mt-4 text-xl font-medium text-zinc-700">{profile.role}</p>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-700">{profile.headline}</p>
+            <p className="mt-4 text-xl font-medium text-zinc-700">{profile.role.en}</p>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-700">{profile.headline.en}</p>
           </div>
 
           <nav aria-label="Contact links" className="flex flex-wrap gap-3">
@@ -39,7 +39,7 @@ export default function Home() {
                 rel="noreferrer"
                 className="inline-flex h-11 items-center justify-center rounded-md border border-zinc-300 bg-white px-4 text-sm font-medium text-zinc-900 transition hover:border-teal-700 hover:text-teal-800"
               >
-                {link.label}
+                {link.label.en}
               </a>
             ))}
             <a
@@ -56,7 +56,7 @@ export default function Home() {
             <SectionHeading eyebrow="About" title="Practical software, clear product thinking." />
             <div className="mt-6 space-y-5 text-base leading-8 text-zinc-700">
               {profile.summary.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+                <p key={paragraph.en}>{paragraph.en}</p>
               ))}
             </div>
           </div>
@@ -65,12 +65,12 @@ export default function Home() {
             <p className="text-sm font-medium uppercase tracking-[0.16em] text-zinc-500">
               Location
             </p>
-            <p className="mt-3 text-lg font-semibold text-zinc-950">{profile.location}</p>
+            <p className="mt-3 text-lg font-semibold text-zinc-950">{profile.location.en}</p>
             <p className="mt-8 text-sm font-medium uppercase tracking-[0.16em] text-zinc-500">
               Public identity
             </p>
             <p className="mt-3 text-lg font-semibold text-zinc-950">
-              {profile.nickname} / {profile.nickname2}
+              {profile.nickname.en} / {profile.nickname2.en}
             </p>
           </aside>
         </section>
@@ -96,8 +96,8 @@ export default function Home() {
                   <span aria-hidden="true">/</span>
                   <span>{project.status}</span>
                 </div>
-                <h3 className="mt-3 text-xl font-semibold text-zinc-950">{project.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-zinc-700">{project.summary}</p>
+                <h3 className="mt-3 text-xl font-semibold text-zinc-950">{project.title.en}</h3>
+                <p className="mt-3 text-sm leading-7 text-zinc-700">{project.summary.en}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {project.techStack.map((tech) => (
                     <span
@@ -117,7 +117,7 @@ export default function Home() {
                       rel="noreferrer"
                       className="text-sm font-semibold text-teal-800 underline-offset-4 hover:underline"
                     >
-                      {link.label}
+                      {link.label.en}
                     </a>
                   ))}
                 </div>
@@ -135,7 +135,7 @@ export default function Home() {
                 className="rounded-lg border border-zinc-200 bg-white p-5 shadow-sm"
               >
                 <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-zinc-950">
-                  {group.label}
+                  {group.label.en}
                 </h3>
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {group.items.map((item) => (
@@ -190,14 +190,14 @@ function ExperienceColumn({
             <p className="text-xs font-medium uppercase tracking-[0.14em] text-zinc-500">
               {formatDateRange(item.startDate, item.endDate)}
             </p>
-            <h4 className="mt-3 text-lg font-semibold text-zinc-950">{item.title}</h4>
+            <h4 className="mt-3 text-lg font-semibold text-zinc-950">{item.title.en}</h4>
             <p className="mt-1 text-sm font-medium text-zinc-600">
-              {item.organization} · {item.location}
+              {item.organization.en} · {item.location.en}
             </p>
-            <p className="mt-3 text-sm leading-7 text-zinc-700">{item.summary}</p>
+            <p className="mt-3 text-sm leading-7 text-zinc-700">{item.summary.en}</p>
             <ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-700">
               {item.highlights.slice(0, 2).map((highlight) => (
-                <li key={highlight}>- {highlight}</li>
+                <li key={highlight.en}>- {highlight.en}</li>
               ))}
             </ul>
           </article>

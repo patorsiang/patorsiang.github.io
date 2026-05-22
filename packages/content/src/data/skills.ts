@@ -8,7 +8,7 @@ export const skills = [
     source: legacyProfileSource,
     visibility: "public",
     groupId: "programming-fundamentals",
-    label: "Programming & Fundamentals",
+    label: { en: "Programming & Fundamentals" },
     items: ["Java", "Python", "JavaScript/TypeScript", "C++", "Go", "SQL", "CSS", "HTML", "OOP"],
   },
   {
@@ -17,7 +17,7 @@ export const skills = [
     source: legacyProfileSource,
     visibility: "public",
     groupId: "frontend",
-    label: "Frontend",
+    label: { en: "Frontend" },
     items: ["React.js", "Next.js", "Angular", "PWA"],
   },
   {
@@ -26,7 +26,7 @@ export const skills = [
     source: legacyProfileSource,
     visibility: "public",
     groupId: "backend-tools",
-    label: "Backend & Tools",
+    label: { en: "Backend & Tools" },
     items: ["Node.js", "Express.js", "FastAPI", "Git", "Docker", "UiPath"],
   },
   {
@@ -35,7 +35,7 @@ export const skills = [
     source: legacyProfileSource,
     visibility: "public",
     groupId: "machine-learning-ai",
-    label: "Machine Learning & AI",
+    label: { en: "Machine Learning & AI" },
     items: ["TensorFlow", "scikit-learn", "Pandas", "NumPy", "Transfer learning"],
   },
   {
@@ -44,7 +44,7 @@ export const skills = [
     source: legacyProfileSource,
     visibility: "public",
     groupId: "cloud-infrastructure",
-    label: "Cloud & Infrastructure",
+    label: { en: "Cloud & Infrastructure" },
     items: ["AWS", "GCP", "Azure", "Firebase", "IBM Cloud", "RabbitMQ", "Redis"],
   },
   {
@@ -53,7 +53,7 @@ export const skills = [
     source: legacyProfileSource,
     visibility: "public",
     groupId: "security-blockchain",
-    label: "Security & Blockchain",
+    label: { en: "Security & Blockchain" },
     items: [
       "RSA cryptography",
       "Blockchain development",
@@ -68,7 +68,7 @@ export const skills = [
     source: legacyProfileSource,
     visibility: "public",
     groupId: "databases",
-    label: "Databases",
+    label: { en: "Databases" },
     items: ["PostgreSQL", "MongoDB", "MSSQL", "ER modeling & query optimization"],
   },
   {
@@ -77,7 +77,7 @@ export const skills = [
     source: legacyProfileSource,
     visibility: "public",
     groupId: "languages",
-    label: "Languages",
+    label: { en: "Languages" },
     items: [
       "Thai: Native",
       "English: IELTS 6 / CEFR B2",

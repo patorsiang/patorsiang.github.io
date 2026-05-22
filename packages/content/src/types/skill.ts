@@ -1,4 +1,5 @@
 import type { ContentMeta } from "./common";
+import type { TranslatableText } from "./translation";
 
 export type SkillGroupId =
   | "programming-fundamentals"
@@ -12,6 +13,6 @@ export type SkillGroupId =
 
 export type SkillGroup = ContentMeta & {
   readonly groupId: SkillGroupId;
-  readonly label: string;
+  readonly label: TranslatableText;
   readonly items: readonly string[];
 };

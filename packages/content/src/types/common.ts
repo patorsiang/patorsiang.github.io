@@ -1,10 +1,12 @@
-export type Locale = "en";
+import type { SupportedLocale, TranslatableText } from "./translation";
+
+export type Locale = "en" | SupportedLocale;
 
 export type ContentSourceType = "manual" | "github" | "linkedin" | "blog" | "external";
 
 export type ContentSource = {
   readonly type: ContentSourceType;
-  readonly label: string;
+  readonly label: TranslatableText;
   readonly url?: string;
   readonly syncedAt?: string;
 };
@@ -19,6 +21,6 @@ export type ContentMeta = {
 };
 
 export type Link = {
-  readonly label: string;
+  readonly label: TranslatableText;
   readonly url: string;
 };

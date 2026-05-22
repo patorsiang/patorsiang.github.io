@@ -16,3 +16,9 @@ export type {
   ProjectStatus,
 } from "./project";
 export type { SkillGroup, SkillGroupId } from "./skill";
+export type {
+  SupportedLocale,
+  TranslatableText,
+  TranslationEntry,
+  TranslationStatus,
+} from "./translation";

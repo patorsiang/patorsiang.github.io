@@ -1,14 +1,15 @@
 import type { ContentMeta, Link } from "./common";
+import type { TranslatableText } from "./translation";
 
 export type Profile = ContentMeta & {
-  readonly name: string;
+  readonly name: TranslatableText;
   readonly handle: string;
-  readonly nickname: string;
-  readonly nickname2: string;
-  readonly role: string;
-  readonly location: string;
-  readonly headline: string;
-  readonly summary: readonly string[];
+  readonly nickname: TranslatableText;
+  readonly nickname2: TranslatableText;
+  readonly role: TranslatableText;
+  readonly location: TranslatableText;
+  readonly headline: TranslatableText;
+  readonly summary: readonly TranslatableText[];
   readonly contact: {
     readonly email: Link;
     readonly github: Link;
