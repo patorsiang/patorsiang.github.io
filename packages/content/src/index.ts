@@ -5,12 +5,7 @@ import {
   projects as rawProjects,
   skills as rawSkills,
 } from "./data";
-import {
-  experienceSchema,
-  profileSchema,
-  projectSchema,
-  skillGroupSchema,
-} from "./schemas";
+import { experienceSchema, profileSchema, projectSchema, skillGroupSchema } from "./schemas";
 
 export const experiences = z.array(experienceSchema).parse(rawExperiences);
 export const profile = profileSchema.parse(rawProfile);
