@@ -73,8 +73,7 @@ export const experiences = [
     location: "Bangkok, Thailand",
     startDate: "2019-06",
     endDate: "2019-08",
-    summary:
-      "Built a blockchain proof of concept during an Agile three-month sprint.",
+    summary: "Built a blockchain proof of concept during an Agile three-month sprint.",
     highlights: [
       "Built Time Donation using React and a Go backend with Stellar SDK.",
       "Developed a social-impact proof of concept in a bootcamp team environment.",

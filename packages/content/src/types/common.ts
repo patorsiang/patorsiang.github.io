@@ -1,11 +1,6 @@
 export type Locale = "en";
 
-export type ContentSourceType =
-  | "manual"
-  | "github"
-  | "linkedin"
-  | "blog"
-  | "external";
+export type ContentSourceType = "manual" | "github" | "linkedin" | "blog" | "external";
 
 export type ContentSource = {
   readonly type: ContentSourceType;
@@ -14,11 +9,7 @@ export type ContentSource = {
   readonly syncedAt?: string;
 };
 
-export type ContentVisibility =
-  | "public"
-  | "private"
-  | "case-study-only"
-  | "draft";
+export type ContentVisibility = "public" | "private" | "case-study-only" | "draft";
 
 export type ContentMeta = {
   readonly id: string;

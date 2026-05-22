@@ -14,8 +14,7 @@ export const projects = [
     slug: "cryptocurrency-rug-pull-detection",
     category: "ai-ml",
     status: "prototype",
-    summary:
-      "Machine-learning system to detect and categorize fraudulent blockchain projects.",
+    summary: "Machine-learning system to detect and categorize fraudulent blockchain projects.",
     role: "Designer and developer",
     techStack: ["FastAPI", "Python", "React", "Redis", "TensorFlow", "Docker"],
     highlights: [
@@ -104,8 +103,7 @@ export const projects = [
     slug: "vending-machine-simulator",
     category: "academic",
     status: "archived",
-    summary:
-      "Java OOP simulator for transactions and inventory management.",
+    summary: "Java OOP simulator for transactions and inventory management.",
     role: "Developer",
     techStack: ["Java", "OOP"],
     highlights: [
@@ -164,8 +162,7 @@ export const projects = [
     slug: "chi-cultural-heritage-pwa",
     category: "web",
     status: "launched",
-    summary:
-      "Progressive web app for cultural knowledge exchange about Indian heritage.",
+    summary: "Progressive web app for cultural knowledge exchange about Indian heritage.",
     role: "Developer",
     techStack: ["PWA", "JavaScript", "Node.js", "MongoDB"],
     highlights: [

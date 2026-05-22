@@ -1,11 +1,6 @@
 import type { ContentMeta } from "./common";
 
-export type ExperienceType =
-  | "work"
-  | "education"
-  | "award"
-  | "activity"
-  | "internship";
+export type ExperienceType = "work" | "education" | "award" | "activity" | "internship";
 
 export type Experience = ContentMeta & {
   readonly type: ExperienceType;

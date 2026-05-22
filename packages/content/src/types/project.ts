@@ -20,18 +20,9 @@ export type ProjectStatus =
   | "paused"
   | "archived";
 
-export type ProjectPlacement =
-  | "featured-project"
-  | "project"
-  | "playground"
-  | "hidden";
+export type ProjectPlacement = "featured-project" | "project" | "playground" | "hidden";
 
-export type ContributionType =
-  | "solo"
-  | "team"
-  | "open-source"
-  | "academic"
-  | "tutorial";
+export type ContributionType = "solo" | "team" | "open-source" | "academic" | "tutorial";
 
 export type Project = ContentMeta & {
   readonly title: string;
