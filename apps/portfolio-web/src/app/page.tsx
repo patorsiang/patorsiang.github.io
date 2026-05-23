@@ -1,4 +1,5 @@
 import { experiences, profile, projects, skills } from "@patorsiang/content";
+import Link from "next/link";
 
 type ExperienceItem = (typeof experiences)[number];
 
@@ -42,6 +43,12 @@ export default function Home() {
                 {link.label.en}
               </a>
             ))}
+            <Link
+              href="/cv"
+              className="inline-flex h-11 items-center justify-center rounded-md border border-zinc-300 bg-white px-4 text-sm font-medium text-zinc-900 transition hover:border-teal-700 hover:text-teal-800"
+            >
+              View CV
+            </Link>
             <a
               href={profile.contact.email.url}
               className="inline-flex h-11 items-center justify-center rounded-md bg-zinc-950 px-4 text-sm font-medium text-white transition hover:bg-teal-800"

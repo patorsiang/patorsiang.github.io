@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@patorsiang/content"],
+  transpilePackages: ["@patorsiang/content", "@patorsiang/cv-engine"],
 };
 
 export default nextConfig;

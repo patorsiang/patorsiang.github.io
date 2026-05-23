@@ -14,6 +14,7 @@
       "version": "0.1.0",
       "dependencies": {
         "@patorsiang/content": "workspace:*",
+        "@patorsiang/cv-engine": "workspace:*",
         "next": "16.2.6",
         "react": "19.2.4",
         "react-dom": "19.2.4",
@@ -69,6 +70,16 @@
       "version": "0.1.0",
       "dependencies": {
         "zod": "^3.24.1",
+      },
+      "devDependencies": {
+        "typescript": "^5",
+      },
+    },
+    "packages/cv-engine": {
+      "name": "@patorsiang/cv-engine",
+      "version": "0.1.0",
+      "dependencies": {
+        "@patorsiang/content": "workspace:*",
       },
       "devDependencies": {
         "typescript": "^5",
@@ -413,6 +424,8 @@
     "@nolyfill/is-core-module": ["@nolyfill/is-core-module@1.0.39", "", {}, "sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA=="],
 
     "@patorsiang/content": ["@patorsiang/content@workspace:packages/content"],
+
+    "@patorsiang/cv-engine": ["@patorsiang/cv-engine@workspace:packages/cv-engine"],
 
     "@pkgjs/parseargs": ["@pkgjs/parseargs@0.11.0", "", {}, "sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg=="],
 
