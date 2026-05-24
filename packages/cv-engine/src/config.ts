@@ -1,4 +1,5 @@
 import type { Experience, Project, SkillGroupId } from "@patorsiang/content";
+import type { ProjectScoreBreakdown } from "./project-ranking";
 
 export type CvRoleId = "fullstack_engineer" | "ai_ml_engineer" | "security_engineer";
 export type CvLanguage = "en";
@@ -15,7 +16,9 @@ export type CvSectionId =
 
 export type CvRankDebug = {
   readonly score: number;
+  readonly priorityScore?: number;
   readonly matchedKeywords: readonly string[];
+  readonly scoreBreakdown?: ProjectScoreBreakdown;
 };
 
 export type CvLink = {

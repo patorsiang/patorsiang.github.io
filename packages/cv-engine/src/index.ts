@@ -29,7 +29,8 @@ import {
   roleConfigs,
 } from "./config";
 import { filterProjectsForRole } from "./project-filter";
-import { normalizeTag, normalizeText } from "./normalize";
+import { normalizeTag } from "./normalize";
+import { rankProjectsForRole, type RankedProject } from "./project-ranking";
 
 export type {
   CvHeader,
@@ -47,7 +48,8 @@ export type {
   GeneratedCvSkillGroup,
 };
 
-export { filterProjectsForRole, getRoleConfig, roleConfigs };
+export { filterProjectsForRole, getRoleConfig, roleConfigs, rankProjectsForRole };
+export type { ProjectScoreBreakdown, RankedProject } from "./project-ranking";
 
 export function generateCV(role: CvRoleId, lang: CvLanguage): GeneratedCV {
   const roleConfig = getRoleConfig(role);
@@ -56,13 +58,10 @@ export function generateCV(role: CvRoleId, lang: CvLanguage): GeneratedCV {
     throw new CvEngineInputError(`Unsupported CV language "${lang}". Supported languages: en.`);
   }
 
-  const filteredProjects = filterProjectsForRole(projects, roleConfig, lang)
-    .map((project) => ({
-      item: project,
-      debug: rankProject(project, roleConfig),
-    }))
-    .sort(compareRankedItems)
-    .slice(0, roleConfig.limits.maxProjects);
+  const filteredProjects = rankProjectsForRole(
+    filterProjectsForRole(projects, roleConfig, lang),
+    roleConfig,
+  ).slice(0, roleConfig.limits.maxProjects);
 
   const education = publicEnglishExperiences()
     .filter((experience) => experience.type === "education")
@@ -104,7 +103,7 @@ export function generateCV(role: CvRoleId, lang: CvLanguage): GeneratedCV {
       .sort(compareRankedItems)
       .slice(0, roleConfig.limits.maxExperienceItems)
       .map(({ item, debug }) => toGeneratedExperience(item, debug, roleConfig, lang)),
-    projects: filteredProjects.map(({ item, debug }) => toGeneratedProject(item, debug, lang)),
+    projects: filteredProjects.map((project) => toGeneratedProject(project.project, project, lang)),
     education,
     awards,
     languages: buildLanguages(lang),
@@ -222,44 +221,6 @@ function rankExperience(experience: Experience, roleConfig: CvRoleConfig): CvRan
   };
 }
 
-function rankProject(project: Project, roleConfig: CvRoleConfig): CvRankDebug {
-  const searchValues = [
-    text(project.title, "en"),
-    project.category,
-    text(project.summary, "en"),
-    text(project.role, "en"),
-    ...project.techStack,
-    ...project.highlights.map((highlight) => text(highlight, "en")),
-    ...project.tags,
-  ];
-  const searchText = normalizeSearchText(searchValues);
-  const matchedKeywords = matchedRoleKeywords(searchText, roleConfig);
-  const roleMatch = overlapScore(searchText, [
-    ...roleConfig.requiredTags,
-    ...roleConfig.preferredTags,
-    ...roleConfig.priorityProjectCategories,
-  ]);
-  const keywordMatch = overlapScore(searchText, roleConfig.atsKeywords);
-  const categoryBoost = roleConfig.priorityProjectCategories.includes(project.category) ? 0.12 : 0;
-  const placementBoost = project.placement === "featured-project" ? 0.08 : 0;
-  const evidence = evidenceScore(project);
-  const freshness = project.timeframe
-    ? timeframeFreshnessScore(text(project.timeframe, "en"))
-    : 0.4;
-
-  return {
-    score: roundScore(
-      roleMatch * 0.35 +
-        keywordMatch * 0.25 +
-        evidence * 0.1 +
-        freshness * 0.1 +
-        categoryBoost +
-        placementBoost,
-    ),
-    matchedKeywords,
-  };
-}
-
 function toGeneratedExperience(
   item: Experience,
   rankDebug: CvRankDebug,
@@ -284,9 +245,11 @@ function toGeneratedExperience(
 
 function toGeneratedProject(
   item: Project,
-  rankDebug: CvRankDebug,
+  rankedProject: RankedProject,
   lang: CvLanguage,
 ): GeneratedCvProject {
+  const { priorityScore, matchedKeywords, scoreBreakdown } = rankedProject;
+
   return {
     id: item.id,
     title: text(item.title, lang),
@@ -294,7 +257,12 @@ function toGeneratedProject(
     summary: text(item.summary, lang),
     technologies: item.techStack,
     links: item.links.map((link) => toCvLink(link, lang)),
-    rankDebug,
+    rankDebug: {
+      score: priorityScore,
+      priorityScore,
+      matchedKeywords,
+      scoreBreakdown,
+    },
   };
 }
 
@@ -333,11 +301,11 @@ function toGeneratedAward(item: Experience, lang: CvLanguage): GeneratedCvAward 
 
 function buildWarnings(
   roleConfig: CvRoleConfig,
-  filteredProjects: readonly { readonly item: Project; readonly debug: CvRankDebug }[],
+  rankedProjects: readonly RankedProject[],
 ): readonly string[] {
   const warnings: string[] = [];
   const matchedKeywords = new Set(
-    filteredProjects.flatMap(({ debug }) => debug.matchedKeywords.map(normalizeTag)),
+    rankedProjects.flatMap(({ matchedKeywords: keywords }) => keywords.map(normalizeTag)),
   );
   const missingKeywords = roleConfig.atsKeywords.filter(
     (keyword) => !matchedKeywords.has(normalizeTag(keyword)),
@@ -347,8 +315,8 @@ function buildWarnings(
     warnings.push(`Missing ATS keyword coverage: ${missingKeywords.slice(0, 6).join(", ")}.`);
   }
 
-  if (filteredProjects.length < roleConfig.limits.maxProjects) {
-    warnings.push(`Only ${filteredProjects.length} project(s) matched the ${roleConfig.id} role.`);
+  if (rankedProjects.length < roleConfig.limits.maxProjects) {
+    warnings.push(`Only ${rankedProjects.length} project(s) matched the ${roleConfig.id} role.`);
   }
 
   return warnings;
@@ -388,18 +356,6 @@ function impactScore(lines: readonly string[]): number {
   return overlapScore(normalizeSearchText(lines), impactTerms);
 }
 
-function evidenceScore(project: Project): number {
-  if (project.links.some((link) => normalizeText(link.label.en).includes("github"))) {
-    return 0.7;
-  }
-
-  if (project.links.length > 0) {
-    return 0.5;
-  }
-
-  return 0.2;
-}
-
 function recencyScore(endDate?: string, current?: boolean): number {
   if (current || !endDate) {
     return 1;
@@ -412,16 +368,6 @@ function recencyScore(endDate?: string, current?: boolean): number {
   }
 
   return yearScore(year);
-}
-
-function timeframeFreshnessScore(timeframe: string): number {
-  const yearMatch = timeframe.match(/\d{4}/);
-
-  if (!yearMatch) {
-    return 0.4;
-  }
-
-  return yearScore(Number.parseInt(yearMatch[0], 10));
 }
 
 function yearScore(year: number): number {
