@@ -1,26 +1,87 @@
-import {
-  generateCV,
-  type GeneratedCvExperience,
-  type GeneratedCvProject,
-} from "@patorsiang/cv-engine";
+import { buildCVOutput } from "@patorsiang/cv-engine";
+import type { GeneratedCvExperience, GeneratedCvProject } from "@patorsiang/cv-engine";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { PrintButton } from "./PrintButton";
+import { buildCvExportFilename, resolveCvSelection } from "./cv-request";
 
-const cv = generateCV("fullstack_engineer", "en");
+type SearchParams =
+  | Record<string, string | string[] | undefined>
+  | URLSearchParams
+  | Promise<Record<string, string | string[] | undefined> | URLSearchParams>;
 
-export default function CvPage() {
+const roleLabels = {
+  fullstack_engineer: "Full-Stack Engineer",
+  ai_ml_engineer: "AI / ML Engineer",
+  security_engineer: "Security Engineer",
+} as const;
+
+export default async function CvPage({
+  searchParams,
+}: Readonly<{
+  searchParams?: SearchParams;
+}>) {
+  const resolvedSearchParams = await Promise.resolve(searchParams ?? {});
+  const selection = resolveCvSelection(resolvedSearchParams);
+  const cv = buildCVOutput(selection.role, selection.lang);
+
+  const roleHref = (role: keyof typeof roleLabels) =>
+    `/cv?role=${role}&lang=${selection.lang}`;
+  const jsonHref = `/cv/export/json?role=${selection.role}&lang=${selection.lang}`;
+  const markdownHref = `/cv/export/markdown?role=${selection.role}&lang=${selection.lang}`;
+
   return (
     <main className="min-h-screen bg-stone-50 text-zinc-950 print:bg-white">
       <div className="mx-auto w-full max-w-5xl px-6 py-8 sm:px-8 lg:px-10 print:max-w-none print:px-0 print:py-0">
-        <div className="mb-8 flex flex-col gap-4 border-b border-zinc-200 pb-6 sm:flex-row sm:items-center sm:justify-between print:hidden">
-          <Link
-            href="/"
-            className="text-sm font-semibold text-teal-800 underline-offset-4 hover:underline"
-          >
-            Back to portfolio
-          </Link>
-          <PrintButton />
+        <div className="mb-8 flex flex-col gap-4 border-b border-zinc-200 pb-6 print:hidden">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <Link
+              href="/"
+              className="text-sm font-semibold text-teal-800 underline-offset-4 hover:underline"
+            >
+              Back to portfolio
+            </Link>
+
+            <div className="flex flex-wrap items-center gap-2">
+              {Object.entries(roleLabels).map(([role, label]) => {
+                const active = role === selection.role;
+
+                return (
+                  <Link
+                    key={role}
+                    href={roleHref(role as keyof typeof roleLabels)}
+                    aria-current={active ? "page" : undefined}
+                    className={[
+                      "inline-flex h-10 items-center justify-center rounded-md border px-3 text-sm font-medium transition",
+                      active
+                        ? "border-teal-700 bg-teal-50 text-teal-900"
+                        : "border-zinc-300 bg-white text-zinc-900 hover:border-teal-700 hover:text-teal-800",
+                    ].join(" ")}
+                  >
+                    {label}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <a
+              href={jsonHref}
+              className="inline-flex h-10 items-center justify-center rounded-md border border-zinc-300 bg-white px-3 text-sm font-medium text-zinc-900 transition hover:border-teal-700 hover:text-teal-800"
+              download={buildCvExportFilename(selection.role, selection.lang, "json")}
+            >
+              Download JSON
+            </a>
+            <a
+              href={markdownHref}
+              className="inline-flex h-10 items-center justify-center rounded-md border border-zinc-300 bg-white px-3 text-sm font-medium text-zinc-900 transition hover:border-teal-700 hover:text-teal-800"
+              download={buildCvExportFilename(selection.role, selection.lang, "md")}
+            >
+              Download Markdown
+            </a>
+            <PrintButton />
+          </div>
         </div>
 
         <article className="bg-white p-6 shadow-sm ring-1 ring-zinc-200 sm:p-10 print:p-0 print:shadow-none print:ring-0">

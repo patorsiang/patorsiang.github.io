@@ -315,3 +315,11 @@ export function getRoleConfig(role: CvRoleId): CvRoleConfig {
 
   return roleConfig;
 }
+
+export function isCvRoleId(value: string): value is CvRoleId {
+  return value in roleConfigs;
+}
+
+export function isCvLanguage(value: string): value is CvLanguage {
+  return value === "en";
+}
