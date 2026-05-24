@@ -1,9 +1,16 @@
 import { experiences, profile, projects, skills } from "@patorsiang/content";
+import { generateCV } from "@patorsiang/cv-engine";
 import Link from "next/link";
 
 type ExperienceItem = (typeof experiences)[number];
 
-const featuredProjects = projects.filter((project) => project.placement === "featured-project");
+const projectOrder = new Set(
+  generateCV("fullstack_engineer", "en").projects.map((project) => project.id),
+);
+
+const featuredProjects = projects.filter(
+  (project) => project.placement === "featured-project" && projectOrder.has(project.id),
+);
 
 const workExperiences = experiences.filter(
   (experience) => experience.type === "work" || experience.type === "internship",

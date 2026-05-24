@@ -33,6 +33,7 @@ export type Project = ContentMeta & {
   readonly summary: TranslatableText;
   readonly role: TranslatableText;
   readonly techStack: readonly string[];
+  readonly tags: readonly string[];
   readonly highlights: readonly TranslatableText[];
   readonly links: readonly Link[];
   readonly placement: ProjectPlacement;

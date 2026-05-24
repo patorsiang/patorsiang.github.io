@@ -47,6 +47,7 @@ export const projectSchema = contentMetaSchema.extend({
   summary: translatableTextSchema,
   role: translatableTextSchema,
   techStack: z.array(z.string()),
+  tags: z.array(z.string()),
   highlights: z.array(translatableTextSchema),
   links: z.array(linkSchema),
   placement: projectPlacementSchema,

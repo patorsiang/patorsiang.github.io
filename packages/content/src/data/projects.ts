@@ -19,6 +19,16 @@ export const projects = [
     },
     role: { en: "Designer and developer" },
     techStack: ["FastAPI", "Python", "React", "Redis", "TensorFlow", "Docker"],
+    tags: [
+      "ai",
+      "machine-learning",
+      "python",
+      "backend",
+      "frontend",
+      "web",
+      "blockchain",
+      "software-engineering",
+    ],
     highlights: [
       {
         en: "Designed an applied machine-learning workflow for cryptocurrency rug pull detection.",
@@ -54,6 +64,7 @@ export const projects = [
     },
     role: { en: "Developer" },
     techStack: ["C++", "Next.js", "Arduino"],
+    tags: ["iot", "web", "frontend", "nextjs", "software-engineering"],
     highlights: [
       { en: "Connected hardware sensor data with a web application." },
       {
@@ -87,6 +98,15 @@ export const projects = [
     },
     role: { en: "Developer" },
     techStack: ["Python", "TensorFlow", "Transfer Learning"],
+    tags: [
+      "ai",
+      "machine-learning",
+      "deep-learning",
+      "computer-vision",
+      "python",
+      "tensorflow",
+      "academic",
+    ],
     highlights: [
       { en: "Implemented transfer learning with EfficientNetV2." },
       {
@@ -120,6 +140,7 @@ export const projects = [
     },
     role: { en: "Developer" },
     techStack: ["Java", "OOP"],
+    tags: ["software-engineering", "java", "oop", "academic"],
     highlights: [
       {
         en: "Modelled transaction and inventory flows with object-oriented design.",
@@ -153,6 +174,7 @@ export const projects = [
     },
     role: { en: "Developer" },
     techStack: ["Python", "RSA", "Cryptography"],
+    tags: ["security", "cryptography", "python", "academic"],
     highlights: [
       { en: "Implemented RSA encryption and decryption in Python." },
       {
@@ -186,6 +208,15 @@ export const projects = [
     },
     role: { en: "Developer" },
     techStack: ["PWA", "JavaScript", "Node.js", "MongoDB"],
+    tags: [
+      "web",
+      "frontend",
+      "backend",
+      "javascript",
+      "nodejs",
+      "database",
+      "software-engineering",
+    ],
     highlights: [
       { en: "Built offline-capable web and mobile experiences." },
       {
