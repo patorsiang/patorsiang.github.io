@@ -1,5 +1,11 @@
 import type { Experience, Project, SkillGroupId } from "@patorsiang/content";
-import type { ProjectScoreBreakdown } from "./project-ranking";
+import type { ExperienceRankDebug } from "./experience-selection";
+import type { ProjectRankDebug } from "./project-ranking";
+import type { BaseCvRankDebug } from "./types";
+
+export type { BaseCvRankDebug } from "./types";
+export type { ExperienceRankDebug } from "./experience-selection";
+export type { ProjectRankDebug } from "./project-ranking";
 
 export type CvRoleId = "fullstack_engineer" | "ai_ml_engineer" | "security_engineer";
 export type CvLanguage = "en";
@@ -14,12 +20,7 @@ export type CvSectionId =
   | "awards"
   | "languages";
 
-export type CvRankDebug = {
-  readonly score: number;
-  readonly priorityScore?: number;
-  readonly matchedKeywords: readonly string[];
-  readonly scoreBreakdown?: ProjectScoreBreakdown;
-};
+export type CvRankDebug = BaseCvRankDebug;
 
 export type CvLink = {
   readonly label: string;
@@ -50,7 +51,7 @@ export type GeneratedCvExperience = {
   readonly summary: string;
   readonly bullets: readonly string[];
   readonly skills: readonly string[];
-  readonly rankDebug: CvRankDebug;
+  readonly rankDebug: ExperienceRankDebug;
 };
 
 export type GeneratedCvProject = {
@@ -60,7 +61,7 @@ export type GeneratedCvProject = {
   readonly summary: string;
   readonly technologies: readonly string[];
   readonly links: readonly CvLink[];
-  readonly rankDebug: CvRankDebug;
+  readonly rankDebug: ProjectRankDebug;
 };
 
 export type GeneratedCvEducation = {

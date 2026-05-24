@@ -4,17 +4,23 @@ import Link from "next/link";
 
 type ExperienceItem = (typeof experiences)[number];
 
-const projectOrder = new Map(
-  generateCV("fullstack_engineer", "en").projects.map((project, index) => [project.id, index]),
-);
+const cv = generateCV("fullstack_engineer", "en");
+
+const projectOrder = new Map(cv.projects.map((project, index) => [project.id, index]));
+
+const experienceOrder = new Map(cv.experience.map((experience, index) => [experience.id, index]));
 
 const featuredProjects = projects.filter(
   (project) => project.placement === "featured-project" && projectOrder.has(project.id),
 ).sort((a, b) => (projectOrder.get(a.id) ?? 0) - (projectOrder.get(b.id) ?? 0));
 
-const workExperiences = experiences.filter(
-  (experience) => experience.type === "work" || experience.type === "internship",
-);
+const workExperiences = experiences
+  .filter(
+    (experience) =>
+      (experience.type === "work" || experience.type === "internship") &&
+      experienceOrder.has(experience.id),
+  )
+  .sort((a, b) => (experienceOrder.get(a.id) ?? 0) - (experienceOrder.get(b.id) ?? 0));
 
 const educationExperiences = experiences.filter((experience) => experience.type === "education");
 

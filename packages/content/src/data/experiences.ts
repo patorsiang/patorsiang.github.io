@@ -28,6 +28,15 @@ export const experiences = [
       },
     ],
     skills: ["React", "Next.js", "WordPress", "Cloud Hosting"],
+    tags: [
+      "frontend",
+      "web",
+      "react",
+      "nextjs",
+      "dashboard",
+      "cloud",
+      "software-engineering",
+    ],
   },
   {
     id: "experience.datawow-frontend-developer",
@@ -53,6 +62,17 @@ export const experiences = [
       },
     ],
     skills: ["Next.js", "React", "Ruby", "AWS", "Agile"],
+    tags: [
+      "frontend",
+      "web",
+      "react",
+      "nextjs",
+      "dashboard",
+      "cloud",
+      "privacy-tech",
+      "real-time",
+      "software-engineering",
+    ],
   },
   {
     id: "experience.bank-of-thailand-system-analyst",
@@ -78,6 +98,16 @@ export const experiences = [
       { en: "Automated repetitive workflows using UiPath RPA." },
     ],
     skills: ["Angular", "Node.js", "Go", "Hyperledger Fabric", "Java", "UiPath"],
+    tags: [
+      "backend",
+      "blockchain",
+      "fintech",
+      "nodejs",
+      "go",
+      "java",
+      "automation",
+      "software-engineering",
+    ],
   },
   {
     id: "experience.kbtg-blockchain-developer-internship",
@@ -100,6 +130,14 @@ export const experiences = [
       },
     ],
     skills: ["React", "Go", "Stellar", "Blockchain", "Agile"],
+    tags: [
+      "frontend",
+      "backend",
+      "blockchain",
+      "react",
+      "go",
+      "software-engineering",
+    ],
   },
   {
     id: "experience.beid-frontend-developer-internship",
@@ -115,6 +153,7 @@ export const experiences = [
     summary: { en: "Developed dashboard and landing-page interfaces." },
     highlights: [{ en: "Developed a dashboard and landing page using React." }],
     skills: ["React"],
+    tags: ["frontend", "web", "react", "dashboard", "software-engineering"],
   },
   {
     id: "education.university-of-kent-msc-advanced-computer-science",
@@ -139,6 +178,15 @@ export const experiences = [
       },
     ],
     skills: ["AI", "Deep Learning", "Computer Security", "IoT", "Python"],
+    tags: [
+      "ai",
+      "deep-learning",
+      "computer-security",
+      "iot",
+      "python",
+      "quantum-computing",
+      "academic",
+    ],
   },
   {
     id: "education.mahidol-ict-bsc",
@@ -163,6 +211,7 @@ export const experiences = [
       },
     ],
     skills: ["Web Programming", "Databases", "Algorithms", "HCI", "PWA"],
+    tags: ["web", "databases", "algorithms", "pwa", "academic"],
   },
   {
     id: "education.ramkhamhaeng-laws",
@@ -184,5 +233,6 @@ export const experiences = [
       },
     ],
     skills: ["Law", "Intellectual Property", "Computer-Related Law"],
+    tags: ["law", "intellectual-property", "computer-related-law", "academic"],
   },
 ] as const satisfies readonly Experience[];

@@ -14,4 +14,5 @@ export type Experience = ContentMeta & {
   readonly summary: TranslatableText;
   readonly highlights: readonly TranslatableText[];
   readonly skills: readonly string[];
+  readonly tags: readonly string[];
 };

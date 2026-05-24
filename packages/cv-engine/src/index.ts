@@ -14,6 +14,8 @@ import {
   type CvLink,
   type CvLanguage,
   type CvRankDebug,
+  type ExperienceRankDebug,
+  type ProjectRankDebug,
   type CvRoleConfig,
   type CvRoleId,
   type CvSectionId,
@@ -28,14 +30,17 @@ import {
   getRoleConfig,
   roleConfigs,
 } from "./config";
+import { selectExperiencesForRole, type RankedExperience } from "./experience-selection";
 import { filterProjectsForRole } from "./project-filter";
 import { normalizeTag } from "./normalize";
 import { rankProjectsForRole, type RankedProject } from "./project-ranking";
 
 export type {
+  CvRankDebug,
+  ExperienceRankDebug,
+  ProjectRankDebug,
   CvHeader,
   CvLanguage,
-  CvRankDebug,
   CvRoleConfig,
   CvRoleId,
   CvSectionId,
@@ -48,8 +53,16 @@ export type {
   GeneratedCvSkillGroup,
 };
 
-export { filterProjectsForRole, getRoleConfig, roleConfigs, rankProjectsForRole };
+export {
+  filterProjectsForRole,
+  getRoleConfig,
+  roleConfigs,
+  rankProjectsForRole,
+  selectExperiencesForRole,
+};
+export type { BaseCvRankDebug } from "./types";
 export type { ProjectScoreBreakdown, RankedProject } from "./project-ranking";
+export type { ExperienceScoreBreakdown, RankedExperience } from "./experience-selection";
 
 export function generateCV(role: CvRoleId, lang: CvLanguage): GeneratedCV {
   const roleConfig = getRoleConfig(role);
@@ -62,6 +75,10 @@ export function generateCV(role: CvRoleId, lang: CvLanguage): GeneratedCV {
     filterProjectsForRole(projects, roleConfig, lang),
     roleConfig,
   ).slice(0, roleConfig.limits.maxProjects);
+  const rankedExperiences = selectExperiencesForRole(experiences, roleConfig, lang).slice(
+    0,
+    roleConfig.limits.maxExperienceItems,
+  );
 
   const education = publicEnglishExperiences()
     .filter((experience) => experience.type === "education")
@@ -94,15 +111,9 @@ export function generateCV(role: CvRoleId, lang: CvLanguage): GeneratedCV {
       text: buildSummary(roleConfig, lang),
     },
     skills: buildSkills(roleConfig, lang),
-    experience: publicEnglishExperiences()
-      .filter((experience) => experience.type === "work" || experience.type === "internship")
-      .map((experience) => ({
-        item: experience,
-        debug: rankExperience(experience, roleConfig),
-      }))
-      .sort(compareRankedItems)
-      .slice(0, roleConfig.limits.maxExperienceItems)
-      .map(({ item, debug }) => toGeneratedExperience(item, debug, roleConfig, lang)),
+    experience: rankedExperiences.map((rankedExperience) =>
+      toGeneratedExperience(rankedExperience, roleConfig, lang),
+    ),
     projects: filteredProjects.map((project) => toGeneratedProject(project.project, project, lang)),
     education,
     awards,
@@ -191,42 +202,19 @@ function orderSkillItems(skillGroup: SkillGroup, roleConfig: CvRoleConfig): read
   });
 }
 
-function rankExperience(experience: Experience, roleConfig: CvRoleConfig): CvRankDebug {
-  const searchValues = [
-    text(experience.title, "en"),
-    text(experience.organization, "en"),
-    text(experience.summary, "en"),
-    ...experience.highlights.map((highlight) => text(highlight, "en")),
-    ...experience.skills,
-  ];
-  const searchText = normalizeSearchText(searchValues);
-  const matchedKeywords = matchedRoleKeywords(searchText, roleConfig);
-  const roleMatch = overlapScore(searchText, [
-    ...roleConfig.requiredTags,
-    ...roleConfig.preferredTags,
-  ]);
-  const keywordMatch = overlapScore(searchText, roleConfig.atsKeywords);
-  const typeBoost = roleConfig.priorityExperienceTypes.includes(experience.type) ? 0.1 : 0;
-  const impact = impactScore([
-    text(experience.summary, "en"),
-    ...experience.highlights.map((highlight) => text(highlight, "en")),
-  ]);
-  const recency = recencyScore(experience.endDate, experience.current);
-
-  return {
-    score: roundScore(
-      roleMatch * 0.35 + keywordMatch * 0.25 + impact * 0.15 + recency * 0.15 + typeBoost,
-    ),
-    matchedKeywords,
-  };
-}
-
 function toGeneratedExperience(
-  item: Experience,
-  rankDebug: CvRankDebug,
+  rankedExperience: RankedExperience,
   roleConfig: CvRoleConfig,
   lang: CvLanguage,
 ): GeneratedCvExperience {
+  const item = rankedExperience.experience;
+  const rankDebug: ExperienceRankDebug = {
+    score: rankedExperience.relevanceScore,
+    relevanceScore: rankedExperience.relevanceScore,
+    matchedKeywords: rankedExperience.matchedKeywords,
+    scoreBreakdown: rankedExperience.scoreBreakdown,
+  };
+
   return {
     id: item.id,
     title: text(item.title, lang),
@@ -248,7 +236,12 @@ function toGeneratedProject(
   rankedProject: RankedProject,
   lang: CvLanguage,
 ): GeneratedCvProject {
-  const { priorityScore, matchedKeywords, scoreBreakdown } = rankedProject;
+  const rankDebug: ProjectRankDebug = {
+    score: rankedProject.priorityScore,
+    priorityScore: rankedProject.priorityScore,
+    matchedKeywords: rankedProject.matchedKeywords,
+    scoreBreakdown: rankedProject.scoreBreakdown,
+  };
 
   return {
     id: item.id,
@@ -257,20 +250,8 @@ function toGeneratedProject(
     summary: text(item.summary, lang),
     technologies: item.techStack,
     links: item.links.map((link) => toCvLink(link, lang)),
-    rankDebug: {
-      score: priorityScore,
-      priorityScore,
-      matchedKeywords,
-      scoreBreakdown,
-    },
+    rankDebug,
   };
-}
-
-function compareRankedItems(
-  a: { readonly debug: CvRankDebug },
-  b: { readonly debug: CvRankDebug },
-): number {
-  return b.debug.score - a.debug.score;
 }
 
 function compareExperienceDates(a: Experience, b: Experience): number {
@@ -320,77 +301,6 @@ function buildWarnings(
   }
 
   return warnings;
-}
-
-function matchedRoleKeywords(searchText: string, roleConfig: CvRoleConfig): readonly string[] {
-  return [
-    ...roleConfig.atsKeywords,
-    ...roleConfig.requiredTags,
-    ...roleConfig.preferredTags,
-  ].filter((keyword) => searchText.includes(normalizeTag(keyword)));
-}
-
-function overlapScore(searchText: string, keywords: readonly string[]): number {
-  if (keywords.length === 0) {
-    return 0;
-  }
-
-  const matchedCount = keywords.filter((keyword) =>
-    searchText.includes(normalizeTag(keyword)),
-  ).length;
-
-  return matchedCount / keywords.length;
-}
-
-function impactScore(lines: readonly string[]): number {
-  const impactTerms = [
-    "built",
-    "designed",
-    "developed",
-    "delivered",
-    "improved",
-    "automated",
-    "reduced",
-  ];
-
-  return overlapScore(normalizeSearchText(lines), impactTerms);
-}
-
-function recencyScore(endDate?: string, current?: boolean): number {
-  if (current || !endDate) {
-    return 1;
-  }
-
-  const year = Number.parseInt(endDate.slice(0, 4), 10);
-
-  if (Number.isNaN(year)) {
-    return 0.4;
-  }
-
-  return yearScore(year);
-}
-
-function yearScore(year: number): number {
-  const currentYear = new Date().getFullYear();
-  const age = currentYear - year;
-
-  if (age <= 1) {
-    return 1;
-  }
-
-  if (age <= 2) {
-    return 0.8;
-  }
-
-  if (age <= 5) {
-    return 0.5;
-  }
-
-  return 0.2;
-}
-
-function normalizeSearchText(values: readonly string[]): string {
-  return values.map(normalizeTag).join("");
 }
 
 function normalizedSet(values: readonly string[]): ReadonlySet<string> {

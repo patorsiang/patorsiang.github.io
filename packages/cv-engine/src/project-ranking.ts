@@ -1,6 +1,7 @@
 import type { Project } from "@patorsiang/content";
 import type { CvRoleConfig } from "./config";
 import { normalizeTag } from "./normalize";
+import type { BaseCvRankDebug } from "./types";
 
 export type ProjectScoreBreakdown = {
   readonly requiredTagMatch: number;
@@ -10,6 +11,11 @@ export type ProjectScoreBreakdown = {
   readonly evidenceScore: number;
   readonly freshnessScore: number;
   readonly placementBoost: number;
+};
+
+export type ProjectRankDebug = BaseCvRankDebug & {
+  readonly priorityScore: number;
+  readonly scoreBreakdown: ProjectScoreBreakdown;
 };
 
 export type RankedProject = {

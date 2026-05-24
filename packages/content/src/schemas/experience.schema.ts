@@ -21,4 +21,5 @@ export const experienceSchema = contentMetaSchema.extend({
   summary: translatableTextSchema,
   highlights: z.array(translatableTextSchema),
   skills: z.array(z.string()),
+  tags: z.array(z.string()),
 });
