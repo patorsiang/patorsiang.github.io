@@ -37,6 +37,7 @@ export type CvHeader = {
 
 export type GeneratedCvSkillGroup = {
   readonly id: string;
+  readonly category: SkillGroupId;
   readonly group: string;
   readonly items: readonly string[];
 };

@@ -6,7 +6,6 @@ import {
   type Experience,
   type Link,
   type Project,
-  type SkillGroup,
   type TranslatableText,
 } from "@patorsiang/content";
 import {
@@ -33,6 +32,7 @@ import {
 import { selectExperiencesForRole, type RankedExperience } from "./experience-selection";
 import { filterProjectsForRole } from "./project-filter";
 import { normalizeTag } from "./normalize";
+import { groupSkillsForRole } from "./skill-grouping";
 import { rankProjectsForRole, type RankedProject } from "./project-ranking";
 
 export type {
@@ -56,6 +56,7 @@ export type {
 export {
   filterProjectsForRole,
   getRoleConfig,
+  groupSkillsForRole,
   roleConfigs,
   rankProjectsForRole,
   selectExperiencesForRole,
@@ -63,6 +64,7 @@ export {
 export type { BaseCvRankDebug } from "./types";
 export type { ProjectScoreBreakdown, RankedProject } from "./project-ranking";
 export type { ExperienceScoreBreakdown, RankedExperience } from "./experience-selection";
+export type { GroupedSkillCategory } from "./skill-grouping";
 
 export function generateCV(role: CvRoleId, lang: CvLanguage): GeneratedCV {
   const roleConfig = getRoleConfig(role);
@@ -110,7 +112,12 @@ export function generateCV(role: CvRoleId, lang: CvLanguage): GeneratedCV {
     summary: {
       text: buildSummary(roleConfig, lang),
     },
-    skills: buildSkills(roleConfig, lang),
+    skills: groupSkillsForRole(skills, roleConfig, lang).map((skillGroup) => ({
+      id: skillGroup.id,
+      category: skillGroup.category,
+      group: skillGroup.label,
+      items: skillGroup.items,
+    })),
     experience: rankedExperiences.map((rankedExperience) =>
       toGeneratedExperience(rankedExperience, roleConfig, lang),
     ),
@@ -134,36 +141,6 @@ function buildSummary(roleConfig: CvRoleConfig, lang: CvLanguage): string {
   ].join(" ");
 }
 
-function buildSkills(roleConfig: CvRoleConfig, lang: CvLanguage): readonly GeneratedCvSkillGroup[] {
-  return skills
-    .filter((group) => group.visibility === "public" && group.locale === "en")
-    .map((skillGroup) => ({
-      skillGroup,
-      priorityIndex: roleConfig.prioritySkillGroups.indexOf(skillGroup.groupId),
-    }))
-    .filter(({ skillGroup }) => skillGroup.groupId !== "languages")
-    .sort((a, b) => {
-      if (a.priorityIndex === -1 && b.priorityIndex === -1) {
-        return text(a.skillGroup.label, lang).localeCompare(text(b.skillGroup.label, lang));
-      }
-
-      if (a.priorityIndex === -1) {
-        return 1;
-      }
-
-      if (b.priorityIndex === -1) {
-        return -1;
-      }
-
-      return a.priorityIndex - b.priorityIndex;
-    })
-    .map(({ skillGroup }) => ({
-      id: skillGroup.id,
-      group: text(skillGroup.label, lang),
-      items: orderSkillItems(skillGroup, roleConfig).slice(0, roleConfig.limits.maxSkillsPerGroup),
-    }));
-}
-
 function buildLanguages(lang: CvLanguage): readonly GeneratedCvLanguage[] {
   const languageGroup = skills
     .filter((group) => group.visibility === "public" && group.locale === "en")
@@ -180,25 +157,6 @@ function buildLanguages(lang: CvLanguage): readonly GeneratedCvLanguage[] {
       name: name.trim(),
       level: levelParts.join(":").trim() || text(languageGroup.label, lang),
     };
-  });
-}
-
-function orderSkillItems(skillGroup: SkillGroup, roleConfig: CvRoleConfig): readonly string[] {
-  const priorityTerms = normalizedSet([
-    ...roleConfig.requiredTags,
-    ...roleConfig.preferredTags,
-    ...roleConfig.atsKeywords,
-  ]);
-
-  return [...skillGroup.items].sort((a, b) => {
-    const aPriority = priorityTerms.has(normalizeTag(a));
-    const bPriority = priorityTerms.has(normalizeTag(b));
-
-    if (aPriority === bPriority) {
-      return a.localeCompare(b);
-    }
-
-    return aPriority ? -1 : 1;
   });
 }
 
@@ -301,14 +259,6 @@ function buildWarnings(
   }
 
   return warnings;
-}
-
-function normalizedSet(values: readonly string[]): ReadonlySet<string> {
-  return new Set(values.map(normalizeTag));
-}
-
-function roundScore(value: number): number {
-  return Math.round(Math.min(value, 1) * 100) / 100;
 }
 
 function text(value: TranslatableText, lang: CvLanguage): string {

@@ -1,4 +1,4 @@
-import { experiences, profile, projects, skills } from "@patorsiang/content";
+import { experiences, profile, projects } from "@patorsiang/content";
 import { generateCV } from "@patorsiang/cv-engine";
 import Link from "next/link";
 
@@ -149,13 +149,13 @@ export default function Home() {
         <section>
           <SectionHeading eyebrow="Skills" title="Core skill groups." />
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {skills.map((group) => (
+            {cv.skills.map((group) => (
               <article
                 key={group.id}
                 className="rounded-lg border border-zinc-200 bg-white p-5 shadow-sm"
               >
                 <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-zinc-950">
-                  {group.label.en}
+                  {group.group}
                 </h3>
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {group.items.map((item) => (
