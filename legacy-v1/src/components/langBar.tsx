@@ -10,7 +10,7 @@ import { locales } from "#/i18n";
 
 import { useSplitPathname } from "@/utils/hooks/useSplitPathname";
 
-export default function LanguageBar({ lang }: { lang: string }) {
+export default function LanguageBar({ lang }: Readonly<{ lang: string }>) {
   const router = useRouter();
   const { currentPath, currentLang } = useSplitPathname();
 

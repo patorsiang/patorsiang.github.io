@@ -2,18 +2,50 @@ import { isCvLanguage, isCvRoleId, type CvLanguage, type CvRoleId } from "@pator
 
 export const defaultCvRole: CvRoleId = "fullstack_engineer";
 export const defaultCvLanguage: CvLanguage = "en";
+export const defaultCvRouteLanguage: CvRouteLanguage = "en";
+
+export type CvRouteLanguage = "en" | "th";
 
 export type CvSelection = {
   readonly role: CvRoleId;
   readonly lang: CvLanguage;
 };
 
+export type CvRouteSelection = {
+  readonly role: CvRoleId;
+  readonly routeLang: CvRouteLanguage;
+  readonly engineLang: CvLanguage;
+};
+
 type SearchParamSource = Record<string, string | string[] | undefined> | URLSearchParams;
+
+const roleSlugById = {
+  fullstack_engineer: "fullstack-engineer",
+  ai_ml_engineer: "ai-ml-engineer",
+  security_engineer: "security-engineer",
+} as const satisfies Record<CvRoleId, string>;
+
+const roleIdBySlug: Readonly<Record<string, CvRoleId | undefined>> = {
+  "fullstack-engineer": "fullstack_engineer",
+  "ai-ml-engineer": "ai_ml_engineer",
+  "security-engineer": "security_engineer",
+};
 
 export function resolveCvSelection(source: SearchParamSource): CvSelection {
   return parseCvSelection(source) ?? {
     role: defaultCvRole,
     lang: defaultCvLanguage,
+  };
+}
+
+export function resolveLegacyCvRouteSelection(source: SearchParamSource): CvRouteSelection {
+  const role = getFirstValue(source, "role");
+  const routeLang = resolveCvRouteLanguage(source);
+
+  return {
+    role: role && isCvRoleId(role) ? role : defaultCvRole,
+    routeLang,
+    engineLang: resolveCvEngineLanguage(routeLang),
   };
 }
 
@@ -30,6 +62,31 @@ export function parseCvSelection(source: SearchParamSource): CvSelection | null 
   }
 
   return { role, lang };
+}
+
+export function resolveCvRouteLanguage(source: SearchParamSource): CvRouteLanguage {
+  const lang = getFirstValue(source, "lang");
+  return lang === "en" || lang === "th" ? lang : defaultCvRouteLanguage;
+}
+
+export function resolveCvEngineLanguage(routeLang: CvRouteLanguage): CvLanguage {
+  if (isCvLanguage(routeLang)) {
+    return routeLang;
+  }
+
+  return defaultCvLanguage;
+}
+
+export function cvRoleSlugToId(slug: string): CvRoleId | null {
+  return roleIdBySlug[slug] ?? null;
+}
+
+export function cvRoleIdToSlug(role: CvRoleId): (typeof roleSlugById)[CvRoleId] {
+  return roleSlugById[role];
+}
+
+export function buildCanonicalCvHref(role: CvRoleId, lang: CvRouteLanguage): string {
+  return `/cv/${cvRoleIdToSlug(role)}?lang=${lang}`;
 }
 
 export function buildCvExportFilename(role: CvRoleId, lang: CvLanguage, extension: "json" | "md") {
