@@ -5,10 +5,7 @@ export type MarkdownExportOptions = {
   readonly includeDebug?: boolean;
 };
 
-export function exportCVAsMarkdown(
-  cv: GeneratedCV,
-  options: MarkdownExportOptions = {},
-): string {
+export function exportCVAsMarkdown(cv: GeneratedCV, options: MarkdownExportOptions = {}): string {
   const includeDebug = options.includeDebug ?? false;
   const labels = markdownLabels[cv.meta.language];
   const lines: string[] = [];
@@ -17,7 +14,9 @@ export function exportCVAsMarkdown(
   lines.push("");
   lines.push(`**${escapeMarkdown(cv.header.targetTitle)}**`);
   lines.push(escapeMarkdown(cv.header.location));
-  lines.push(`${labels.email}: ${formatMarkdownLink(cv.header.email, `mailto:${cv.header.email}`)}`);
+  lines.push(
+    `${labels.email}: ${formatMarkdownLink(cv.header.email, `mailto:${cv.header.email}`)}`,
+  );
   for (const link of cv.header.links) {
     lines.push(`${escapeMarkdown(link.label)}: ${formatMarkdownLink(link.label, link.url)}`);
   }
@@ -40,7 +39,9 @@ export function exportCVAsMarkdown(
     lines.push(`## ${labels.experience}`);
     lines.push("");
     for (const experience of cv.experience) {
-      lines.push(`### ${escapeMarkdown(experience.title)} — ${escapeMarkdown(experience.organization)}`);
+      lines.push(
+        `### ${escapeMarkdown(experience.title)} — ${escapeMarkdown(experience.organization)}`,
+      );
       lines.push("");
       lines.push(
         `*${escapeMarkdown(experience.location)} · ${escapeMarkdown(
@@ -75,7 +76,9 @@ export function exportCVAsMarkdown(
       lines.push(escapeMarkdown(project.summary));
       lines.push("");
       if (project.technologies.length > 0) {
-        lines.push(`**${labels.technologies}:** ${project.technologies.map(escapeMarkdown).join(", ")}`);
+        lines.push(
+          `**${labels.technologies}:** ${project.technologies.map(escapeMarkdown).join(", ")}`,
+        );
       }
       if (project.links.length > 0) {
         lines.push(
@@ -93,7 +96,9 @@ export function exportCVAsMarkdown(
     lines.push(`## ${labels.education}`);
     lines.push("");
     for (const education of cv.education) {
-      lines.push(`### ${escapeMarkdown(education.degree)} — ${escapeMarkdown(education.organization)}`);
+      lines.push(
+        `### ${escapeMarkdown(education.degree)} — ${escapeMarkdown(education.organization)}`,
+      );
       lines.push("");
       lines.push(
         `*${escapeMarkdown(education.location)} · ${escapeMarkdown(
@@ -209,7 +214,11 @@ function formatMarkdownLink(label: string, url: string): string {
 }
 
 function escapeMarkdown(value: string): string {
-  return value.replaceAll("\\", "\\\\").replaceAll("[", "\\[").replaceAll("]", "\\]").replaceAll("|", "\\|");
+  return value
+    .replaceAll("\\", "\\\\")
+    .replaceAll("[", "\\[")
+    .replaceAll("]", "\\]")
+    .replaceAll("|", "\\|");
 }
 
 function formatDateRange(startDate: string, endDate?: string): string {

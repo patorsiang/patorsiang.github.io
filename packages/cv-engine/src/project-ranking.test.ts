@@ -162,7 +162,9 @@ describe("rankProjectsForRole", () => {
     const result = rankProjectsForRole([weak, strong], baseRoleConfig, 2025);
 
     expect(result[0].project.id).toBe("project.strong-keyword");
-    expect(result[0].scoreBreakdown.keywordMatch).toBeGreaterThan(result[1].scoreBreakdown.keywordMatch);
+    expect(result[0].scoreBreakdown.keywordMatch).toBeGreaterThan(
+      result[1].scoreBreakdown.keywordMatch,
+    );
   });
 
   test("scores prioritized categories higher", () => {
@@ -380,7 +382,9 @@ describe("rankProjectsForRole integration", () => {
       const cv = generateCV(roleId, "en");
 
       for (let index = 1; index < cv.projects.length; index += 1) {
-        expect(cv.projects[index - 1].rankDebug.priorityScore ?? cv.projects[index - 1].rankDebug.score).toBeGreaterThanOrEqual(
+        expect(
+          cv.projects[index - 1].rankDebug.priorityScore ?? cv.projects[index - 1].rankDebug.score,
+        ).toBeGreaterThanOrEqual(
           cv.projects[index].rankDebug.priorityScore ?? cv.projects[index].rankDebug.score,
         );
       }

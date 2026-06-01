@@ -24,11 +24,7 @@ Supported language:
 ## Usage
 
 ```ts
-import {
-  buildCVOutput,
-  generateCVJSON,
-  generateCVMarkdown,
-} from "@patorsiang/cv-engine";
+import { buildCVOutput, generateCVJSON, generateCVMarkdown } from "@patorsiang/cv-engine";
 
 const cv = buildCVOutput("fullstack_engineer", "en");
 const json = generateCVJSON("fullstack_engineer", "en");

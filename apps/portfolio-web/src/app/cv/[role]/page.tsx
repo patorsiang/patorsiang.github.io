@@ -1,10 +1,6 @@
 import { isCvLanguage } from "@patorsiang/cv-engine";
 import { notFound, redirect } from "next/navigation";
-import {
-  buildCanonicalCvHref,
-  cvRoleSlugToId,
-  defaultCvLanguage,
-} from "../cv-request";
+import { buildCanonicalCvHref, cvRoleSlugToId, defaultCvLanguage } from "../cv-request";
 
 type Params = { role: string } | Promise<{ role: string }>;
 type SearchParams =

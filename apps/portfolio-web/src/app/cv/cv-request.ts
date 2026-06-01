@@ -30,10 +30,12 @@ const roleIdBySlug: Readonly<Record<string, CvRoleId | undefined>> = {
 };
 
 export function resolveCvSelection(source: SearchParamSource): CvSelection {
-  return parseCvSelection(source) ?? {
-    role: defaultCvRole,
-    lang: defaultCvLanguage,
-  };
+  return (
+    parseCvSelection(source) ?? {
+      role: defaultCvRole,
+      lang: defaultCvLanguage,
+    }
+  );
 }
 
 export function resolveLegacyCvRouteSelection(source: SearchParamSource): CvRouteSelection {

@@ -14,7 +14,9 @@ const sectionOrder: readonly CvSectionId[] = [
   "languages",
 ];
 
-const templateSkillGroup = skills.find((skillGroup) => skillGroup.groupId === "frontend") as SkillGroup;
+const templateSkillGroup = skills.find(
+  (skillGroup) => skillGroup.groupId === "frontend",
+) as SkillGroup;
 
 function makeSkillGroup(
   overrides: Partial<SkillGroup> & { readonly id: string; readonly groupId: SkillGroupId },
@@ -211,7 +213,12 @@ describe("groupSkillsForRole", () => {
       "en",
     );
 
-    expect(result[0].items).toEqual(["JavaScript/TypeScript", "Next.js", "Machine Learning", "Ruby"]);
+    expect(result[0].items).toEqual([
+      "JavaScript/TypeScript",
+      "Next.js",
+      "Machine Learning",
+      "Ruby",
+    ]);
   });
 
   test("does not mutate the source group or item arrays", () => {
@@ -246,7 +253,9 @@ describe("generateCV skill grouping", () => {
       "cloud-infrastructure",
       "security-blockchain",
     ]);
-    expect(cv.skills.every((group) => "category" in group && "group" in group && "items" in group)).toBe(true);
+    expect(
+      cv.skills.every((group) => "category" in group && "group" in group && "items" in group),
+    ).toBe(true);
     expect(cv.languages.length).toBeGreaterThan(0);
     expect(cv.languages.map((language) => language.name)).toContain("Thai");
   });

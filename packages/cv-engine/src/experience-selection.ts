@@ -41,7 +41,10 @@ export function selectExperiencesForRole(
     .filter((experience) => isEligibleExperience(experience, roleConfig, lang))
     .map((experience) => scoreExperience(experience, roleConfig, referenceYear))
     .sort(compareRankedExperiences)
-    .map(({ isCurrent: _isCurrent, endYear: _endYear, startYear: _startYear, ...experience }) => experience);
+    .map(
+      ({ isCurrent: _isCurrent, endYear: _endYear, startYear: _startYear, ...experience }) =>
+        experience,
+    );
 }
 
 function isEligibleExperience(
@@ -236,7 +239,10 @@ function overlapScore(searchText: string, keywords: readonly string[]): number {
   return matchedCount / keywords.length;
 }
 
-function matchedKeywordsForSearch(searchText: string, keywords: readonly string[]): readonly string[] {
+function matchedKeywordsForSearch(
+  searchText: string,
+  keywords: readonly string[],
+): readonly string[] {
   const matched = keywords.filter((keyword) => searchText.includes(normalizeTag(keyword)));
 
   return [...new Set(matched)];

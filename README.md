@@ -1,69 +1,98 @@
 # Patorsiang Portfolio Platform 2026
 
-This repository is the Bun-based 2026 portfolio platform monorepo for `patorsiang.github.io`.
+The **2026 Portfolio Platform** is a modern, monorepo-based system for Napatchol Thaipanich (`patorsiang`). It serves as a unified hub for professional identity, role-targeted CV generation, and experimental projects.
 
-`legacy-v1` contains the old/current production portfolio. The new main app will live in `apps/portfolio-web`. Phase 1 is foundation setup only; old production functionality is intentionally preserved.
+## Architecture Overview
 
-## Structure
+The platform is built as a high-performance monorepo using **Bun** and **Next.js**. It separates content from presentation and logic, enabling role-specific views and automated exports.
+
+### Repository Structure
 
 ```text
 .
 ├── apps/
-│   ├── portfolio-web/   New main portfolio app
-│   ├── playground/      Experiments, visual demos, and game ideas
-│   └── admin/           Optional future CMS/admin app
+│   ├── portfolio-web/    # Main Next.js portfolio application (2026 version)
+│   ├── playground/       # Experiments, visual demos, and game ideas
+│   └── admin/            # (Planned) CMS/Admin interface
 ├── packages/
-│   ├── ui/              Shared design system
-│   ├── content/         Structured profile, project, and blog data
-│   ├── cv-engine/       CV generation logic
-│   ├── configs/         Shared configuration presets
-│   └── utils/           Shared helpers
-├── docs/                Requirements, architecture, decisions, and backlog
-├── infra/               Deployment and operational setup
-└── legacy-v1/           Current production portfolio
+│   ├── content/          # Structured profile, project, and CV data (Zod/JSON)
+│   ├── cv-engine/        # Role-targeted CV logic (filtering, ranking, formatting)
+│   ├── ui/               # Shared design system components
+│   ├── configs/          # Shared configuration presets (ESLint, Prettier, TS)
+│   └── utils/            # Shared utility helpers
+├── docs/                 # Architecture, requirements, and design decisions
+├── infra/                # Infrastructure and deployment configurations
+└── legacy-v1/            # Previous production portfolio (current fallback)
 ```
 
-## Commands
+## Getting Started
 
-Install dependencies:
+### Prerequisites
+
+- [Bun](https://bun.sh/) (latest version)
+
+### Installation
 
 ```bash
 bun install
 ```
 
-Run the new portfolio app:
+### Development Commands
 
-```bash
-bun run dev
-bun run dev:portfolio
-```
+| Command                 | Description                                      |
+| :---------------------- | :----------------------------------------------- |
+| `bun run dev`           | Start the main portfolio app in development mode |
+| `bun run dev:portfolio` | Alias for `bun run dev`                          |
+| `bun run dev:legacy`    | Start the legacy-v1 portfolio app                |
 
-Run the legacy portfolio app:
+### Build & Quality
 
-```bash
-bun run dev:legacy
-```
+| Command                   | Description                                     |
+| :------------------------ | :---------------------------------------------- |
+| `bun run build`           | Build both the new portfolio and the legacy app |
+| `bun run build:portfolio` | Build the main Next.js portfolio                |
+| `bun run lint`            | Run ESLint across the workspace                 |
+| `bun run typecheck`       | Run TypeScript compiler checks                  |
+| `bun run format:check`    | Check file formatting with Prettier             |
 
-Build everything:
+## Core Packages
 
-```bash
-bun run build
-```
+### `@patorsiang/content`
 
-Lint and format:
+Contains the "source of truth" for the portfolio. Data is stored as JSON and validated via Zod schemas to ensure consistency across different applications and CV versions.
 
-```bash
-bun run lint
-bun run format
-bun run format:check
-```
+### `@patorsiang/cv-engine`
 
-## Secrets
+A specialized engine that generates role-targeted CVs. It handles:
 
-Do not commit real production deployment, New Relic, SonarCloud/SonarQube, Snyk, or Vercel secrets.
+- **Filtering**: Selecting relevant experiences and projects based on a targeted role.
+- **Ranking**: Prioritizing skills and highlights.
+- **Exporting**: Providing normalized data for Web, JSON, and Markdown formats.
 
-Use `.env.example` files for placeholder names only. Real values belong in GitHub Actions secrets, Vercel environment variables, New Relic account settings, SonarCloud/SonarQube settings, or Snyk settings.
+## Legacy Portfolio Policy
 
-## Deployment Status
+`legacy-v1` contains the previous/current production version of the portfolio.
 
-Deployment workflows are placeholders until staging and production hosting are finalized. `legacy-v1` may continue to serve the current production portfolio while `apps/portfolio-web` is developed.
+- **Do NOT delete** this directory.
+- It serves as the **current production fallback** until the 2026 platform is fully live.
+- Post-launch, it will be kept for migration reference and eventually archived.
+
+## Environment & Secrets
+
+- **Do not commit** real `.env` files.
+- Use `.env.example` as a template for local development.
+- Browser-safe variables must be prefixed with `NEXT_PUBLIC_`.
+- Private secrets belong in **Vercel Project Settings** or **GitHub Actions Secrets**.
+
+## Deployment
+
+The platform is configured for continuous deployment to **Vercel** via GitHub Actions.
+
+- Pushing to `main` triggers a production deployment of `portfolio-web`.
+- `legacy-v1` deployment is managed separately (see `infra/github-pages` or its own workflow).
+
+## Workflow Notes
+
+- Always run `bun run typecheck` before pushing changes.
+- Ensure `bun run lint` passes to maintain codebase standards.
+- Documentation for specific features can be found in the `docs/` directory.

@@ -22,7 +22,11 @@ import {
 } from "./config";
 import { buildCVOutput } from "./output-builder";
 import { exportCVAsJSON, generateCVJSON, type JsonExportOptions } from "./json-export";
-import { exportCVAsMarkdown, generateCVMarkdown, type MarkdownExportOptions } from "./markdown-export";
+import {
+  exportCVAsMarkdown,
+  generateCVMarkdown,
+  type MarkdownExportOptions,
+} from "./markdown-export";
 import { filterProjectsForRole } from "./project-filter";
 import { selectExperiencesForRole } from "./experience-selection";
 import { groupSkillsForRole } from "./skill-grouping";
@@ -71,14 +75,6 @@ export function generateCV(role: CvRoleId, lang: CvLanguage): GeneratedCV {
   return buildCVOutput(role, lang);
 }
 
-export {
-  type GroupedSkillCategory,
-} from "./skill-grouping";
-export {
-  type ProjectScoreBreakdown,
-  type RankedProject,
-} from "./project-ranking";
-export {
-  type ExperienceScoreBreakdown,
-  type RankedExperience,
-} from "./experience-selection";
+export { type GroupedSkillCategory } from "./skill-grouping";
+export { type ProjectScoreBreakdown, type RankedProject } from "./project-ranking";
+export { type ExperienceScoreBreakdown, type RankedExperience } from "./experience-selection";

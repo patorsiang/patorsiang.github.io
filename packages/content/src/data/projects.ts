@@ -10,7 +10,10 @@ export const projects = [
       url: "https://github.com/patorsiang/rugpull-detection-msc-kent-2025",
     },
     visibility: "public",
-    title: { en: "Cryptocurrency Rug Pull Detection", translated: { th: { value: "Cryptocurrency Rug Pull Detection", status: "ai_draft" } } },
+    title: {
+      en: "Cryptocurrency Rug Pull Detection",
+      translated: { th: { value: "Cryptocurrency Rug Pull Detection", status: "ai_draft" } },
+    },
     slug: "cryptocurrency-rug-pull-detection",
     category: "ai-ml",
     status: "prototype",
@@ -18,12 +21,16 @@ export const projects = [
       en: "Machine-learning system to detect and categorize fraudulent blockchain projects.",
       translated: {
         th: {
-          value: "ระบบ machine learning สำหรับตรวจจับและจัดหมวดหมู่โปรเจกต์ blockchain ที่มีลักษณะหลอกลวง",
+          value:
+            "ระบบ machine learning สำหรับตรวจจับและจัดหมวดหมู่โปรเจกต์ blockchain ที่มีลักษณะหลอกลวง",
           status: "ai_draft",
         },
       },
     },
-    role: { en: "Designer and developer", translated: { th: { value: "Designer และ developer", status: "ai_draft" } } },
+    role: {
+      en: "Designer and developer",
+      translated: { th: { value: "Designer และ developer", status: "ai_draft" } },
+    },
     techStack: ["FastAPI", "Python", "React", "Redis", "TensorFlow", "Docker"],
     tags: [
       "ai",
@@ -61,7 +68,10 @@ export const projects = [
       url: "https://github.com/patorsiang/smart-shoe",
     },
     visibility: "public",
-    title: { en: "Smart Shoe Prototype", translated: { th: { value: "Smart Shoe Prototype", status: "ai_draft" } } },
+    title: {
+      en: "Smart Shoe Prototype",
+      translated: { th: { value: "Smart Shoe Prototype", status: "ai_draft" } },
+    },
     slug: "smart-shoe-prototype",
     category: "iot",
     status: "prototype",
@@ -102,7 +112,10 @@ export const projects = [
       url: "https://github.com/patorsiang/AI-System---Food-Image-Classification-for-Nutritional-Estimation",
     },
     visibility: "public",
-    title: { en: "Food101 Image Classification", translated: { th: { value: "Food101 Image Classification", status: "ai_draft" } } },
+    title: {
+      en: "Food101 Image Classification",
+      translated: { th: { value: "Food101 Image Classification", status: "ai_draft" } },
+    },
     slug: "food101-image-classification",
     category: "ai-ml",
     status: "archived",
@@ -151,7 +164,10 @@ export const projects = [
       url: "https://github.com/patorsiang/Java-Assignment-Vending-Machine",
     },
     visibility: "public",
-    title: { en: "Vending Machine Simulator", translated: { th: { value: "Vending Machine Simulator", status: "ai_draft" } } },
+    title: {
+      en: "Vending Machine Simulator",
+      translated: { th: { value: "Vending Machine Simulator", status: "ai_draft" } },
+    },
     slug: "vending-machine-simulator",
     category: "academic",
     status: "archived",
@@ -191,7 +207,10 @@ export const projects = [
       url: "https://github.com/patorsiang/ComSec-RSA-Assignment",
     },
     visibility: "public",
-    title: { en: "RSA Cryptosystem", translated: { th: { value: "RSA Cryptosystem", status: "ai_draft" } } },
+    title: {
+      en: "RSA Cryptosystem",
+      translated: { th: { value: "RSA Cryptosystem", status: "ai_draft" } },
+    },
     slug: "rsa-cryptosystem",
     category: "security-ctf",
     status: "archived",
@@ -199,7 +218,8 @@ export const projects = [
       en: "Python implementation of RSA encryption and decryption for cryptography fundamentals.",
       translated: {
         th: {
-          value: "การ implement RSA encryption และ decryption ด้วย Python เพื่อฝึกพื้นฐาน cryptography",
+          value:
+            "การ implement RSA encryption และ decryption ด้วย Python เพื่อฝึกพื้นฐาน cryptography",
           status: "ai_draft",
         },
       },
@@ -231,7 +251,10 @@ export const projects = [
       url: "https://github.com/patorsiang/chi",
     },
     visibility: "public",
-    title: { en: "CHI Cultural Heritage PWA", translated: { th: { value: "CHI Cultural Heritage PWA", status: "ai_draft" } } },
+    title: {
+      en: "CHI Cultural Heritage PWA",
+      translated: { th: { value: "CHI Cultural Heritage PWA", status: "ai_draft" } },
+    },
     slug: "chi-cultural-heritage-pwa",
     category: "web",
     status: "launched",

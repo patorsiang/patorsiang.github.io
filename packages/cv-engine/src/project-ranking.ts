@@ -141,14 +141,21 @@ function normalizeSearchText(values: readonly string[]): string {
   return values.map(normalizeTag).join("");
 }
 
-function matchedKeywordsForSearch(searchText: string, keywords: readonly string[]): readonly string[] {
+function matchedKeywordsForSearch(
+  searchText: string,
+  keywords: readonly string[],
+): readonly string[] {
   const matched = keywords.filter((keyword) => searchText.includes(normalizeTag(keyword)));
 
   return [...new Set(matched)];
 }
 
 function evidenceScore(project: Project): number {
-  if (project.links.some((link) => normalizeTag([link.label.en, link.url].join(" ")).includes("github"))) {
+  if (
+    project.links.some((link) =>
+      normalizeTag([link.label.en, link.url].join(" ")).includes("github"),
+    )
+  ) {
     return 0.7;
   }
 

@@ -8,9 +8,18 @@ export const experiences = [
     source: legacyProfileSource,
     visibility: "public",
     type: "work",
-    title: { en: "Frontend Developer", translated: { th: { value: "Frontend Developer", status: "ai_draft" } } },
-    organization: { en: "Freelance", translated: { th: { value: "Freelance", status: "ai_draft" } } },
-    location: { en: "Bangkok, Thailand", translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } } },
+    title: {
+      en: "Frontend Developer",
+      translated: { th: { value: "Frontend Developer", status: "ai_draft" } },
+    },
+    organization: {
+      en: "Freelance",
+      translated: { th: { value: "Freelance", status: "ai_draft" } },
+    },
+    location: {
+      en: "Bangkok, Thailand",
+      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } },
+    },
     startDate: "2023-06",
     endDate: "2024-05",
     summary: {
@@ -27,7 +36,8 @@ export const experiences = [
         en: "Collected client requirements and translated them into technical specifications and solutions.",
         translated: {
           th: {
-            value: "เก็บ requirement จากลูกค้าและแปลงเป็น technical specification และแนวทางแก้ปัญหา",
+            value:
+              "เก็บ requirement จากลูกค้าและแปลงเป็น technical specification และแนวทางแก้ปัญหา",
             status: "ai_draft",
           },
         },
@@ -52,15 +62,7 @@ export const experiences = [
       },
     ],
     skills: ["React", "Next.js", "WordPress", "Cloud Hosting"],
-    tags: [
-      "frontend",
-      "web",
-      "react",
-      "nextjs",
-      "dashboard",
-      "cloud",
-      "software-engineering",
-    ],
+    tags: ["frontend", "web", "react", "nextjs", "dashboard", "cloud", "software-engineering"],
   },
   {
     id: "experience.datawow-frontend-developer",
@@ -68,9 +70,18 @@ export const experiences = [
     source: legacyProfileSource,
     visibility: "public",
     type: "work",
-    title: { en: "Frontend Developer", translated: { th: { value: "Frontend Developer", status: "ai_draft" } } },
-    organization: { en: "Data Wow Co., Ltd.", translated: { th: { value: "Data Wow Co., Ltd.", status: "ai_draft" } } },
-    location: { en: "Bangkok, Thailand", translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } } },
+    title: {
+      en: "Frontend Developer",
+      translated: { th: { value: "Frontend Developer", status: "ai_draft" } },
+    },
+    organization: {
+      en: "Data Wow Co., Ltd.",
+      translated: { th: { value: "Data Wow Co., Ltd.", status: "ai_draft" } },
+    },
+    location: {
+      en: "Bangkok, Thailand",
+      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } },
+    },
     startDate: "2021-12",
     endDate: "2023-04",
     summary: {
@@ -132,9 +143,18 @@ export const experiences = [
     source: legacyProfileSource,
     visibility: "public",
     type: "work",
-    title: { en: "System Analyst", translated: { th: { value: "System Analyst", status: "ai_draft" } } },
-    organization: { en: "Bank of Thailand", translated: { th: { value: "Bank of Thailand", status: "ai_draft" } } },
-    location: { en: "Bangkok, Thailand", translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } } },
+    title: {
+      en: "System Analyst",
+      translated: { th: { value: "System Analyst", status: "ai_draft" } },
+    },
+    organization: {
+      en: "Bank of Thailand",
+      translated: { th: { value: "Bank of Thailand", status: "ai_draft" } },
+    },
+    location: {
+      en: "Bangkok, Thailand",
+      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } },
+    },
     startDate: "2019-11",
     endDate: "2021-11",
     summary: {
@@ -195,9 +215,18 @@ export const experiences = [
     source: legacyProfileSource,
     visibility: "public",
     type: "internship",
-    title: { en: "Blockchain Developer", translated: { th: { value: "Blockchain Developer", status: "ai_draft" } } },
-    organization: { en: "KBTG Develop Bootcamp 2019", translated: { th: { value: "KBTG Develop Bootcamp 2019", status: "ai_draft" } } },
-    location: { en: "Bangkok, Thailand", translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } } },
+    title: {
+      en: "Blockchain Developer",
+      translated: { th: { value: "Blockchain Developer", status: "ai_draft" } },
+    },
+    organization: {
+      en: "KBTG Develop Bootcamp 2019",
+      translated: { th: { value: "KBTG Develop Bootcamp 2019", status: "ai_draft" } },
+    },
+    location: {
+      en: "Bangkok, Thailand",
+      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } },
+    },
     startDate: "2019-06",
     endDate: "2019-08",
     summary: {
@@ -230,14 +259,7 @@ export const experiences = [
       },
     ],
     skills: ["React", "Go", "Stellar", "Blockchain", "Agile"],
-    tags: [
-      "frontend",
-      "backend",
-      "blockchain",
-      "react",
-      "go",
-      "software-engineering",
-    ],
+    tags: ["frontend", "backend", "blockchain", "react", "go", "software-engineering"],
   },
   {
     id: "experience.beid-frontend-developer-internship",
@@ -245,9 +267,18 @@ export const experiences = [
     source: legacyProfileSource,
     visibility: "public",
     type: "internship",
-    title: { en: "Frontend Developer", translated: { th: { value: "Frontend Developer", status: "ai_draft" } } },
-    organization: { en: "BeID Corporation Co., Ltd.", translated: { th: { value: "BeID Corporation Co., Ltd.", status: "ai_draft" } } },
-    location: { en: "Bangkok, Thailand", translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } } },
+    title: {
+      en: "Frontend Developer",
+      translated: { th: { value: "Frontend Developer", status: "ai_draft" } },
+    },
+    organization: {
+      en: "BeID Corporation Co., Ltd.",
+      translated: { th: { value: "BeID Corporation Co., Ltd.", status: "ai_draft" } },
+    },
+    location: {
+      en: "Bangkok, Thailand",
+      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } },
+    },
     startDate: "2018-06",
     endDate: "2018-07",
     summary: {
@@ -273,9 +304,18 @@ export const experiences = [
     source: legacyProfileSource,
     visibility: "public",
     type: "education",
-    title: { en: "MSc Advanced Computer Science", translated: { th: { value: "MSc Advanced Computer Science", status: "ai_draft" } } },
-    organization: { en: "University of Kent", translated: { th: { value: "University of Kent", status: "ai_draft" } } },
-    location: { en: "Canterbury, UK", translated: { th: { value: "Canterbury, UK", status: "ai_draft" } } },
+    title: {
+      en: "MSc Advanced Computer Science",
+      translated: { th: { value: "MSc Advanced Computer Science", status: "ai_draft" } },
+    },
+    organization: {
+      en: "University of Kent",
+      translated: { th: { value: "University of Kent", status: "ai_draft" } },
+    },
+    location: {
+      en: "Canterbury, UK",
+      translated: { th: { value: "Canterbury, UK", status: "ai_draft" } },
+    },
     startDate: "2024-09",
     endDate: "2025-09",
     summary: {
@@ -292,7 +332,8 @@ export const experiences = [
         en: "Studied artificial intelligence, deep learning, computer security, IoT, and quantum computing.",
         translated: {
           th: {
-            value: "ศึกษา artificial intelligence, deep learning, computer security, IoT และ quantum computing",
+            value:
+              "ศึกษา artificial intelligence, deep learning, computer security, IoT และ quantum computing",
             status: "ai_draft",
           },
         },
@@ -324,16 +365,28 @@ export const experiences = [
     source: legacyProfileSource,
     visibility: "public",
     type: "education",
-    title: { en: "B.Sc. Information and Communication Technology", translated: { th: { value: "B.Sc. Information and Communication Technology", status: "ai_draft" } } },
-    organization: { en: "Mahidol University", translated: { th: { value: "Mahidol University", status: "ai_draft" } } },
-    location: { en: "Nakhon Pathom, Thailand", translated: { th: { value: "นครปฐม ประเทศไทย", status: "ai_draft" } } },
+    title: {
+      en: "B.Sc. Information and Communication Technology",
+      translated: {
+        th: { value: "B.Sc. Information and Communication Technology", status: "ai_draft" },
+      },
+    },
+    organization: {
+      en: "Mahidol University",
+      translated: { th: { value: "Mahidol University", status: "ai_draft" } },
+    },
+    location: {
+      en: "Nakhon Pathom, Thailand",
+      translated: { th: { value: "นครปฐม ประเทศไทย", status: "ai_draft" } },
+    },
     startDate: "2015-07",
     endDate: "2019-06",
     summary: {
       en: "Studied Information and Communication Technology with a Database and Intelligent Systems focus.",
       translated: {
         th: {
-          value: "ศึกษา Information and Communication Technology โดยเน้น Database และ Intelligent Systems",
+          value:
+            "ศึกษา Information and Communication Technology โดยเน้น Database และ Intelligent Systems",
           status: "ai_draft",
         },
       },
@@ -368,9 +421,18 @@ export const experiences = [
     source: legacyProfileSource,
     visibility: "public",
     type: "education",
-    title: { en: "LL.B. Bachelor of Laws", translated: { th: { value: "LL.B. Bachelor of Laws", status: "ai_draft" } } },
-    organization: { en: "Ramkhamhaeng University", translated: { th: { value: "Ramkhamhaeng University", status: "ai_draft" } } },
-    location: { en: "Bangkok, Thailand", translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } } },
+    title: {
+      en: "LL.B. Bachelor of Laws",
+      translated: { th: { value: "LL.B. Bachelor of Laws", status: "ai_draft" } },
+    },
+    organization: {
+      en: "Ramkhamhaeng University",
+      translated: { th: { value: "Ramkhamhaeng University", status: "ai_draft" } },
+    },
+    location: {
+      en: "Bangkok, Thailand",
+      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } },
+    },
     startDate: "2015",
     endDate: "2023",
     summary: {

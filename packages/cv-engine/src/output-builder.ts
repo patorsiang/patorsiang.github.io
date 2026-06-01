@@ -135,7 +135,14 @@ export function buildCVOutput(role: CvRoleId, lang: CvLanguage): GeneratedCV {
       maxPages: roleConfig.limits.maxPages,
       sourceVersion: "portfolio-content-v1",
       sectionOrder: roleConfig.sectionOrder,
-      warnings: buildWarnings(roleConfig, filteredProjects, rankedExperiences, educationSource, awardSource, lang),
+      warnings: buildWarnings(
+        roleConfig,
+        filteredProjects,
+        rankedExperiences,
+        educationSource,
+        awardSource,
+        lang,
+      ),
     },
     header: {
       name: text(profile.name, lang),
@@ -180,8 +187,7 @@ function buildSummary(roleConfig: CvRoleConfig, lang: CvLanguage): string {
 function buildLanguages(lang: CvLanguage): readonly GeneratedCvLanguage[] {
   const languageGroup = skills
     .filter(
-      (group) =>
-        group.visibility === "public" && isContentAvailableForLanguage(group.locale, lang),
+      (group) => group.visibility === "public" && isContentAvailableForLanguage(group.locale, lang),
     )
     .find((skillGroup) => skillGroup.groupId === "languages");
 

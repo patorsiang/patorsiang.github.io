@@ -1,9 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import {
-  experiences,
-  type Experience,
-  type TranslatableText,
-} from "@patorsiang/content";
+import { experiences, type Experience, type TranslatableText } from "@patorsiang/content";
 import { generateCV, getRoleConfig, type CvRoleConfig, type CvSectionId } from "./index";
 import { selectExperiencesForRole } from "./experience-selection";
 
@@ -84,7 +80,10 @@ describe("selectExperiencesForRole", () => {
 
     const result = selectExperiencesForRole([work, internship], makeRoleConfig(), "en", 2025);
 
-    expect(result.map((item) => item.experience.id)).toEqual(["fixture.work", "fixture.internship"]);
+    expect(result.map((item) => item.experience.id)).toEqual([
+      "fixture.work",
+      "fixture.internship",
+    ]);
   });
 
   test("excludes education, award, and activity experiences from work selection", () => {
@@ -109,7 +108,12 @@ describe("selectExperiencesForRole", () => {
       tags: ["required-a"],
     });
 
-    const result = selectExperiencesForRole([education, award, activity, work], makeRoleConfig(), "en", 2025);
+    const result = selectExperiencesForRole(
+      [education, award, activity, work],
+      makeRoleConfig(),
+      "en",
+      2025,
+    );
 
     expect(result.map((item) => item.experience.id)).toEqual(["fixture.work"]);
   });
@@ -206,7 +210,9 @@ describe("selectExperiencesForRole", () => {
     const result = selectExperiencesForRole([weak, strong], roleConfig, "en", 2025);
 
     expect(result[0].experience.id).toBe("fixture.strong-impact");
-    expect(result[0].scoreBreakdown.impactScore).toBeGreaterThan(result[1].scoreBreakdown.impactScore);
+    expect(result[0].scoreBreakdown.impactScore).toBeGreaterThan(
+      result[1].scoreBreakdown.impactScore,
+    );
   });
 
   test("ATS keyword coverage contributes to ranking", () => {
@@ -230,7 +236,9 @@ describe("selectExperiencesForRole", () => {
     const result = selectExperiencesForRole([weak, strong], roleConfig, "en", 2025);
 
     expect(result[0].experience.id).toBe("fixture.strong-keywords");
-    expect(result[0].scoreBreakdown.keywordMatch).toBeGreaterThan(result[1].scoreBreakdown.keywordMatch);
+    expect(result[0].scoreBreakdown.keywordMatch).toBeGreaterThan(
+      result[1].scoreBreakdown.keywordMatch,
+    );
   });
 
   test("a more recent experience ranks above an older otherwise equal experience", () => {
@@ -330,7 +338,9 @@ describe("selectExperiencesForRole", () => {
       type: "work",
       tags: ["required-a", "required-b", "preferred-a", "preferred-b"],
       skills: ["React", "Next.js"],
-      summary: t("Built, designed, developed, deployed, delivered, automated, contributed, supported, maintained, translated a fixture system."),
+      summary: t(
+        "Built, designed, developed, deployed, delivered, automated, contributed, supported, maintained, translated a fixture system.",
+      ),
       highlights: [
         t("Built and designed the fixture system."),
         t("Developed, deployed, and delivered the fixture system."),
@@ -349,9 +359,9 @@ describe("generateCV experience integration", () => {
   test("fullstack_engineer returns relevant work/internship experiences in score order", () => {
     const cv = generateCV("fullstack_engineer", "en");
 
-    expect(cv.experience.every((item) => item.rankDebug.score === item.rankDebug.relevanceScore)).toBe(
-      true,
-    );
+    expect(
+      cv.experience.every((item) => item.rankDebug.score === item.rankDebug.relevanceScore),
+    ).toBe(true);
 
     for (let index = 1; index < cv.experience.length; index += 1) {
       expect(cv.experience[index - 1].rankDebug.relevanceScore).toBeGreaterThanOrEqual(
@@ -369,9 +379,13 @@ describe("generateCV experience integration", () => {
     expect(cv.experience[0].organization).toBe(source.organization.en);
     expect(cv.experience[0].location).toBe(source.location.en);
     expect(cv.experience[0].startDate).toBe(source.startDate);
-    expect(cv.experience[0].endDate).toBe(source.current ? "present" : (source.endDate ?? "present"));
+    expect(cv.experience[0].endDate).toBe(
+      source.current ? "present" : (source.endDate ?? "present"),
+    );
     expect(cv.experience[0].summary).toBe(source.summary.en);
-    expect(cv.experience[0].bullets).toEqual(source.highlights.map((highlight) => highlight.en).slice(0, 4));
+    expect(cv.experience[0].bullets).toEqual(
+      source.highlights.map((highlight) => highlight.en).slice(0, 4),
+    );
     expect(cv.experience[0].skills).toEqual(source.skills);
   });
 
@@ -390,10 +404,12 @@ describe("generateCV experience integration", () => {
     const cv = generateCV("security_engineer", "en");
     const orderedIds = cv.experience.map((item) => item.id);
 
-    expect(cv.experience.every((item) => item.rankDebug.score === item.rankDebug.relevanceScore)).toBe(
-      true,
+    expect(
+      cv.experience.every((item) => item.rankDebug.score === item.rankDebug.relevanceScore),
+    ).toBe(true);
+    expect(orderedIds.length).toBeLessThanOrEqual(
+      getRoleConfig("security_engineer").limits.maxExperienceItems,
     );
-    expect(orderedIds.length).toBeLessThanOrEqual(getRoleConfig("security_engineer").limits.maxExperienceItems);
     expect(new Set(orderedIds).has("experience.bank-of-thailand-system-analyst")).toBe(true);
     expect(new Set(orderedIds).has("experience.kbtg-blockchain-developer-internship")).toBe(true);
   });

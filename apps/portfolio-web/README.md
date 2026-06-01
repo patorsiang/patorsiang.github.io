@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Web (2026)
 
-## Getting Started
+This is the main web application for the **2026 Portfolio Platform**, built with [Next.js](https://nextjs.org) (App Router).
 
-First, run the development server:
+## Purpose
+
+`portfolio-web` provides the user interface for the portfolio and the dynamic CV engine. It is designed to be fast, SEO-friendly, and capable of rendering role-specific content from structured data.
+
+## Core Responsibilities
+
+- **Portfolio Rendering**: Showcasing projects, skills, and professional history.
+- **Dynamic CVs**: Generating role-targeted CV pages based on URL parameters.
+- **Exporting**: Providing API routes for exporting CV data in JSON and Markdown formats.
+- **Internationalization (i18n)**: Supporting multiple languages (English and Thai).
+
+## Commands
+
+From the root:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun run dev:portfolio
+bun run build:portfolio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+From this directory:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+bun run dev
+bun run build
+bun run lint
+bun run typecheck
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Routing Structure
 
-## Learn More
+The application uses Next.js App Router with the following key routes:
 
-To learn more about Next.js, take a look at the following resources:
+| Path                  | Description                                                            |
+| :-------------------- | :--------------------------------------------------------------------- |
+| `/`                   | Main landing page (Root)                                               |
+| `/cv`                 | Default CV view (Role: Full-Stack Engineer, Lang: English)             |
+| `/cv/[role]`          | Role-specific CV view                                                  |
+| `/[lang]/cv/[role]`   | Language and role-specific CV view (e.g., `/th/cv/fullstack_engineer`) |
+| `/cv/export/json`     | API route to download CV data as JSON                                  |
+| `/cv/export/markdown` | API route to download CV data as Markdown                              |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Integration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This application consumes two primary internal packages:
 
-## Deploy on Vercel
+- **[`@patorsiang/content`](../../packages/content)**: Provides the structured data (JSON) and Zod schemas.
+- **[`@patorsiang/cv-engine`](../../packages/cv-engine)**: Provides the logic for filtering, ranking, and building the CV output.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Styling
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The project uses **Tailwind CSS v4** for styling, following a clean and modern aesthetic.
+
+## Development Notes
+
+- Routing parameters `lang` and `role` are validated using the `cv-engine` logic.
+- Metadata is dynamically generated for each role/language combination to optimize SEO.
+- The project follows the [Code Quality](../../docs/architecture/code-quality.md) and [Architecture](../../docs/architecture/monitoring.md) guidelines established in the `docs/` folder.

@@ -10,9 +10,9 @@ const projectOrder = new Map(cv.projects.map((project, index) => [project.id, in
 
 const experienceOrder = new Map(cv.experience.map((experience, index) => [experience.id, index]));
 
-const featuredProjects = projects.filter(
-  (project) => project.placement === "featured-project" && projectOrder.has(project.id),
-).sort((a, b) => (projectOrder.get(a.id) ?? 0) - (projectOrder.get(b.id) ?? 0));
+const featuredProjects = projects
+  .filter((project) => project.placement === "featured-project" && projectOrder.has(project.id))
+  .sort((a, b) => (projectOrder.get(a.id) ?? 0) - (projectOrder.get(b.id) ?? 0));
 
 const workExperiences = experiences
   .filter(
