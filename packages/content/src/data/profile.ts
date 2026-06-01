@@ -8,18 +8,18 @@ export const profile = {
   visibility: "public",
   name: {
     en: "Napatchol Thaipanich",
-    translated: { th: { value: "ณภัทรชล ไทยพานิช", status: "ai_draft" } },
+    translated: { th: { value: "ณภัทรชล ไทพาณิชย์", status: "reviewed" } },
   },
   handle: "patorsiang",
-  nickname: { en: "Pat", translated: { th: { value: "แพท", status: "ai_draft" } } },
-  nickname2: { en: "Siang", translated: { th: { value: "เซียง", status: "ai_draft" } } },
+  nickname: { en: "Pat", translated: { th: { value: "ภัทร", status: "reviewed" } } },
+  nickname2: { en: "Siang", translated: { th: { value: "เซียง", status: "reviewed" } } },
   role: {
     en: "AI full-stack developer",
-    translated: { th: { value: "AI full-stack developer", status: "ai_draft" } },
+    translated: { th: { value: "AI full-stack developer", status: "reviewed" } },
   },
   location: {
     en: "Bangkok, Thailand",
-    translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } },
+    translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "reviewed" } },
   },
   headline: {
     en: "AI full-stack developer building practical, human-centred software across web, AI, security, and interactive systems.",

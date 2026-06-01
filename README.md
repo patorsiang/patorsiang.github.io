@@ -91,6 +91,17 @@ The platform is configured for continuous deployment to **Vercel** via GitHub Ac
 - Pushing to `main` triggers a production deployment of `portfolio-web`.
 - `legacy-v1` deployment is managed separately (see `infra/github-pages` or its own workflow).
 
+## Deployment Status
+
+The new `apps/portfolio-web` app has a development deployment on Vercel.
+
+- **Development**: Active — `https://patorsiang-portfolio-web.vercel.app` (Placeholder)
+- **Production**: Pending final cutover
+
+`legacy-v1` remains the current production fallback until the new portfolio app is stable.
+
+See [Vercel Deployment Details](docs/deployment/vercel.md) for project settings and environment configuration.
+
 ## Workflow Notes
 
 - Always run `bun run typecheck` before pushing changes.
