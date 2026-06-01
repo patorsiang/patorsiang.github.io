@@ -14,5 +14,5 @@ export default async function CvPage({
   const resolvedSearchParams = await Promise.resolve(searchParams ?? {});
   const selection = resolveLegacyCvRouteSelection(resolvedSearchParams);
 
-  redirect(buildCanonicalCvHref(selection.role, selection.routeLang));
+  redirect(buildCanonicalCvHref(selection.role, selection.lang));
 }

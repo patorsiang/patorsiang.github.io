@@ -8,7 +8,7 @@ export type { ExperienceRankDebug } from "./experience-selection";
 export type { ProjectRankDebug } from "./project-ranking";
 
 export type CvRoleId = "fullstack_engineer" | "ai_ml_engineer" | "security_engineer";
-export type CvLanguage = "en";
+export type CvLanguage = "en" | "th";
 
 export type CvSectionId =
   | "header"
@@ -321,5 +321,5 @@ export function isCvRoleId(value: string): value is CvRoleId {
 }
 
 export function isCvLanguage(value: string): value is CvLanguage {
-  return value === "en";
+  return value === "en" || value === "th";
 }

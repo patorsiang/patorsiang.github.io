@@ -1,51 +1,47 @@
-"use client";
-
 import type { CvLanguage, CvRoleId } from "@patorsiang/cv-engine";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { PrintButton } from "./PrintButton";
-import {
-  buildCanonicalCvHref,
-  buildCvExportFilename,
-  defaultCvRouteLanguage,
-  type CvRouteLanguage,
-} from "./cv-request";
+import { buildCanonicalCvHref, buildCvExportFilename, cvLanguages } from "./cv-request";
 
 const roleLabels = {
-  fullstack_engineer: "Full-Stack Engineer",
-  ai_ml_engineer: "AI / ML Engineer",
-  security_engineer: "Security Engineer",
-} as const satisfies Record<CvRoleId, string>;
+  en: {
+    fullstack_engineer: "Full-Stack Engineer",
+    ai_ml_engineer: "AI / ML Engineer",
+    security_engineer: "Security Engineer",
+  },
+  th: {
+    fullstack_engineer: "นักพัฒนา Full-Stack",
+    ai_ml_engineer: "วิศวกร AI / ML",
+    security_engineer: "วิศวกร Security",
+  },
+} as const satisfies Record<CvLanguage, Record<CvRoleId, string>>;
 
 const languageLabels = {
   en: "EN",
   th: "TH",
-} as const satisfies Record<CvRouteLanguage, string>;
+} as const satisfies Record<CvLanguage, string>;
+
+const uiLabels = {
+  en: {
+    back: "Back to portfolio",
+    json: "Download JSON",
+    markdown: "Download Markdown",
+  },
+  th: {
+    back: "กลับไปหน้า portfolio",
+    json: "ดาวน์โหลด JSON",
+    markdown: "ดาวน์โหลด Markdown",
+  },
+} as const satisfies Record<CvLanguage, Record<string, string>>;
 
 type CvToolbarProps = {
   readonly role: CvRoleId;
-  readonly exportLang: CvLanguage;
+  readonly lang: CvLanguage;
 };
 
-export function CvToolbar({ role, exportLang }: CvToolbarProps) {
-  const searchParams = useSearchParams();
-  const lang = searchParams.get("lang");
-  const routeLang: CvRouteLanguage = lang === "en" || lang === "th" ? lang : defaultCvRouteLanguage;
-
-  return <CvToolbarShell role={role} routeLang={routeLang} exportLang={exportLang} />;
-}
-
-export function CvToolbarFallback({ role, exportLang }: CvToolbarProps) {
-  return <CvToolbarShell role={role} routeLang={defaultCvRouteLanguage} exportLang={exportLang} />;
-}
-
-function CvToolbarShell({
-  role,
-  routeLang,
-  exportLang,
-}: CvToolbarProps & { readonly routeLang: CvRouteLanguage }) {
-  const jsonHref = `/cv/export/json?role=${role}&lang=${exportLang}`;
-  const markdownHref = `/cv/export/markdown?role=${role}&lang=${exportLang}`;
+export function CvToolbar({ role, lang }: CvToolbarProps) {
+  const jsonHref = `/cv/export/json?role=${role}&lang=${lang}`;
+  const markdownHref = `/cv/export/markdown?role=${role}&lang=${lang}`;
 
   return (
     <div className="mb-8 flex flex-col gap-4 border-b border-zinc-200 pb-6 print:hidden">
@@ -54,18 +50,18 @@ function CvToolbarShell({
           href="/"
           className="text-sm font-semibold text-teal-800 underline-offset-4 hover:underline"
         >
-          Back to portfolio
+          {uiLabels[lang].back}
         </Link>
 
         <div className="flex flex-wrap items-center gap-2">
-          {Object.entries(roleLabels).map(([roleId, label]) => {
+          {Object.entries(roleLabels[lang]).map(([roleId, label]) => {
             const cvRole = roleId as CvRoleId;
             const active = cvRole === role;
 
             return (
               <Link
                 key={roleId}
-                href={buildCanonicalCvHref(cvRole, routeLang)}
+                href={buildCanonicalCvHref(cvRole, lang)}
                 aria-current={active ? "page" : undefined}
                 className={[
                   "inline-flex h-10 items-center justify-center rounded-md border px-3 text-sm font-medium transition",
@@ -82,13 +78,12 @@ function CvToolbarShell({
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
-        {Object.entries(languageLabels).map(([lang, label]) => {
-          const cvLang = lang as CvRouteLanguage;
-          const active = cvLang === routeLang;
+        {cvLanguages.map((cvLang) => {
+          const active = cvLang === lang;
 
           return (
             <Link
-              key={lang}
+              key={cvLang}
               href={buildCanonicalCvHref(role, cvLang)}
               aria-current={active ? "true" : undefined}
               className={[
@@ -98,29 +93,26 @@ function CvToolbarShell({
                   : "border-zinc-300 bg-white text-zinc-900 hover:border-teal-700 hover:text-teal-800",
               ].join(" ")}
             >
-              {label}
+              {languageLabels[cvLang]}
             </Link>
           );
         })}
-        {routeLang === "th" ? (
-          <span className="text-sm font-medium text-zinc-600">Thai content coming soon</span>
-        ) : null}
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
         <a
           href={jsonHref}
           className="inline-flex h-10 items-center justify-center rounded-md border border-zinc-300 bg-white px-3 text-sm font-medium text-zinc-900 transition hover:border-teal-700 hover:text-teal-800"
-          download={buildCvExportFilename(role, exportLang, "json")}
+          download={buildCvExportFilename(role, lang, "json")}
         >
-          Download JSON
+          {uiLabels[lang].json}
         </a>
         <a
           href={markdownHref}
           className="inline-flex h-10 items-center justify-center rounded-md border border-zinc-300 bg-white px-3 text-sm font-medium text-zinc-900 transition hover:border-teal-700 hover:text-teal-800"
-          download={buildCvExportFilename(role, exportLang, "md")}
+          download={buildCvExportFilename(role, lang, "md")}
         >
-          Download Markdown
+          {uiLabels[lang].markdown}
         </a>
         <PrintButton />
       </div>

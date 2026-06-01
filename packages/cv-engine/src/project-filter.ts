@@ -1,5 +1,6 @@
 import type { Project } from "@patorsiang/content";
 import type { CvLanguage, CvRoleConfig } from "./config";
+import { isContentAvailableForLanguage } from "./content-language";
 import { normalizeTag } from "./normalize";
 
 export function filterProjectsForRole(
@@ -16,7 +17,7 @@ export function filterProjectsForRole(
       return false;
     }
 
-    if (project.locale !== lang) {
+    if (!isContentAvailableForLanguage(project.locale, lang)) {
       return false;
     }
 

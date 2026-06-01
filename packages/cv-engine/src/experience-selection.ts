@@ -1,5 +1,6 @@
 import type { Experience } from "@patorsiang/content";
 import type { CvLanguage, CvRoleConfig } from "./config";
+import { isContentAvailableForLanguage } from "./content-language";
 import { normalizeTag } from "./normalize";
 import type { BaseCvRankDebug } from "./types";
 
@@ -52,7 +53,7 @@ function isEligibleExperience(
     return false;
   }
 
-  if (experience.locale !== lang) {
+  if (!isContentAvailableForLanguage(experience.locale, lang)) {
     return false;
   }
 

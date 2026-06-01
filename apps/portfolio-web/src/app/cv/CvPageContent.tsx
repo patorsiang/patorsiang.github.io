@@ -6,27 +6,43 @@ import type {
   GeneratedCvProject,
 } from "@patorsiang/cv-engine";
 import type { ReactNode } from "react";
-import { Suspense } from "react";
-import { CvToolbar, CvToolbarFallback } from "./CvToolbar";
+import { CvToolbar } from "./CvToolbar";
+
+const sectionLabels = {
+  en: {
+    summary: "Professional Summary",
+    skills: "Technical Skills",
+    experience: "Work Experience",
+    projects: "Selected Projects",
+    education: "Education",
+    awards: "Awards & Activities",
+    languages: "Languages",
+  },
+  th: {
+    summary: "สรุปประสบการณ์",
+    skills: "ทักษะด้านเทคนิค",
+    experience: "ประสบการณ์ทำงาน",
+    projects: "โปรเจกต์ที่คัดเลือก",
+    education: "การศึกษา",
+    awards: "รางวัลและกิจกรรม",
+    languages: "ภาษา",
+  },
+} as const satisfies Record<CvLanguage, Record<string, string>>;
 
 type CvPageContentProps = {
   readonly cv: GeneratedCV;
   readonly selection: {
     readonly role: CvRoleId;
-    readonly exportLang: CvLanguage;
+    readonly lang: CvLanguage;
   };
 };
 export function CvPageContent({ cv, selection }: CvPageContentProps) {
+  const labels = sectionLabels[selection.lang];
+
   return (
     <main className="min-h-screen bg-stone-50 text-zinc-950 print:bg-white">
       <div className="mx-auto w-full max-w-5xl px-6 py-8 sm:px-8 lg:px-10 print:max-w-none print:px-0 print:py-0">
-        <Suspense
-          fallback={
-            <CvToolbarFallback role={selection.role} exportLang={selection.exportLang} />
-          }
-        >
-          <CvToolbar role={selection.role} exportLang={selection.exportLang} />
-        </Suspense>
+        <CvToolbar role={selection.role} lang={selection.lang} />
 
         <article className="bg-white p-6 shadow-sm ring-1 ring-zinc-200 sm:p-10 print:p-0 print:shadow-none print:ring-0">
           <header className="border-b border-zinc-200 pb-6">
@@ -61,11 +77,11 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
           </header>
 
           <div className="mt-8 space-y-8 print:mt-6 print:space-y-5">
-            <CvSection title="Professional Summary">
+            <CvSection title={labels.summary}>
               <p className="text-sm leading-7 text-zinc-700 print:leading-6">{cv.summary.text}</p>
             </CvSection>
 
-            <CvSection title="Technical Skills">
+            <CvSection title={labels.skills}>
               <div className="grid gap-4 sm:grid-cols-2 print:grid-cols-2 print:gap-3">
                 {cv.skills.map((group) => (
                   <div key={group.id}>
@@ -76,7 +92,7 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
               </div>
             </CvSection>
 
-            <CvSection title="Work Experience">
+            <CvSection title={labels.experience}>
               <div className="space-y-6 print:space-y-4">
                 {cv.experience.map((experience) => (
                   <ExperienceItem key={experience.id} experience={experience} />
@@ -84,7 +100,7 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
               </div>
             </CvSection>
 
-            <CvSection title="Selected Projects">
+            <CvSection title={labels.projects}>
               <div className="space-y-5 print:space-y-4">
                 {cv.projects.map((project) => (
                   <ProjectItem key={project.id} project={project} />
@@ -92,7 +108,7 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
               </div>
             </CvSection>
 
-            <CvSection title="Education">
+            <CvSection title={labels.education}>
               <div className="space-y-4">
                 {cv.education.map((education) => (
                   <section key={education.id}>
@@ -112,7 +128,7 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
             </CvSection>
 
             {cv.awards.length > 0 ? (
-              <CvSection title="Awards & Activities">
+              <CvSection title={labels.awards}>
                 <ul className="space-y-2 text-sm leading-6 text-zinc-700">
                   {cv.awards.map((award) => (
                     <li key={award.id}>
@@ -125,7 +141,7 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
               </CvSection>
             ) : null}
 
-            <CvSection title="Languages">
+            <CvSection title={labels.languages}>
               <p className="text-sm leading-6 text-zinc-700">
                 {cv.languages.map((language) => `${language.name}: ${language.level}`).join(" · ")}
               </p>

@@ -2,9 +2,8 @@ import { isCvLanguage, isCvRoleId, type CvLanguage, type CvRoleId } from "@pator
 
 export const defaultCvRole: CvRoleId = "fullstack_engineer";
 export const defaultCvLanguage: CvLanguage = "en";
-export const defaultCvRouteLanguage: CvRouteLanguage = "en";
-
-export type CvRouteLanguage = "en" | "th";
+export const cvRoleSlugs = ["fullstack-engineer", "ai-ml-engineer", "security-engineer"] as const;
+export const cvLanguages = ["en", "th"] as const satisfies readonly CvLanguage[];
 
 export type CvSelection = {
   readonly role: CvRoleId;
@@ -13,8 +12,7 @@ export type CvSelection = {
 
 export type CvRouteSelection = {
   readonly role: CvRoleId;
-  readonly routeLang: CvRouteLanguage;
-  readonly engineLang: CvLanguage;
+  readonly lang: CvLanguage;
 };
 
 type SearchParamSource = Record<string, string | string[] | undefined> | URLSearchParams;
@@ -40,12 +38,11 @@ export function resolveCvSelection(source: SearchParamSource): CvSelection {
 
 export function resolveLegacyCvRouteSelection(source: SearchParamSource): CvRouteSelection {
   const role = getFirstValue(source, "role");
-  const routeLang = resolveCvRouteLanguage(source);
+  const lang = getFirstValue(source, "lang");
 
   return {
     role: role && isCvRoleId(role) ? role : defaultCvRole,
-    routeLang,
-    engineLang: resolveCvEngineLanguage(routeLang),
+    lang: lang && isCvLanguage(lang) ? lang : defaultCvLanguage,
   };
 }
 
@@ -64,19 +61,6 @@ export function parseCvSelection(source: SearchParamSource): CvSelection | null 
   return { role, lang };
 }
 
-export function resolveCvRouteLanguage(source: SearchParamSource): CvRouteLanguage {
-  const lang = getFirstValue(source, "lang");
-  return lang === "en" || lang === "th" ? lang : defaultCvRouteLanguage;
-}
-
-export function resolveCvEngineLanguage(routeLang: CvRouteLanguage): CvLanguage {
-  if (isCvLanguage(routeLang)) {
-    return routeLang;
-  }
-
-  return defaultCvLanguage;
-}
-
 export function cvRoleSlugToId(slug: string): CvRoleId | null {
   return roleIdBySlug[slug] ?? null;
 }
@@ -85,8 +69,8 @@ export function cvRoleIdToSlug(role: CvRoleId): (typeof roleSlugById)[CvRoleId] 
   return roleSlugById[role];
 }
 
-export function buildCanonicalCvHref(role: CvRoleId, lang: CvRouteLanguage): string {
-  return `/cv/${cvRoleIdToSlug(role)}?lang=${lang}`;
+export function buildCanonicalCvHref(role: CvRoleId, lang: CvLanguage): string {
+  return `/${lang}/cv/${cvRoleIdToSlug(role)}`;
 }
 
 export function buildCvExportFilename(role: CvRoleId, lang: CvLanguage, extension: "json" | "md") {

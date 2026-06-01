@@ -1,39 +1,47 @@
-import { buildCVOutput } from "@patorsiang/cv-engine";
-import { notFound } from "next/navigation";
-import { CvPageContent } from "../CvPageContent";
-import { cvRoleSlugToId, defaultCvLanguage } from "../cv-request";
+import { isCvLanguage } from "@patorsiang/cv-engine";
+import { notFound, redirect } from "next/navigation";
+import {
+  buildCanonicalCvHref,
+  cvRoleSlugToId,
+  defaultCvLanguage,
+} from "../cv-request";
 
 type Params = { role: string } | Promise<{ role: string }>;
+type SearchParams =
+  | Record<string, string | string[] | undefined>
+  | URLSearchParams
+  | Promise<Record<string, string | string[] | undefined> | URLSearchParams>;
 
-const roleSlugs = ["fullstack-engineer", "ai-ml-engineer", "security-engineer"] as const;
-
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return roleSlugs.map((role) => ({ role }));
-}
-
-export default async function CvRolePage({
+export default async function LegacyCvRolePage({
   params,
+  searchParams,
 }: Readonly<{
   params: Params;
+  searchParams?: SearchParams;
 }>) {
-  const { role: roleSlug } = await Promise.resolve(params);
+  const [{ role: roleSlug }, resolvedSearchParams] = await Promise.all([
+    Promise.resolve(params),
+    Promise.resolve(searchParams ?? {}),
+  ]);
   const role = cvRoleSlugToId(roleSlug);
 
   if (!role) {
     notFound();
   }
 
-  const cv = buildCVOutput(role, defaultCvLanguage);
+  const lang = getFirstValue(resolvedSearchParams, "lang");
 
-  return (
-    <CvPageContent
-      cv={cv}
-      selection={{
-        role,
-        exportLang: defaultCvLanguage,
-      }}
-    />
-  );
+  redirect(buildCanonicalCvHref(role, lang && isCvLanguage(lang) ? lang : defaultCvLanguage));
+}
+
+function getFirstValue(
+  source: Record<string, string | string[] | undefined> | URLSearchParams,
+  key: string,
+): string | undefined {
+  if (source instanceof URLSearchParams) {
+    return source.get(key) ?? undefined;
+  }
+
+  const value = source[key];
+  return Array.isArray(value) ? value[0] : value;
 }

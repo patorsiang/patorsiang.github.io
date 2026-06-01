@@ -10,21 +10,22 @@ export function exportCVAsMarkdown(
   options: MarkdownExportOptions = {},
 ): string {
   const includeDebug = options.includeDebug ?? false;
+  const labels = markdownLabels[cv.meta.language];
   const lines: string[] = [];
 
   lines.push(`# ${escapeMarkdown(cv.header.name)}`);
   lines.push("");
   lines.push(`**${escapeMarkdown(cv.header.targetTitle)}**`);
   lines.push(escapeMarkdown(cv.header.location));
-  lines.push(`Email: ${formatMarkdownLink(cv.header.email, `mailto:${cv.header.email}`)}`);
+  lines.push(`${labels.email}: ${formatMarkdownLink(cv.header.email, `mailto:${cv.header.email}`)}`);
   for (const link of cv.header.links) {
     lines.push(`${escapeMarkdown(link.label)}: ${formatMarkdownLink(link.label, link.url)}`);
   }
 
-  appendSection(lines, "Professional Summary", [cv.summary.text]);
+  appendSection(lines, labels.summary, [cv.summary.text]);
 
   if (cv.skills.length > 0) {
-    lines.push("## Technical Skills");
+    lines.push(`## ${labels.skills}`);
     lines.push("");
     for (const group of cv.skills) {
       lines.push(`### ${escapeMarkdown(group.group)}`);
@@ -36,7 +37,7 @@ export function exportCVAsMarkdown(
   }
 
   if (cv.experience.length > 0) {
-    lines.push("## Work Experience");
+    lines.push(`## ${labels.experience}`);
     lines.push("");
     for (const experience of cv.experience) {
       lines.push(`### ${escapeMarkdown(experience.title)} — ${escapeMarkdown(experience.organization)}`);
@@ -56,7 +57,7 @@ export function exportCVAsMarkdown(
         lines.push("");
       }
       if (experience.skills.length > 0) {
-        lines.push(`**Skills:** ${experience.skills.map(escapeMarkdown).join(", ")}`);
+        lines.push(`**${labels.skillList}:** ${experience.skills.map(escapeMarkdown).join(", ")}`);
         lines.push("");
       }
     }
@@ -64,7 +65,7 @@ export function exportCVAsMarkdown(
   }
 
   if (cv.projects.length > 0) {
-    lines.push("## Selected Projects");
+    lines.push(`## ${labels.projects}`);
     lines.push("");
     for (const project of cv.projects) {
       lines.push(`### ${escapeMarkdown(project.title)}`);
@@ -74,11 +75,11 @@ export function exportCVAsMarkdown(
       lines.push(escapeMarkdown(project.summary));
       lines.push("");
       if (project.technologies.length > 0) {
-        lines.push(`**Technologies:** ${project.technologies.map(escapeMarkdown).join(", ")}`);
+        lines.push(`**${labels.technologies}:** ${project.technologies.map(escapeMarkdown).join(", ")}`);
       }
       if (project.links.length > 0) {
         lines.push(
-          `**Links:** ${project.links
+          `**${labels.links}:** ${project.links
             .map((link) => formatMarkdownLink(link.label, link.url))
             .join(" · ")}`,
         );
@@ -89,7 +90,7 @@ export function exportCVAsMarkdown(
   }
 
   if (cv.education.length > 0) {
-    lines.push("## Education");
+    lines.push(`## ${labels.education}`);
     lines.push("");
     for (const education of cv.education) {
       lines.push(`### ${escapeMarkdown(education.degree)} — ${escapeMarkdown(education.organization)}`);
@@ -107,7 +108,7 @@ export function exportCVAsMarkdown(
   }
 
   if (cv.awards.length > 0) {
-    lines.push("## Awards & Activities");
+    lines.push(`## ${labels.awards}`);
     lines.push("");
     for (const award of cv.awards) {
       lines.push(`- ${escapeMarkdown(award.title)} — ${escapeMarkdown(award.organization)}`);
@@ -117,7 +118,7 @@ export function exportCVAsMarkdown(
   }
 
   if (cv.languages.length > 0) {
-    lines.push("## Languages");
+    lines.push(`## ${labels.languages}`);
     lines.push("");
     for (const language of cv.languages) {
       lines.push(`- ${escapeMarkdown(language.name)}: ${escapeMarkdown(language.level)}`);
@@ -127,7 +128,7 @@ export function exportCVAsMarkdown(
   }
 
   if (includeDebug) {
-    lines.push("## Generation Debug");
+    lines.push(`## ${labels.debug}`);
     lines.push("");
     lines.push(`- Role: ${escapeMarkdown(cv.meta.roleId)}`);
     lines.push(`- Language: ${escapeMarkdown(cv.meta.language)}`);
@@ -146,6 +147,37 @@ export function exportCVAsMarkdown(
   trimTrailingBlankLine(lines);
   return `${lines.join("\n")}\n`;
 }
+
+const markdownLabels = {
+  en: {
+    email: "Email",
+    summary: "Professional Summary",
+    skills: "Technical Skills",
+    experience: "Work Experience",
+    projects: "Selected Projects",
+    education: "Education",
+    awards: "Awards & Activities",
+    languages: "Languages",
+    skillList: "Skills",
+    technologies: "Technologies",
+    links: "Links",
+    debug: "Generation Debug",
+  },
+  th: {
+    email: "อีเมล",
+    summary: "สรุปประสบการณ์",
+    skills: "ทักษะด้านเทคนิค",
+    experience: "ประสบการณ์ทำงาน",
+    projects: "โปรเจกต์ที่คัดเลือก",
+    education: "การศึกษา",
+    awards: "รางวัลและกิจกรรม",
+    languages: "ภาษา",
+    skillList: "ทักษะ",
+    technologies: "เทคโนโลยี",
+    links: "ลิงก์",
+    debug: "ข้อมูล Debug การสร้าง CV",
+  },
+} as const satisfies Record<CvLanguage, Record<string, string>>;
 
 export function generateCVMarkdown(
   role: CvRoleId,

@@ -1,5 +1,6 @@
 import type { SkillGroup, SkillGroupId } from "@patorsiang/content";
 import type { CvLanguage, CvRoleConfig } from "./config";
+import { isContentAvailableForLanguage, text } from "./content-language";
 import { normalizeTag } from "./normalize";
 
 export type GroupedSkillCategory = {
@@ -28,7 +29,7 @@ export function groupSkillsForRole(
     .filter(
       (skillGroup) =>
         skillGroup.visibility === "public" &&
-        skillGroup.locale === lang &&
+        isContentAvailableForLanguage(skillGroup.locale, lang) &&
         skillGroup.groupId !== "languages" &&
         priorityGroups.has(skillGroup.groupId),
     )
@@ -135,12 +136,4 @@ function tokenize(value: string): readonly string[] {
     .flatMap((part) => part.split(/(?<=[a-z])(?=[A-Z])/g))
     .map((part) => part.trim())
     .filter(Boolean);
-}
-
-function text(value: { readonly en: string }, lang: CvLanguage): string {
-  if (lang === "en") {
-    return value.en;
-  }
-
-  return value.en;
 }
