@@ -123,7 +123,7 @@ export default function GamePortfolio() {
                 const intervalRef = setInterval(() => {
                   if (index < text.length) {
                     currentText += text[index];
-                    dialogRef.current!.innerHTML = currentText;
+                    dialogRef.current!.textContent = currentText;
                     index++;
                     return;
                   }
@@ -143,7 +143,7 @@ export default function GamePortfolio() {
                   }
                   player.isInDialogue = false;
                   dialogUIRef.current!.style.display = "none";
-                  dialogRef.current!.innerHTML = "";
+                  dialogRef.current!.textContent = "";
                 }
 
                 closeBtn.current?.addEventListener("click", onCloseBtnClick);

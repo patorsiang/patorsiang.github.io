@@ -1,4 +1,4 @@
-import { getMessages, unstable_setRequestLocale } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 
 import { clsx } from "clsx";
@@ -7,15 +7,17 @@ import { fontEN, fontKR, fontTH } from "@/constants";
 import { generateStaticParamsFunc } from "@/utils/generateStaticParams";
 
 export const generateStaticParams = () => generateStaticParamsFunc();
+export const dynamicParams = false;
 
 export default async function LocaleLayout({
   children,
-  params: { locale },
+  params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  unstable_setRequestLocale(locale);
+  const { locale } = await params;
+  setRequestLocale(locale);
 
   const messages = await getMessages({ locale });
 

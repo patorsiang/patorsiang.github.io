@@ -16,7 +16,7 @@ export const viewport: Viewport = {
 };
 
 export const dynamic = "force-static";
-export const dynamicParams = true;
+export const dynamicParams = false;
 export const revalidate = false;
 export const fetchCache = "auto";
 export const runtime = "nodejs";

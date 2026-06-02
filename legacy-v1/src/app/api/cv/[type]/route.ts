@@ -16,17 +16,23 @@ const types = {
   ml: "Junior_Machine_Learning_Engineer",
 };
 
-const keys = Object.keys(types);
+type CvType = keyof typeof types;
+
+const keys = Object.keys(types) as CvType[];
 
 export const generateStaticParams = () => {
   return keys.map((type) => ({ type }));
 };
+export const dynamic = "force-static";
+export const dynamicParams = false;
 
 export async function GET(
   _request: NextRequest,
-  { params: { type } }: { params: { type: keyof typeof types } }
+  { params }: { params: Promise<{ type: string }> }
 ) {
-  if (!keys.includes(type)) return new Response("not found", { status: 404 });
+  const { type } = await params;
+
+  if (!isCvType(type)) return new Response("not found", { status: 404 });
 
   const { detail } = await getDictionary("en");
   const { name, address, contact, summary, history } = detail;
@@ -214,4 +220,8 @@ export async function GET(
   return new Response(blob, {
     headers: { "Content-Type": contentType },
   });
+}
+
+function isCvType(type: string): type is CvType {
+  return keys.includes(type as CvType);
 }
