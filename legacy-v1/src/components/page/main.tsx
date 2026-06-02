@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Fragment, type ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
+import { sanitizeHTML } from "@patorsiang/utils";
 
 import { TextAnimation } from "../animation";
 import { IconLink } from "../iconLink";
@@ -63,39 +64,10 @@ export default async function Main() {
         <DownloadCVLink />
       </section>
       {/* Subtitle */}
-      <h2 className="main-introduction-subheading">{renderTrustedProfileText(t_info.raw("subtitle"))}</h2>
+      <h2
+        className="main-introduction-subheading"
+        dangerouslySetInnerHTML={{ __html: sanitizeHTML(t_info.raw("subtitle")) }}
+      />
     </main>
   );
-}
-
-function renderTrustedProfileText(value: string): ReactNode {
-  return value
-    .split(/(<br\s*\/?>|<\/?b>)/gi)
-    .filter((part) => part.length > 0)
-    .reduce<ReactNode[]>((nodes, part, index, parts) => {
-      const lowerPart = part.toLowerCase();
-
-      if (lowerPart === "<br/>" || lowerPart === "<br>") {
-        nodes.push(<br key={`${part}-${index}`} />);
-        return nodes;
-      }
-
-      if (lowerPart === "<b>" || lowerPart === "</b>") {
-        return nodes;
-      }
-
-      const previousTag = parts[index - 1]?.toLowerCase();
-      const nextTag = parts[index + 1]?.toLowerCase();
-      if (previousTag === "<b>" && nextTag === "</b>") {
-        nodes.push(
-          <strong key={`${part}-${index}`} className="font-semibold">
-            {part}
-          </strong>,
-        );
-        return nodes;
-      }
-
-      nodes.push(<Fragment key={`${part}-${index}`}>{part}</Fragment>);
-      return nodes;
-    }, []);
 }

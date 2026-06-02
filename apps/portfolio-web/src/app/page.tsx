@@ -1,5 +1,6 @@
 import { experiences, profile, projects } from "@patorsiang/content";
 import { generateCV } from "@patorsiang/cv-engine";
+import { sanitizeUrl } from "@patorsiang/utils";
 import Link from "next/link";
 
 type ExperienceItem = (typeof experiences)[number];
@@ -48,7 +49,7 @@ export default function Home() {
             {profile.links.map((link) => (
               <a
                 key={link.url}
-                href={link.url}
+                href={sanitizeUrl(link.url)}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex h-11 items-center justify-center rounded-md border border-zinc-300 bg-white px-4 text-sm font-medium text-zinc-900 transition hover:border-teal-700 hover:text-teal-800"
@@ -63,7 +64,7 @@ export default function Home() {
               View CV
             </Link>
             <a
-              href={profile.contact.email.url}
+              href={sanitizeUrl(profile.contact.email.url)}
               className="inline-flex h-11 items-center justify-center rounded-md bg-zinc-950 px-4 text-sm font-medium text-white transition hover:bg-teal-800"
             >
               Email
@@ -132,7 +133,7 @@ export default function Home() {
                   {project.links.map((link) => (
                     <a
                       key={link.url}
-                      href={link.url}
+                      href={sanitizeUrl(link.url)}
                       target="_blank"
                       rel="noreferrer"
                       className="text-sm font-semibold text-teal-800 underline-offset-4 hover:underline"

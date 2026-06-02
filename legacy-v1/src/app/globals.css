@@ -306,6 +306,11 @@ body {
   @apply text-p-responsive text-justify;
 }
 
+.main-introduction-subheading strong,
+.main-introduction-subheading b {
+  @apply font-semibold;
+}
+
 .about-h1 {
   @apply font-bold text-h1-responsive;
 }

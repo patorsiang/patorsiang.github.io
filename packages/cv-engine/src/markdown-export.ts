@@ -1,3 +1,4 @@
+import { sanitizeUrl } from "@patorsiang/utils";
 import type { CvLanguage, CvRoleId, GeneratedCV } from "./config";
 import { buildCVOutput } from "./output-builder";
 
@@ -210,7 +211,7 @@ function appendSection(lines: string[], title: string, paragraphs: readonly stri
 }
 
 function formatMarkdownLink(label: string, url: string): string {
-  return `[${escapeMarkdown(label)}](${url})`;
+  return `[${escapeMarkdown(label)}](${sanitizeUrl(url)})`;
 }
 
 function escapeMarkdown(value: string): string {

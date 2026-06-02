@@ -23,5 +23,20 @@ export const contentMetaSchema = z.object({
 
 export const linkSchema = z.object({
   label: translatableTextSchema,
-  url: z.string(),
+  url: z.string().refine(
+    (url) => {
+      const lower = url.toLowerCase();
+      return (
+        lower.startsWith("http://") ||
+        lower.startsWith("https://") ||
+        lower.startsWith("mailto:") ||
+        lower.startsWith("tel:") ||
+        lower.startsWith("/") ||
+        lower.startsWith("#")
+      );
+    },
+    {
+      message: "URL must use a safe protocol (http, https, mailto, tel, or relative)",
+    },
+  ),
 });

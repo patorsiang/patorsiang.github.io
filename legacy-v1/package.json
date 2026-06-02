@@ -12,6 +12,7 @@
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
     "@next/third-parties": "15.5.18",
+    "@patorsiang/utils": "workspace:*",
     "autoprefixer": "^10.4.19",
     "clsx": "^2.1.0",
     "fs-extra": "^11.2.0",

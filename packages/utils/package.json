@@ -1,5 +1,5 @@
 {
-  "name": "@patorsiang/cv-engine",
+  "name": "@patorsiang/utils",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -8,15 +8,12 @@
   },
   "types": "./src/index.ts",
   "scripts": {
-    "typecheck": "tsc --noEmit",
-    "test": "bun test"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@patorsiang/content": "workspace:*",
-    "@patorsiang/utils": "workspace:*"
+    "isomorphic-dompurify": "^2.20.0"
   },
   "devDependencies": {
-    "bun-types": "latest",
     "typescript": "^5"
   }
 }

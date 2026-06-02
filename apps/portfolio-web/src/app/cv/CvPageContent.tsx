@@ -5,6 +5,7 @@ import type {
   GeneratedCvExperience,
   GeneratedCvProject,
 } from "@patorsiang/cv-engine";
+import { sanitizeUrl } from "@patorsiang/utils";
 import type { ReactNode } from "react";
 import { CvToolbar } from "./CvToolbar";
 
@@ -58,13 +59,13 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
               </div>
 
               <address className="not-italic text-sm leading-7 text-zinc-700 sm:text-right">
-                <a className="font-medium text-zinc-950" href={`mailto:${cv.header.email}`}>
+                <a className="font-medium text-zinc-950" href={sanitizeUrl(`mailto:${cv.header.email}`)}>
                   {cv.header.email}
                 </a>
                 {cv.header.links.map((link) => (
                   <a
                     key={link.url}
-                    href={link.url}
+                    href={sanitizeUrl(link.url)}
                     target="_blank"
                     rel="noreferrer"
                     className="block text-teal-800 underline-offset-4 hover:underline print:text-zinc-800"
@@ -203,7 +204,7 @@ function ProjectItem({ project }: Readonly<{ project: GeneratedCvProject }>) {
           {project.links.map((link) => (
             <a
               key={link.url}
-              href={link.url}
+              href={sanitizeUrl(link.url)}
               target="_blank"
               rel="noreferrer"
               className="text-teal-800 underline-offset-4 hover:underline print:text-zinc-800"
