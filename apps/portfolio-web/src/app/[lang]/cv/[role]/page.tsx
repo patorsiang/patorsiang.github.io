@@ -1,4 +1,5 @@
 import { buildCVOutput, isCvLanguage, type CvLanguage } from "@patorsiang/cv-engine";
+import { logger } from "@patorsiang/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ownerName, siteName } from "@/lib/seo";
@@ -88,6 +89,11 @@ export default async function CvRoleLanguagePage({
 }>) {
   const selection = await resolveParams(params);
   const cv = buildCVOutput(selection.role, selection.lang);
+
+  if (process.env.NODE_ENV === "development" && cv.meta.warnings.length > 0) {
+    logger.warn(`CV Engine Warnings for ${selection.role} (${selection.lang}):`);
+    cv.meta.warnings.forEach((warning) => logger.warn(`- ${warning}`));
+  }
 
   return (
     <CvPageContent

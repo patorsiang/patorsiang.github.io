@@ -96,6 +96,7 @@
         "isomorphic-dompurify": "^2.20.0",
       },
       "devDependencies": {
+        "@types/node": "^20",
         "typescript": "^5",
       },
     },
