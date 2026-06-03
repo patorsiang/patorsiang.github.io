@@ -47,14 +47,14 @@ Forbidden patterns:
 
 ### Duration
 
-| Motion type | Duration |
-| --- | ---: |
-| Hover/focus feedback | 100-150ms |
-| Button active/pressed feedback | 75-120ms |
-| Small menu or disclosure open/close | 150-200ms |
-| Section reveal, if used | 180-240ms |
-| Loading shimmer, if used | 900-1400ms loop |
-| Toast or temporary status entry | 150-220ms |
+| Motion type                         |        Duration |
+| ----------------------------------- | --------------: |
+| Hover/focus feedback                |       100-150ms |
+| Button active/pressed feedback      |        75-120ms |
+| Small menu or disclosure open/close |       150-200ms |
+| Section reveal, if used             |       180-240ms |
+| Loading shimmer, if used            | 900-1400ms loop |
+| Toast or temporary status entry     |       150-220ms |
 
 Rules:
 

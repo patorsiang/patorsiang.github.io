@@ -104,15 +104,15 @@ The portfolio should align with the dynamic CV system and reuse the same content
 
 ## Do / Don't Examples
 
-| Do | Don't |
-| --- | --- |
-| Show a concise profile summary with direct links to GitHub, LinkedIn, and CV. | Start with a large decorative hero that pushes useful content below the fold. |
-| Use clear section headings like Experience, Projects, Skills, and Education. | Invent branded or ambiguous section names that slow scanning. |
-| Present projects with role, tech stack, short outcome, and source link. | Use image-heavy project cards that hide the actual engineering evidence. |
-| Use subtle hover and focus states. | Add large entrance animations, parallax, or scroll effects that distract from reading. |
-| Keep role-specific CV content aligned with the CV engine. | Maintain separate portfolio copy that contradicts generated CV output. |
-| Design mobile pages around a single readable column. | Shrink desktop grids until text and links become cramped. |
-| Use color to support hierarchy and state. | Depend on color alone to communicate status or meaning. |
+| Do                                                                            | Don't                                                                                  |
+| ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| Show a concise profile summary with direct links to GitHub, LinkedIn, and CV. | Start with a large decorative hero that pushes useful content below the fold.          |
+| Use clear section headings like Experience, Projects, Skills, and Education.  | Invent branded or ambiguous section names that slow scanning.                          |
+| Present projects with role, tech stack, short outcome, and source link.       | Use image-heavy project cards that hide the actual engineering evidence.               |
+| Use subtle hover and focus states.                                            | Add large entrance animations, parallax, or scroll effects that distract from reading. |
+| Keep role-specific CV content aligned with the CV engine.                     | Maintain separate portfolio copy that contradicts generated CV output.                 |
+| Design mobile pages around a single readable column.                          | Shrink desktop grids until text and links become cramped.                              |
+| Use color to support hierarchy and state.                                     | Depend on color alone to communicate status or meaning.                                |
 
 ## Acceptance Criteria
 

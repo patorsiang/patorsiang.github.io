@@ -22,19 +22,19 @@ Future tokens should fit this setup and can be added through CSS variables and T
 
 ### Colour Tokens
 
-| Token | Light value | Dark value | Tailwind reference | Usage |
-| --- | --- | --- | --- | --- |
-| `--color-page` | `#fafaf9` | `#0a0a0a` | `stone-50` / near black | Page background. |
-| `--color-surface` | `#ffffff` | `#18181b` | `white` / `zinc-900` | Cards, panels, CV sections. |
-| `--color-surface-muted` | `#f5f5f4` | `#27272a` | `stone-100` / `zinc-800` | Tags, subtle grouped areas. |
-| `--color-text` | `#09090b` | `#ededed` | `zinc-950` / near white | Primary text. |
-| `--color-text-muted` | `#52525b` | `#a1a1aa` | `zinc-600` / `zinc-400` | Secondary text, metadata. |
-| `--color-text-soft` | `#71717a` | `#d4d4d8` | `zinc-500` / `zinc-300` | Dates, helper text, labels. |
-| `--color-border` | `#e4e4e7` | `#3f3f46` | `zinc-200` / `zinc-700` | Borders and separators. |
-| `--color-border-strong` | `#d4d4d8` | `#52525b` | `zinc-300` / `zinc-600` | Interactive borders. |
-| `--color-accent` | `#0f766e` | `#2dd4bf` | `teal-700` / `teal-400` | Links, focus, small emphasis. |
-| `--color-accent-strong` | `#115e59` | `#5eead4` | `teal-800` / `teal-300` | Hover states and strong accents. |
-| `--color-inverse` | `#ffffff` | `#09090b` | `white` / `zinc-950` | Text on strong dark or light buttons. |
+| Token                   | Light value | Dark value | Tailwind reference       | Usage                                 |
+| ----------------------- | ----------- | ---------- | ------------------------ | ------------------------------------- |
+| `--color-page`          | `#fafaf9`   | `#0a0a0a`  | `stone-50` / near black  | Page background.                      |
+| `--color-surface`       | `#ffffff`   | `#18181b`  | `white` / `zinc-900`     | Cards, panels, CV sections.           |
+| `--color-surface-muted` | `#f5f5f4`   | `#27272a`  | `stone-100` / `zinc-800` | Tags, subtle grouped areas.           |
+| `--color-text`          | `#09090b`   | `#ededed`  | `zinc-950` / near white  | Primary text.                         |
+| `--color-text-muted`    | `#52525b`   | `#a1a1aa`  | `zinc-600` / `zinc-400`  | Secondary text, metadata.             |
+| `--color-text-soft`     | `#71717a`   | `#d4d4d8`  | `zinc-500` / `zinc-300`  | Dates, helper text, labels.           |
+| `--color-border`        | `#e4e4e7`   | `#3f3f46`  | `zinc-200` / `zinc-700`  | Borders and separators.               |
+| `--color-border-strong` | `#d4d4d8`   | `#52525b`  | `zinc-300` / `zinc-600`  | Interactive borders.                  |
+| `--color-accent`        | `#0f766e`   | `#2dd4bf`  | `teal-700` / `teal-400`  | Links, focus, small emphasis.         |
+| `--color-accent-strong` | `#115e59`   | `#5eead4`  | `teal-800` / `teal-300`  | Hover states and strong accents.      |
+| `--color-inverse`       | `#ffffff`   | `#09090b`  | `white` / `zinc-950`     | Text on strong dark or light buttons. |
 
 Colour direction:
 
@@ -45,16 +45,16 @@ Colour direction:
 
 ### Typography Tokens
 
-| Token | Size | Line height | Usage |
-| --- | ---: | ---: | --- |
-| `text-caption` | `0.75rem` / 12px | `1rem` / 16px | Tags, compact metadata. |
-| `text-small` | `0.875rem` / 14px | `1.25rem` / 20px | Buttons, nav, secondary metadata. |
-| `text-body` | `1rem` / 16px | `1.75rem` / 28px | Default prose and card text. |
-| `text-body-large` | `1.125rem` / 18px | `2rem` / 32px | Intro summaries and important body copy. |
-| `text-heading-sm` | `1.25rem` / 20px | `1.75rem` / 28px | Card titles and subsection headings. |
-| `text-heading-md` | `1.5rem` / 24px | `2rem` / 32px | Section headings. |
-| `text-heading-lg` | `2.25rem` / 36px | `2.75rem` / 44px | Page title on mobile and compact pages. |
-| `text-heading-xl` | `3.75rem` / 60px | `1.05` | Homepage name or top-level hero title on large screens only. |
+| Token             |              Size |      Line height | Usage                                                        |
+| ----------------- | ----------------: | ---------------: | ------------------------------------------------------------ |
+| `text-caption`    |  `0.75rem` / 12px |    `1rem` / 16px | Tags, compact metadata.                                      |
+| `text-small`      | `0.875rem` / 14px | `1.25rem` / 20px | Buttons, nav, secondary metadata.                            |
+| `text-body`       |     `1rem` / 16px | `1.75rem` / 28px | Default prose and card text.                                 |
+| `text-body-large` | `1.125rem` / 18px |    `2rem` / 32px | Intro summaries and important body copy.                     |
+| `text-heading-sm` |  `1.25rem` / 20px | `1.75rem` / 28px | Card titles and subsection headings.                         |
+| `text-heading-md` |   `1.5rem` / 24px |    `2rem` / 32px | Section headings.                                            |
+| `text-heading-lg` |  `2.25rem` / 36px | `2.75rem` / 44px | Page title on mobile and compact pages.                      |
+| `text-heading-xl` |  `3.75rem` / 60px |           `1.05` | Homepage name or top-level hero title on large screens only. |
 
 Typography rules:
 
@@ -68,19 +68,19 @@ Typography rules:
 
 ### Spacing Tokens
 
-| Token | Value | Usage |
-| --- | ---: | --- |
-| `space-1` | 4px | Tight icon/text gaps. |
-| `space-2` | 8px | Tags, compact internal gaps. |
-| `space-3` | 12px | Button gaps, small stack spacing. |
-| `space-4` | 16px | Default element spacing. |
-| `space-5` | 20px | Card internal spacing on mobile. |
-| `space-6` | 24px | Card internal spacing on desktop. |
-| `space-8` | 32px | Section internal groups. |
-| `space-10` | 40px | Header/footer padding. |
-| `space-12` | 48px | Mobile section spacing. |
-| `space-16` | 64px | Desktop section spacing. |
-| `space-20` | 80px | Large page-level separation when needed. |
+| Token      | Value | Usage                                    |
+| ---------- | ----: | ---------------------------------------- |
+| `space-1`  |   4px | Tight icon/text gaps.                    |
+| `space-2`  |   8px | Tags, compact internal gaps.             |
+| `space-3`  |  12px | Button gaps, small stack spacing.        |
+| `space-4`  |  16px | Default element spacing.                 |
+| `space-5`  |  20px | Card internal spacing on mobile.         |
+| `space-6`  |  24px | Card internal spacing on desktop.        |
+| `space-8`  |  32px | Section internal groups.                 |
+| `space-10` |  40px | Header/footer padding.                   |
+| `space-12` |  48px | Mobile section spacing.                  |
+| `space-16` |  64px | Desktop section spacing.                 |
+| `space-20` |  80px | Large page-level separation when needed. |
 
 Spacing rules:
 
@@ -91,11 +91,11 @@ Spacing rules:
 
 ### Radius Tokens
 
-| Token | Value | Usage |
-| --- | ---: | --- |
-| `radius-sm` | 4px | Tags, small controls. |
-| `radius-md` | 6px | Buttons, inputs, compact UI. |
-| `radius-lg` | 8px | Cards and section panels. |
+| Token       | Value | Usage                        |
+| ----------- | ----: | ---------------------------- |
+| `radius-sm` |   4px | Tags, small controls.        |
+| `radius-md` |   6px | Buttons, inputs, compact UI. |
+| `radius-lg` |   8px | Cards and section panels.    |
 
 Radius rules:
 
@@ -105,9 +105,9 @@ Radius rules:
 
 ### Shadow Tokens
 
-| Token | Value | Usage |
-| --- | --- | --- |
-| `shadow-none` | none | Default for most layout surfaces. |
+| Token           | Value                         | Usage                                                    |
+| --------------- | ----------------------------- | -------------------------------------------------------- |
+| `shadow-none`   | none                          | Default for most layout surfaces.                        |
 | `shadow-subtle` | `0 1px 2px rgb(0 0 0 / 0.04)` | Optional card lift where borders alone are insufficient. |
 
 Shadow rules:
@@ -118,15 +118,15 @@ Shadow rules:
 
 ### Layout Tokens
 
-| Token | Value | Usage |
-| --- | ---: | --- |
-| `container-page` | `72rem` / 1152px | Main portfolio content width. |
-| `container-reading` | `42rem` / 672px | About text, CV summary, long prose. |
-| `container-narrow` | `56rem` / 896px | Focused lists and CV content. |
-| `container-wide` | `80rem` / 1280px | Project grids or dense comparison sections. |
-| `page-padding-mobile` | 24px | Default horizontal page padding. |
-| `page-padding-tablet` | 32px | Tablet page padding. |
-| `page-padding-desktop` | 40px | Desktop page padding. |
+| Token                  |            Value | Usage                                       |
+| ---------------------- | ---------------: | ------------------------------------------- |
+| `container-page`       | `72rem` / 1152px | Main portfolio content width.               |
+| `container-reading`    |  `42rem` / 672px | About text, CV summary, long prose.         |
+| `container-narrow`     |  `56rem` / 896px | Focused lists and CV content.               |
+| `container-wide`       | `80rem` / 1280px | Project grids or dense comparison sections. |
+| `page-padding-mobile`  |             24px | Default horizontal page padding.            |
+| `page-padding-tablet`  |             32px | Tablet page padding.                        |
+| `page-padding-desktop` |             40px | Desktop page padding.                       |
 
 Layout rules:
 

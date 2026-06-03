@@ -175,7 +175,8 @@ export const experiences = [
         en: "Worked on DLTBond, a blockchain-based government bond platform using Angular, Node.js, Go, and Hyperledger Fabric; developed internal dashboards and maintained the system.",
         translated: {
           th: {
-            value: "ทำงานในโปรเจกต์ DLTBond แพลตฟอร์มพันธบัตรรัฐบาลที่ใช้ blockchain พัฒนา dashboard ภายในและดูแลระบบ",
+            value:
+              "ทำงานในโปรเจกต์ DLTBond แพลตฟอร์มพันธบัตรรัฐบาลที่ใช้ blockchain พัฒนา dashboard ภายในและดูแลระบบ",
             status: "reviewed",
           },
         },

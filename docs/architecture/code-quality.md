@@ -29,7 +29,7 @@ This project follows a "Security in Depth" approach to prevent HTML injection an
 
 ### 1. Data Validation
 
-All content is validated using Zod in `packages/content/src/schemas/`. 
+All content is validated using Zod in `packages/content/src/schemas/`.
 URLs are restricted to safe protocols (`http`, `https`, `mailto`, `tel`) at the schema level to prevent malicious data from entering the system.
 
 ### 2. Sanitization Utilities

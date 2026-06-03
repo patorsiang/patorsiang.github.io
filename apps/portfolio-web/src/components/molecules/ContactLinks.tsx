@@ -12,7 +12,10 @@ type ContactLinksProps = {
   readonly "aria-label"?: string;
 };
 
-export function ContactLinks({ links, "aria-label": ariaLabel = "Contact links" }: ContactLinksProps) {
+export function ContactLinks({
+  links,
+  "aria-label": ariaLabel = "Contact links",
+}: ContactLinksProps) {
   return (
     <nav aria-label={ariaLabel} className="flex flex-wrap gap-3">
       {links.map((link) => (

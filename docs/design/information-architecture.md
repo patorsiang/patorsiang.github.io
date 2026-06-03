@@ -23,18 +23,18 @@ Current implementation note: the app already has `/`, `/cv`, `/cv/[role]`, `/[la
 
 ## Route Table
 
-| Route | Status | Purpose | Notes |
-| --- | --- | --- | --- |
-| `/` | Current | Minimal portfolio homepage and primary entry point. | Should summarize profile, role direction, featured experience, featured projects, skills, CV links, and contact path. |
-| `/about` | Planned | Focused profile page. | Use when homepage summary is not enough. Keep concise and evidence-based. |
-| `/experience` | Planned | Work, internship, education, awards, and activity timeline. | Should support recruiter scanning by dates, roles, organizations, summaries, highlights, and relevant tags. |
-| `/projects` | Planned | Project index. | Should list selected public projects with filtering or grouping only when content volume requires it. |
-| `/cv` | Current redirect / planned index | CV entry point. | Current behavior redirects to the canonical default CV. Future version may become a minimal CV role selector. |
-| `/cv/[role]` | Current redirect | Legacy or convenience CV role route. | Redirects to canonical localized CV using default or selected language. |
-| `/[lang]/cv/[role]` | Current canonical CV | Dynamic role-specific CV page. | Supports `en` and `th` language variants and role slugs such as `fullstack-engineer`, `ai-ml-engineer`, and `security-engineer`. |
-| `/contact` | Planned | Direct contact page. | Keep simple: email, professional links, location/time-zone context if useful. |
-| `/cv/export/json` | Current API | CV JSON export. | Utility route, not part of primary navigation. |
-| `/cv/export/markdown` | Current API | CV Markdown export. | Utility route, not part of primary navigation. |
+| Route                 | Status                           | Purpose                                                     | Notes                                                                                                                            |
+| --------------------- | -------------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `/`                   | Current                          | Minimal portfolio homepage and primary entry point.         | Should summarize profile, role direction, featured experience, featured projects, skills, CV links, and contact path.            |
+| `/about`              | Planned                          | Focused profile page.                                       | Use when homepage summary is not enough. Keep concise and evidence-based.                                                        |
+| `/experience`         | Planned                          | Work, internship, education, awards, and activity timeline. | Should support recruiter scanning by dates, roles, organizations, summaries, highlights, and relevant tags.                      |
+| `/projects`           | Planned                          | Project index.                                              | Should list selected public projects with filtering or grouping only when content volume requires it.                            |
+| `/cv`                 | Current redirect / planned index | CV entry point.                                             | Current behavior redirects to the canonical default CV. Future version may become a minimal CV role selector.                    |
+| `/cv/[role]`          | Current redirect                 | Legacy or convenience CV role route.                        | Redirects to canonical localized CV using default or selected language.                                                          |
+| `/[lang]/cv/[role]`   | Current canonical CV             | Dynamic role-specific CV page.                              | Supports `en` and `th` language variants and role slugs such as `fullstack-engineer`, `ai-ml-engineer`, and `security-engineer`. |
+| `/contact`            | Planned                          | Direct contact page.                                        | Keep simple: email, professional links, location/time-zone context if useful.                                                    |
+| `/cv/export/json`     | Current API                      | CV JSON export.                                             | Utility route, not part of primary navigation.                                                                                   |
+| `/cv/export/markdown` | Current API                      | CV Markdown export.                                         | Utility route, not part of primary navigation.                                                                                   |
 
 ## Navigation Model
 

@@ -10,10 +10,5 @@ type SanitizedHTMLProps = {
  * Use this for any content that contains HTML tags (e.g. from the profile subtitle).
  */
 export function SanitizedHTML({ html, className }: SanitizedHTMLProps) {
-  return (
-    <div
-      className={className}
-      dangerouslySetInnerHTML={{ __html: sanitizeHTML(html) }}
-    />
-  );
+  return <div className={className} dangerouslySetInnerHTML={{ __html: sanitizeHTML(html) }} />;
 }

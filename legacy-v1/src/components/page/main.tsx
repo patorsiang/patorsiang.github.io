@@ -1,13 +1,36 @@
 import Image from "next/image";
-import { Fragment, type ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
-import { sanitizeHTML } from "@patorsiang/utils";
 
 import { TextAnimation } from "../animation";
 import { IconLink } from "../iconLink";
 import { DownloadCVLink } from "../downloadCV";
 
 import { contactIcons, iconSize } from "@/constants";
+
+const allowedSubtitleTags = /<\/?b>|<br\s*\/?>/gi;
+
+function escapeHTML(text: string) {
+  return text
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function formatSubtitleHTML(html: string) {
+  let result = "";
+  let lastIndex = 0;
+
+  html.replace(allowedSubtitleTags, (match, offset: number) => {
+    result += escapeHTML(html.slice(lastIndex, offset));
+    result += match.toLowerCase().startsWith("<br") ? "<br />" : match.toLowerCase();
+    lastIndex = offset + match.length;
+    return match;
+  });
+
+  return result + escapeHTML(html.slice(lastIndex));
+}
 
 export default async function Main() {
   const t = await getTranslations("page.home");
@@ -66,7 +89,7 @@ export default async function Main() {
       {/* Subtitle */}
       <h2
         className="main-introduction-subheading"
-        dangerouslySetInnerHTML={{ __html: sanitizeHTML(t_info.raw("subtitle")) }}
+        dangerouslySetInnerHTML={{ __html: formatSubtitleHTML(t_info.raw("subtitle")) }}
       />
     </main>
   );
