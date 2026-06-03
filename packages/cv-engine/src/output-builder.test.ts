@@ -53,13 +53,13 @@ describe("output builder", () => {
     );
   });
 
-  test("buildCVOutput supports Thai draft output with base-content fallback", () => {
+  test("buildCVOutput supports Thai reviewed output", () => {
     const cv = buildCVOutput("fullstack_engineer", "th");
 
     expect(cv.meta.language).toBe("th");
     expect(cv.header.location).toBe("กรุงเทพฯ ประเทศไทย");
-    expect(cv.header.targetTitle).toBe("นักพัฒนา Full-Stack");
-    expect(cv.summary.text).toContain("Software developer");
+    expect(cv.header.targetTitle).toBe("Full-Stack Developer");
+    expect(cv.summary.text).toContain("ประสบการณ์พัฒนาผลิตภัณฑ์");
     expect(cv.skills.length).toBeGreaterThan(0);
     expect(cv.experience.length).toBeGreaterThan(0);
     expect(cv.projects.length).toBeGreaterThan(0);

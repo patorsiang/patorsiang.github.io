@@ -10,7 +10,7 @@ const roleLabels = {
     security_engineer: "Security Engineer",
   },
   th: {
-    fullstack_engineer: "นักพัฒนา Full-Stack",
+    fullstack_engineer: "Full-Stack Developer",
     ai_ml_engineer: "วิศวกร AI / ML",
     security_engineer: "วิศวกร Security",
   },

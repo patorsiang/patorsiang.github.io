@@ -74,7 +74,7 @@ export default function Home() {
 
         <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
           <div>
-            <SectionHeading eyebrow="About" title="Practical software for trust-sensitive problems." />
+            <SectionHeading eyebrow="About" title="Practical software for real product problems." />
             <div className="mt-6 space-y-5 text-base leading-8 text-zinc-700">
               {profile.summary.map((paragraph) => (
                 <p key={paragraph.en}>{paragraph.en}</p>

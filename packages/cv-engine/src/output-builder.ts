@@ -35,18 +35,18 @@ const roleText = {
       en: "Full-Stack Developer",
       translated: {
         th: {
-          value: "นักพัฒนา Full-Stack",
-          status: "ai_draft",
+          value: "Full-Stack Developer",
+          status: "approved",
         },
       },
     },
     summaryIntent: {
-      en: "Show end-to-end product development ability across frontend, backend, cloud, data, and secure systems.",
+      en: "Show practical product development experience across frontend, backend, cloud, data, and security-aware systems.",
       translated: {
         th: {
           value:
-            "นำเสนอความสามารถในการพัฒนาผลิตภัณฑ์ครบวงจร ครอบคลุม frontend, backend, cloud, data และระบบที่คำนึงถึงความปลอดภัย",
-          status: "ai_draft",
+            "นำเสนอประสบการณ์พัฒนาผลิตภัณฑ์เชิงปฏิบัติ ครอบคลุม frontend, backend, cloud, data และระบบที่คำนึงถึงความปลอดภัย",
+          status: "reviewed",
         },
       },
     },
@@ -57,17 +57,17 @@ const roleText = {
       translated: {
         th: {
           value: "วิศวกร AI / Machine Learning",
-          status: "ai_draft",
+          status: "approved",
         },
       },
     },
     summaryIntent: {
-      en: "Emphasize machine learning, applied AI systems, data pipelines, model evaluation, and software engineering ability.",
+      en: "Emphasize machine learning, applied AI projects, data pipelines, model evaluation, and software engineering experience.",
       translated: {
         th: {
           value:
-            "เน้นประสบการณ์ด้าน machine learning, ระบบ AI เชิงประยุกต์, data pipelines, การประเมินโมเดล และทักษะ software engineering",
-          status: "ai_draft",
+            "เน้นประสบการณ์ด้าน machine learning, โปรเจกต์ AI เชิงประยุกต์, data pipelines, การประเมินโมเดล และ software engineering",
+          status: "reviewed",
         },
       },
     },
@@ -78,17 +78,17 @@ const roleText = {
       translated: {
         th: {
           value: "Software Engineer ที่เน้นด้านความปลอดภัย",
-          status: "ai_draft",
+          status: "approved",
         },
       },
     },
     summaryIntent: {
-      en: "Show secure software development, cybersecurity learning, CTF activity, cryptography, and blockchain-related security exposure.",
+      en: "Show security-aware software development, cybersecurity learning, CTF activity, cryptography, and blockchain-related exposure.",
       translated: {
         th: {
           value:
-            "นำเสนอประสบการณ์พัฒนาซอฟต์แวร์อย่างปลอดภัย การเรียนรู้ cybersecurity กิจกรรม CTF พื้นฐาน cryptography และงานที่เกี่ยวข้องกับ blockchain security",
-          status: "ai_draft",
+            "นำเสนอประสบการณ์พัฒนาซอฟต์แวร์ที่คำนึงถึงความปลอดภัย การเรียนรู้ cybersecurity กิจกรรม CTF พื้นฐาน cryptography และงานที่เกี่ยวข้องกับ blockchain",
+          status: "reviewed",
         },
       },
     },

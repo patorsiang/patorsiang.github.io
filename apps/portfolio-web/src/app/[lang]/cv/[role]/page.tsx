@@ -22,19 +22,19 @@ const seoRoleLabels = {
 const roleDescriptions = {
   en: {
     fullstack_engineer:
-      "Full-stack engineering CV for Napatchol Thaipanich, focused on practical web systems, product delivery, and secure platform foundations.",
+      "Full-stack engineering CV for Napatchol Thaipanich, focused on practical web systems, product delivery, and security-aware foundations.",
     ai_ml_engineer:
-      "AI and ML engineering CV for Napatchol Thaipanich, focused on AI-enabled products, applied automation, and production web systems.",
+      "AI and ML engineering CV for Napatchol Thaipanich, focused on applied AI projects, automation, and practical web systems.",
     security_engineer:
-      "Security engineering CV for Napatchol Thaipanich, focused on secure platforms, risk-aware delivery, and practical web system hardening.",
+      "Security-focused CV for Napatchol Thaipanich, focused on security-aware software work, risk context, and practical web system foundations.",
   },
   th: {
     fullstack_engineer:
-      "CV สาย Full-Stack Engineer ของ Napatchol Thaipanich เน้นระบบเว็บที่ใช้งานจริง การส่งมอบผลิตภัณฑ์ และพื้นฐานแพลตฟอร์มที่ปลอดภัย",
+      "CV สาย Full-Stack Engineer ของ Napatchol Thaipanich เน้นระบบเว็บเชิงปฏิบัติ การส่งมอบผลิตภัณฑ์ และพื้นฐานระบบที่คำนึงถึงความปลอดภัย",
     ai_ml_engineer:
-      "CV สาย AI / ML Engineer ของ Napatchol Thaipanich เน้นผลิตภัณฑ์ที่ใช้ AI ระบบอัตโนมัติเชิงประยุกต์ และเว็บระบบโปรดักชัน",
+      "CV สาย AI / ML Engineer ของ Napatchol Thaipanich เน้นโปรเจกต์ AI เชิงประยุกต์ automation และระบบเว็บที่นำไปใช้งานได้จริง",
     security_engineer:
-      "CV สาย Security Engineer ของ Napatchol Thaipanich เน้นแพลตฟอร์มที่ปลอดภัย การส่งมอบงานที่คำนึงถึงความเสี่ยง และการ harden ระบบเว็บ",
+      "CV สาย Security Engineer ของ Napatchol Thaipanich เน้นงานซอฟต์แวร์ที่คำนึงถึงความปลอดภัย บริบทความเสี่ยง และพื้นฐานระบบเว็บเชิงปฏิบัติ",
   },
 } as const;
 

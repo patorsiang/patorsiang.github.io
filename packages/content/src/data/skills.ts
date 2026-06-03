@@ -10,7 +10,7 @@ export const skills = [
     groupId: "programming-fundamentals",
     label: {
       en: "Programming & Fundamentals",
-      translated: { th: { value: "Programming & Fundamentals", status: "ai_draft" } },
+      translated: { th: { value: "Programming & Fundamentals", status: "reviewed" } },
     },
     items: ["Java", "Python", "JavaScript/TypeScript", "C++", "Go", "SQL", "CSS", "HTML", "OOP"],
   },
@@ -20,7 +20,7 @@ export const skills = [
     source: legacyProfileSource,
     visibility: "public",
     groupId: "frontend",
-    label: { en: "Frontend", translated: { th: { value: "Frontend", status: "ai_draft" } } },
+    label: { en: "Frontend", translated: { th: { value: "Frontend", status: "reviewed" } } },
     items: ["React.js", "Next.js", "Angular", "PWA"],
   },
   {
@@ -31,7 +31,7 @@ export const skills = [
     groupId: "backend-tools",
     label: {
       en: "Backend & Tools",
-      translated: { th: { value: "Backend & Tools", status: "ai_draft" } },
+      translated: { th: { value: "Backend & Tools", status: "reviewed" } },
     },
     items: ["Node.js", "Express.js", "FastAPI", "Git", "Docker", "UiPath"],
   },
@@ -43,7 +43,7 @@ export const skills = [
     groupId: "machine-learning-ai",
     label: {
       en: "Machine Learning & AI",
-      translated: { th: { value: "Machine Learning & AI", status: "ai_draft" } },
+      translated: { th: { value: "Machine Learning & AI", status: "reviewed" } },
     },
     items: ["TensorFlow", "scikit-learn", "Pandas", "NumPy", "Transfer learning"],
   },
@@ -55,7 +55,7 @@ export const skills = [
     groupId: "cloud-infrastructure",
     label: {
       en: "Cloud & Infrastructure",
-      translated: { th: { value: "Cloud & Infrastructure", status: "ai_draft" } },
+      translated: { th: { value: "Cloud & Infrastructure", status: "reviewed" } },
     },
     items: ["AWS", "GCP", "Azure", "Firebase", "IBM Cloud", "RabbitMQ", "Redis"],
   },
@@ -66,8 +66,8 @@ export const skills = [
     visibility: "public",
     groupId: "security-blockchain",
     label: {
-      en: "Security & Blockchain",
-      translated: { th: { value: "Security & Blockchain", status: "ai_draft" } },
+      en: "Security, Blockchain & Systems",
+      translated: { th: { value: "Security, Blockchain & Systems", status: "reviewed" } },
     },
     items: [
       "RSA cryptography",
@@ -83,7 +83,7 @@ export const skills = [
     source: legacyProfileSource,
     visibility: "public",
     groupId: "databases",
-    label: { en: "Databases", translated: { th: { value: "Databases", status: "ai_draft" } } },
+    label: { en: "Databases", translated: { th: { value: "Databases", status: "reviewed" } } },
     items: ["PostgreSQL", "MongoDB", "MSSQL", "ER modeling & query optimization"],
   },
   {
@@ -92,7 +92,7 @@ export const skills = [
     source: legacyProfileSource,
     visibility: "public",
     groupId: "languages",
-    label: { en: "Languages", translated: { th: { value: "ภาษา", status: "ai_draft" } } },
+    label: { en: "Languages", translated: { th: { value: "ภาษา", status: "reviewed" } } },
     items: [
       "Thai: Native",
       "English: IELTS 6 / CEFR B2",

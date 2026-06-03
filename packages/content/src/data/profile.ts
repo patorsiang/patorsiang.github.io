@@ -15,30 +15,30 @@ export const profile = {
   nickname2: { en: "Siang", translated: { th: { value: "เซียง", status: "reviewed" } } },
   role: {
     en: "Full-stack developer",
-    translated: { th: { value: "AI full-stack developer", status: "reviewed" } },
+    translated: { th: { value: "Full-stack developer", status: "reviewed" } },
   },
   location: {
     en: "Bangkok, Thailand",
     translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "reviewed" } },
   },
   headline: {
-    en: "Full-stack developer building practical software across web, AI, security, and trust-sensitive systems.",
+    en: "Full-stack developer working on practical software across web, AI, security, and data-informed systems.",
     translated: {
       th: {
         value:
-          "AI full-stack developer ที่สร้างซอฟต์แวร์ใช้งานได้จริงและคำนึงถึงผู้ใช้ ครอบคลุม web, AI, security และระบบ interactive",
-        status: "ai_draft",
+          "Full-stack developer ที่ทำงานกับซอฟต์แวร์เชิงปฏิบัติ ครอบคลุมเว็บ AI ความปลอดภัย และระบบที่ใช้ข้อมูลประกอบการทำงาน",
+        status: "reviewed",
       },
     },
   },
   summary: [
     {
-      en: "Full-stack developer with a frontend foundation and experience building production software in government, startup, and client-facing environments.",
+      en: "Full-stack developer with a frontend foundation and experience contributing to software in government, startup, and client-facing environments.",
       translated: {
         th: {
           value:
-            "Software developer ที่มีพื้นฐานหลักด้าน frontend และมีประสบการณ์ทำงานกับระบบใช้งานจริงในหน่วยงานภาครัฐและสภาพแวดล้อมแบบ startup",
-          status: "ai_draft",
+            "Full-stack developer ที่มีพื้นฐานด้าน frontend และมีประสบการณ์ร่วมพัฒนาซอฟต์แวร์ในหน่วยงานภาครัฐ สตาร์ทอัพ",
+          status: "reviewed",
         },
       },
     },
@@ -47,18 +47,18 @@ export const profile = {
       translated: {
         th: {
           value:
-            "มีประสบการณ์กับ React, Next.js, Angular งาน backend บางส่วน ระบบ blockchain และโปรเจกต์ machine learning",
-          status: "ai_draft",
+            "ทำงานกับ React, Next.js, Angular, backend services, ระบบ blockchain และโปรเจกต์ AI เชิงประยุกต์ โดยให้ความสำคัญกับการใช้งานจริงมากกว่าความแปลกใหม่เพียงอย่างเดียว",
+          status: "reviewed",
         },
       },
     },
     {
-      en: "I am interested in fintech, govtech, cybersecurity, AI, and product domains where software has to be reliable, understandable, and trusted by the people who depend on it.",
+      en: "I am interested in game, cybersecurity, and AI domains where software has to be reliable, understandable, and trusted by the people who depend on it.",
       translated: {
         th: {
           value:
-            "สนใจ fintech, govtech, cybersecurity, AI และงาน product-driven ที่ซอฟต์แวร์ต้องทำงานร่วมกับความน่าเชื่อถือ",
-          status: "ai_draft",
+            "สนใจ game, cybersecurity, AI และงานผลิตภัณฑ์ที่ซอฟต์แวร์ต้องมีความน่าเชื่อถือ เข้าใจง่าย และได้รับความไว้วางใจจากผู้ใช้",
+          status: "reviewed",
         },
       },
     },
@@ -67,32 +67,32 @@ export const profile = {
     email: {
       label: {
         en: "napatchol.tha@gmail.com",
-        translated: { th: { value: "napatchol.tha@gmail.com", status: "ai_draft" } },
+        translated: { th: { value: "napatchol.tha@gmail.com", status: "approved" } },
       },
       url: "mailto:napatchol.tha@gmail.com",
     },
     github: {
       label: {
         en: "github.com/patorsiang",
-        translated: { th: { value: "github.com/patorsiang", status: "ai_draft" } },
+        translated: { th: { value: "github.com/patorsiang", status: "approved" } },
       },
       url: "https://github.com/patorsiang",
     },
     linkedin: {
       label: {
         en: "linkedin.com/in/napatchol-thaipanich",
-        translated: { th: { value: "linkedin.com/in/napatchol-thaipanich", status: "ai_draft" } },
+        translated: { th: { value: "linkedin.com/in/napatchol-thaipanich", status: "approved" } },
       },
       url: "https://www.linkedin.com/in/napatchol-thaipanich",
     },
   },
   links: [
     {
-      label: { en: "GitHub", translated: { th: { value: "GitHub", status: "ai_draft" } } },
+      label: { en: "GitHub", translated: { th: { value: "GitHub", status: "approved" } } },
       url: "https://github.com/patorsiang",
     },
     {
-      label: { en: "LinkedIn", translated: { th: { value: "LinkedIn", status: "ai_draft" } } },
+      label: { en: "LinkedIn", translated: { th: { value: "LinkedIn", status: "approved" } } },
       url: "https://www.linkedin.com/in/napatchol-thaipanich",
     },
   ],

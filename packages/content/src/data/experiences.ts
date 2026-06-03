@@ -10,53 +10,55 @@ export const experiences = [
     type: "work",
     title: {
       en: "Frontend Developer",
-      translated: { th: { value: "Frontend Developer", status: "ai_draft" } },
+      translated: { th: { value: "Frontend Developer", status: "approved" } },
     },
     organization: {
       en: "Freelance",
-      translated: { th: { value: "Freelance", status: "ai_draft" } },
+      translated: { th: { value: "Freelance", status: "approved" } },
     },
     location: {
       en: "Bangkok, Thailand",
-      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } },
+      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "approved" } },
     },
     startDate: "2023-06",
     endDate: "2024-05",
     summary: {
-      en: "Built responsive websites and dashboard interfaces for freelance client projects, from requirements gathering through deployment.",
+      en: "Hired for freelance work: maintained a corporate WordPress site and built responsive websites and dashboard interfaces for clients, from requirements gathering to deployment support.",
       translated: {
         th: {
-          value: "ออกแบบ พัฒนา และ deploy เว็บไซต์ responsive และ dashboard สำหรับโปรเจกต์ลูกค้า",
-          status: "ai_draft",
+          value:
+            "รับงานฟรีแลนซ์: ดูแลเว็บไซต์ WordPress ขององค์กร และสร้างเว็บไซต์แบบ responsive พร้อมอินเทอร์เฟซแดชบอร์ดสำหรับลูกค้า ตั้งแต่เก็บความต้องการจนถึงสนับสนุนการนำขึ้นใช้งาน",
+          status: "reviewed",
         },
       },
     },
     highlights: [
       {
-        en: "Translated client requirements into practical technical specifications and implementation plans.",
+        en: "Worked with multiple frameworks including React, Next.js, and WordPress to meet diverse project requirements.",
         translated: {
           th: {
             value:
-              "เก็บ requirement จากลูกค้าและแปลงเป็น technical specification และแนวทางแก้ปัญหา",
-            status: "ai_draft",
+              "ทำงานกับ frameworks หลากหลาย รวมถึง React, Next.js และ WordPress เพื่อตอบสนองความต้องการของโปรเจกต์",
+            status: "reviewed",
           },
         },
       },
       {
-        en: "Designed, built, and deployed responsive web experiences using React, Next.js, and cloud hosting platforms.",
+        en: "Built responsive web experiences following design specifications from requirements to production deployment.",
         translated: {
           th: {
-            value: "พัฒนาเว็บไซต์ responsive ด้วย React, Next.js และ cloud hosting platforms",
-            status: "ai_draft",
+            value: "สร้างเว็บ responsive ตามแบบออกแบบตั้งแต่เก็บความต้องการจนถึงนำขึ้นใช้งาน",
+            status: "reviewed",
           },
         },
       },
       {
-        en: "Maintained a corporate WordPress site and delivered a client analytics dashboard with a production-focused frontend workflow.",
+        en: "Communicated effectively with clients and team members to ensure clear understanding and successful project delivery.",
         translated: {
           th: {
-            value: "ดูแลเว็บไซต์ WordPress ขององค์กรและพัฒนา analytics dashboard สำหรับลูกค้า",
-            status: "ai_draft",
+            value:
+              "สื่อสารอย่างมีประสิทธิภาพกับลูกค้าและสมาชิกในทีมเพื่อให้มั่นใจในการส่งมอบโปรเจกต์ที่สำเร็จ",
+            status: "reviewed",
           },
         },
       },
@@ -72,25 +74,25 @@ export const experiences = [
     type: "work",
     title: {
       en: "Frontend Developer",
-      translated: { th: { value: "Frontend Developer", status: "ai_draft" } },
+      translated: { th: { value: "Frontend Developer", status: "approved" } },
     },
     organization: {
       en: "Data Wow Co., Ltd.",
-      translated: { th: { value: "Data Wow Co., Ltd.", status: "ai_draft" } },
+      translated: { th: { value: "Data Wow Co., Ltd.", status: "approved" } },
     },
     location: {
       en: "Bangkok, Thailand",
-      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } },
+      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "approved" } },
     },
     startDate: "2021-12",
     endDate: "2023-04",
     summary: {
-      en: "Developed production frontend features for privacy-tech, dashboard, and internal-platform products in a fast-moving product team.",
+      en: "Developed frontend features for privacy-tech, dashboard, and internal-platform products in a fast-moving product team.",
       translated: {
         th: {
           value:
-            "พัฒนา product ด้าน privacy, dashboard และ internal platform ด้วย frontend frameworks สมัยใหม่",
-          status: "ai_draft",
+            "พัฒนา frontend features สำหรับผลิตภัณฑ์ด้าน privacy-tech, dashboard และ internal platform ในทีมผลิตภัณฑ์ที่ทำงานรวดเร็ว",
+          status: "reviewed",
         },
       },
     },
@@ -99,27 +101,28 @@ export const experiences = [
         en: "Built interfaces for PDPA compliance platforms including Cookie Wow and PDPA Pro, helping users manage privacy controls and consent workflows.",
         translated: {
           th: {
-            value: "พัฒนาแพลตฟอร์ม PDPA compliance รวมถึง Cookie Wow และ PDPA Pro",
-            status: "ai_draft",
+            value:
+              "พัฒนา interfaces สำหรับแพลตฟอร์ม PDPA compliance รวมถึง Cookie Wow และ PDPA Pro",
+            status: "reviewed",
           },
         },
       },
       {
-        en: "Implemented dashboards, LINE bot chat storage systems, and mock exam platforms with real-time data handling requirements.",
+        en: "Implemented dashboards, LINE bot chat storage systems, and mock exam platforms with real-time data handling needs.",
         translated: {
           th: {
             value:
-              "ออกแบบ dashboard ระบบจัดเก็บแชต LINE bot และแพลตฟอร์ม mock exam ที่รองรับข้อมูลแบบ real-time",
-            status: "ai_draft",
+              "พัฒนา dashboard ระบบจัดเก็บแชต LINE bot และแพลตฟอร์ม mock exam ที่เกี่ยวข้องกับข้อมูลแบบ real-time",
+            status: "reviewed",
           },
         },
       },
       {
-        en: "Worked with agile product teams to ship production-ready frontend code under strict delivery timelines.",
+        en: "Worked with agile product teams to deliver frontend changes within planned release timelines.",
         translated: {
           th: {
-            value: "ทำงานในทีม agile เพื่อส่งมอบ production-ready code ภายใต้ deadline ที่เข้มงวด",
-            status: "ai_draft",
+            value: "ทำงานร่วมกับทีม agile เพื่อส่งมอบงาน frontend ตามรอบ release ที่วางไว้",
+            status: "reviewed",
           },
         },
       },
@@ -145,35 +148,35 @@ export const experiences = [
     type: "work",
     title: {
       en: "System Analyst",
-      translated: { th: { value: "System Analyst", status: "ai_draft" } },
+      translated: { th: { value: "System Analyst", status: "approved" } },
     },
     organization: {
       en: "Bank of Thailand",
-      translated: { th: { value: "Bank of Thailand", status: "ai_draft" } },
+      translated: { th: { value: "Bank of Thailand", status: "approved" } },
     },
     location: {
       en: "Bangkok, Thailand",
-      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } },
+      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "approved" } },
     },
     startDate: "2019-11",
     endDate: "2021-11",
     summary: {
-      en: "Contributed to trust-sensitive financial systems for a central bank environment, spanning blockchain infrastructure, ISO 20022 migration, testing, and workflow automation.",
+      en: "Contributed to financial-system projects in a central bank environment, spanning blockchain infrastructure, ISO 20022 migration, testing, and workflow automation.",
       translated: {
         th: {
           value:
-            "มีส่วนร่วมในระบบการเงินภาครัฐที่เกี่ยวข้องกับ blockchain, ISO 20022 migration, testing และ automation",
-          status: "ai_draft",
+            "มีส่วนร่วมในโปรเจกต์ระบบการเงินภายในสภาพแวดล้อมของธนาคารกลาง ครอบคลุม blockchain infrastructure, ISO 20022 migration, testing และ workflow automation",
+          status: "reviewed",
         },
       },
     },
     highlights: [
       {
-        en: "Worked on DLTBond, a blockchain-based government bond platform using Angular, Node.js, Go, and Hyperledger Fabric.",
+        en: "Worked on DLTBond, a blockchain-based government bond platform using Angular, Node.js, Go, and Hyperledger Fabric; developed internal dashboards and maintained the system.",
         translated: {
           th: {
-            value: "มีส่วนร่วมใน DLTBond แพลตฟอร์มพันธบัตรรัฐบาลที่ใช้ blockchain",
-            status: "ai_draft",
+            value: "ทำงานในโปรเจกต์ DLTBond แพลตฟอร์มพันธบัตรรัฐบาลที่ใช้ blockchain พัฒนา dashboard ภายในและดูแลระบบ",
+            status: "reviewed",
           },
         },
       },
@@ -182,8 +185,8 @@ export const experiences = [
         translated: {
           th: {
             value:
-              "สนับสนุน ISO 20022 migration ผ่านการปรับปรุง Java วิเคราะห์ requirement และทดสอบระบบ",
-            status: "ai_draft",
+              "สนับสนุนงาน ISO 20022 migration ผ่านการปรับปรุง Java วิเคราะห์ requirements และทดสอบระบบ",
+            status: "reviewed",
           },
         },
       },
@@ -191,8 +194,8 @@ export const experiences = [
         en: "Automated repetitive operational workflows using UiPath RPA to reduce manual workload.",
         translated: {
           th: {
-            value: "ทำ automation สำหรับ workflow ที่ทำซ้ำด้วย UiPath RPA",
-            status: "ai_draft",
+            value: "ทำ automation สำหรับ workflow ที่ทำซ้ำบ่อยด้วย UiPath RPA เพื่อลดงาน manual",
+            status: "reviewed",
           },
         },
       },
@@ -217,24 +220,25 @@ export const experiences = [
     type: "internship",
     title: {
       en: "Blockchain Developer",
-      translated: { th: { value: "Blockchain Developer", status: "ai_draft" } },
+      translated: { th: { value: "Blockchain Developer", status: "approved" } },
     },
     organization: {
       en: "KBTG Develop Bootcamp 2019",
-      translated: { th: { value: "KBTG Develop Bootcamp 2019", status: "ai_draft" } },
+      translated: { th: { value: "KBTG Develop Bootcamp 2019", status: "approved" } },
     },
     location: {
       en: "Bangkok, Thailand",
-      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } },
+      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "approved" } },
     },
     startDate: "2019-06",
     endDate: "2019-08",
     summary: {
-      en: "Built a blockchain proof of concept in an Agile bootcamp environment, combining frontend development with Go backend work.",
+      en: "Built a blockchain proof of concept in an Agile bootcamp environment, combining React frontend work with Go backend development.",
       translated: {
         th: {
-          value: "พัฒนา blockchain proof of concept ใน sprint แบบ Agile ระยะเวลา 3 เดือน",
-          status: "ai_draft",
+          value:
+            "พัฒนา blockchain proof of concept ใน bootcamp แบบ Agile โดยทำทั้ง React frontend และ Go backend",
+          status: "reviewed",
         },
       },
     },
@@ -243,17 +247,18 @@ export const experiences = [
         en: "Built Time Donation using React and a Go backend integrated with the Stellar SDK.",
         translated: {
           th: {
-            value: "พัฒนา Time Donation ด้วย React และ Go backend โดยใช้ Stellar SDK",
-            status: "ai_draft",
+            value: "พัฒนา Time Donation ด้วย React และ Go backend ที่เชื่อมกับ Stellar SDK",
+            status: "reviewed",
           },
         },
       },
       {
-        en: "Developed the proof of concept through a three-month team sprint focused on social-impact use cases.",
+        en: "Developed the proof of concept through a 1-2 month team sprint focused on social-impact use cases.",
         translated: {
           th: {
-            value: "พัฒนา proof of concept ด้าน social impact ในสภาพแวดล้อมทีม bootcamp",
-            status: "ai_draft",
+            value:
+              "พัฒนา proof of concept ด้าน social impact ร่วมกับทีมใน bootcamp ระยะเวลา 1-2 เดือน",
+            status: "reviewed",
           },
         },
       },
@@ -269,29 +274,29 @@ export const experiences = [
     type: "internship",
     title: {
       en: "Frontend Developer",
-      translated: { th: { value: "Frontend Developer", status: "ai_draft" } },
+      translated: { th: { value: "Frontend Developer", status: "approved" } },
     },
     organization: {
       en: "BeID Corporation Co., Ltd.",
-      translated: { th: { value: "BeID Corporation Co., Ltd.", status: "ai_draft" } },
+      translated: { th: { value: "BeID Corporation Co., Ltd.", status: "approved" } },
     },
     location: {
       en: "Bangkok, Thailand",
-      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } },
+      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "approved" } },
     },
     startDate: "2018-06",
     endDate: "2018-07",
     summary: {
       en: "Developed dashboard and landing-page interfaces.",
       translated: {
-        th: { value: "พัฒนา interface สำหรับ dashboard และ landing page", status: "ai_draft" },
+        th: { value: "พัฒนา interfaces สำหรับ dashboard และ landing page", status: "reviewed" },
       },
     },
     highlights: [
       {
         en: "Developed a dashboard and landing page using React.",
         translated: {
-          th: { value: "พัฒนา dashboard และ landing page ด้วย React", status: "ai_draft" },
+          th: { value: "พัฒนา dashboard และ landing page ด้วย React", status: "reviewed" },
         },
       },
     ],
@@ -306,15 +311,15 @@ export const experiences = [
     type: "education",
     title: {
       en: "MSc Advanced Computer Science",
-      translated: { th: { value: "MSc Advanced Computer Science", status: "ai_draft" } },
+      translated: { th: { value: "MSc Advanced Computer Science", status: "approved" } },
     },
     organization: {
       en: "University of Kent",
-      translated: { th: { value: "University of Kent", status: "ai_draft" } },
+      translated: { th: { value: "University of Kent", status: "approved" } },
     },
     location: {
       en: "Canterbury, UK",
-      translated: { th: { value: "Canterbury, UK", status: "ai_draft" } },
+      translated: { th: { value: "Canterbury, UK", status: "approved" } },
     },
     startDate: "2024-09",
     endDate: "2025-09",
@@ -323,7 +328,7 @@ export const experiences = [
       translated: {
         th: {
           value: "สำเร็จการศึกษา MSc Advanced Computer Science ด้วยผลการเรียนระดับ distinction",
-          status: "ai_draft",
+          status: "reviewed",
         },
       },
     },
@@ -334,7 +339,7 @@ export const experiences = [
           th: {
             value:
               "ศึกษา artificial intelligence, deep learning, computer security, IoT และ quantum computing",
-            status: "ai_draft",
+            status: "reviewed",
           },
         },
       },
@@ -342,8 +347,8 @@ export const experiences = [
         en: "Built a cryptocurrency rug pull detection dissertation project.",
         translated: {
           th: {
-            value: "พัฒนา dissertation project สำหรับตรวจจับ cryptocurrency rug pull",
-            status: "ai_draft",
+            value: "พัฒนา dissertation project เกี่ยวกับการตรวจจับ cryptocurrency rug pull",
+            status: "reviewed",
           },
         },
       },
@@ -368,16 +373,16 @@ export const experiences = [
     title: {
       en: "B.Sc. Information and Communication Technology",
       translated: {
-        th: { value: "B.Sc. Information and Communication Technology", status: "ai_draft" },
+        th: { value: "B.Sc. Information and Communication Technology", status: "approved" },
       },
     },
     organization: {
       en: "Mahidol University",
-      translated: { th: { value: "Mahidol University", status: "ai_draft" } },
+      translated: { th: { value: "Mahidol University", status: "approved" } },
     },
     location: {
       en: "Nakhon Pathom, Thailand",
-      translated: { th: { value: "นครปฐม ประเทศไทย", status: "ai_draft" } },
+      translated: { th: { value: "นครปฐม ประเทศไทย", status: "approved" } },
     },
     startDate: "2015-07",
     endDate: "2019-06",
@@ -387,7 +392,7 @@ export const experiences = [
         th: {
           value:
             "ศึกษา Information and Communication Technology โดยเน้น Database และ Intelligent Systems",
-          status: "ai_draft",
+          status: "reviewed",
         },
       },
     },
@@ -398,7 +403,7 @@ export const experiences = [
           th: {
             value:
               "ศึกษา web programming, human-computer interaction, databases, algorithms และ digital image processing",
-            status: "ai_draft",
+            status: "reviewed",
           },
         },
       },
@@ -407,7 +412,7 @@ export const experiences = [
         translated: {
           th: {
             value: "พัฒนา progressive web app ด้าน cultural heritage เป็น senior project",
-            status: "ai_draft",
+            status: "reviewed",
           },
         },
       },
@@ -423,15 +428,15 @@ export const experiences = [
     type: "education",
     title: {
       en: "LL.B. Bachelor of Laws",
-      translated: { th: { value: "LL.B. Bachelor of Laws", status: "ai_draft" } },
+      translated: { th: { value: "LL.B. Bachelor of Laws", status: "approved" } },
     },
     organization: {
       en: "Ramkhamhaeng University",
-      translated: { th: { value: "Ramkhamhaeng University", status: "ai_draft" } },
+      translated: { th: { value: "Ramkhamhaeng University", status: "approved" } },
     },
     location: {
       en: "Bangkok, Thailand",
-      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "ai_draft" } },
+      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "approved" } },
     },
     startDate: "2015",
     endDate: "2023",
@@ -441,7 +446,7 @@ export const experiences = [
         th: {
           value:
             "ศึกษากฎหมาย โดยมี coursework ที่เกี่ยวข้องกับทรัพย์สินทางปัญญา การค้าระหว่างประเทศ และกฎหมายเกี่ยวกับคอมพิวเตอร์",
-          status: "ai_draft",
+          status: "reviewed",
         },
       },
     },
@@ -451,8 +456,8 @@ export const experiences = [
         translated: {
           th: {
             value:
-              "สร้างพื้นฐานข้ามสายงานที่เชื่อมโยงซอฟต์แวร์ ความเสี่ยงของ product บริบททางกฎหมาย และผู้ใช้งาน",
-            status: "ai_draft",
+              "สร้างพื้นฐานข้ามสายงานที่ช่วยเชื่อมโยงซอฟต์แวร์ ความเสี่ยงของผลิตภัณฑ์ บริบททางกฎหมาย และผู้ใช้งาน",
+            status: "reviewed",
           },
         },
       },
