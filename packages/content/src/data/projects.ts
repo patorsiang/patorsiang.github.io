@@ -18,7 +18,7 @@ export const projects = [
     category: "ai-ml",
     status: "prototype",
     summary: {
-      en: "Machine-learning system to detect and categorize fraudulent blockchain projects.",
+      en: "Research prototype that analyzes smart contracts, blockchain activity, and anomaly signals to flag suspected DeFi rug pulls.",
       translated: {
         th: {
           value:
@@ -44,11 +44,12 @@ export const projects = [
     ],
     highlights: [
       {
-        en: "Designed an applied machine-learning workflow for cryptocurrency rug pull detection.",
+        en: "Built a React/Vite and FastAPI workflow for contract address intake, feature extraction, and prediction review.",
       },
       {
-        en: "Built a full-stack prototype connecting model output with a web interface.",
+        en: "Combined source, bytecode/opcode, transaction timeline, tabular ML, and anomaly-detection signals.",
       },
+      { en: "Used Redis and Docker Compose to coordinate backend services and local experiment runs." },
     ],
     links: [
       {
@@ -59,6 +60,23 @@ export const projects = [
     placement: "featured-project",
     contributionType: "academic",
     timeframe: { en: "2025" },
+    problem: {
+      en: "DeFi rug-pull scams can hide risky behaviour across smart-contract source code, bytecode, transaction timelines, and anomaly patterns, making manual inspection difficult and time-consuming.",
+    },
+    audience: {
+      en: "Academic reviewers, blockchain security learners, and builders exploring ML-assisted contract risk analysis.",
+    },
+    keyLearning: [
+      {
+        en: "Heterogeneous blockchain evidence needs a pipeline that can normalize Etherscan/local data into source, opcode, tabular, and timeline features.",
+      },
+      {
+        en: "Prediction fusion is useful when separate ML and anomaly heads capture different risk patterns, but the result depends heavily on dataset provenance and metrics.",
+      },
+    ],
+    testingNotes: {
+      en: "Research prototype only; not production security tooling or financial advice. Public release needs stronger dataset provenance, license documentation, and exact model metrics.",
+    },
   },
   {
     id: "project.smart-shoe",
@@ -76,7 +94,7 @@ export const projects = [
     category: "iot",
     status: "prototype",
     summary: {
-      en: "Arduino sensor prototype integrated with a Next.js app for real-time gait monitoring and fall detection.",
+      en: "IoT smart shoe prototype that collects force and motion data from an ESP32 device and visualizes live step, balance, and fall-risk signals.",
       translated: {
         th: {
           value:
@@ -86,13 +104,14 @@ export const projects = [
       },
     },
     role: { en: "Developer", translated: { th: { value: "Developer", status: "ai_draft" } } },
-    techStack: ["C++", "Next.js", "Arduino"],
+    techStack: ["C++", "Next.js", "Arduino", "ESP32", "BLE", "MQTT"],
     tags: ["iot", "web", "frontend", "nextjs", "software-engineering"],
     highlights: [
-      { en: "Connected hardware sensor data with a web application." },
       {
-        en: "Explored real-time gait monitoring and fall-detection workflows.",
+        en: "Collected pressure and motion readings with force sensors, an MPU6050, and ESP32 firmware.",
       },
+      { en: "Implemented filtering and threshold logic for step, fall, and balance events." },
+      { en: "Published readings through BLE notifications and MQTT into a live Next.js dashboard." },
     ],
     links: [
       {
@@ -100,9 +119,26 @@ export const projects = [
         url: "https://github.com/patorsiang/smart-shoe",
       },
     ],
-    placement: "project",
+    placement: "featured-project",
     contributionType: "academic",
     timeframe: { en: "2025" },
+    problem: {
+      en: "Movement, pressure balance, and fall-risk signals are difficult to observe continuously without combining sensors, embedded logic, wireless communication, and interface design.",
+    },
+    audience: {
+      en: "Academic evaluators, IoT learners, and product teams exploring wearable sensing prototypes.",
+    },
+    keyLearning: [
+      {
+        en: "Explainable threshold logic works well for an academic prototype, but it depends on calibration, sensor placement, and noise handling.",
+      },
+      {
+        en: "A useful wearable demo needs the full path from embedded readings to wireless transport, dashboard state, battery status, alerts, force distribution, and motion views.",
+      },
+    ],
+    testingNotes: {
+      en: "Academic prototype only; not a medical or safety device. Results are sensitive to sensor placement, calibration, noise, and hardware reliability.",
+    },
   },
   {
     id: "project.food101-classification",
@@ -120,7 +156,7 @@ export const projects = [
     category: "ai-ml",
     status: "archived",
     summary: {
-      en: "Transfer-learning image classification project using EfficientNetV2 on a 100K-image food dataset.",
+      en: "Computer-vision experiment using Food-101 and EfficientNetV2B2 transfer learning to test food recognition for a future nutrition-estimation pipeline.",
       translated: {
         th: {
           value:
@@ -141,10 +177,11 @@ export const projects = [
       "academic",
     ],
     highlights: [
-      { en: "Implemented transfer learning with EfficientNetV2." },
+      { en: "Trained an EfficientNetV2B2 transfer-learning model on the 101-class Food-101 dataset." },
       {
-        en: "Explored image classification as a foundation for nutritional-estimation workflows.",
+        en: "Evaluated on 25,250 samples with 0.8493 accuracy and 0.8488 macro F1.",
       },
+      { en: "Mapped the classification task to the first stage of a nutrition-estimation product path." },
     ],
     links: [
       {
@@ -152,9 +189,26 @@ export const projects = [
         url: "https://github.com/patorsiang/AI-System---Food-Image-Classification-for-Nutritional-Estimation",
       },
     ],
-    placement: "playground",
+    placement: "project",
     contributionType: "academic",
     timeframe: { en: "2025" },
+    problem: {
+      en: "Food recognition is a first step toward nutrition estimation, but calories and nutrients require reliable classification plus future portion-size and nutrition database work.",
+    },
+    audience: {
+      en: "Academic reviewers and ML/product teams evaluating the feasibility of food-image recognition for nutrition tools.",
+    },
+    keyLearning: [
+      {
+        en: "Transfer learning can produce strong Food-101 classification results without training a large vision model from scratch.",
+      },
+      {
+        en: "The model is a solid ML experiment, but product readiness depends on portion-size estimation, nutrition database integration, and an app or API layer.",
+      },
+    ],
+    testingNotes: {
+      en: "Evaluated on 25,250 Food-101 samples with 0.8493 accuracy and 0.8488 macro F1; nutrition database integration, portion-size estimation, and app/API delivery are not complete.",
+    },
   },
   {
     id: "project.vending-machine-simulator",
@@ -290,7 +344,7 @@ export const projects = [
         url: "https://github.com/patorsiang/chi",
       },
     ],
-    placement: "featured-project",
+    placement: "project",
     contributionType: "academic",
     timeframe: { en: "2019" },
   },
