@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
 import { logger } from "@patorsiang/utils";
+import Link from "next/link";
+import { useEffect } from "react";
 
 export default function Error({
   error,
@@ -23,7 +24,7 @@ export default function Error({
           Something went wrong
         </h1>
         <p className="mt-6 text-base leading-7 text-zinc-600">
-          An unexpected error occurred. We've been notified and are looking into it.
+          An unexpected error occurred. We&apos;ve been notified and are looking into it.
         </p>
         <div className="mt-10 flex items-center justify-center gap-x-6">
           <button
@@ -32,9 +33,9 @@ export default function Error({
           >
             Try again
           </button>
-          <a href="/" className="text-sm font-semibold text-zinc-950">
+          <Link href="/" className="text-sm font-semibold text-zinc-950">
             Go back home <span aria-hidden="true">&rarr;</span>
-          </a>
+          </Link>
         </div>
       </div>
     </main>

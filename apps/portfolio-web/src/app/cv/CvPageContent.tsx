@@ -1,12 +1,13 @@
-import type {
-  CvLanguage,
-  CvRoleId,
-  GeneratedCV,
-  GeneratedCvExperience,
-  GeneratedCvProject,
-} from "@patorsiang/cv-engine";
+import type { CvLanguage, CvRoleId, GeneratedCV } from "@patorsiang/cv-engine";
 import { sanitizeUrl } from "@patorsiang/utils";
-import type { ReactNode } from "react";
+
+import { TextLink } from "@/components/atoms/TextLink";
+import { ExperienceCard } from "@/components/molecules/ExperienceCard";
+import { ProjectCard } from "@/components/molecules/ProjectCard";
+import { SkillGroup } from "@/components/molecules/SkillGroup";
+import { CVSection } from "@/components/organisms/CVSection";
+import { PageShell } from "@/components/templates/PageShell";
+
 import { CvToolbar } from "./CvToolbar";
 
 const sectionLabels = {
@@ -41,180 +42,142 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
   const labels = sectionLabels[selection.lang];
 
   return (
-    <main className="min-h-screen bg-stone-50 text-zinc-950 print:bg-white">
-      <div className="mx-auto w-full max-w-5xl px-6 py-8 sm:px-8 lg:px-10 print:max-w-none print:px-0 print:py-0">
-        <CvToolbar role={selection.role} lang={selection.lang} />
+    <PageShell contentClassName="max-w-5xl gap-0 py-8 print:max-w-none print:px-0 print:py-0">
+      <CvToolbar role={selection.role} lang={selection.lang} />
 
-        <article className="bg-white p-6 shadow-sm ring-1 ring-zinc-200 sm:p-10 print:p-0 print:shadow-none print:ring-0">
-          <header className="border-b border-zinc-200 pb-6">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-teal-700">
-                  {cv.header.targetTitle}
-                </p>
-                <h1 className="mt-3 text-3xl font-semibold text-zinc-950 sm:text-5xl print:text-3xl">
-                  {cv.header.name}
-                </h1>
-                <p className="mt-3 text-base font-medium text-zinc-700">{cv.header.location}</p>
-              </div>
-
-              <address className="not-italic text-sm leading-7 text-zinc-700 sm:text-right">
-                <a className="font-medium text-zinc-950" href={sanitizeUrl(`mailto:${cv.header.email}`)}>
-                  {cv.header.email}
-                </a>
-                {cv.header.links.map((link) => (
-                  <a
-                    key={link.url}
-                    href={sanitizeUrl(link.url)}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="block text-teal-800 underline-offset-4 hover:underline print:text-zinc-800"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </address>
-            </div>
-          </header>
-
-          <div className="mt-8 space-y-8 print:mt-6 print:space-y-5">
-            <CvSection title={labels.summary}>
-              <p className="text-sm leading-7 text-zinc-700 print:leading-6">{cv.summary.text}</p>
-            </CvSection>
-
-            <CvSection title={labels.skills}>
-              <div className="grid gap-4 sm:grid-cols-2 print:grid-cols-2 print:gap-3">
-                {cv.skills.map((group) => (
-                  <div key={group.id}>
-                    <h3 className="text-sm font-semibold text-zinc-950">{group.group}</h3>
-                    <p className="mt-1 text-sm leading-6 text-zinc-700">{group.items.join(", ")}</p>
-                  </div>
-                ))}
-              </div>
-            </CvSection>
-
-            <CvSection title={labels.experience}>
-              <div className="space-y-6 print:space-y-4">
-                {cv.experience.map((experience) => (
-                  <ExperienceItem key={experience.id} experience={experience} />
-                ))}
-              </div>
-            </CvSection>
-
-            <CvSection title={labels.projects}>
-              <div className="space-y-5 print:space-y-4">
-                {cv.projects.map((project) => (
-                  <ProjectItem key={project.id} project={project} />
-                ))}
-              </div>
-            </CvSection>
-
-            <CvSection title={labels.education}>
-              <div className="space-y-4">
-                {cv.education.map((education) => (
-                  <section key={education.id}>
-                    <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-                      <h3 className="text-base font-semibold text-zinc-950">{education.degree}</h3>
-                      <p className="text-sm font-medium text-zinc-600">
-                        {formatDateRange(education.startDate, education.endDate)}
-                      </p>
-                    </div>
-                    <p className="mt-1 text-sm font-medium text-zinc-700">
-                      {education.organization} · {education.location}
-                    </p>
-                    <p className="mt-2 text-sm leading-6 text-zinc-700">{education.summary}</p>
-                  </section>
-                ))}
-              </div>
-            </CvSection>
-
-            {cv.awards.length > 0 ? (
-              <CvSection title={labels.awards}>
-                <ul className="space-y-2 text-sm leading-6 text-zinc-700">
-                  {cv.awards.map((award) => (
-                    <li key={award.id}>
-                      <span className="font-semibold text-zinc-950">{award.title}</span>
-                      {" · "}
-                      {award.organization}
-                    </li>
-                  ))}
-                </ul>
-              </CvSection>
-            ) : null}
-
-            <CvSection title={labels.languages}>
-              <p className="text-sm leading-6 text-zinc-700">
-                {cv.languages.map((language) => `${language.name}: ${language.level}`).join(" · ")}
+      <article className="bg-[var(--color-surface)] p-6 shadow-sm ring-1 ring-[var(--color-border)] sm:p-10 print:p-0 print:shadow-none print:ring-0">
+        <header className="border-b border-[var(--color-border)] pb-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-accent)]">
+                {cv.header.targetTitle}
               </p>
-            </CvSection>
+              <h1 className="mt-3 text-3xl font-semibold text-[var(--color-text)] sm:text-5xl print:text-3xl">
+                {cv.header.name}
+              </h1>
+              <p className="mt-3 text-base font-medium text-[var(--color-text-muted)]">
+                {cv.header.location}
+              </p>
+            </div>
+
+            <address className="not-italic text-sm leading-7 text-[var(--color-text-muted)] sm:text-right">
+              <a
+                className="font-medium text-[var(--color-text)]"
+                href={sanitizeUrl(`mailto:${cv.header.email}`)}
+              >
+                {cv.header.email}
+              </a>
+              {cv.header.links.map((link) => (
+                <TextLink
+                  key={link.url}
+                  href={sanitizeUrl(link.url)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block"
+                >
+                  {link.label}
+                </TextLink>
+              ))}
+            </address>
           </div>
-        </article>
-      </div>
-    </main>
-  );
-}
+        </header>
 
-function CvSection({ title, children }: Readonly<{ title: string; children: ReactNode }>) {
-  return (
-    <section>
-      <h2 className="border-b border-zinc-200 pb-2 text-sm font-semibold uppercase tracking-[0.16em] text-zinc-950">
-        {title}
-      </h2>
-      <div className="mt-4 print:mt-3">{children}</div>
-    </section>
-  );
-}
+        <div className="mt-8 space-y-8 print:mt-6 print:space-y-5">
+          <CVSection title={labels.summary}>
+            <p className="text-sm leading-7 text-[var(--color-text-muted)] print:leading-6">
+              {cv.summary.text}
+            </p>
+          </CVSection>
 
-function ExperienceItem({ experience }: Readonly<{ experience: GeneratedCvExperience }>) {
-  return (
-    <section>
-      <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-        <h3 className="text-base font-semibold text-zinc-950">{experience.title}</h3>
-        <p className="text-sm font-medium text-zinc-600">
-          {formatDateRange(experience.startDate, experience.endDate)}
-        </p>
-      </div>
-      <p className="mt-1 text-sm font-medium text-zinc-700">
-        {experience.organization} · {experience.location}
-      </p>
-      <p className="mt-2 text-sm leading-6 text-zinc-700">{experience.summary}</p>
-      <ul className="mt-2 space-y-1 text-sm leading-6 text-zinc-700">
-        {experience.bullets.map((bullet) => (
-          <li key={bullet}>- {bullet}</li>
-        ))}
-      </ul>
-      <p className="mt-2 text-xs font-medium uppercase tracking-[0.12em] text-zinc-500">
-        {experience.skills.join(" · ")}
-      </p>
-    </section>
-  );
-}
+          <CVSection title={labels.skills}>
+            <div className="grid gap-4 sm:grid-cols-2 print:grid-cols-2 print:gap-3">
+              {cv.skills.map((group) => (
+                <SkillGroup
+                  key={group.id}
+                  title={group.group}
+                  items={group.items}
+                  variant="inline"
+                />
+              ))}
+            </div>
+          </CVSection>
 
-function ProjectItem({ project }: Readonly<{ project: GeneratedCvProject }>) {
-  return (
-    <section>
-      <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-        <h3 className="text-base font-semibold text-zinc-950">{project.title}</h3>
-        <p className="text-sm font-medium text-zinc-600">{project.subtitle}</p>
-      </div>
-      <p className="mt-2 text-sm leading-6 text-zinc-700">{project.summary}</p>
-      <p className="mt-2 text-sm leading-6 text-zinc-700">{project.technologies.join(", ")}</p>
-      {project.links.length > 0 ? (
-        <div className="mt-2 flex flex-wrap gap-3 text-sm font-semibold">
-          {project.links.map((link) => (
-            <a
-              key={link.url}
-              href={sanitizeUrl(link.url)}
-              target="_blank"
-              rel="noreferrer"
-              className="text-teal-800 underline-offset-4 hover:underline print:text-zinc-800"
-            >
-              {link.label}
-            </a>
-          ))}
+          <CVSection title={labels.experience}>
+            <div className="space-y-6 print:space-y-4">
+              {cv.experience.map((experience) => (
+                <ExperienceCard
+                  key={experience.id}
+                  title={experience.title}
+                  organization={experience.organization}
+                  location={experience.location}
+                  dateRange={formatDateRange(experience.startDate, experience.endDate)}
+                  summary={experience.summary}
+                  bullets={experience.bullets}
+                  skills={experience.skills}
+                  variant="plain"
+                />
+              ))}
+            </div>
+          </CVSection>
+
+          <CVSection title={labels.projects}>
+            <div className="space-y-5 print:space-y-4">
+              {cv.projects.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  title={project.title}
+                  subtitle={project.subtitle}
+                  summary={project.summary}
+                  technologies={project.technologies}
+                  links={project.links.map((link) => ({
+                    label: link.label,
+                    href: sanitizeUrl(link.url),
+                  }))}
+                  variant="plain"
+                />
+              ))}
+            </div>
+          </CVSection>
+
+          <CVSection title={labels.education}>
+            <div className="space-y-4">
+              {cv.education.map((education) => (
+                <ExperienceCard
+                  key={education.id}
+                  title={education.degree}
+                  organization={education.organization}
+                  location={education.location}
+                  dateRange={formatDateRange(education.startDate, education.endDate)}
+                  summary={education.summary}
+                  bullets={education.bullets}
+                  variant="plain"
+                />
+              ))}
+            </div>
+          </CVSection>
+
+          {cv.awards.length > 0 ? (
+            <CVSection title={labels.awards}>
+              <ul className="space-y-2 text-sm leading-6 text-[var(--color-text-muted)]">
+                {cv.awards.map((award) => (
+                  <li key={award.id}>
+                    <span className="font-semibold text-[var(--color-text)]">{award.title}</span>
+                    {" · "}
+                    {award.organization}
+                  </li>
+                ))}
+              </ul>
+            </CVSection>
+          ) : null}
+
+          <CVSection title={labels.languages}>
+            <p className="text-sm leading-6 text-[var(--color-text-muted)]">
+              {cv.languages.map((language) => `${language.name}: ${language.level}`).join(" · ")}
+            </p>
+          </CVSection>
         </div>
-      ) : null}
-    </section>
+      </article>
+    </PageShell>
   );
 }
 

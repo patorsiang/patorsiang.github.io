@@ -21,6 +21,8 @@ dist/
 **/dist/
 build
 **/build/
+storybook-static/
+**/storybook-static/
 
 # Environment files
 .env
