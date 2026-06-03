@@ -14,7 +14,7 @@ export const profile = {
   nickname: { en: "Pat", translated: { th: { value: "ภัทร", status: "reviewed" } } },
   nickname2: { en: "Siang", translated: { th: { value: "เซียง", status: "reviewed" } } },
   role: {
-    en: "AI full-stack developer",
+    en: "Full-stack developer",
     translated: { th: { value: "AI full-stack developer", status: "reviewed" } },
   },
   location: {
@@ -22,7 +22,7 @@ export const profile = {
     translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "reviewed" } },
   },
   headline: {
-    en: "AI full-stack developer building practical, human-centred software across web, AI, security, and interactive systems.",
+    en: "Full-stack developer building practical software across web, AI, security, and trust-sensitive systems.",
     translated: {
       th: {
         value:
@@ -33,7 +33,7 @@ export const profile = {
   },
   summary: [
     {
-      en: "Software developer with a mainly frontend background and experience working on real-world systems in government and startup environments.",
+      en: "Full-stack developer with a frontend foundation and experience building production software in government, startup, and client-facing environments.",
       translated: {
         th: {
           value:
@@ -43,7 +43,7 @@ export const profile = {
       },
     },
     {
-      en: "Experienced with React, Next.js, Angular, backend exposure, blockchain systems, and machine-learning projects.",
+      en: "I work across React, Next.js, Angular, backend services, blockchain systems, and applied AI projects, with a focus on practical implementation over novelty for its own sake.",
       translated: {
         th: {
           value:
@@ -53,7 +53,7 @@ export const profile = {
       },
     },
     {
-      en: "Interested in fintech, govtech, cybersecurity, AI, and product-driven domains where software and trust meet.",
+      en: "I am interested in fintech, govtech, cybersecurity, AI, and product domains where software has to be reliable, understandable, and trusted by the people who depend on it.",
       translated: {
         th: {
           value:

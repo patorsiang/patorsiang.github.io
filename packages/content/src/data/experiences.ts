@@ -23,7 +23,7 @@ export const experiences = [
     startDate: "2023-06",
     endDate: "2024-05",
     summary: {
-      en: "Designed, built, and deployed responsive websites and dashboards for client projects.",
+      en: "Built responsive websites and dashboard interfaces for freelance client projects, from requirements gathering through deployment.",
       translated: {
         th: {
           value: "ออกแบบ พัฒนา และ deploy เว็บไซต์ responsive และ dashboard สำหรับโปรเจกต์ลูกค้า",
@@ -33,7 +33,7 @@ export const experiences = [
     },
     highlights: [
       {
-        en: "Collected client requirements and translated them into technical specifications and solutions.",
+        en: "Translated client requirements into practical technical specifications and implementation plans.",
         translated: {
           th: {
             value:
@@ -43,7 +43,7 @@ export const experiences = [
         },
       },
       {
-        en: "Built responsive websites using React, Next.js, and cloud hosting platforms.",
+        en: "Designed, built, and deployed responsive web experiences using React, Next.js, and cloud hosting platforms.",
         translated: {
           th: {
             value: "พัฒนาเว็บไซต์ responsive ด้วย React, Next.js และ cloud hosting platforms",
@@ -52,7 +52,7 @@ export const experiences = [
         },
       },
       {
-        en: "Maintained a corporate WordPress website and built a client analytics dashboard.",
+        en: "Maintained a corporate WordPress site and delivered a client analytics dashboard with a production-focused frontend workflow.",
         translated: {
           th: {
             value: "ดูแลเว็บไซต์ WordPress ขององค์กรและพัฒนา analytics dashboard สำหรับลูกค้า",
@@ -85,7 +85,7 @@ export const experiences = [
     startDate: "2021-12",
     endDate: "2023-04",
     summary: {
-      en: "Built privacy, dashboard, and internal-platform products with modern frontend frameworks.",
+      en: "Developed production frontend features for privacy-tech, dashboard, and internal-platform products in a fast-moving product team.",
       translated: {
         th: {
           value:
@@ -96,7 +96,7 @@ export const experiences = [
     },
     highlights: [
       {
-        en: "Built PDPA compliance platforms including Cookie Wow and PDPA Pro.",
+        en: "Built interfaces for PDPA compliance platforms including Cookie Wow and PDPA Pro, helping users manage privacy controls and consent workflows.",
         translated: {
           th: {
             value: "พัฒนาแพลตฟอร์ม PDPA compliance รวมถึง Cookie Wow และ PDPA Pro",
@@ -105,7 +105,7 @@ export const experiences = [
         },
       },
       {
-        en: "Designed dashboards, LINE bot chat storage systems, and mock exam platforms with real-time data handling.",
+        en: "Implemented dashboards, LINE bot chat storage systems, and mock exam platforms with real-time data handling requirements.",
         translated: {
           th: {
             value:
@@ -115,7 +115,7 @@ export const experiences = [
         },
       },
       {
-        en: "Worked in agile teams to deliver production-ready code under strict deadlines.",
+        en: "Worked with agile product teams to ship production-ready frontend code under strict delivery timelines.",
         translated: {
           th: {
             value: "ทำงานในทีม agile เพื่อส่งมอบ production-ready code ภายใต้ deadline ที่เข้มงวด",
@@ -158,7 +158,7 @@ export const experiences = [
     startDate: "2019-11",
     endDate: "2021-11",
     summary: {
-      en: "Contributed to government financial systems involving blockchain, ISO 20022 migration, testing, and automation.",
+      en: "Contributed to trust-sensitive financial systems for a central bank environment, spanning blockchain infrastructure, ISO 20022 migration, testing, and workflow automation.",
       translated: {
         th: {
           value:
@@ -169,7 +169,7 @@ export const experiences = [
     },
     highlights: [
       {
-        en: "Contributed to DLTBond, a blockchain-based government bond platform.",
+        en: "Worked on DLTBond, a blockchain-based government bond platform using Angular, Node.js, Go, and Hyperledger Fabric.",
         translated: {
           th: {
             value: "มีส่วนร่วมใน DLTBond แพลตฟอร์มพันธบัตรรัฐบาลที่ใช้ blockchain",
@@ -178,7 +178,7 @@ export const experiences = [
         },
       },
       {
-        en: "Supported ISO 20022 migration through Java updates, requirements analysis, and system testing.",
+        en: "Supported ISO 20022 migration work through Java updates, requirements analysis, SWIFT-standard alignment, and system testing.",
         translated: {
           th: {
             value:
@@ -188,7 +188,7 @@ export const experiences = [
         },
       },
       {
-        en: "Automated repetitive workflows using UiPath RPA.",
+        en: "Automated repetitive operational workflows using UiPath RPA to reduce manual workload.",
         translated: {
           th: {
             value: "ทำ automation สำหรับ workflow ที่ทำซ้ำด้วย UiPath RPA",
@@ -230,7 +230,7 @@ export const experiences = [
     startDate: "2019-06",
     endDate: "2019-08",
     summary: {
-      en: "Built a blockchain proof of concept during an Agile three-month sprint.",
+      en: "Built a blockchain proof of concept in an Agile bootcamp environment, combining frontend development with Go backend work.",
       translated: {
         th: {
           value: "พัฒนา blockchain proof of concept ใน sprint แบบ Agile ระยะเวลา 3 เดือน",
@@ -240,7 +240,7 @@ export const experiences = [
     },
     highlights: [
       {
-        en: "Built Time Donation using React and a Go backend with Stellar SDK.",
+        en: "Built Time Donation using React and a Go backend integrated with the Stellar SDK.",
         translated: {
           th: {
             value: "พัฒนา Time Donation ด้วย React และ Go backend โดยใช้ Stellar SDK",
@@ -249,7 +249,7 @@ export const experiences = [
         },
       },
       {
-        en: "Developed a social-impact proof of concept in a bootcamp team environment.",
+        en: "Developed the proof of concept through a three-month team sprint focused on social-impact use cases.",
         translated: {
           th: {
             value: "พัฒนา proof of concept ด้าน social impact ในสภาพแวดล้อมทีม bootcamp",
