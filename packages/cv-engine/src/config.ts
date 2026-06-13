@@ -149,11 +149,24 @@ export const roleConfigs = {
     summaryIntent:
       "Show end-to-end product development ability across frontend, backend, cloud, data, and secure systems.",
     requiredTags: ["frontend", "backend", "web", "software engineering"],
-    preferredTags: ["react", "next.js", "node.js", "api", "cloud", "database", "security", "ai"],
+    preferredTags: [
+      "vue",
+      "nuxt",
+      "react",
+      "next.js",
+      "node.js",
+      "api",
+      "cloud",
+      "database",
+      "security",
+      "ai",
+    ],
     excludedTags: ["private-only", "tutorial-learning"],
     atsKeywords: [
       "JavaScript",
       "TypeScript",
+      "Vue.js",
+      "Nuxt.js",
       "React",
       "Next.js",
       "Node.js",
@@ -309,7 +322,7 @@ export function getRoleConfig(role: CvRoleId): CvRoleConfig {
 
   if (!roleConfig) {
     throw new CvEngineInputError(
-      `Unsupported CV role "${role}". Supported roles: ${Object.keys(roleConfigs).join(", ")}.`,
+      `Unsupported role "${role}". Supported CV roles: ${Object.keys(roleConfigs).join(", ")}.`,
     );
   }
 
