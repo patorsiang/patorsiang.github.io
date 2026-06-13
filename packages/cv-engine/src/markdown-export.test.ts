@@ -15,6 +15,8 @@ describe("Markdown export", () => {
     expect(markdown).toContain("## Languages");
     expect(markdown).toContain("[GitHub](");
     expect(markdown).toContain("[LinkedIn](");
+    expect(markdown).toContain("**Links:** GitHub: [github.com/patorsiang/");
+    expect(markdown).not.toContain("**Links:** [GitHub](");
     expect(markdown).not.toContain("## Generation Debug");
     expect(markdown).not.toContain("undefined");
     expect(markdown).not.toContain("[object Object]");
