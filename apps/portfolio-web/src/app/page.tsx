@@ -44,11 +44,13 @@ export default function Home() {
         role={profile.role.en}
         headline={profile.headline.en}
         links={[
-          ...profile.links.map((link) => ({
-            label: link.label.en,
-            href: sanitizeUrl(link.url),
-            external: true,
-          })),
+          ...profile.links
+            .filter((link) => link.label.en !== "Portfolio")
+            .map((link) => ({
+              label: link.label.en,
+              href: sanitizeUrl(link.url),
+              external: true,
+            })),
           { label: "View CV", href: "/en/cv/fullstack-engineer" },
           {
             label: "Email",
@@ -60,23 +62,21 @@ export default function Home() {
 
       <Section eyebrow="About" title="Practical software for real product problems.">
         <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
-          <div className="space-y-5 text-base leading-8 text-[var(--color-text-muted)]">
+          <div className="space-y-5 text-base leading-8 text-(--color-text-muted)">
             {profile.summary.map((paragraph) => (
               <p key={paragraph.en}>{paragraph.en}</p>
             ))}
           </div>
 
-          <aside className="border-l-0 border-[var(--color-border)] lg:border-l lg:pl-8">
-            <p className="text-sm font-medium uppercase tracking-[0.16em] text-[var(--color-text-subtle)]">
+          <aside className="border-l-0 border-(--color-border) lg:border-l lg:pl-8">
+            <p className="text-sm font-medium uppercase tracking-[0.16em] text-(--color-text-subtle)">
               Location
             </p>
-            <p className="mt-3 text-lg font-semibold text-[var(--color-text)]">
-              {profile.location.en}
-            </p>
-            <p className="mt-8 text-sm font-medium uppercase tracking-[0.16em] text-[var(--color-text-subtle)]">
+            <p className="mt-3 text-lg font-semibold text-foreground">{profile.location.en}</p>
+            <p className="mt-8 text-sm font-medium uppercase tracking-[0.16em] text-(--color-text-subtle)">
               Public identity
             </p>
-            <p className="mt-3 text-lg font-semibold text-[var(--color-text)]">
+            <p className="mt-3 text-lg font-semibold text-foreground">
               {profile.nickname.en} / {profile.nickname2.en}
             </p>
           </aside>
@@ -128,7 +128,7 @@ function ExperienceColumn({
 }>) {
   return (
     <div>
-      <h3 className="text-base font-semibold text-[var(--color-text)]">{title}</h3>
+      <h3 className="text-base font-semibold text-foreground">{title}</h3>
       <div className="mt-4 space-y-4">
         {items.map((item) => (
           <ExperienceCard
