@@ -31,7 +31,7 @@ import { groupSkillsForRole } from "./skill-grouping";
 import { rankProjectsForRole, type RankedProject } from "./project-ranking";
 
 const fullstackAtsSummary =
-  "Full-stack developer with experience delivering React, Next.js, Angular, Node.js, Java, Go, WordPress, and cloud-hosted web systems across freelance, startup, and government environments. Builds frontend interfaces, dashboards, APIs, databases, automation workflows, and security-aware features using TypeScript, SQL, PostgreSQL, MongoDB, AWS, GCP, Docker, Git, and Agile practices.";
+  "Full-stack developer currently building cybersecurity, gamified learning, and AI-related platform features at SEC Playground Co., Ltd. after passing probation. Experience includes Vue.js, Nuxt.js, React, Next.js, Angular, Node.js, Java, Go, APIs, SQL, PostgreSQL, MongoDB, AWS, GCP, Docker, Git, Linux, and TypeScript across startup, government, freelance, and client-facing environments.";
 
 const atsMaxEducationItems = 2;
 const atsMaxAwardItems = 3;
