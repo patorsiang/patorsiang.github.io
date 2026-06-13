@@ -85,7 +85,7 @@ export function ProjectCard({
         >
           {links.map((link) => (
             <TextLink key={link.href} href={link.href} target="_blank" rel="noreferrer">
-              {link.label}
+              {formatLinkText(link, variant)}
             </TextLink>
           ))}
         </div>
@@ -98,4 +98,24 @@ export function ProjectCard({
   }
 
   return <Card className="p-6">{content}</Card>;
+}
+
+function formatLinkText(link: ProjectLink, variant: ProjectCardProps["variant"]): string {
+  if (variant === "plain") {
+    return `${link.label}: ${formatShortUrl(link.href)}`;
+  }
+
+  return link.label;
+}
+
+function formatShortUrl(url: string): string {
+  try {
+    const parsedUrl = new URL(url);
+    const host = parsedUrl.hostname.replace(/^www\./, "");
+    const pathname = parsedUrl.pathname.replace(/\/$/, "");
+
+    return `${host}${pathname}`;
+  } catch {
+    return url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
+  }
 }
