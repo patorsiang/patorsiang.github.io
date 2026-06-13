@@ -35,6 +35,9 @@ describe("output builder", () => {
   test("full-stack CV uses ATS-oriented summary and full-document keyword coverage", () => {
     const cv = buildCVOutput("fullstack_engineer", "en");
 
+    expect(cv.summary.text).toContain("SEC Playground");
+    expect(cv.summary.text).toContain("Vue.js");
+    expect(cv.summary.text).toContain("Nuxt.js");
     expect(cv.summary.text).toContain("React");
     expect(cv.summary.text).toContain("Next.js");
     expect(cv.summary.text).toContain("Node.js");
@@ -116,6 +119,6 @@ describe("output builder", () => {
   });
 
   test("throws for unsupported role input through the existing role validation", () => {
-    expect(() => generateCV("unknown-role" as never, "en")).toThrow(/Unsupported CV role/);
+    expect(() => generateCV("unknown-role" as never, "en")).toThrow(/Unsupported role/);
   });
 });
