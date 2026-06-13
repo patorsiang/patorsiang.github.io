@@ -23,11 +23,11 @@ export const experiences = [
     startDate: "2026-02",
     current: true,
     summary: {
-      en: "Passed probation and continuing as a full-stack developer building product features for cybersecurity, gamified learning, and AI-related platform work.",
+      en: "Building product features for cybersecurity, gamified learning, and AI-related platform work.",
       translated: {
         th: {
           value:
-            "ผ่านโปรแล้วและทำงานต่อในตำแหน่ง full-stack developer โดยพัฒนาฟีเจอร์ผลิตภัณฑ์ด้าน cybersecurity, gamified learning และแพลตฟอร์มที่เกี่ยวข้องกับ AI",
+            "พัฒนาฟีเจอร์ผลิตภัณฑ์ด้าน cybersecurity, gamified learning และแพลตฟอร์มที่เกี่ยวข้องกับ AI",
           status: "reviewed",
         },
       },
@@ -54,17 +54,25 @@ export const experiences = [
         },
       },
       {
-        en: "Collaborated on implementation, testing, deployment, and maintenance work after successfully passing the probation period.",
+        en: "Collaborated on implementation, testing, deployment, and maintenance work",
         translated: {
           th: {
-            value:
-              "ทำงานร่วมกับทีมด้าน implementation, testing, deployment และ maintenance หลังจากผ่านช่วง probation สำเร็จ",
+            value: "ทำงานร่วมกับทีมด้านพัฒนา, ทดสอบ และการ deploy, ปรับปรุง และ การดูแลระบบ",
             status: "reviewed",
           },
         },
       },
     ],
-    skills: ["Vue.js", "Nuxt.js", "Node.js", "JavaScript/TypeScript", "SQL", "Git", "Linux", "CI/CD"],
+    skills: [
+      "Vue.js",
+      "Nuxt.js",
+      "Node.js",
+      "JavaScript/TypeScript",
+      "SQL",
+      "Git",
+      "Linux",
+      "CI/CD",
+    ],
     tags: [
       "frontend",
       "backend",
@@ -115,7 +123,7 @@ export const experiences = [
     },
     highlights: [
       {
-        en: "Worked with multiple frameworks including React, Next.js, and WordPress to meet diverse project requirements.",
+        en: "Worked with multiple frameworks, including React, Next.js, and WordPress, to meet diverse project requirements.",
         translated: {
           th: {
             value:
@@ -134,7 +142,7 @@ export const experiences = [
         },
       },
       {
-        en: "Communicated effectively with clients and team members to ensure clear understanding and successful project delivery.",
+        en: "Communicated effectively with clients and team members to ensure a clear understanding and successful project delivery.",
         translated: {
           th: {
             value:
