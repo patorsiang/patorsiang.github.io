@@ -31,6 +31,9 @@ const sectionLabels = {
   },
 } as const satisfies Record<CvLanguage, Record<string, string>>;
 
+const portfolioQrCodeSrc = "/portfolio-qr.svg";
+const fallbackPortfolioUrl = "https://patorsiang.github.io/";
+
 type CvPageContentProps = {
   readonly cv: GeneratedCV;
   readonly selection: {
@@ -40,6 +43,10 @@ type CvPageContentProps = {
 };
 export function CvPageContent({ cv, selection }: CvPageContentProps) {
   const labels = sectionLabels[selection.lang];
+  const portfolioLink =
+    cv.header.links.find((link) => link.label.toLowerCase() === "portfolio") ??
+    ({ label: "Portfolio", url: fallbackPortfolioUrl } as const);
+  const portfolioDisplayUrl = stripUrlProtocol(portfolioLink.url);
 
   return (
     <PageShell contentClassName="max-w-5xl gap-8 py-8 print:max-w-none print:gap-0 print:px-0 print:py-0">
@@ -73,11 +80,21 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
                   href={sanitizeUrl(link.url)}
                   target="_blank"
                   rel="noreferrer"
-                  className="block"
+                  className="block print:hidden"
                 >
                   {link.label}
                 </TextLink>
               ))}
+              <div className="mt-3 hidden flex-col items-end gap-1 print:flex">
+                <img
+                  src={portfolioQrCodeSrc}
+                  alt={`QR code for ${portfolioLink.label}`}
+                  className="h-20 w-20"
+                />
+                <span className="text-[8.5px] leading-tight text-[var(--color-text-muted)]">
+                  Portfolio: {portfolioDisplayUrl}
+                </span>
+              </div>
             </address>
           </div>
         </header>
@@ -186,4 +203,8 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
 
 function formatDateRange(startDate: string, endDate?: string) {
   return endDate ? `${startDate} - ${endDate}` : startDate;
+}
+
+function stripUrlProtocol(url: string) {
+  return url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 }
