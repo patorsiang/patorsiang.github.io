@@ -3,6 +3,87 @@ import type { Experience } from "../types";
 
 export const experiences = [
   {
+    id: "experience.sec-playground-fullstack-developer",
+    locale: "en",
+    source: legacyProfileSource,
+    visibility: "public",
+    type: "work",
+    title: {
+      en: "Full-Stack Developer",
+      translated: { th: { value: "Full-Stack Developer", status: "approved" } },
+    },
+    organization: {
+      en: "SEC Playground Co., Ltd.",
+      translated: { th: { value: "SEC Playground Co., Ltd.", status: "approved" } },
+    },
+    location: {
+      en: "Bangkok, Thailand",
+      translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "approved" } },
+    },
+    startDate: "2026-02",
+    current: true,
+    summary: {
+      en: "Passed probation and continuing as a full-stack developer building product features for cybersecurity, gamified learning, and AI-related platform work.",
+      translated: {
+        th: {
+          value:
+            "ผ่านโปรแล้วและทำงานต่อในตำแหน่ง full-stack developer โดยพัฒนาฟีเจอร์ผลิตภัณฑ์ด้าน cybersecurity, gamified learning และแพลตฟอร์มที่เกี่ยวข้องกับ AI",
+          status: "reviewed",
+        },
+      },
+    },
+    highlights: [
+      {
+        en: "Developed full-stack features across Vue.js, Nuxt.js, Node.js, APIs, and SQL-backed application flows.",
+        translated: {
+          th: {
+            value:
+              "พัฒนา full-stack features ด้วย Vue.js, Nuxt.js, Node.js, APIs และ application flows ที่ใช้ SQL",
+            status: "reviewed",
+          },
+        },
+      },
+      {
+        en: "Built and maintained user-facing interfaces, backend services, and integration points for cybersecurity and gamification product needs.",
+        translated: {
+          th: {
+            value:
+              "สร้างและดูแล user-facing interfaces, backend services และ integration points สำหรับผลิตภัณฑ์ด้าน cybersecurity และ gamification",
+            status: "reviewed",
+          },
+        },
+      },
+      {
+        en: "Collaborated on implementation, testing, deployment, and maintenance work after successfully passing the probation period.",
+        translated: {
+          th: {
+            value:
+              "ทำงานร่วมกับทีมด้าน implementation, testing, deployment และ maintenance หลังจากผ่านช่วง probation สำเร็จ",
+            status: "reviewed",
+          },
+        },
+      },
+    ],
+    skills: ["Vue.js", "Nuxt.js", "Node.js", "JavaScript/TypeScript", "SQL", "Git", "Linux", "CI/CD"],
+    tags: [
+      "frontend",
+      "backend",
+      "web",
+      "software-engineering",
+      "fullstack",
+      "vue",
+      "nuxt",
+      "nodejs",
+      "api",
+      "database",
+      "security",
+      "cybersecurity",
+      "ai",
+      "gamification",
+      "ctf",
+    ],
+  },
+  {
     id: "experience.freelance-frontend-developer",
     locale: "en",
     source: legacyProfileSource,
