@@ -84,7 +84,7 @@ export function exportCVAsMarkdown(cv: GeneratedCV, options: MarkdownExportOptio
       if (project.links.length > 0) {
         lines.push(
           `**${labels.links}:** ${project.links
-            .map((link) => formatMarkdownLink(link.label, link.url))
+            .map((link) => formatVisibleMarkdownLink(link.label, link.url))
             .join(" · ")}`,
         );
       }
@@ -212,6 +212,22 @@ function appendSection(lines: string[], title: string, paragraphs: readonly stri
 
 function formatMarkdownLink(label: string, url: string): string {
   return `[${escapeMarkdown(label)}](${sanitizeUrl(url)})`;
+}
+
+function formatVisibleMarkdownLink(label: string, url: string): string {
+  return `${escapeMarkdown(label)}: ${formatMarkdownLink(formatShortUrl(url), url)}`;
+}
+
+function formatShortUrl(url: string): string {
+  try {
+    const parsedUrl = new URL(url);
+    const host = parsedUrl.hostname.replace(/^www\./, "");
+    const pathname = parsedUrl.pathname.replace(/\/$/, "");
+
+    return `${host}${pathname}`;
+  } catch {
+    return url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
+  }
 }
 
 function escapeMarkdown(value: string): string {
