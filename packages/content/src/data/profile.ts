@@ -22,42 +22,42 @@ export const profile = {
     translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "reviewed" } },
   },
   headline: {
-    en: "Full-stack developer working on practical software across web, AI, security, and data-informed systems.",
+    en: "Full-stack developer building practical web, cybersecurity, gamified learning, and AI-related product features.",
     translated: {
       th: {
         value:
-          "Full-stack developer ที่ทำงานกับซอฟต์แวร์เชิงปฏิบัติ ครอบคลุมเว็บ AI ความปลอดภัย และระบบที่ใช้ข้อมูลประกอบการทำงาน",
+          "Full-stack developer ที่พัฒนาฟีเจอร์ผลิตภัณฑ์เชิงปฏิบัติด้านเว็บ cybersecurity, gamified learning และ AI",
         status: "reviewed",
       },
     },
   },
   summary: [
     {
-      en: "Full-stack developer with a frontend foundation and experience contributing to software in government, startup, and client-facing environments.",
+      en: "Full-stack developer at SEC Playground Co., Ltd., recently passed probation and building product features across cybersecurity, gamified learning, and AI-related platform work.",
       translated: {
         th: {
           value:
-            "Full-stack developer ที่มีพื้นฐานด้าน frontend และมีประสบการณ์ร่วมพัฒนาซอฟต์แวร์ในหน่วยงานภาครัฐ สตาร์ทอัพ",
+            "Full-stack developer ที่ SEC Playground Co., Ltd. เพิ่งผ่านโปร และกำลังพัฒนาฟีเจอร์ผลิตภัณฑ์ด้าน cybersecurity, gamified learning และแพลตฟอร์มที่เกี่ยวข้องกับ AI",
           status: "reviewed",
         },
       },
     },
     {
-      en: "I work across React, Next.js, Angular, backend services, blockchain systems, and applied AI projects, with a focus on practical implementation over novelty for its own sake.",
+      en: "I work across Vue.js, Nuxt.js, Node.js, APIs, SQL, React, Next.js, Angular, backend services, blockchain systems, and applied AI projects, with a focus on practical implementation.",
       translated: {
         th: {
           value:
-            "ทำงานกับ React, Next.js, Angular, backend services, ระบบ blockchain และโปรเจกต์ AI เชิงประยุกต์ โดยให้ความสำคัญกับการใช้งานจริงมากกว่าความแปลกใหม่เพียงอย่างเดียว",
+            "ทำงานกับ Vue.js, Nuxt.js, Node.js, APIs, SQL, React, Next.js, Angular, backend services, ระบบ blockchain และโปรเจกต์ AI เชิงประยุกต์ โดยเน้นการนำไปใช้งานจริง",
           status: "reviewed",
         },
       },
     },
     {
-      en: "I am interested in game, cybersecurity, and AI domains where software has to be reliable, understandable, and trusted by the people who depend on it.",
+      en: "I care about software that is reliable, understandable, and trusted by the people who depend on it, especially in security-aware and learning-focused products.",
       translated: {
         th: {
           value:
-            "สนใจ game, cybersecurity, AI และงานผลิตภัณฑ์ที่ซอฟต์แวร์ต้องมีความน่าเชื่อถือ เข้าใจง่าย และได้รับความไว้วางใจจากผู้ใช้",
+            "ให้ความสำคัญกับซอฟต์แวร์ที่น่าเชื่อถือ เข้าใจง่าย และได้รับความไว้วางใจจากผู้ใช้ โดยเฉพาะผลิตภัณฑ์ที่คำนึงถึงความปลอดภัยและการเรียนรู้",
           status: "reviewed",
         },
       },
