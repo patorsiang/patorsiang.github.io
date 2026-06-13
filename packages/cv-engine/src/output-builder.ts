@@ -31,7 +31,16 @@ import { groupSkillsForRole } from "./skill-grouping";
 import { rankProjectsForRole, type RankedProject } from "./project-ranking";
 
 const fullstackAtsSummary =
-  "Full-stack developer with experience delivering React, Next.js, Angular, Node.js, Java, Go, WordPress, and cloud-hosted web systems across freelance, startup, and government environments. Builds frontend interfaces, dashboards, backend services, APIs, databases, automation workflows, and security-aware product features using TypeScript, JavaScript, SQL, PostgreSQL, MongoDB, AWS, GCP, Docker, Git, and Agile delivery practices.";
+  "Full-stack developer with experience delivering React, Next.js, Angular, Node.js, Java, Go, WordPress, and cloud-hosted web systems across freelance, startup, and government environments. Builds frontend interfaces, dashboards, APIs, databases, automation workflows, and security-aware features using TypeScript, SQL, PostgreSQL, MongoDB, AWS, GCP, Docker, Git, and Agile practices.";
+
+const atsMaxEducationItems = 2;
+const atsMaxAwardItems = 3;
+
+const atsEducationPriority = new Map<string, number>([
+  ["education.university-of-kent-msc-advanced-computer-science", 0],
+  ["education.mahidol-ict-bsc", 1],
+  ["education.ramkhamhaeng-laws", 2],
+]);
 
 const fullstackAtsExperienceBullets: Readonly<Record<string, readonly string[]>> = {
   "experience.freelance-frontend-developer": [
@@ -157,11 +166,13 @@ export function buildCVOutput(role: CvRoleId, lang: CvLanguage): GeneratedCV {
 
   const educationSource = publicExperiencesForLanguage(lang)
     .filter((experience) => experience.type === "education")
-    .sort(compareExperienceDates);
+    .sort(compareAtsEducationPriority)
+    .slice(0, atsMaxEducationItems);
 
   const awardSource = publicExperiencesForLanguage(lang)
     .filter((experience) => experience.type === "award" || experience.type === "activity")
-    .sort(compareExperienceDates);
+    .sort(compareExperienceDates)
+    .slice(0, atsMaxAwardItems);
   const summaryText = buildSummary(roleConfig, lang);
   const skillGroups = groupSkillsForRole(skills, roleConfig, lang).map((skillGroup) => ({
     id: skillGroup.id,
@@ -335,6 +346,16 @@ function buildProjectSummary(item: Project, roleConfig: CvRoleConfig, lang: CvLa
   return text(item.summary, lang);
 }
 
+function compareAtsEducationPriority(a: Experience, b: Experience): number {
+  const priorityDifference = getAtsEducationPriority(a) - getAtsEducationPriority(b);
+
+  return priorityDifference === 0 ? compareExperienceDates(a, b) : priorityDifference;
+}
+
+function getAtsEducationPriority(item: Experience): number {
+  return atsEducationPriority.get(item.id) ?? 99;
+}
+
 function compareExperienceDates(a: Experience, b: Experience): number {
   return comparableDate(b.endDate ?? b.startDate) - comparableDate(a.endDate ?? a.startDate);
 }
@@ -348,7 +369,7 @@ function toGeneratedEducation(item: Experience, lang: CvLanguage): GeneratedCvEd
     startDate: item.startDate,
     endDate: formatOpenEndedDate(item.current ? undefined : item.endDate, lang),
     summary: text(item.summary, lang),
-    bullets: item.highlights.map((highlight) => text(highlight, lang)),
+    bullets: item.highlights.map((highlight) => text(highlight, lang)).slice(0, 1),
   };
 }
 
