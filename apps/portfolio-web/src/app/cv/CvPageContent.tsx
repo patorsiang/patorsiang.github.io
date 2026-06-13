@@ -7,7 +7,6 @@ import { ProjectCard } from "@/components/molecules/ProjectCard";
 import { SkillGroup } from "@/components/molecules/SkillGroup";
 import { CVSection } from "@/components/organisms/CVSection";
 import { PageShell } from "@/components/templates/PageShell";
-import { classNames } from "@/lib/classnames";
 
 import { CvToolbar } from "./CvToolbar";
 
@@ -124,11 +123,8 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
 
           <CVSection title={labels.projects}>
             <div className="cv-print-compact-list space-y-5 print:space-y-0">
-              {cv.projects.map((project, index) => (
-                <div
-                  key={project.id}
-                  className={classNames("cv-print-project", index >= 3 && "print:hidden")}
-                >
+              {cv.projects.map((project) => (
+                <div key={project.id} className="cv-print-project">
                   <ProjectCard
                     title={project.title}
                     subtitle={project.subtitle}
@@ -147,11 +143,8 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
 
           <CVSection title={labels.education}>
             <div className="cv-print-compact-list space-y-4 print:space-y-0">
-              {cv.education.map((education, index) => (
-                <div
-                  key={education.id}
-                  className={classNames("cv-print-education", index >= 2 && "print:hidden")}
-                >
+              {cv.education.map((education) => (
+                <div key={education.id} className="cv-print-education">
                   <ExperienceCard
                     title={education.degree}
                     organization={education.organization}
