@@ -41,8 +41,23 @@ describe("output builder", () => {
     expect(cv.summary.text).toContain("TypeScript");
     expect(cv.summary.text).toContain("PostgreSQL");
     expect(cv.summary.text).toContain("Docker");
-    expect(cv.summary.text.length).toBeLessThan(520);
+    expect(cv.summary.text.length).toBeLessThan(420);
     expect(cv.meta.warnings.some((warning) => warning.includes("Missing ATS keyword"))).toBe(false);
+  });
+
+  test("full-stack CV stays within the ATS page budget", () => {
+    const cv = buildCVOutput("fullstack_engineer", "en");
+
+    expect(cv.meta.maxPages).toBe(2);
+    expect(cv.experience).toHaveLength(4);
+    expect(cv.projects).toHaveLength(3);
+    expect(cv.education.map((education) => education.id)).toEqual([
+      "education.university-of-kent-msc-advanced-computer-science",
+      "education.mahidol-ict-bsc",
+    ]);
+    expect(cv.skills.every((group) => group.items.length <= 7)).toBe(true);
+    expect(cv.experience.every((experience) => experience.bullets.length <= 3)).toBe(true);
+    expect(cv.education.every((education) => education.bullets.length <= 1)).toBe(true);
   });
 
   test("full-stack experience and project copy is action-led and role-targeted", () => {
