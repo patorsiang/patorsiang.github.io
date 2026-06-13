@@ -190,10 +190,10 @@ export const roleConfigs = {
     ],
     limits: {
       maxPages: 2,
-      maxProjects: 4,
-      maxExperienceItems: 5,
-      maxBulletsPerExperience: 4,
-      maxSkillsPerGroup: 8,
+      maxProjects: 3,
+      maxExperienceItems: 4,
+      maxBulletsPerExperience: 3,
+      maxSkillsPerGroup: 7,
     },
   },
   ai_ml_engineer: {
@@ -247,10 +247,10 @@ export const roleConfigs = {
     ],
     limits: {
       maxPages: 2,
-      maxProjects: 5,
-      maxExperienceItems: 4,
+      maxProjects: 4,
+      maxExperienceItems: 3,
       maxBulletsPerExperience: 3,
-      maxSkillsPerGroup: 8,
+      maxSkillsPerGroup: 7,
     },
   },
   security_engineer: {
@@ -296,10 +296,10 @@ export const roleConfigs = {
     ],
     limits: {
       maxPages: 2,
-      maxProjects: 4,
-      maxExperienceItems: 5,
+      maxProjects: 3,
+      maxExperienceItems: 4,
       maxBulletsPerExperience: 3,
-      maxSkillsPerGroup: 8,
+      maxSkillsPerGroup: 7,
     },
   },
 } as const satisfies Record<CvRoleId, CvRoleConfig>;
