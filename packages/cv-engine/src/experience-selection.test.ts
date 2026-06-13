@@ -383,9 +383,9 @@ describe("generateCV experience integration", () => {
       source.current ? "present" : (source.endDate ?? "present"),
     );
     expect(cv.experience[0].summary).toBe(source.summary.en);
-    expect(cv.experience[0].bullets).toEqual(
-      source.highlights.map((highlight) => highlight.en).slice(0, 4),
-    );
+    expect(cv.experience[0].bullets.length).toBeLessThanOrEqual(4);
+    expect(cv.experience[0].bullets.join(" ")).toContain("React");
+    expect(cv.experience[0].bullets.join(" ")).toContain("Next.js");
     expect(cv.experience[0].skills).toEqual(source.skills);
   });
 

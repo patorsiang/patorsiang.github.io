@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-:root {
+:root,
+:root[data-theme="light"] {
   color-scheme: light;
 
   --color-page: #fafaf9;
@@ -22,8 +23,23 @@
   --font-mono: var(--font-geist-mono);
 }
 
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-page: #111110;
+  --color-surface: #18181b;
+  --color-surface-muted: #27272a;
+  --color-text: #f4f4f5;
+  --color-text-muted: #d4d4d8;
+  --color-text-subtle: #a1a1aa;
+  --color-border: #3f3f46;
+  --color-accent: #5eead4;
+  --color-accent-strong: #0f766e;
+  --color-focus: #2dd4bf;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     color-scheme: dark;
 
     --color-page: #111110;
@@ -66,11 +82,89 @@ body {
 
 @media print {
   @page {
-    margin: 14mm;
+    size: A4;
+    margin: 8mm 9mm;
+  }
+
+  html {
+    font-size: 10px;
   }
 
   body {
     background: #ffffff;
     color: #18181b;
+  }
+
+  .cv-print-article {
+    color: #18181b;
+    font-size: 10px;
+    line-height: 1.25;
+  }
+
+  .cv-print-article header {
+    padding-bottom: 8px;
+  }
+
+  .cv-print-article h1 {
+    margin-top: 4px;
+    font-size: 22px;
+    line-height: 1.1;
+  }
+
+  .cv-print-article h2 {
+    padding-bottom: 3px;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
+
+  .cv-print-article h3,
+  .cv-print-article p,
+  .cv-print-article ul {
+    break-inside: avoid;
+  }
+
+  .cv-print-section {
+    break-inside: avoid;
+  }
+
+  .cv-print-section > div {
+    margin-top: 6px;
+  }
+
+  .cv-print-stack {
+    margin-top: 10px;
+    row-gap: 10px;
+  }
+
+  .cv-print-compact-list {
+    row-gap: 6px;
+  }
+
+  .cv-print-experience,
+  .cv-print-project,
+  .cv-print-education {
+    break-inside: avoid;
+  }
+
+  .cv-print-experience p,
+  .cv-print-experience ul,
+  .cv-print-project p,
+  .cv-print-education p,
+  .cv-print-education ul {
+    margin-top: 3px;
+    font-size: 9.5px;
+    line-height: 1.25;
+  }
+
+  .cv-print-experience li:nth-child(n + 3),
+  .cv-print-education li:nth-child(n + 2),
+  .cv-print-project-links {
+    display: none;
+  }
+
+  .cv-print-skills p,
+  .cv-print-languages {
+    font-size: 9.5px;
+    line-height: 1.25;
   }
 }

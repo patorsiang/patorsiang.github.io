@@ -1,7 +1,7 @@
 import type { CvLanguage, CvRoleId } from "@patorsiang/cv-engine";
 import Link from "next/link";
 import { PrintButton } from "./PrintButton";
-import { buildCanonicalCvHref, buildCvExportFilename, cvLanguages } from "./cv-request";
+import { buildCanonicalCvHref, buildCvExportFilename } from "./cv-request";
 
 const roleLabels = {
   en: {
@@ -15,11 +15,6 @@ const roleLabels = {
     security_engineer: "วิศวกร Security",
   },
 } as const satisfies Record<CvLanguage, Record<CvRoleId, string>>;
-
-const languageLabels = {
-  en: "EN",
-  th: "TH",
-} as const satisfies Record<CvLanguage, string>;
 
 const uiLabels = {
   en: {
@@ -44,11 +39,11 @@ export function CvToolbar({ role, lang }: CvToolbarProps) {
   const markdownHref = `/cv/export/markdown?role=${role}&lang=${lang}`;
 
   return (
-    <div className="mb-8 flex flex-col gap-4 border-b border-zinc-200 pb-6 print:hidden">
+    <div className="mb-8 flex flex-col gap-4 border-b border-[var(--color-border)] pb-6 print:hidden">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <Link
           href="/"
-          className="text-sm font-semibold text-teal-800 underline-offset-4 hover:underline"
+          className="text-sm font-semibold text-[var(--color-accent)] underline-offset-4 hover:underline"
         >
           {uiLabels[lang].back}
         </Link>
@@ -66,8 +61,8 @@ export function CvToolbar({ role, lang }: CvToolbarProps) {
                 className={[
                   "inline-flex h-10 items-center justify-center rounded-md border px-3 text-sm font-medium transition",
                   active
-                    ? "border-teal-700 bg-teal-50 text-teal-900"
-                    : "border-zinc-300 bg-white text-zinc-900 hover:border-teal-700 hover:text-teal-800",
+                    ? "border-[var(--color-accent)] bg-[var(--color-accent)] text-white"
+                    : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]",
                 ].join(" ")}
               >
                 {label}
@@ -78,38 +73,16 @@ export function CvToolbar({ role, lang }: CvToolbarProps) {
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
-        {cvLanguages.map((cvLang) => {
-          const active = cvLang === lang;
-
-          return (
-            <Link
-              key={cvLang}
-              href={buildCanonicalCvHref(role, cvLang)}
-              aria-current={active ? "true" : undefined}
-              className={[
-                "inline-flex h-10 items-center justify-center rounded-md border px-3 text-sm font-semibold transition",
-                active
-                  ? "border-zinc-900 bg-zinc-900 text-white"
-                  : "border-zinc-300 bg-white text-zinc-900 hover:border-teal-700 hover:text-teal-800",
-              ].join(" ")}
-            >
-              {languageLabels[cvLang]}
-            </Link>
-          );
-        })}
-      </div>
-
-      <div className="flex flex-wrap items-center gap-2">
         <a
           href={jsonHref}
-          className="inline-flex h-10 items-center justify-center rounded-md border border-zinc-300 bg-white px-3 text-sm font-medium text-zinc-900 transition hover:border-teal-700 hover:text-teal-800"
+          className="inline-flex h-10 items-center justify-center rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-3 text-sm font-medium text-[var(--color-text)] transition hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
           download={buildCvExportFilename(role, lang, "json")}
         >
           {uiLabels[lang].json}
         </a>
         <a
           href={markdownHref}
-          className="inline-flex h-10 items-center justify-center rounded-md border border-zinc-300 bg-white px-3 text-sm font-medium text-zinc-900 transition hover:border-teal-700 hover:text-teal-800"
+          className="inline-flex h-10 items-center justify-center rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-3 text-sm font-medium text-[var(--color-text)] transition hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
           download={buildCvExportFilename(role, lang, "md")}
         >
           {uiLabels[lang].markdown}

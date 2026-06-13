@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { GlobalNav } from "@/components/organisms/GlobalNav";
 import { classNames } from "@/lib/classnames";
 
 type PageShellProps = {
@@ -22,6 +23,7 @@ export function PageShell({ children, className, contentClassName }: PageShellPr
           contentClassName,
         )}
       >
+        <GlobalNav />
         {children}
       </div>
     </main>

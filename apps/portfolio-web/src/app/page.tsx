@@ -60,21 +60,23 @@ export default function Home() {
 
       <Section eyebrow="About" title="Practical software for real product problems.">
         <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
-          <div className="space-y-5 text-base leading-8 text-zinc-700">
+          <div className="space-y-5 text-base leading-8 text-[var(--color-text-muted)]">
             {profile.summary.map((paragraph) => (
               <p key={paragraph.en}>{paragraph.en}</p>
             ))}
           </div>
 
-          <aside className="border-l-0 border-zinc-200 lg:border-l lg:pl-8">
-            <p className="text-sm font-medium uppercase tracking-[0.16em] text-zinc-500">
+          <aside className="border-l-0 border-[var(--color-border)] lg:border-l lg:pl-8">
+            <p className="text-sm font-medium uppercase tracking-[0.16em] text-[var(--color-text-subtle)]">
               Location
             </p>
-            <p className="mt-3 text-lg font-semibold text-zinc-950">{profile.location.en}</p>
-            <p className="mt-8 text-sm font-medium uppercase tracking-[0.16em] text-zinc-500">
+            <p className="mt-3 text-lg font-semibold text-[var(--color-text)]">
+              {profile.location.en}
+            </p>
+            <p className="mt-8 text-sm font-medium uppercase tracking-[0.16em] text-[var(--color-text-subtle)]">
               Public identity
             </p>
-            <p className="mt-3 text-lg font-semibold text-zinc-950">
+            <p className="mt-3 text-lg font-semibold text-[var(--color-text)]">
               {profile.nickname.en} / {profile.nickname2.en}
             </p>
           </aside>
@@ -126,7 +128,7 @@ function ExperienceColumn({
 }>) {
   return (
     <div>
-      <h3 className="text-base font-semibold text-zinc-950">{title}</h3>
+      <h3 className="text-base font-semibold text-[var(--color-text)]">{title}</h3>
       <div className="mt-4 space-y-4">
         {items.map((item) => (
           <ExperienceCard

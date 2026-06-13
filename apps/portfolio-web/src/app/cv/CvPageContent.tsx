@@ -7,6 +7,7 @@ import { ProjectCard } from "@/components/molecules/ProjectCard";
 import { SkillGroup } from "@/components/molecules/SkillGroup";
 import { CVSection } from "@/components/organisms/CVSection";
 import { PageShell } from "@/components/templates/PageShell";
+import { classNames } from "@/lib/classnames";
 
 import { CvToolbar } from "./CvToolbar";
 
@@ -42,10 +43,10 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
   const labels = sectionLabels[selection.lang];
 
   return (
-    <PageShell contentClassName="max-w-5xl gap-0 py-8 print:max-w-none print:px-0 print:py-0">
+    <PageShell contentClassName="max-w-5xl gap-8 py-8 print:max-w-none print:gap-0 print:px-0 print:py-0">
       <CvToolbar role={selection.role} lang={selection.lang} />
 
-      <article className="bg-[var(--color-surface)] p-6 shadow-sm ring-1 ring-[var(--color-border)] sm:p-10 print:p-0 print:shadow-none print:ring-0">
+      <article className="cv-print-article bg-[var(--color-surface)] p-6 shadow-sm ring-1 ring-[var(--color-border)] sm:p-10 print:p-0 print:shadow-none print:ring-0">
         <header className="border-b border-[var(--color-border)] pb-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
@@ -82,15 +83,15 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
           </div>
         </header>
 
-        <div className="mt-8 space-y-8 print:mt-6 print:space-y-5">
+        <div className="cv-print-stack mt-8 space-y-8 print:space-y-0">
           <CVSection title={labels.summary}>
             <p className="text-sm leading-7 text-[var(--color-text-muted)] print:leading-6">
               {cv.summary.text}
             </p>
           </CVSection>
 
-          <CVSection title={labels.skills}>
-            <div className="grid gap-4 sm:grid-cols-2 print:grid-cols-2 print:gap-3">
+          <CVSection title={labels.skills} className="cv-print-skills">
+            <div className="cv-print-compact-list grid gap-4 sm:grid-cols-2 print:grid-cols-2">
               {cv.skills.map((group) => (
                 <SkillGroup
                   key={group.id}
@@ -103,55 +104,64 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
           </CVSection>
 
           <CVSection title={labels.experience}>
-            <div className="space-y-6 print:space-y-4">
+            <div className="cv-print-compact-list space-y-6 print:space-y-0">
               {cv.experience.map((experience) => (
-                <ExperienceCard
-                  key={experience.id}
-                  title={experience.title}
-                  organization={experience.organization}
-                  location={experience.location}
-                  dateRange={formatDateRange(experience.startDate, experience.endDate)}
-                  summary={experience.summary}
-                  bullets={experience.bullets}
-                  skills={experience.skills}
-                  variant="plain"
-                />
+                <div key={experience.id} className="cv-print-experience">
+                  <ExperienceCard
+                    title={experience.title}
+                    organization={experience.organization}
+                    location={experience.location}
+                    dateRange={formatDateRange(experience.startDate, experience.endDate)}
+                    summary={experience.summary}
+                    bullets={experience.bullets}
+                    skills={experience.skills}
+                    variant="plain"
+                  />
+                </div>
               ))}
             </div>
           </CVSection>
 
           <CVSection title={labels.projects}>
-            <div className="space-y-5 print:space-y-4">
-              {cv.projects.map((project) => (
-                <ProjectCard
+            <div className="cv-print-compact-list space-y-5 print:space-y-0">
+              {cv.projects.map((project, index) => (
+                <div
                   key={project.id}
-                  title={project.title}
-                  subtitle={project.subtitle}
-                  summary={project.summary}
-                  technologies={project.technologies}
-                  links={project.links.map((link) => ({
-                    label: link.label,
-                    href: sanitizeUrl(link.url),
-                  }))}
-                  variant="plain"
-                />
+                  className={classNames("cv-print-project", index >= 3 && "print:hidden")}
+                >
+                  <ProjectCard
+                    title={project.title}
+                    subtitle={project.subtitle}
+                    summary={project.summary}
+                    technologies={project.technologies}
+                    links={project.links.map((link) => ({
+                      label: link.label,
+                      href: sanitizeUrl(link.url),
+                    }))}
+                    variant="plain"
+                  />
+                </div>
               ))}
             </div>
           </CVSection>
 
           <CVSection title={labels.education}>
-            <div className="space-y-4">
-              {cv.education.map((education) => (
-                <ExperienceCard
+            <div className="cv-print-compact-list space-y-4 print:space-y-0">
+              {cv.education.map((education, index) => (
+                <div
                   key={education.id}
-                  title={education.degree}
-                  organization={education.organization}
-                  location={education.location}
-                  dateRange={formatDateRange(education.startDate, education.endDate)}
-                  summary={education.summary}
-                  bullets={education.bullets}
-                  variant="plain"
-                />
+                  className={classNames("cv-print-education", index >= 2 && "print:hidden")}
+                >
+                  <ExperienceCard
+                    title={education.degree}
+                    organization={education.organization}
+                    location={education.location}
+                    dateRange={formatDateRange(education.startDate, education.endDate)}
+                    summary={education.summary}
+                    bullets={education.bullets}
+                    variant="plain"
+                  />
+                </div>
               ))}
             </div>
           </CVSection>
@@ -171,7 +181,7 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
           ) : null}
 
           <CVSection title={labels.languages}>
-            <p className="text-sm leading-6 text-[var(--color-text-muted)]">
+            <p className="cv-print-languages text-sm leading-6 text-[var(--color-text-muted)]">
               {cv.languages.map((language) => `${language.name}: ${language.level}`).join(" · ")}
             </p>
           </CVSection>

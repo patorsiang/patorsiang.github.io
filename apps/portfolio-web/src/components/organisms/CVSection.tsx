@@ -1,13 +1,16 @@
 import type { ReactNode } from "react";
 
+import { classNames } from "@/lib/classnames";
+
 type CVSectionProps = {
   readonly title: string;
   readonly children: ReactNode;
+  readonly className?: string;
 };
 
-export function CVSection({ title, children }: CVSectionProps) {
+export function CVSection({ title, children, className }: CVSectionProps) {
   return (
-    <section>
+    <section className={classNames("cv-print-section", className)}>
       <h2 className="border-b border-[var(--color-border)] pb-2 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-text)]">
         {title}
       </h2>

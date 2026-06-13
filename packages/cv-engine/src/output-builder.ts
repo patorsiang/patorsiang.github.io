@@ -17,6 +17,7 @@ import {
   type GeneratedCvExperience,
   type GeneratedCvLanguage,
   type GeneratedCvProject,
+  type GeneratedCvSkillGroup,
   type CvRoleConfig,
   CvEngineInputError,
   getRoleConfig,
@@ -28,6 +29,43 @@ import { isContentAvailableForLanguage, isMissingTranslation, text } from "./con
 import { normalizeTag } from "./normalize";
 import { groupSkillsForRole } from "./skill-grouping";
 import { rankProjectsForRole, type RankedProject } from "./project-ranking";
+
+const fullstackAtsSummary =
+  "Full-stack developer with experience delivering React, Next.js, Angular, Node.js, Java, Go, WordPress, and cloud-hosted web systems across freelance, startup, and government environments. Builds frontend interfaces, dashboards, backend services, APIs, databases, automation workflows, and security-aware product features using TypeScript, JavaScript, SQL, PostgreSQL, MongoDB, AWS, GCP, Docker, Git, and Agile delivery practices.";
+
+const fullstackAtsExperienceBullets: Readonly<Record<string, readonly string[]>> = {
+  "experience.freelance-frontend-developer": [
+    "Maintained a corporate WordPress site and delivered responsive React and Next.js web interfaces from requirements gathering through deployment support.",
+    "Built client-facing dashboards and web experiences using JavaScript/TypeScript, CSS, HTML, and cloud hosting practices.",
+    "Coordinated with clients and collaborators to clarify scope, resolve feedback, and ship production-ready frontend changes.",
+  ],
+  "experience.datawow-frontend-developer": [
+    "Built React and Next.js interfaces for PDPA compliance platforms, dashboards, and internal product workflows.",
+    "Implemented real-time dashboard and LINE bot chat storage features with frontend state, API integration, and release-ready UI behavior.",
+    "Delivered frontend changes in Agile product teams across privacy-tech, mock exam, and internal-platform products.",
+  ],
+  "experience.bank-of-thailand-system-analyst": [
+    "Developed and maintained Angular, Node.js, Go, and Hyperledger Fabric components for DLTBond, a blockchain-based government bond platform.",
+    "Supported ISO 20022 migration through Java updates, requirements analysis, SWIFT-standard alignment, and system testing.",
+    "Automated repetitive operational workflows with UiPath RPA to reduce manual processing in financial-system operations.",
+  ],
+  "experience.kbtg-blockchain-developer-internship": [
+    "Built a React frontend and Go backend proof of concept integrating the Stellar SDK for a blockchain social-impact application.",
+    "Delivered the Time Donation prototype in an Agile team sprint covering frontend, backend, blockchain integration, and demo readiness.",
+  ],
+  "experience.beid-frontend-developer-internship": [
+    "Developed React dashboard and landing-page interfaces for web product prototypes.",
+  ],
+};
+
+const fullstackAtsProjectSummaries: Readonly<Record<string, string>> = {
+  "project.rugpull-detection":
+    "Full-stack research prototype using React, FastAPI, Python, Redis, Docker, and TensorFlow to intake contract addresses, run feature extraction, and review DeFi rug-pull risk predictions.",
+  "project.smart-shoe":
+    "IoT dashboard prototype using Next.js, ESP32 firmware, BLE, MQTT, and sensor data processing to visualize live step, balance, and fall-risk signals.",
+  "project.chi-cultural-heritage-pwa":
+    "Progressive web app using JavaScript, Node.js, and MongoDB to deliver offline-capable cultural heritage web and mobile experiences.",
+};
 
 const roleText = {
   fullstack_engineer: {
@@ -124,8 +162,22 @@ export function buildCVOutput(role: CvRoleId, lang: CvLanguage): GeneratedCV {
   const awardSource = publicExperiencesForLanguage(lang)
     .filter((experience) => experience.type === "award" || experience.type === "activity")
     .sort(compareExperienceDates);
+  const summaryText = buildSummary(roleConfig, lang);
+  const skillGroups = groupSkillsForRole(skills, roleConfig, lang).map((skillGroup) => ({
+    id: skillGroup.id,
+    category: skillGroup.category,
+    group: skillGroup.label,
+    items: skillGroup.items,
+  }));
+  const generatedExperience = rankedExperiences.map((rankedExperience) =>
+    toGeneratedExperience(rankedExperience, roleConfig, lang),
+  );
+  const generatedProjects = filteredProjects.map((project) =>
+    toGeneratedProject(project.project, roleConfig, project, lang),
+  );
   const education = educationSource.map((item) => toGeneratedEducation(item, lang));
   const awards = awardSource.map((item) => toGeneratedAward(item, lang));
+  const languages = buildLanguages(lang);
 
   return {
     meta: {
@@ -139,6 +191,15 @@ export function buildCVOutput(role: CvRoleId, lang: CvLanguage): GeneratedCV {
         roleConfig,
         filteredProjects,
         rankedExperiences,
+        {
+          summaryText,
+          skills: skillGroups,
+          experience: generatedExperience,
+          projects: generatedProjects,
+          education,
+          awards,
+          languages,
+        },
         educationSource,
         awardSource,
         lang,
@@ -152,21 +213,14 @@ export function buildCVOutput(role: CvRoleId, lang: CvLanguage): GeneratedCV {
       links: profile.links.map((link) => toCvLink(link, lang)),
     },
     summary: {
-      text: buildSummary(roleConfig, lang),
+      text: summaryText,
     },
-    skills: groupSkillsForRole(skills, roleConfig, lang).map((skillGroup) => ({
-      id: skillGroup.id,
-      category: skillGroup.category,
-      group: skillGroup.label,
-      items: skillGroup.items,
-    })),
-    experience: rankedExperiences.map((rankedExperience) =>
-      toGeneratedExperience(rankedExperience, roleConfig, lang),
-    ),
-    projects: filteredProjects.map((project) => toGeneratedProject(project.project, project, lang)),
+    skills: skillGroups,
+    experience: generatedExperience,
+    projects: generatedProjects,
     education,
     awards,
-    languages: buildLanguages(lang),
+    languages,
   };
 }
 
@@ -178,6 +232,10 @@ function publicExperiencesForLanguage(lang: CvLanguage) {
 }
 
 function buildSummary(roleConfig: CvRoleConfig, lang: CvLanguage): string {
+  if (roleConfig.id === "fullstack_engineer" && lang === "en") {
+    return fullstackAtsSummary;
+  }
+
   return [
     text(roleText[roleConfig.id].summaryIntent, lang),
     ...profile.summary.map((paragraph) => text(paragraph, lang)),
@@ -220,9 +278,7 @@ function toGeneratedExperience(
     startDate: item.startDate,
     endDate: formatOpenEndedDate(item.current ? undefined : item.endDate, lang),
     summary: text(item.summary, lang),
-    bullets: item.highlights
-      .map((highlight) => text(highlight, lang))
-      .slice(0, roleConfig.limits.maxBulletsPerExperience),
+    bullets: buildExperienceBullets(item, roleConfig, lang),
     skills: item.skills,
     rankDebug: {
       score: rankedExperience.relevanceScore,
@@ -235,6 +291,7 @@ function toGeneratedExperience(
 
 function toGeneratedProject(
   item: Project,
+  roleConfig: CvRoleConfig,
   rankedProject: RankedProject,
   lang: CvLanguage,
 ): GeneratedCvProject {
@@ -242,7 +299,7 @@ function toGeneratedProject(
     id: item.id,
     title: text(item.title, lang),
     subtitle: text(item.role, lang),
-    summary: text(item.summary, lang),
+    summary: buildProjectSummary(item, roleConfig, lang),
     technologies: item.techStack,
     links: item.links.map((link) => toCvLink(link, lang)),
     rankDebug: {
@@ -252,6 +309,30 @@ function toGeneratedProject(
       scoreBreakdown: rankedProject.scoreBreakdown,
     },
   };
+}
+
+function buildExperienceBullets(
+  item: Experience,
+  roleConfig: CvRoleConfig,
+  lang: CvLanguage,
+): readonly string[] {
+  const atsBullets =
+    roleConfig.id === "fullstack_engineer" && lang === "en"
+      ? fullstackAtsExperienceBullets[item.id]
+      : undefined;
+
+  return (atsBullets ?? item.highlights.map((highlight) => text(highlight, lang))).slice(
+    0,
+    roleConfig.limits.maxBulletsPerExperience,
+  );
+}
+
+function buildProjectSummary(item: Project, roleConfig: CvRoleConfig, lang: CvLanguage): string {
+  if (roleConfig.id === "fullstack_engineer" && lang === "en") {
+    return fullstackAtsProjectSummaries[item.id] ?? text(item.summary, lang);
+  }
+
+  return text(item.summary, lang);
 }
 
 function compareExperienceDates(a: Experience, b: Experience): number {
@@ -284,16 +365,23 @@ function buildWarnings(
   roleConfig: CvRoleConfig,
   rankedProjects: readonly RankedProject[],
   rankedExperiences: readonly RankedExperience[],
+  generatedContent: {
+    readonly summaryText: string;
+    readonly skills: readonly GeneratedCvSkillGroup[];
+    readonly experience: readonly GeneratedCvExperience[];
+    readonly projects: readonly GeneratedCvProject[];
+    readonly education: readonly GeneratedCvEducation[];
+    readonly awards: readonly GeneratedCvAward[];
+    readonly languages: readonly GeneratedCvLanguage[];
+  },
   education: readonly Experience[],
   awards: readonly Experience[],
   lang: CvLanguage,
 ): readonly string[] {
   const warnings: string[] = [];
-  const matchedKeywords = new Set(
-    rankedProjects.flatMap(({ matchedKeywords: keywords }) => keywords.map(normalizeTag)),
-  );
+  const generatedText = normalizeTag(buildGeneratedCvText(generatedContent));
   const missingKeywords = roleConfig.atsKeywords.filter(
-    (keyword) => !matchedKeywords.has(normalizeTag(keyword)),
+    (keyword) => !generatedText.includes(normalizeTag(keyword)),
   );
 
   if (missingKeywords.length > 0) {
@@ -320,6 +408,50 @@ function buildWarnings(
   }
 
   return warnings;
+}
+
+function buildGeneratedCvText({
+  summaryText,
+  skills: generatedSkills,
+  experience,
+  projects: generatedProjects,
+  education,
+  awards,
+  languages,
+}: {
+  readonly summaryText: string;
+  readonly skills: readonly GeneratedCvSkillGroup[];
+  readonly experience: readonly GeneratedCvExperience[];
+  readonly projects: readonly GeneratedCvProject[];
+  readonly education: readonly GeneratedCvEducation[];
+  readonly awards: readonly GeneratedCvAward[];
+  readonly languages: readonly GeneratedCvLanguage[];
+}): string {
+  return [
+    summaryText,
+    ...generatedSkills.flatMap((group) => [group.group, ...group.items]),
+    ...experience.flatMap((item) => [
+      item.title,
+      item.organization,
+      item.summary,
+      ...item.bullets,
+      ...item.skills,
+    ]),
+    ...generatedProjects.flatMap((project) => [
+      project.title,
+      project.subtitle,
+      project.summary,
+      ...project.technologies,
+    ]),
+    ...education.flatMap((item) => [
+      item.degree,
+      item.organization,
+      item.summary,
+      ...item.bullets,
+    ]),
+    ...awards.flatMap((item) => [item.title, item.organization, item.summary]),
+    ...languages.flatMap((language) => [language.name, language.level]),
+  ].join(" ");
 }
 
 function formatLanguageItem(item: string, lang: CvLanguage): string {

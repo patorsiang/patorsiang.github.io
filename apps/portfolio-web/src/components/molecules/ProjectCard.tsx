@@ -79,7 +79,7 @@ export function ProjectCard({
       {links.length > 0 ? (
         <div
           className={classNames(
-            "flex flex-wrap gap-3 text-sm",
+            "cv-print-project-links flex flex-wrap gap-3 text-sm",
             variant === "card" ? "mt-5" : "mt-2",
           )}
         >

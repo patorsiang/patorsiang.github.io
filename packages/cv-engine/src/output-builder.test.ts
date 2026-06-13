@@ -32,6 +32,33 @@ describe("output builder", () => {
     expect(cv.languages.length).toBeGreaterThan(0);
   });
 
+  test("full-stack CV uses ATS-oriented summary and full-document keyword coverage", () => {
+    const cv = buildCVOutput("fullstack_engineer", "en");
+
+    expect(cv.summary.text).toContain("React");
+    expect(cv.summary.text).toContain("Next.js");
+    expect(cv.summary.text).toContain("Node.js");
+    expect(cv.summary.text).toContain("TypeScript");
+    expect(cv.summary.text).toContain("PostgreSQL");
+    expect(cv.summary.text).toContain("Docker");
+    expect(cv.summary.text.length).toBeLessThan(520);
+    expect(cv.meta.warnings.some((warning) => warning.includes("Missing ATS keyword"))).toBe(false);
+  });
+
+  test("full-stack experience and project copy is action-led and role-targeted", () => {
+    const cv = buildCVOutput("fullstack_engineer", "en");
+    const dataWow = cv.experience.find(
+      (experience) => experience.id === "experience.datawow-frontend-developer",
+    );
+    const rugPull = cv.projects.find((project) => project.id === "project.rugpull-detection");
+
+    expect(dataWow?.bullets[0]).toMatch(/^Built React and Next\.js interfaces/);
+    expect(dataWow?.bullets.join(" ")).toContain("Agile");
+    expect(rugPull?.summary).toContain("React");
+    expect(rugPull?.summary).toContain("FastAPI");
+    expect(rugPull?.summary).toContain("Docker");
+  });
+
   test("generateCV stays compatible with buildCVOutput apart from generatedAt", () => {
     const built = buildCVOutput("ai_ml_engineer", "en");
     const generated = generateCV("ai_ml_engineer", "en");
