@@ -98,7 +98,7 @@ body {
   .cv-print-article {
     color: #18181b;
     font-size: 9.75px;
-    line-height: 1.22;
+    line-height: 1.28;
   }
 
   .cv-print-article header {
@@ -108,11 +108,11 @@ body {
   .cv-print-article h1 {
     margin-top: 4px;
     font-size: 22px;
-    line-height: 1.1;
+    line-height: 1.12;
   }
 
   .cv-print-article h2 {
-    padding-bottom: 3px;
+    padding-bottom: 4px;
     font-size: 8.75px;
     letter-spacing: 0.08em;
   }
@@ -128,16 +128,16 @@ body {
   }
 
   .cv-print-section > div {
-    margin-top: 6px;
+    margin-top: 7px;
   }
 
   .cv-print-stack {
-    margin-top: 10px;
-    row-gap: 9px;
+    margin-top: 11px;
+    row-gap: 10px;
   }
 
   .cv-print-compact-list {
-    row-gap: 5px;
+    row-gap: 6px;
   }
 
   .cv-print-experience,
@@ -151,19 +151,19 @@ body {
   .cv-print-project p,
   .cv-print-education p,
   .cv-print-education ul {
-    margin-top: 3px;
+    margin-top: 4px;
     font-size: 9.25px;
-    line-height: 1.22;
+    line-height: 1.32;
   }
 
   .cv-print-project-links {
     font-size: 8.75px;
-    line-height: 1.2;
+    line-height: 1.28;
   }
 
   .cv-print-skills p,
   .cv-print-languages {
     font-size: 9.25px;
-    line-height: 1.22;
+    line-height: 1.3;
   }
 }
