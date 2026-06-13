@@ -375,6 +375,7 @@ describe("generateCV experience integration", () => {
       return;
     }
 
+    expect(cv.experience[0].id).toBe("experience.sec-playground-fullstack-developer");
     expect(cv.experience[0].title).toBe(source.title.en);
     expect(cv.experience[0].organization).toBe(source.organization.en);
     expect(cv.experience[0].location).toBe(source.location.en);
@@ -383,9 +384,9 @@ describe("generateCV experience integration", () => {
       source.current ? "present" : (source.endDate ?? "present"),
     );
     expect(cv.experience[0].summary).toBe(source.summary.en);
-    expect(cv.experience[0].bullets.length).toBeLessThanOrEqual(4);
-    expect(cv.experience[0].bullets.join(" ")).toContain("React");
-    expect(cv.experience[0].bullets.join(" ")).toContain("Next.js");
+    expect(cv.experience[0].bullets.length).toBeLessThanOrEqual(3);
+    expect(cv.experience[0].bullets.join(" ")).toContain("Vue.js");
+    expect(cv.experience[0].bullets.join(" ")).toContain("Node.js");
     expect(cv.experience[0].skills).toEqual(source.skills);
   });
 
@@ -410,6 +411,7 @@ describe("generateCV experience integration", () => {
     expect(orderedIds.length).toBeLessThanOrEqual(
       getRoleConfig("security_engineer").limits.maxExperienceItems,
     );
+    expect(new Set(orderedIds).has("experience.sec-playground-fullstack-developer")).toBe(true);
     expect(new Set(orderedIds).has("experience.bank-of-thailand-system-analyst")).toBe(true);
     expect(new Set(orderedIds).has("experience.kbtg-blockchain-developer-internship")).toBe(true);
   });
