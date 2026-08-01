@@ -12,21 +12,21 @@ export function SkillGroup({ title, items, variant = "card" }: SkillGroupProps) 
   if (variant === "inline") {
     return (
       <div>
-        <h3 className="text-sm font-semibold text-[var(--color-text)]">{title}</h3>
-        <p className="mt-1 text-sm leading-6 text-[var(--color-text-muted)]">{items.join(", ")}</p>
+        <h3 className="text-sm font-semibold text-foreground">{title}</h3>
+        <p className="mt-1 text-sm leading-6 text-(--color-text-muted)">{items.join(", ")}</p>
       </div>
     );
   }
 
   return (
     <Card className="p-5">
-      <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-text)]">
+      <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-foreground">
         {title}
       </h3>
       <ul className="mt-4 flex flex-wrap gap-2">
         {items.map((item) => (
           <li key={item}>
-            <Tag className={classNames("bg-[var(--color-surface-muted)]")}>{item}</Tag>
+            <Tag className={classNames("bg-(--color-surface-muted)")}>{item}</Tag>
           </li>
         ))}
       </ul>

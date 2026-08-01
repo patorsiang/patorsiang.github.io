@@ -1,5 +1,6 @@
 import type { CvLanguage, CvRoleId, GeneratedCV } from "@patorsiang/cv-engine";
 import { sanitizeUrl } from "@patorsiang/utils";
+import Image from "next/image";
 
 import { TextLink } from "@/components/atoms/TextLink";
 import { ExperienceCard } from "@/components/molecules/ExperienceCard";
@@ -52,24 +53,24 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
     <PageShell contentClassName="max-w-5xl gap-8 py-8 print:max-w-none print:gap-0 print:px-0 print:py-0">
       <CvToolbar role={selection.role} lang={selection.lang} />
 
-      <article className="cv-print-article bg-[var(--color-surface)] p-6 shadow-sm ring-1 ring-[var(--color-border)] sm:p-10 print:p-0 print:shadow-none print:ring-0">
-        <header className="border-b border-[var(--color-border)] pb-6">
+      <article className="cv-print-article bg-(--color-surface) p-6 shadow-sm ring-1 ring-(--color-border) sm:p-10 print:p-0 print:shadow-none print:ring-0">
+        <header className="border-b border-(--color-border) pb-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-accent)]">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-(--color-accent)">
                 {cv.header.targetTitle}
               </p>
-              <h1 className="mt-3 text-3xl font-semibold text-[var(--color-text)] sm:text-5xl print:text-3xl">
+              <h1 className="mt-3 text-3xl font-semibold text-foreground sm:text-5xl print:text-3xl">
                 {cv.header.name}
               </h1>
-              <p className="mt-3 text-base font-medium text-[var(--color-text-muted)]">
+              <p className="mt-3 text-base font-medium text-(--color-text-muted)">
                 {cv.header.location}
               </p>
             </div>
 
-            <address className="not-italic text-sm leading-7 text-[var(--color-text-muted)] sm:text-right">
+            <address className="not-italic text-sm leading-7 text-(--color-text-muted) sm:text-right">
               <a
-                className="font-medium text-[var(--color-text)]"
+                className="font-medium text-foreground"
                 href={sanitizeUrl(`mailto:${cv.header.email}`)}
               >
                 {cv.header.email}
@@ -86,12 +87,15 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
                 </TextLink>
               ))}
               <div className="mt-3 hidden flex-col items-end gap-1 print:flex">
-                <img
+                <Image
                   src={portfolioQrCodeSrc}
                   alt={`QR code for ${portfolioLink.label}`}
+                  width={80}
+                  height={80}
+                  unoptimized
                   className="h-20 w-20"
                 />
-                <span className="text-[8.5px] leading-tight text-[var(--color-text-muted)]">
+                <span className="text-[8.5px] leading-tight text-(--color-text-muted)">
                   Portfolio: {portfolioDisplayUrl}
                 </span>
               </div>
@@ -101,7 +105,7 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
 
         <div className="cv-print-stack mt-8 space-y-8 print:space-y-0">
           <CVSection title={labels.summary}>
-            <p className="text-sm leading-7 text-[var(--color-text-muted)] print:leading-6">
+            <p className="text-sm leading-7 text-(--color-text-muted) print:leading-6">
               {cv.summary.text}
             </p>
           </CVSection>
@@ -178,10 +182,10 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
 
           {cv.awards.length > 0 ? (
             <CVSection title={labels.awards}>
-              <ul className="space-y-2 text-sm leading-6 text-[var(--color-text-muted)]">
+              <ul className="space-y-2 text-sm leading-6 text-(--color-text-muted)">
                 {cv.awards.map((award) => (
                   <li key={award.id}>
-                    <span className="font-semibold text-[var(--color-text)]">{award.title}</span>
+                    <span className="font-semibold text-foreground">{award.title}</span>
                     {" · "}
                     {award.organization}
                   </li>
@@ -191,7 +195,7 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
           ) : null}
 
           <CVSection title={labels.languages}>
-            <p className="cv-print-languages text-sm leading-6 text-[var(--color-text-muted)]">
+            <p className="cv-print-languages text-sm leading-6 text-(--color-text-muted)">
               {cv.languages.map((language) => `${language.name}: ${language.level}`).join(" · ")}
             </p>
           </CVSection>

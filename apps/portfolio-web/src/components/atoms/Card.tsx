@@ -12,7 +12,7 @@ export function Card({ children, className, as: Component = "article" }: CardPro
   return (
     <Component
       className={classNames(
-        "rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] shadow-sm",
+        "rounded-lg border border-(--color-border) bg-(--color-surface) shadow-sm",
         className,
       )}
     >

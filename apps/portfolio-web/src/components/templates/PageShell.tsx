@@ -13,7 +13,7 @@ export function PageShell({ children, className, contentClassName }: PageShellPr
   return (
     <main
       className={classNames(
-        "min-h-screen bg-[var(--color-page)] text-[var(--color-text)] print:bg-white",
+        "min-h-screen bg-background text-foreground print:bg-white",
         className,
       )}
     >

@@ -11,7 +11,7 @@ type CVSectionProps = {
 export function CVSection({ title, children, className }: CVSectionProps) {
   return (
     <section className={classNames("cv-print-section", className)}>
-      <h2 className="border-b border-[var(--color-border)] pb-2 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-text)]">
+      <h2 className="border-b border-(--color-border) pb-2 text-sm font-semibold uppercase tracking-[0.16em] text-foreground">
         {title}
       </h2>
       <div className="mt-4 print:mt-3">{children}</div>

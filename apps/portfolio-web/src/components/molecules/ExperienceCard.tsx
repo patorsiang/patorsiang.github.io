@@ -31,28 +31,28 @@ export function ExperienceCard({
         )}
       >
         {variant === "card" ? (
-          <p className="text-xs font-medium uppercase tracking-[0.14em] text-[var(--color-text-subtle)]">
+          <p className="text-xs font-medium uppercase tracking-[0.14em] text-(--color-text-subtle)">
             {dateRange}
           </p>
         ) : null}
         <h3
           className={classNames(
-            "font-semibold text-[var(--color-text)]",
+            "font-semibold text-foreground",
             variant === "card" ? "mt-3 text-lg" : "text-base",
           )}
         >
           {title}
         </h3>
         {variant === "plain" ? (
-          <p className="text-sm font-medium text-[var(--color-text-subtle)]">{dateRange}</p>
+          <p className="text-sm font-medium text-(--color-text-subtle)">{dateRange}</p>
         ) : null}
       </div>
-      <p className="mt-1 text-sm font-medium text-[var(--color-text-muted)]">
+      <p className="mt-1 text-sm font-medium text-(--color-text-muted)">
         {organization} · {location}
       </p>
       <p
         className={classNames(
-          "text-sm text-[var(--color-text-muted)]",
+          "text-sm text-(--color-text-muted)",
           variant === "card" ? "mt-3 leading-7" : "mt-2 leading-6",
         )}
       >
@@ -61,7 +61,7 @@ export function ExperienceCard({
       {bullets.length > 0 ? (
         <ul
           className={classNames(
-            "text-sm text-[var(--color-text-muted)]",
+            "text-sm text-(--color-text-muted)",
             variant === "card" ? "mt-4 space-y-2 leading-6" : "mt-2 space-y-1 leading-6",
           )}
         >
@@ -71,7 +71,7 @@ export function ExperienceCard({
         </ul>
       ) : null}
       {skills.length > 0 ? (
-        <p className="mt-2 text-xs font-medium uppercase tracking-[0.12em] text-[var(--color-text-subtle)]">
+        <p className="mt-2 text-xs font-medium uppercase tracking-[0.12em] text-(--color-text-subtle)">
           {skills.join(" · ")}
         </p>
       ) : null}

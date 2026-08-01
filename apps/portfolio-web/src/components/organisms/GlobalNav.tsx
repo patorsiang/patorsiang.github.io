@@ -12,11 +12,7 @@ import {
   defaultCvRole,
 } from "@/app/cv/cv-request";
 import { classNames } from "@/lib/classnames";
-
-const themeStorageKey = "portfolio-theme";
-const themes = ["light", "dark"] as const;
-
-type Theme = (typeof themes)[number];
+import { getStoredTheme, type Theme, themeStorageKey, themes } from "@/lib/theme";
 
 const languageLabels = {
   en: "EN",
@@ -107,15 +103,6 @@ export function GlobalNav() {
   );
 }
 
-function getStoredTheme(): Theme | null {
-  if (globalThis.window === undefined) {
-    return null;
-  }
-
-  const storedTheme = globalThis.localStorage.getItem(themeStorageKey);
-  return storedTheme === "light" || storedTheme === "dark" ? storedTheme : null;
-}
-
 function getSystemTheme(): Theme {
   if (globalThis.window === undefined) {
     return "light";
@@ -141,7 +128,7 @@ function controlClassName(active: boolean) {
   return classNames(
     "inline-flex h-9 min-w-12 items-center justify-center rounded-md border px-3 text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
     active
-      ? "border-[var(--color-accent)] bg-[var(--color-accent)] text-white"
-      : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-accent)]",
+      ? "border-(--color-accent) bg-(--color-accent) text-(--color-on-accent)"
+      : "border-(--color-border) bg-(--color-surface) text-foreground hover:border-(--color-accent)",
   );
 }

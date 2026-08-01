@@ -24,8 +24,8 @@ export function ButtonLink({
   const safeHref = href.startsWith("/") ? href : sanitizeUrl(href);
   const styles =
     variant === "primary"
-      ? "bg-[var(--color-accent-strong)] text-white hover:bg-[var(--color-accent)]"
-      : "border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]";
+      ? "bg-(--color-accent-strong) text-(--color-on-accent-strong) hover:bg-(--color-accent) hover:text-(--color-on-accent)"
+      : "border border-(--color-border) bg-(--color-surface) text-foreground hover:border-(--color-accent) hover:text-(--color-accent)";
 
   return (
     <Link
@@ -33,7 +33,7 @@ export function ButtonLink({
       target={target}
       rel={rel}
       className={classNames(
-        "inline-flex h-11 items-center justify-center rounded-md px-4 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]",
+        "inline-flex h-11 items-center justify-center rounded-md px-4 text-sm font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus)",
         styles,
         className,
       )}

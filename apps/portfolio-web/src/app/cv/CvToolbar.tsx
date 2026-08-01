@@ -39,11 +39,11 @@ export function CvToolbar({ role, lang }: CvToolbarProps) {
   const markdownHref = `/cv/export/markdown?role=${role}&lang=${lang}`;
 
   return (
-    <div className="mb-8 flex flex-col gap-4 border-b border-[var(--color-border)] pb-6 print:hidden">
+    <div className="mb-8 flex flex-col gap-4 border-b border-(--color-border) pb-6 print:hidden">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <Link
           href="/"
-          className="text-sm font-semibold text-[var(--color-accent)] underline-offset-4 hover:underline"
+          className="text-sm font-semibold text-(--color-accent) underline-offset-4 hover:underline"
         >
           {uiLabels[lang].back}
         </Link>
@@ -61,8 +61,8 @@ export function CvToolbar({ role, lang }: CvToolbarProps) {
                 className={[
                   "inline-flex h-10 items-center justify-center rounded-md border px-3 text-sm font-medium transition",
                   active
-                    ? "border-[var(--color-accent)] bg-[var(--color-accent)] text-white"
-                    : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]",
+                    ? "border-(--color-accent) bg-(--color-accent) text-(--color-on-accent)"
+                    : "border-(--color-border) bg-(--color-surface) text-foreground hover:border-(--color-accent) hover:text-(--color-accent)",
                 ].join(" ")}
               >
                 {label}
@@ -75,14 +75,14 @@ export function CvToolbar({ role, lang }: CvToolbarProps) {
       <div className="flex flex-wrap items-center gap-2">
         <a
           href={jsonHref}
-          className="inline-flex h-10 items-center justify-center rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-3 text-sm font-medium text-[var(--color-text)] transition hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+          className="inline-flex h-10 items-center justify-center rounded-md border border-(--color-border) bg-(--color-surface) px-3 text-sm font-medium text-foreground transition hover:border-(--color-accent) hover:text-(--color-accent)"
           download={buildCvExportFilename(role, lang, "json")}
         >
           {uiLabels[lang].json}
         </a>
         <a
           href={markdownHref}
-          className="inline-flex h-10 items-center justify-center rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-3 text-sm font-medium text-[var(--color-text)] transition hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+          className="inline-flex h-10 items-center justify-center rounded-md border border-(--color-border) bg-(--color-surface) px-3 text-sm font-medium text-foreground transition hover:border-(--color-accent) hover:text-(--color-accent)"
           download={buildCvExportFilename(role, lang, "md")}
         >
           {uiLabels[lang].markdown}

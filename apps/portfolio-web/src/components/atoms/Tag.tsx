@@ -9,7 +9,7 @@ export function Tag({ children, className }: TagProps) {
   return (
     <span
       className={classNames(
-        "rounded-md bg-[var(--color-surface-muted)] px-2.5 py-1 text-xs font-medium text-[var(--color-text-muted)]",
+        "rounded-md bg-(--color-surface-muted) px-2.5 py-1 text-xs font-medium text-(--color-text-muted)",
         className,
       )}
     >

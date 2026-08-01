@@ -30,7 +30,7 @@ export function ProjectCard({
   const content = (
     <>
       {meta.length > 0 ? (
-        <div className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-[0.12em] text-[var(--color-accent)]">
+        <div className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-[0.12em] text-(--color-accent)">
           {meta.map((item, index) => (
             <span key={item}>
               {index > 0 ? <span aria-hidden="true">/ </span> : null}
@@ -47,19 +47,19 @@ export function ProjectCard({
       >
         <h3
           className={classNames(
-            "font-semibold text-[var(--color-text)]",
+            "font-semibold text-foreground",
             variant === "card" ? "mt-3 text-xl" : "text-base",
           )}
         >
           {title}
         </h3>
         {subtitle ? (
-          <p className="text-sm font-medium text-[var(--color-text-subtle)]">{subtitle}</p>
+          <p className="text-sm font-medium text-(--color-text-subtle)">{subtitle}</p>
         ) : null}
       </div>
       <p
         className={classNames(
-          "text-sm text-[var(--color-text-muted)]",
+          "text-sm text-(--color-text-muted)",
           variant === "card" ? "mt-3 leading-7" : "mt-2 leading-6",
         )}
       >
@@ -72,7 +72,7 @@ export function ProjectCard({
           ))}
         </div>
       ) : (
-        <p className="mt-2 text-sm leading-6 text-[var(--color-text-muted)]">
+        <p className="mt-2 text-sm leading-6 text-(--color-text-muted)">
           {technologies.join(", ")}
         </p>
       )}
