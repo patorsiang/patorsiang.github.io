@@ -27,7 +27,7 @@ Buckets are effort-based: **Reminders** = quick/small, ship same-day. **Work** =
 - [ ] Review and refresh `packages/content/src/data/experiences.ts` content for the current role/story (the actual "update my experience" content pass).
 - [ ] Reconcile dark mode: either finish auditing every page/component against the dark token set in `design-system.md`, or scope down the toggle until that's done — pick one and update the doc to match reality. Audit done 2026-07-31, confirmed breaks:
   - [x] `app/error.tsx`, `app/global-error.tsx`, `app/not-found.tsx` — fully hard-coded light classes (`bg-stone-50`, `text-zinc-950`, `bg-zinc-950`), ignore `data-theme` entirely. Fixed 2026-08-01: moved to token classes, added `--color-on-accent`/`--color-on-accent-strong`/`--color-danger` tokens, new `Button` atom, and an `applyStoredTheme()` client-side fallback (error-boundary rendering can bypass the root layout's inline theme bootstrap script).
-  - [ ] `app/cv/PrintButton.tsx:10` — hard-coded `bg-zinc-950` is nearly invisible against dark mode's `--color-page` (`#111110`); also `hover:bg-teal-800` bypasses tokens.
+  - [x] `app/cv/PrintButton.tsx:10` — hard-coded `bg-zinc-950` is nearly invisible against dark mode's `--color-page` (`#111110`); also `hover:bg-teal-800` bypasses tokens. Fixed 2026-08-01: replaced hand-rolled classes with the `Button` atom (`variant="primary"`), which already carries the correct tokens; added an optional `title` prop to `Button` to preserve the print-tooltip text.
   - [x] `components/organisms/GlobalNav.tsx:144`, `app/cv/CvToolbar.tsx:64`, `components/atoms/ButtonLink.tsx:27` — `text-white` on `--color-accent` fails contrast in dark mode (`--color-accent` is bright mint `#5eead4` in dark, ~1.5:1 contrast with white, needs 4.5:1). Fixed 2026-08-01: replaced with `--color-on-accent`/`--color-on-accent-strong` tokens (light: white; dark: near-black), verified ≥4.5:1 in both themes.
 - [ ] Pass over `components/{atoms,molecules,organisms,templates}` for consistency now that new pages are being added — check nothing violates the atomic boundaries before the component count grows.
 
@@ -48,3 +48,4 @@ Buckets are effort-based: **Reminders** = quick/small, ship same-day. **Work** =
 - Project detail pages, only if `/projects` content outgrows cards
 - Localized (`th`) versions of non-CV pages once About/Experience/Projects/Contact are stable in English
 - Playground app (`apps/playground`) visual polish
+- Automated PDF export for `/cv` (currently just `window.print()` via `PrintButton.tsx`) — if built, render with A4 page size, `printBackground: true`, and `displayHeaderFooter: false`
