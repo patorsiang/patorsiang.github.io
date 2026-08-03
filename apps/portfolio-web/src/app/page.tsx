@@ -6,9 +6,9 @@ import { TextLink } from "@/components/atoms/TextLink";
 import { ExperienceCard } from "@/components/molecules/ExperienceCard";
 import { ProjectCard } from "@/components/molecules/ProjectCard";
 import { SkillGroup } from "@/components/molecules/SkillGroup";
-import { Navbar } from "@/components/organisms/Navbar";
+import { ProfileHeader } from "@/components/organisms/ProfileHeader";
 import { PageShell } from "@/components/templates/PageShell";
-import { Section } from "@/components/templates/Section";
+import { Section } from "@/components/organisms/Section";
 
 type ExperienceItem = (typeof experiences)[number];
 
@@ -39,7 +39,7 @@ function formatDateRange(startDate: string, endDate?: string) {
 export default function Home() {
   return (
     <PageShell>
-      <Navbar
+      <ProfileHeader
         handle={profile.handle}
         name={profile.name.en}
         role={profile.role.en}

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { Navbar } from "@/components/organisms/Navbar";
+import { ProfileHeader } from "@/components/organisms/ProfileHeader";
 
 const meta = {
-  title: "Organisms/Navbar",
-  component: Navbar,
+  title: "Organisms/ProfileHeader",
+  component: ProfileHeader,
   args: {
     handle: "@patorsiang",
     name: "Napatchol Thaipanich",
@@ -18,7 +18,7 @@ const meta = {
       { label: "Email", href: "mailto:napatchol.tha@gmail.com", variant: "primary" },
     ],
   },
-} satisfies Meta<typeof Navbar>;
+} satisfies Meta<typeof ProfileHeader>;
 
 export default meta;
 

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 import { isCvLanguage, type CvLanguage } from "@patorsiang/cv-engine";
-import { buildCanonicalCvHref, cvRoleSlugToId } from "@/app/cv/cv-request";
+import { buildCanonicalCvHref, cvRoleSlugToId } from "@/lib/cv-routes";
 import { classNames } from "@/lib/classnames";
 import { getStoredTheme, type Theme, themeStorageKey, themes } from "@/lib/theme";
 

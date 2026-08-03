@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { ContactLinks } from "@/components/molecules/ContactLinks";
 import { SkillGroup } from "@/components/molecules/SkillGroup";
 import { PageShell } from "@/components/templates/PageShell";
-import { Section } from "@/components/templates/Section";
+import { Section } from "@/components/organisms/Section";
 import { ownerName, siteName } from "@/lib/seo";
 
 const title = "About";

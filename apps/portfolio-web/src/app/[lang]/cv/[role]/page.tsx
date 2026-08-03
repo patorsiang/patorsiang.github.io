@@ -4,12 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ownerName, siteName } from "@/lib/seo";
 import { CvPageContent } from "../../../cv/CvPageContent";
-import {
-  buildCanonicalCvHref,
-  cvLanguages,
-  cvRoleSlugToId,
-  cvRoleSlugs,
-} from "../../../cv/cv-request";
+import { buildCanonicalCvHref, cvLanguages, cvRoleSlugToId, cvRoleSlugs } from "@/lib/cv-routes";
 
 type Params = { lang: string; role: string } | Promise<{ lang: string; role: string }>;
 

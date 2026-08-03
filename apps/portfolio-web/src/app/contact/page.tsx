@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 import { TextLink } from "@/components/atoms/TextLink";
 import { PageShell } from "@/components/templates/PageShell";
-import { Section } from "@/components/templates/Section";
+import { Section } from "@/components/organisms/Section";
 import { ownerName, siteName } from "@/lib/seo";
 
 const title = "Contact";

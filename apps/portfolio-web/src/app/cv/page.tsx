@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { buildCanonicalCvHref, resolveLegacyCvRouteSelection } from "./cv-request";
+import { buildCanonicalCvHref, resolveLegacyCvRouteSelection } from "@/lib/cv-routes";
 
 type SearchParams =
   | Record<string, string | string[] | undefined>

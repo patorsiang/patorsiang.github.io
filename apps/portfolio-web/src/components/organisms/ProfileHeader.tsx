@@ -1,6 +1,6 @@
 import { ContactLinks, type ContactLink } from "@/components/molecules/ContactLinks";
 
-type NavbarProps = {
+type ProfileHeaderProps = {
   readonly handle: string;
   readonly name: string;
   readonly role: string;
@@ -8,7 +8,7 @@ type NavbarProps = {
   readonly links: readonly ContactLink[];
 };
 
-export function Navbar({ handle, name, role, headline, links }: NavbarProps) {
+export function ProfileHeader({ handle, name, role, headline, links }: ProfileHeaderProps) {
   return (
     <header className="flex flex-col gap-8 border-b border-(--color-border) pb-10 lg:flex-row lg:items-end lg:justify-between">
       <div className="max-w-3xl">

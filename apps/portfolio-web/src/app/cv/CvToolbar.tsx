@@ -1,10 +1,11 @@
 import type { CvLanguage, CvRoleId } from "@patorsiang/cv-engine";
 import Link from "next/link";
 
+import { ButtonLink } from "@/components/atoms/ButtonLink";
 import { SegmentedLinks } from "@/components/molecules/SegmentedLinks";
+import { buildCanonicalCvHref, buildCvExportFilename } from "@/lib/cv-routes";
 
 import { PrintButton } from "./PrintButton";
-import { buildCanonicalCvHref, buildCvExportFilename } from "./cv-request";
 
 const roleLabels = {
   en: {
@@ -77,20 +78,12 @@ export function CvToolbar({ role, lang }: CvToolbarProps) {
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
-        <a
-          href={jsonHref}
-          className="inline-flex h-10 items-center justify-center rounded-md border border-(--color-border) bg-(--color-surface) px-3 text-sm font-medium text-foreground transition hover:border-(--color-accent) hover:text-(--color-accent) motion-safe:active:translate-y-px"
-          download={buildCvExportFilename(role, lang, "json")}
-        >
+        <ButtonLink href={jsonHref} download={buildCvExportFilename(role, lang, "json")}>
           {uiLabels[lang].json}
-        </a>
-        <a
-          href={markdownHref}
-          className="inline-flex h-10 items-center justify-center rounded-md border border-(--color-border) bg-(--color-surface) px-3 text-sm font-medium text-foreground transition hover:border-(--color-accent) hover:text-(--color-accent) motion-safe:active:translate-y-px"
-          download={buildCvExportFilename(role, lang, "md")}
-        >
+        </ButtonLink>
+        <ButtonLink href={markdownHref} download={buildCvExportFilename(role, lang, "md")}>
           {uiLabels[lang].markdown}
-        </a>
+        </ButtonLink>
         <PrintButton />
       </div>
     </div>

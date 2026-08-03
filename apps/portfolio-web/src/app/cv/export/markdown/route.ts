@@ -1,5 +1,5 @@
 import { generateCVMarkdown } from "@patorsiang/cv-engine";
-import { buildCvExportFilename, parseCvSelection } from "../../cv-request";
+import { buildCvExportFilename, parseCvSelection } from "@/lib/cv-routes";
 
 export function GET(request: Request): Response {
   const selection = parseCvSelection(new URL(request.url).searchParams);
