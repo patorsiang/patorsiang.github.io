@@ -9,10 +9,6 @@ export type SegmentedLinkItem = {
   readonly label: string;
   /** Full, unabbreviated name exposed to assistive tech and tooltips. */
   readonly fullLabel?: string;
-  /** BCP 47 tag of the label text, so screen readers pronounce it correctly. */
-  readonly lang?: string;
-  /** BCP 47 tag of the destination page. */
-  readonly hrefLang?: string;
   readonly active: boolean;
 };
 
@@ -45,8 +41,6 @@ export function SegmentedLinks({ items, label, className }: SegmentedLinksProps)
           aria-current={item.active ? "page" : undefined}
           aria-label={item.fullLabel}
           title={item.fullLabel}
-          lang={item.lang}
-          hrefLang={item.hrefLang}
           className={classNames(
             "inline-flex h-8 flex-1 items-center justify-center whitespace-nowrap rounded-md px-3 text-xs font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus) motion-safe:active:translate-y-px sm:flex-none",
             item.active
