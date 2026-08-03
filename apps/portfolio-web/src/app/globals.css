@@ -26,6 +26,22 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/*
+  Motion defaults - see docs/design/motion-guidelines.md.
+  Tailwind ships ease-in-out at 150ms for a bare `transition`; the guidelines
+  ask for ease-out. 120ms sits inside both the hover/focus band (100-150ms) and
+  the pressed band (75-120ms), so one default covers every control and nothing
+  needs a per-component duration override.
+
+  The easing must be a literal curve, not var(--ease-out): a non-inline @theme
+  block that references another theme variable is dropped silently, which puts
+  both values back to the Tailwind defaults with no build error.
+*/
+@theme {
+  --default-transition-duration: 120ms;
+  --default-transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
 :root[data-theme="dark"] {
   color-scheme: dark;
 

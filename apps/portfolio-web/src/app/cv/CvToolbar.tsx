@@ -69,7 +69,7 @@ export function CvToolbar({ role, lang }: CvToolbarProps) {
       <div className="flex flex-wrap items-center gap-2">
         <Link
           href="/"
-          className="text-sm font-semibold text-(--color-accent) underline-offset-4 hover:underline"
+          className="text-sm font-semibold text-(--color-accent) underline-offset-4 transition hover:underline"
         >
           {uiLabels[lang].back}
         </Link>
@@ -104,14 +104,14 @@ export function CvToolbar({ role, lang }: CvToolbarProps) {
       <div className="flex flex-wrap items-center gap-2">
         <a
           href={jsonHref}
-          className="inline-flex h-10 items-center justify-center rounded-md border border-(--color-border) bg-(--color-surface) px-3 text-sm font-medium text-foreground transition hover:border-(--color-accent) hover:text-(--color-accent)"
+          className="inline-flex h-10 items-center justify-center rounded-md border border-(--color-border) bg-(--color-surface) px-3 text-sm font-medium text-foreground transition hover:border-(--color-accent) hover:text-(--color-accent) motion-safe:active:translate-y-px"
           download={buildCvExportFilename(role, lang, "json")}
         >
           {uiLabels[lang].json}
         </a>
         <a
           href={markdownHref}
-          className="inline-flex h-10 items-center justify-center rounded-md border border-(--color-border) bg-(--color-surface) px-3 text-sm font-medium text-foreground transition hover:border-(--color-accent) hover:text-(--color-accent)"
+          className="inline-flex h-10 items-center justify-center rounded-md border border-(--color-border) bg-(--color-surface) px-3 text-sm font-medium text-foreground transition hover:border-(--color-accent) hover:text-(--color-accent) motion-safe:active:translate-y-px"
           download={buildCvExportFilename(role, lang, "md")}
         >
           {uiLabels[lang].markdown}

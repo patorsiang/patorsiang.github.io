@@ -31,7 +31,7 @@ export function Button({
       title={title}
       aria-label={ariaLabel}
       className={classNames(
-        "inline-flex h-11 items-center justify-center rounded-md px-4 text-sm font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus)",
+        "inline-flex h-11 items-center justify-center rounded-md px-4 text-sm font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus) motion-safe:active:translate-y-px",
         styles,
         className,
       )}
