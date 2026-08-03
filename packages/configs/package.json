@@ -1,0 +1,15 @@
+{
+  "name": "@patorsiang/configs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./eslint-next": "./eslint-next.mjs",
+    "./tsconfig-next.json": "./tsconfig-next.json"
+  },
+  "dependencies": {
+    "eslint": "^9",
+    "eslint-config-next": "16.2.7",
+    "eslint-config-prettier": "^10.1.8"
+  }
+}

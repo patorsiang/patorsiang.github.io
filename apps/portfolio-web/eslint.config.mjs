@@ -1,7 +1,5 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
-import prettier from "eslint-config-prettier/flat";
+import { defineConfig } from "eslint/config";
+import { nextBaseConfig } from "@patorsiang/configs/eslint-next";
 
 // Atomic design layers, lowest first. A layer may use the layers below it and
 // nothing above: an atom knows nothing of molecules, a molecule nothing of
@@ -74,20 +72,6 @@ const componentBoundaryRules = [
   }),
 ];
 
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  prettier,
-  ...componentBoundaryRules,
-  // Override default ignores of eslint-config-next.
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "storybook-static/**",
-    "next-env.d.ts",
-  ]),
-]);
+const eslintConfig = defineConfig([...nextBaseConfig, ...componentBoundaryRules]);
 
 export default eslintConfig;

@@ -1,4 +1,4 @@
-import type { KaboomCtx } from "kaboom";
+import type { KAPLAYCtx } from "kaplay";
 
 /**
  * Map and sprite scale, carried over from legacy-v1's constants. Spawn points
@@ -12,7 +12,7 @@ export const playerSpeed = 250;
 export const assetFolder = "/assets/2d-game-portfolio";
 
 /** Zoom out on portrait screens so the room still reads on a phone. */
-export function setCamScale(k: KaboomCtx) {
+export function setCamScale(k: KAPLAYCtx) {
   const resizeFactor = k.width() / k.height();
 
   k.camScale(k.vec2(resizeFactor < 1 ? 1 : 1.5));

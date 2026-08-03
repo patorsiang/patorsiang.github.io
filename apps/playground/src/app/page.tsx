@@ -18,9 +18,13 @@ export default function PlaygroundHome() {
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-3xl flex-col gap-10 px-6 py-16">
       <div>
-        <p className="text-sm font-medium uppercase tracking-[0.16em] text-teal-300">Playground</p>
-        <h1 className="mt-3 text-3xl font-semibold sm:text-4xl">Interactive experiments.</h1>
-        <p className="mt-4 max-w-xl text-base leading-8 text-zinc-400">
+        <p className="text-sm font-medium uppercase tracking-[0.16em] text-(--color-accent)">
+          Playground
+        </p>
+        <h1 className="mt-3 text-3xl font-semibold text-(--color-text) sm:text-4xl">
+          Interactive experiments.
+        </h1>
+        <p className="mt-4 max-w-xl text-base leading-8 text-(--color-text-muted)">
           Things that are more fun to play with than to read about. Separate from the main portfolio
           on purpose — nothing here is load-bearing.
         </p>
@@ -31,10 +35,12 @@ export default function PlaygroundHome() {
           <li key={experiment.href}>
             <Link
               href={experiment.href}
-              className="block rounded-lg border border-zinc-700 p-6 transition hover:border-teal-300"
+              className="block rounded-lg border border-(--color-border) p-6 transition hover:border-(--color-accent)"
             >
-              <h2 className="text-xl font-semibold">{experiment.title}</h2>
-              <p className="mt-2 text-sm leading-7 text-zinc-400">{experiment.description}</p>
+              <h2 className="text-xl font-semibold text-(--color-text)">{experiment.title}</h2>
+              <p className="mt-2 text-sm leading-7 text-(--color-text-muted)">
+                {experiment.description}
+              </p>
             </Link>
           </li>
         ))}
@@ -43,7 +49,7 @@ export default function PlaygroundHome() {
       <p className="text-sm">
         <a
           href="https://patorsiang.github.io"
-          className="text-teal-300 underline-offset-4 hover:underline"
+          className="text-(--color-accent) underline-offset-4 hover:underline"
         >
           Back to the portfolio
         </a>

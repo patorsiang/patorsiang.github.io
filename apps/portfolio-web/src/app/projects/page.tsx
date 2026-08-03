@@ -2,10 +2,11 @@ import { projects, type Project } from "@patorsiang/content";
 import { sanitizeUrl } from "@patorsiang/utils";
 import type { Metadata } from "next";
 
+import { TextLink } from "@/components/atoms/TextLink";
 import { ProjectCard } from "@/components/molecules/ProjectCard";
 import { PageShell } from "@/components/templates/PageShell";
 import { Section } from "@/components/organisms/Section";
-import { ownerName, siteName } from "@/lib/seo";
+import { ownerName, playgroundUrl, siteName } from "@/lib/seo";
 
 const title = "Projects";
 const description =
@@ -74,6 +75,12 @@ export default function ProjectsPage() {
               <ProjectCard key={project.id} {...toCardProps(project)} />
             ))}
           </div>
+
+          <p className="mt-6">
+            <TextLink href={playgroundUrl} target="_blank" rel="noreferrer">
+              Play the 2D room
+            </TextLink>
+          </p>
         </Section>
       ) : null}
     </PageShell>

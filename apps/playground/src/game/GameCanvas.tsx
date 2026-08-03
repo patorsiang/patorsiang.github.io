@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { assetFolder, playerSpeed, scaleFactor, setCamScale } from "./config";
@@ -36,6 +37,7 @@ export function GameCanvas({ onExit }: GameCanvasProps) {
 
   const [dialogueText, setDialogueText] = useState<string | null>(null);
   const [failed, setFailed] = useState(false);
+  const [ready, setReady] = useState(false);
 
   // Kept in a ref so the scene, which is built once, always calls the current
   // handler. Synced in an effect rather than during render, which React forbids.
@@ -51,6 +53,10 @@ export function GameCanvas({ onExit }: GameCanvasProps) {
     activeObjectRef.current = null;
     setDialogueText(null);
 
+    // The Close button had focus; hand it back to the canvas so the keyboard
+    // controls keep working without a stray Tab.
+    canvasRef.current?.focus();
+
     if (closedObject === exitObjectName) {
       onExitRef.current();
     }
@@ -61,15 +67,15 @@ export function GameCanvas({ onExit }: GameCanvasProps) {
     let quit: (() => void) | undefined;
 
     async function start() {
-      // kaboom is ~2MB, so it loads only once this route renders rather than
+      // kaplay is ~2MB, so it loads only once this route renders rather than
       // riding in a shared bundle.
-      const { default: kaboom } = await import("kaboom");
+      const { default: kaplay } = await import("kaplay");
 
       if (disposed || !canvasRef.current) {
         return;
       }
 
-      const k = kaboom({
+      const k = kaplay({
         global: false,
         touchToMouse: true,
         canvas: canvasRef.current,
@@ -99,6 +105,10 @@ export function GameCanvas({ onExit }: GameCanvasProps) {
       });
       k.loadSprite("map", "/map.png");
       k.setBackground(k.Color.fromHex("#191919"));
+
+      // Sprites and the map are fetched before the first frame draws, so
+      // without this the canvas is simply black for the whole load.
+      k.onLoad(() => setReady(true));
 
       k.scene("main", async () => {
         const response = await fetch(`${assetFolder}/map.json`);
@@ -184,7 +194,15 @@ export function GameCanvas({ onExit }: GameCanvasProps) {
 
         setCamScale(k);
         k.onResize(() => setCamScale(k));
-        k.onUpdate(() => k.camPos(player.worldPos().x, player.worldPos().y - 100));
+        k.onUpdate(() => {
+          // KAPLAY types worldPos() as nullable — it is null until the object is
+          // attached to the scene tree, which is exactly the first frames here.
+          const position = player.worldPos();
+
+          if (position) {
+            k.setCamPos(position.x, position.y - 100);
+          }
+        });
 
         function stopAnims() {
           if (player.direction === "down") {
@@ -213,7 +231,7 @@ export function GameCanvas({ onExit }: GameCanvasProps) {
           if (
             mouseAngle > lowerBound &&
             mouseAngle < upperBound &&
-            player.curAnim() !== "female-walk-up"
+            player.getCurAnim()?.name !== "female-walk-up"
           ) {
             player.play("female-walk-up");
             player.direction = "up";
@@ -223,7 +241,7 @@ export function GameCanvas({ onExit }: GameCanvasProps) {
           if (
             mouseAngle < -lowerBound &&
             mouseAngle > -upperBound &&
-            player.curAnim() !== "female-walk-down"
+            player.getCurAnim()?.name !== "female-walk-down"
           ) {
             player.play("female-walk-down");
             player.direction = "down";
@@ -232,14 +250,14 @@ export function GameCanvas({ onExit }: GameCanvasProps) {
 
           if (Math.abs(mouseAngle) > upperBound) {
             player.flipX = false;
-            if (player.curAnim() !== "female-walk-side") player.play("female-walk-side");
+            if (player.getCurAnim()?.name !== "female-walk-side") player.play("female-walk-side");
             player.direction = "right";
             return;
           }
 
           if (Math.abs(mouseAngle) < lowerBound) {
             player.flipX = true;
-            if (player.curAnim() !== "female-walk-side") player.play("female-walk-side");
+            if (player.getCurAnim()?.name !== "female-walk-side") player.play("female-walk-side");
             player.direction = "left";
           }
         });
@@ -258,7 +276,7 @@ export function GameCanvas({ onExit }: GameCanvasProps) {
 
           if (keyMap[0]) {
             player.flipX = false;
-            if (player.curAnim() !== "female-walk-side") player.play("female-walk-side");
+            if (player.getCurAnim()?.name !== "female-walk-side") player.play("female-walk-side");
             player.direction = "right";
             player.move(player.speed, 0);
             return;
@@ -266,21 +284,21 @@ export function GameCanvas({ onExit }: GameCanvasProps) {
 
           if (keyMap[1]) {
             player.flipX = true;
-            if (player.curAnim() !== "female-walk-side") player.play("female-walk-side");
+            if (player.getCurAnim()?.name !== "female-walk-side") player.play("female-walk-side");
             player.direction = "left";
             player.move(-player.speed, 0);
             return;
           }
 
           if (keyMap[2]) {
-            if (player.curAnim() !== "female-walk-up") player.play("female-walk-up");
+            if (player.getCurAnim()?.name !== "female-walk-up") player.play("female-walk-up");
             player.direction = "up";
             player.move(0, -player.speed);
             return;
           }
 
           if (keyMap[3]) {
-            if (player.curAnim() !== "female-walk-down") player.play("female-walk-down");
+            if (player.getCurAnim()?.name !== "female-walk-down") player.play("female-walk-down");
             player.direction = "down";
             player.move(0, player.speed);
           }
@@ -324,24 +342,45 @@ export function GameCanvas({ onExit }: GameCanvasProps) {
 
   if (failed) {
     return (
-      <div className="flex min-h-dvh items-center justify-center p-8 text-center text-sm text-zinc-300">
-        The room could not start in this browser. It needs WebGL — the rest of the portfolio works
-        without it.
+      <div className="flex min-h-dvh flex-col items-center justify-center gap-4 p-8 text-center">
+        <p className="text-sm text-(--color-text-muted)">
+          The room could not start in this browser. It needs WebGL.
+        </p>
+        <Link href="/room/text" className="text-sm font-semibold text-(--color-accent) underline">
+          Read it as text instead
+        </Link>
       </div>
     );
   }
 
   return (
-    <div className="relative min-h-dvh bg-[#191919]">
+    <div className="relative min-h-dvh bg-(--color-room)">
       <p className="pointer-events-none absolute left-4 top-4 z-10 text-sm text-zinc-200 sm:left-8">
         Click, tap, or use the arrow keys to move.
       </p>
 
-      <canvas ref={canvasRef} className="block h-dvh w-full" />
+      <Link
+        href="/room/text"
+        className="absolute right-4 top-4 z-10 rounded-md px-3 py-1.5 text-sm font-semibold text-zinc-200 underline-offset-4 transition hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 sm:right-8"
+      >
+        Read as text
+      </Link>
+
+      <canvas ref={canvasRef} tabIndex={-1} className="block h-dvh w-full outline-none" />
+
+      {ready ? null : (
+        <p
+          role="status"
+          className="absolute inset-0 z-10 flex items-center justify-center text-sm text-zinc-300"
+        >
+          Loading the room…
+        </p>
+      )}
 
       {dialogueText === null ? null : (
         <div
           role="dialog"
+          aria-modal="true"
           aria-live="polite"
           aria-label="Object description"
           className="absolute inset-x-4 bottom-4 z-20 flex flex-col gap-4 rounded-lg bg-white p-6 text-zinc-900 shadow-lg sm:inset-x-10 sm:bottom-10 sm:p-8"
