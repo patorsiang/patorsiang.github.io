@@ -1,0 +1,121 @@
+@import "tailwindcss";
+@import "@patorsiang/ui/tokens.css";
+
+/* Fonts are per-app: next/font defines these in layout.tsx. */
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--color-page);
+  color: var(--color-text);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 24%, transparent);
+}
+
+:focus-visible {
+  outline-color: var(--color-focus);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 8mm 9mm;
+  }
+
+  html {
+    font-size: 10px;
+  }
+
+  body {
+    background: #ffffff;
+    color: #18181b;
+  }
+
+  .cv-print-article {
+    color: #18181b;
+    font-size: 9.75px;
+    line-height: 1.28;
+  }
+
+  .cv-print-article header {
+    padding-bottom: 8px;
+  }
+
+  .cv-print-article h1 {
+    margin-top: 4px;
+    font-size: 22px;
+    line-height: 1.12;
+  }
+
+  .cv-print-article h2 {
+    padding-bottom: 4px;
+    font-size: 8.75px;
+    letter-spacing: 0.08em;
+  }
+
+  .cv-print-article h3,
+  .cv-print-article p,
+  .cv-print-article ul {
+    break-inside: avoid;
+  }
+
+  .cv-print-section {
+    break-inside: avoid;
+  }
+
+  .cv-print-section > div {
+    margin-top: 7px;
+  }
+
+  .cv-print-stack {
+    margin-top: 11px;
+    row-gap: 10px;
+  }
+
+  .cv-print-compact-list {
+    row-gap: 6px;
+  }
+
+  .cv-print-experience,
+  .cv-print-project,
+  .cv-print-education {
+    break-inside: avoid;
+  }
+
+  .cv-print-experience p,
+  .cv-print-experience ul,
+  .cv-print-project p,
+  .cv-print-education p,
+  .cv-print-education ul {
+    margin-top: 4px;
+    font-size: 9.25px;
+    line-height: 1.32;
+  }
+
+  .cv-print-project-links {
+    font-size: 8.75px;
+    line-height: 1.28;
+  }
+
+  .cv-print-skills p,
+  .cv-print-languages {
+    font-size: 9.25px;
+    line-height: 1.3;
+  }
+}

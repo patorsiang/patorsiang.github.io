@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "_comment": "Self-contained on purpose: this file is consumed through node_modules, where a relative `extends` pointing outside the package resolves against the consumer's node_modules and fails. tsc follows the workspace symlink and works anyway; bundler resolvers (Storybook/Vite) do not. Mirrors tsconfig.base.json with the Next overrides applied.",
+  "compilerOptions": {
+    "allowJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "plugins": [{ "name": "next" }],
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2017"
+  }
+}
