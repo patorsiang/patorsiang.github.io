@@ -21,21 +21,26 @@ Buckets are effort-based: **Reminders** = quick/small, ship same-day. **Work** =
 
 - [ ] Build `/about` page per `docs/design/information-architecture.md` §About — bio, engineering focus, interests, location/global context, professional links.
 - [ ] Build `/experience` page — timeline from `packages/content/src/data/experiences.ts`, scannable by date/role, matching card rules in `design-system.md`.
-- [ ] Build `/projects` page — project index/cards per the Project Cards spec in `design-system.md` (category/status, title, summary, tech tags, 2-3 highlights, evidence links).
+- [x] Build `/projects` page — project index/cards per the Project Cards spec in `design-system.md` (category/status, title, summary, tech tags, 2-3 highlights, evidence links). Built 2026-08-03: static route, two groups (selected work featured-first, then playground), no filters at six projects per the IA rule. `ProjectCard` gained `highlights` and an optional `note` (from `testingNotes`) — the spec required both and the component rendered neither; role reuses the existing `subtitle` prop. English only; the `th` values already exist in the content model for when localization comes up.
 - [ ] Build `/contact` page — email, GitHub, LinkedIn, location, no form unless spam handling is solved.
-- [ ] Update `GlobalNav.tsx` to include Home/About/Experience/Projects/CV/Contact once those routes exist, matching the "Primary Navigation" model in the IA doc.
+- [ ] Update `GlobalNav.tsx` to include Home/About/Experience/Projects/CV/Contact once those routes exist, matching the "Primary Navigation" model in the IA doc. Started 2026-08-03: a `primaryLinks` array now drives the nav, holding Portfolio and Projects — one line per page as each ships. CV was left out deliberately even though `/cv` exists; it changes how the site's main artifact is reached, so it wants its own call. About/Experience/Contact stay out until built, per the IA rule against linking pages that do not exist.
 - [ ] Review and refresh `packages/content/src/data/experiences.ts` content for the current role/story (the actual "update my experience" content pass).
 - [ ] Reconcile dark mode: either finish auditing every page/component against the dark token set in `design-system.md`, or scope down the toggle until that's done — pick one and update the doc to match reality. Audit done 2026-07-31, confirmed breaks:
   - [x] `app/error.tsx`, `app/global-error.tsx`, `app/not-found.tsx` — fully hard-coded light classes (`bg-stone-50`, `text-zinc-950`, `bg-zinc-950`), ignore `data-theme` entirely. Fixed 2026-08-01: moved to token classes, added `--color-on-accent`/`--color-on-accent-strong`/`--color-danger` tokens, new `Button` atom, and an `applyStoredTheme()` client-side fallback (error-boundary rendering can bypass the root layout's inline theme bootstrap script).
   - [x] `app/cv/PrintButton.tsx:10` — hard-coded `bg-zinc-950` is nearly invisible against dark mode's `--color-page` (`#111110`); also `hover:bg-teal-800` bypasses tokens. Fixed 2026-08-01: replaced hand-rolled classes with the `Button` atom (`variant="primary"`), which already carries the correct tokens; added an optional `title` prop to `Button` to preserve the print-tooltip text.
   - [x] `components/organisms/GlobalNav.tsx:144`, `app/cv/CvToolbar.tsx:64`, `components/atoms/ButtonLink.tsx:27` — `text-white` on `--color-accent` fails contrast in dark mode (`--color-accent` is bright mint `#5eead4` in dark, ~1.5:1 contrast with white, needs 4.5:1). Fixed 2026-08-01: replaced with `--color-on-accent`/`--color-on-accent-strong` tokens (light: white; dark: near-black), verified ≥4.5:1 in both themes.
 - [ ] Pass over `components/{atoms,molecules,organisms,templates}` for consistency now that new pages are being added — check nothing violates the atomic boundaries before the component count grows.
+- [x] Unplanned, found while building the CV role selector — language signalling was wrong in three ways. Fixed 2026-08-03:
+  - `GlobalNav`'s EN/TH switcher fell back to `defaultCvRole` on every path, so a control labelled "Language" navigated a homepage reader into the Thai CV. It now renders only on `/[lang]/cv/[role]`, the one route that exists in two languages.
+  - The root layout hardcodes `lang="en"` because it is shared with the un-localized routes, so Thai CVs declared themselves English and contradicted their own `hreflang` alternates. `PageShell` takes an optional `lang` for `<main>`; `GlobalNav` pins `lang="en"` since its chrome stays English inside that subtree.
+  - `aria-label` on a roleless `div` names nothing, so the Language and Theme groups were unlabelled in the accessibility tree — both now use `role="group"`. Also `aria-current="true"` → `"page"`, and each language names itself (`English` / `ภาษาไทย`) with `lang`/`hrefLang` per anchor instead of English-only "Switch language to X".
+  - Lesson worth keeping: a duplicate language switcher shipped on `/cv` before this, because the shared chrome was never checked for the control being added. Grep `components/organisms` before adding anything to a page.
 
 ## Reminders (quick, small — good for a Reminders-app dump)
 
 - Verify all interactive elements meet 40px/44px min tap target (design-system.md accessibility notes)
 - Check color contrast (WCAG AA) on teal accent against both light and dark surfaces
-- Confirm `prefers-reduced-motion` is respected wherever transitions exist
+- ~~Confirm `prefers-reduced-motion` is respected wherever transitions exist~~ — Done 2026-08-03 during the motion pass: the `globals.css` baseline already matched the guidelines doc; verified in the compiled CSS that no `@keyframes` or `infinite` animation exists anywhere. The pressed-state transform uses `motion-safe:` because the global block only zeroes durations, which would otherwise leave reduced-motion users an instant 1px jump.
 - Add visible focus-visible outline check across nav, buttons, links
 - Quick copy pass: homepage profile summary and role-direction statement, is it still accurate
 - Double check `/cv` and `/cv/[role]` redirect behavior still matches IA doc after navbar changes
@@ -43,9 +48,9 @@ Buckets are effort-based: **Reminders** = quick/small, ship same-day. **Work** =
 
 ## Side Project (experimental / nice-to-have)
 
-- Compact role selector UI for `/cv` (IA doc marks this "future minimal version")
-- Motion polish pass using `docs/design/motion-guidelines.md` once core pages exist
-- Project detail pages, only if `/projects` content outgrows cards
+- ~~Compact role selector UI for `/cv`~~ (IA doc marks this "future minimal version") — Done 2026-08-03: new `SegmentedLinks` molecule, real anchors rather than a JS select so each variant stays crawlable and works without client JS. Segments show abbreviated labels with the full role name on `aria-label`/`title`.
+- ~~Motion polish pass using `docs/design/motion-guidelines.md`~~ once core pages exist — Done 2026-08-03: overrode `--default-transition-duration`/`--default-transition-timing-function` once in `globals.css` (Tailwind ships ease-in-out at 150ms; the guidelines want ease-out, and 120ms sits inside both the hover and pressed bands). Added `motion-safe:active:translate-y-px` to every button-like control. Note for anyone editing that block: a non-inline `@theme` silently drops values that reference another theme variable, so the easing has to stay a literal curve.
+- Project detail pages, only if `/projects` content outgrows cards — Assessed 2026-08-03, gate not met, do not build yet. Six projects, one evidence link each; `problem`/`audience`/`keyLearning`/`testingNotes` are populated on only three of them, so three detail pages would restate their card almost verbatim (thin pages, and an SEO negative to publish). The rich three carry roughly 600 characters of extra prose each — one paragraph, not a case study. Revisit when project count roughly doubles, when the depth fields are filled across most projects rather than half, or when any project gains content a card genuinely cannot hold (screenshots, architecture diagrams, a walkthrough with headings).
 - Localized (`th`) versions of non-CV pages once About/Experience/Projects/Contact are stable in English
 - Playground app (`apps/playground`) visual polish
 - Automated PDF export for `/cv` (currently just `window.print()` via `PrintButton.tsx`) — if built, render with A4 page size, `printBackground: true`, and `displayHeaderFooter: false`
