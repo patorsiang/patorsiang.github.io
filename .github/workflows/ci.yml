@@ -50,6 +50,12 @@ jobs:
       - name: Lint
         run: bun run lint
 
+      # An accessibility rule no test covers: the component tests would pass
+      # just as happily with h-2. Grep-based, so it guards the class strings
+      # only - see the script header for what it cannot see.
+      - name: Check tap targets
+        run: bun run check:tap-targets
+
       - name: Typecheck
         run: bun run typecheck
 

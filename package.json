@@ -12,6 +12,7 @@
     "dev": "bun run dev:portfolio",
     "build": "bun run build:portfolio && bun run build:legacy",
     "lint": "bun run --cwd apps/portfolio-web lint && bun run --cwd legacy-v1 lint",
+    "check:tap-targets": "./scripts/check-tap-targets.sh",
     "typecheck": "bun run --cwd apps/portfolio-web typecheck && bun run --cwd legacy-v1 typecheck",
     "test": "bun test",
     "security:audit": "bun audit --audit-level high",
