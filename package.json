@@ -13,6 +13,7 @@
     "build": "bun run build:portfolio && bun run build:legacy",
     "lint": "bun run --cwd apps/portfolio-web lint && bun run --cwd legacy-v1 lint",
     "typecheck": "bun run --cwd apps/portfolio-web typecheck && bun run --cwd legacy-v1 typecheck",
+    "test": "bun test",
     "security:audit": "bun audit --audit-level high",
     "format": "prettier --write . --ignore-unknown",
     "format:check": "prettier --check . --ignore-unknown",
