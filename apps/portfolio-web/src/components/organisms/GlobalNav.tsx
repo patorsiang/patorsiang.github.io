@@ -15,9 +15,16 @@ import { getStoredTheme, type Theme, themeStorageKey, themes } from "@/lib/theme
  * against the href would never mark it active on the page it links to.
  */
 const primaryLinks = [
-  { href: "/", label: "Portfolio", matches: (pathname: string) => pathname === "/" },
+  { href: "/", label: "Home", matches: (pathname: string) => pathname === "/" },
+  { href: "/about", label: "About", matches: (pathname: string) => pathname === "/about" },
+  {
+    href: "/experience",
+    label: "Experience",
+    matches: (pathname: string) => pathname === "/experience",
+  },
   { href: "/projects", label: "Projects", matches: (pathname: string) => pathname === "/projects" },
   { href: "/cv", label: "CV", matches: isCvRoute },
+  { href: "/contact", label: "Contact", matches: (pathname: string) => pathname === "/contact" },
 ] as const;
 
 /** Each language names itself, so the control reads the same whichever page you are on. */
@@ -72,11 +79,8 @@ export function GlobalNav() {
       lang="en"
       className="flex flex-col gap-3 border-b border-(--color-border) pb-4 print:hidden sm:flex-row sm:items-center sm:justify-between"
     >
-      {/*
-        The IA's primary nav is Home/About/Experience/Projects/CV/Contact, but it
-        also says not to link pages that do not exist yet. Add each one as it ships.
-      */}
-      <div className="flex items-center gap-4">
+      {/* The IA's primary nav, now that every page in it exists. */}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         {primaryLinks.map((link) => (
           <Link
             key={link.href}
