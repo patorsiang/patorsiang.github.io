@@ -9,9 +9,15 @@ import { buildCanonicalCvHref, cvRoleSlugToId } from "@/app/cv/cv-request";
 import { classNames } from "@/lib/classnames";
 import { getStoredTheme, type Theme, themeStorageKey, themes } from "@/lib/theme";
 
+/**
+ * `matches` is per-link because CV is reached through several paths: /cv and
+ * /cv/[role] redirect to the canonical /[lang]/cv/[role], so an exact compare
+ * against the href would never mark it active on the page it links to.
+ */
 const primaryLinks = [
-  { href: "/", label: "Portfolio" },
-  { href: "/projects", label: "Projects" },
+  { href: "/", label: "Portfolio", matches: (pathname: string) => pathname === "/" },
+  { href: "/projects", label: "Projects", matches: (pathname: string) => pathname === "/projects" },
+  { href: "/cv", label: "CV", matches: isCvRoute },
 ] as const;
 
 /** Each language names itself, so the control reads the same whichever page you are on. */
@@ -75,10 +81,10 @@ export function GlobalNav() {
           <Link
             key={link.href}
             href={link.href}
-            aria-current={pathname === link.href ? "page" : undefined}
+            aria-current={link.matches(pathname) ? "page" : undefined}
             className={classNames(
               "text-sm font-semibold underline-offset-4 transition hover:underline focus-visible:outline focus-visible:outline-offset-4",
-              pathname === link.href ? "text-foreground underline" : "text-(--color-accent)",
+              link.matches(pathname) ? "text-foreground underline" : "text-(--color-accent)",
             )}
           >
             {link.label}
@@ -130,6 +136,13 @@ function getSystemTheme(): Theme {
   }
 
   return globalThis.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+/** Every route the CV is served or redirected from: /cv, /cv/[role], /[lang]/cv/[role]. */
+function isCvRoute(pathname: string) {
+  const [, first, second] = pathname.split("/");
+
+  return first === "cv" || (isCvLanguage(first) && second === "cv");
 }
 
 /**
