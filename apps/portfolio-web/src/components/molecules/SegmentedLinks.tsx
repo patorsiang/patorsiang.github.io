@@ -42,7 +42,7 @@ export function SegmentedLinks({ items, label, className }: SegmentedLinksProps)
           aria-label={item.fullLabel}
           title={item.fullLabel}
           className={classNames(
-            "inline-flex h-8 flex-1 items-center justify-center whitespace-nowrap rounded-md px-3 text-xs font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus) motion-safe:active:translate-y-px sm:flex-none",
+            "inline-flex h-10 flex-1 items-center justify-center whitespace-nowrap rounded-md px-3 text-xs font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus) motion-safe:active:translate-y-px sm:flex-none",
             item.active
               ? "bg-(--color-accent) font-semibold text-(--color-on-accent)"
               : "text-(--color-text-muted) hover:bg-(--color-surface) hover:text-(--color-accent)",
