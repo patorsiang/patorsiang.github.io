@@ -12,7 +12,7 @@ export function buttonClassName(variant: ButtonVariant = "secondary", className?
     "inline-flex h-11 items-center justify-center rounded-md px-4 text-sm font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus) motion-safe:active:translate-y-px",
     variant === "primary"
       ? "bg-(--color-accent-strong) text-(--color-on-accent-strong) hover:bg-(--color-accent) hover:text-(--color-on-accent)"
-      : "border border-(--color-border) bg-(--color-surface) text-foreground hover:border-(--color-accent) hover:text-(--color-accent)",
+      : "border border-(--color-border-strong) bg-(--color-surface) text-foreground hover:border-(--color-accent) hover:text-(--color-accent)",
     className,
   );
 }

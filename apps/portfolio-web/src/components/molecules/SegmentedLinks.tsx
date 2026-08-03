@@ -30,7 +30,7 @@ export function SegmentedLinks({ items, label, className }: SegmentedLinksProps)
     <nav
       aria-label={label}
       className={classNames(
-        "inline-flex gap-1 rounded-lg border border-(--color-border) bg-(--color-surface-muted) p-1",
+        "inline-flex gap-1 rounded-lg border border-(--color-border-strong) bg-(--color-surface-muted) p-1",
         className,
       )}
     >

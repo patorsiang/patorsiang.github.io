@@ -22,19 +22,24 @@ Future tokens should fit this setup and can be added through CSS variables and T
 
 ### Colour Tokens
 
-| Token                   | Light value | Dark value | Tailwind reference       | Usage                                 |
-| ----------------------- | ----------- | ---------- | ------------------------ | ------------------------------------- |
-| `--color-page`          | `#fafaf9`   | `#0a0a0a`  | `stone-50` / near black  | Page background.                      |
-| `--color-surface`       | `#ffffff`   | `#18181b`  | `white` / `zinc-900`     | Cards, panels, CV sections.           |
-| `--color-surface-muted` | `#f5f5f4`   | `#27272a`  | `stone-100` / `zinc-800` | Tags, subtle grouped areas.           |
-| `--color-text`          | `#09090b`   | `#ededed`  | `zinc-950` / near white  | Primary text.                         |
-| `--color-text-muted`    | `#52525b`   | `#a1a1aa`  | `zinc-600` / `zinc-400`  | Secondary text, metadata.             |
-| `--color-text-soft`     | `#71717a`   | `#d4d4d8`  | `zinc-500` / `zinc-300`  | Dates, helper text, labels.           |
-| `--color-border`        | `#e4e4e7`   | `#3f3f46`  | `zinc-200` / `zinc-700`  | Borders and separators.               |
-| `--color-border-strong` | `#d4d4d8`   | `#52525b`  | `zinc-300` / `zinc-600`  | Interactive borders.                  |
-| `--color-accent`        | `#0f766e`   | `#2dd4bf`  | `teal-700` / `teal-400`  | Links, focus, small emphasis.         |
-| `--color-accent-strong` | `#115e59`   | `#5eead4`  | `teal-800` / `teal-300`  | Hover states and strong accents.      |
-| `--color-inverse`       | `#ffffff`   | `#09090b`  | `white` / `zinc-950`     | Text on strong dark or light buttons. |
+Transcribed from `apps/portfolio-web/src/app/globals.css`, which is the source of truth. Every screen style in the app resolves through these; no component uses a raw palette class.
+
+| Token                      | Light value | Dark value | Tailwind reference      | Usage                                          |
+| -------------------------- | ----------- | ---------- | ----------------------- | ---------------------------------------------- |
+| `--color-page`             | `#fafaf9`   | `#111110`  | `stone-50` / near black | Page background.                               |
+| `--color-surface`          | `#ffffff`   | `#18181b`  | `white` / `zinc-900`    | Cards, panels, CV sections.                    |
+| `--color-surface-muted`    | `#f4f4f5`   | `#27272a`  | `zinc-100` / `zinc-800` | Tags, segmented-control tracks, grouped areas. |
+| `--color-text`             | `#18181b`   | `#f4f4f5`  | `zinc-900` / `zinc-100` | Primary text.                                  |
+| `--color-text-muted`       | `#3f3f46`   | `#d4d4d8`  | `zinc-700` / `zinc-300` | Secondary text, body copy, metadata.           |
+| `--color-text-subtle`      | `#71717a`   | `#a1a1aa`  | `zinc-500` / `zinc-400` | Dates, helper text, eyebrow labels.            |
+| `--color-border`           | `#d4d4d8`   | `#3f3f46`  | `zinc-300` / `zinc-700` | Decorative borders and separators only.        |
+| `--color-border-strong`    | `#71717a`   | `#71717a`  | `zinc-500` both         | Boundaries of interactive controls. See below. |
+| `--color-accent`           | `#0f766e`   | `#5eead4`  | `teal-700` / `teal-300` | Links, focus, selected states, small emphasis. |
+| `--color-accent-strong`    | `#18181b`   | `#0f766e`  | `zinc-900` / `teal-700` | Primary button background.                     |
+| `--color-focus`            | `#0d9488`   | `#2dd4bf`  | `teal-600` / `teal-400` | Focus ring.                                    |
+| `--color-on-accent`        | `#ffffff`   | `#111110`  | `white` / near black    | Text on `--color-accent`.                      |
+| `--color-on-accent-strong` | `#ffffff`   | `#ffffff`  | `white` both            | Text on `--color-accent-strong`.               |
+| `--color-danger`           | `#be123c`   | `#fb7185`  | `rose-700` / `rose-400` | Error text on the error and not-found pages.   |
 
 Colour direction:
 
@@ -42,6 +47,11 @@ Colour direction:
 - Use teal as a functional accent, not a dominant brand wash.
 - Avoid broad gradients, saturated backgrounds, and decorative colour blocks.
 - Prefer border and spacing for structure before using strong colour.
+
+Two border tokens, deliberately:
+
+- `--color-border` is decorative — card outlines, section rules, dividers. It is intentionally low-contrast (1.5:1 light, 1.7:1 dark) and must not be the only thing identifying a control, because it does not meet the 3:1 that WCAG 1.4.11 requires for that.
+- `--color-border-strong` is for anything whose boundary _is_ its affordance: secondary buttons, nav controls, the segmented-control track. Same `zinc-500` in both themes, which clears 3:1 against every surface in both.
 
 ### Typography Tokens
 
@@ -232,18 +242,23 @@ Button rules:
 
 ## Dark And Light Mode Approach
 
-The project currently defines automatic dark-mode root variables with `prefers-color-scheme`. The first design system should remain light-first because the current portfolio pages use light surface classes directly.
+Dark mode is implemented and shipped. This section previously said to keep the project light-first and to withhold a manual theme switcher until dark surfaces were finished; the code moved past that, and the position below replaces it.
 
-Recommended approach:
+How it works:
 
-- Keep light mode as the primary implementation target.
-- Define dark tokens in CSS variables for future support.
-- Do not add a manual theme switcher until dark surfaces are fully implemented and tested.
-- If dark mode is enabled, update component classes to use semantic variables instead of hard-coded light-only utilities.
+- Three sources, in order: `:root` / `[data-theme="light"]` for light, `[data-theme="dark"]` for an explicit choice, and a `prefers-color-scheme: dark` block for visitors who have expressed no choice. The dark values are duplicated between the last two, so a change to one must be made in both.
+- `GlobalNav` writes the choice to `localStorage` and sets `data-theme` on the document element. An inline bootstrap script in the root layout applies the stored theme before first paint, which is what prevents a light flash on load.
+- Error boundaries can render outside the root layout, so they call `applyStoredTheme()` themselves rather than relying on that script.
+
+Rules:
+
+- Components use semantic tokens only. No component may use a raw Tailwind palette class (`bg-zinc-900`, `text-white`) for screen styles — audited 2026-08-03, zero remaining.
+- `print:` overrides are the one exception, since print is always dark-on-white regardless of theme.
+- Any new token must be defined in all three blocks above, and checked for contrast in both themes before use.
 
 ## Accessibility Notes
 
-- Text contrast should meet WCAG AA at minimum.
+- Text contrast should meet WCAG AA at minimum. Verified 2026-08-03 across every token pair the app actually uses, in both themes: all text pairs clear 4.5:1, all control boundaries and focus rings clear the 3:1 that WCAG 1.4.11 requires for non-text. The tightest margins are subtle text on page in light (4.63:1) and the segmented-control track border in dark (3.08:1) — treat those two as the constraint when adjusting neutrals.
 - Focus states must be visible on all links, buttons, and controls.
 - Interactive targets should be at least 40px tall, with 44px preferred for mobile.
 - Use semantic headings in document order.
