@@ -19,6 +19,7 @@
     "format:check": "prettier --check . --ignore-unknown",
     "dev:portfolio": "bun run --cwd apps/portfolio-web dev",
     "build:portfolio": "bun run --cwd apps/portfolio-web build",
+    "build:storybook": "bun run --cwd apps/portfolio-web build-storybook",
     "dev:legacy": "bun run --cwd legacy-v1 dev",
     "build:legacy": "bun run --cwd legacy-v1 build",
     "lint:legacy": "bun run --cwd legacy-v1 lint",

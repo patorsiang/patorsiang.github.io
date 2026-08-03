@@ -59,6 +59,11 @@ jobs:
       - name: Build
         run: bun run build
 
+      # Storybook imports the components directly, so a rename or a changed prop
+      # breaks it without touching the app build. Nothing else catches that.
+      - name: Build Storybook
+        run: bun run build:storybook
+
   deploy-preview:
     name: Deploy portfolio-web to Vercel Preview
     runs-on: ubuntu-latest
