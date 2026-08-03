@@ -20,9 +20,7 @@ export function SkillGroup({ title, items, variant = "card" }: SkillGroupProps) 
 
   return (
     <Card className="p-5">
-      <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-foreground">
-        {title}
-      </h3>
+      <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-foreground">{title}</h3>
       <ul className="mt-4 flex flex-wrap gap-2">
         {items.map((item) => (
           <li key={item}>

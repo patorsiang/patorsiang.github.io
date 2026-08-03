@@ -464,12 +464,7 @@ function buildGeneratedCvText({
       project.summary,
       ...project.technologies,
     ]),
-    ...education.flatMap((item) => [
-      item.degree,
-      item.organization,
-      item.summary,
-      ...item.bullets,
-    ]),
+    ...education.flatMap((item) => [item.degree, item.organization, item.summary, ...item.bullets]),
     ...awards.flatMap((item) => [item.title, item.organization, item.summary]),
     ...languages.flatMap((language) => [language.name, language.level]),
   ].join(" ");

@@ -226,7 +226,10 @@ function formatShortUrl(url: string): string {
 
     return `${host}${pathname}`;
   } catch {
-    return url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
+    return url
+      .replace(/^https?:\/\//, "")
+      .replace(/^www\./, "")
+      .replace(/\/$/, "");
   }
 }
 
