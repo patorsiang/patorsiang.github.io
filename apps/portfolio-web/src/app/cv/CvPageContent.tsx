@@ -50,7 +50,10 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
   const portfolioDisplayUrl = stripUrlProtocol(portfolioLink.url);
 
   return (
-    <PageShell contentClassName="max-w-5xl gap-8 py-8 print:max-w-none print:gap-0 print:px-0 print:py-0">
+    <PageShell
+      lang={selection.lang}
+      contentClassName="max-w-5xl gap-8 py-8 print:max-w-none print:gap-0 print:px-0 print:py-0"
+    >
       <CvToolbar role={selection.role} lang={selection.lang} />
 
       <article className="cv-print-article bg-(--color-surface) p-6 shadow-sm ring-1 ring-(--color-border) sm:p-10 print:p-0 print:shadow-none print:ring-0">

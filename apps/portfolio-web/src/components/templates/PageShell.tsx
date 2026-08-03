@@ -7,15 +7,19 @@ type PageShellProps = {
   readonly children: ReactNode;
   readonly className?: string;
   readonly contentClassName?: string;
+  /**
+   * BCP 47 tag for the page content, when it is not the document default.
+   * The root layout has to declare lang="en" because it is shared with the
+   * un-localized routes, so localized pages scope their own language here.
+   */
+  readonly lang?: string;
 };
 
-export function PageShell({ children, className, contentClassName }: PageShellProps) {
+export function PageShell({ children, className, contentClassName, lang }: PageShellProps) {
   return (
     <main
-      className={classNames(
-        "min-h-screen bg-background text-foreground print:bg-white",
-        className,
-      )}
+      lang={lang}
+      className={classNames("min-h-screen bg-background text-foreground print:bg-white", className)}
     >
       <div
         className={classNames(

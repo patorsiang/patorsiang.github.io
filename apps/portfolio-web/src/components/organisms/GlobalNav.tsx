@@ -4,20 +4,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
-import type { CvLanguage } from "@patorsiang/cv-engine";
-import {
-  buildCanonicalCvHref,
-  cvLanguages,
-  cvRoleSlugToId,
-  defaultCvRole,
-} from "@/app/cv/cv-request";
+import { isCvLanguage, type CvLanguage } from "@patorsiang/cv-engine";
+import { buildCanonicalCvHref, cvRoleSlugToId } from "@/app/cv/cv-request";
 import { classNames } from "@/lib/classnames";
 import { getStoredTheme, type Theme, themeStorageKey, themes } from "@/lib/theme";
 
-const languageLabels = {
-  en: "EN",
-  th: "TH",
-} as const satisfies Record<CvLanguage, string>;
+/** Each language names itself, so the control reads the same whichever page you are on. */
+const languageOptions = [
+  { id: "en", short: "EN", name: "English" },
+  { id: "th", short: "TH", name: "ภาษาไทย" },
+] as const satisfies readonly { id: CvLanguage; short: string; name: string }[];
 
 export function GlobalNav() {
   const pathname = usePathname();
@@ -60,6 +56,9 @@ export function GlobalNav() {
   return (
     <nav
       aria-label="Global navigation"
+      // The chrome is English on every route, including the Thai CV, so it does
+      // not inherit the surrounding page language. Drop this once it localizes.
+      lang="en"
       className="flex flex-col gap-3 border-b border-(--color-border) pb-4 print:hidden sm:flex-row sm:items-center sm:justify-between"
     >
       <Link
@@ -70,21 +69,25 @@ export function GlobalNav() {
       </Link>
 
       <div className="flex flex-wrap items-center gap-3">
-        <div className="flex items-center gap-1" aria-label="Language">
-          {cvLanguages.map((language) => (
-            <Link
-              key={language}
-              href={languageLinks[language]}
-              aria-current={languageLinks.active === language ? "true" : undefined}
-              aria-label={`Switch language to ${language === "en" ? "English" : "Thai"}`}
-              className={controlClassName(languageLinks.active === language)}
-            >
-              {languageLabels[language]}
-            </Link>
-          ))}
-        </div>
+        {languageLinks ? (
+          <div className="flex items-center gap-1" role="group" aria-label="Language">
+            {languageOptions.map((option) => (
+              <Link
+                key={option.id}
+                href={languageLinks.hrefs[option.id]}
+                aria-current={languageLinks.active === option.id ? "page" : undefined}
+                aria-label={option.name}
+                lang={option.id}
+                hrefLang={option.id}
+                className={controlClassName(languageLinks.active === option.id)}
+              >
+                {option.short}
+              </Link>
+            ))}
+          </div>
+        ) : null}
 
-        <div className="flex items-center gap-1" aria-label="Theme">
+        <div className="flex items-center gap-1" role="group" aria-label="Theme">
           {themes.map((themeOption) => (
             <button
               key={themeOption}
@@ -111,16 +114,30 @@ function getSystemTheme(): Theme {
   return globalThis.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
+/**
+ * Only /[lang]/cv/[role] exists in more than one language, so the switcher is
+ * offered there and nowhere else. Returns null off those routes rather than
+ * pointing at a CV the reader was not looking at.
+ */
 function buildLanguageLinks(pathname: string) {
   const [, maybeLang, maybeCv, maybeRole] = pathname.split("/");
-  const currentLanguage = maybeLang === "th" ? "th" : "en";
-  const currentRole = maybeCv === "cv" && maybeRole ? cvRoleSlugToId(maybeRole) : null;
-  const role = currentRole ?? defaultCvRole;
+
+  if (maybeCv !== "cv" || !maybeRole || !isCvLanguage(maybeLang)) {
+    return null;
+  }
+
+  const role = cvRoleSlugToId(maybeRole);
+
+  if (!role) {
+    return null;
+  }
 
   return {
-    active: currentLanguage,
-    en: buildCanonicalCvHref(role, "en"),
-    th: buildCanonicalCvHref(role, "th"),
+    active: maybeLang,
+    hrefs: {
+      en: buildCanonicalCvHref(role, "en"),
+      th: buildCanonicalCvHref(role, "th"),
+    },
   };
 }
 
