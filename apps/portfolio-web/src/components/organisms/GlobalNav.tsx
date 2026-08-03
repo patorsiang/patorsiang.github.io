@@ -9,6 +9,11 @@ import { buildCanonicalCvHref, cvRoleSlugToId } from "@/app/cv/cv-request";
 import { classNames } from "@/lib/classnames";
 import { getStoredTheme, type Theme, themeStorageKey, themes } from "@/lib/theme";
 
+const primaryLinks = [
+  { href: "/", label: "Portfolio" },
+  { href: "/projects", label: "Projects" },
+] as const;
+
 /** Each language names itself, so the control reads the same whichever page you are on. */
 const languageOptions = [
   { id: "en", short: "EN", name: "English" },
@@ -61,12 +66,25 @@ export function GlobalNav() {
       lang="en"
       className="flex flex-col gap-3 border-b border-(--color-border) pb-4 print:hidden sm:flex-row sm:items-center sm:justify-between"
     >
-      <Link
-        href="/"
-        className="text-sm font-semibold text-(--color-accent) underline-offset-4 transition hover:underline focus-visible:outline focus-visible:outline-offset-4"
-      >
-        Portfolio
-      </Link>
+      {/*
+        The IA's primary nav is Home/About/Experience/Projects/CV/Contact, but it
+        also says not to link pages that do not exist yet. Add each one as it ships.
+      */}
+      <div className="flex items-center gap-4">
+        {primaryLinks.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            aria-current={pathname === link.href ? "page" : undefined}
+            className={classNames(
+              "text-sm font-semibold underline-offset-4 transition hover:underline focus-visible:outline focus-visible:outline-offset-4",
+              pathname === link.href ? "text-foreground underline" : "text-(--color-accent)",
+            )}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </div>
 
       <div className="flex flex-wrap items-center gap-3">
         {languageLinks ? (

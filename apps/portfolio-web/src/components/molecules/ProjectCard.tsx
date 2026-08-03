@@ -15,6 +15,10 @@ type ProjectCardProps = {
   readonly links?: readonly ProjectLink[];
   readonly meta?: readonly string[];
   readonly subtitle?: string;
+  /** 2-3 outcomes. Longer lists are the sign a card is the wrong surface. */
+  readonly highlights?: readonly string[];
+  /** Testing notes or limitations, for technical credibility. */
+  readonly note?: string;
   readonly variant?: "card" | "plain";
 };
 
@@ -25,6 +29,8 @@ export function ProjectCard({
   links = [],
   meta = [],
   subtitle,
+  highlights = [],
+  note,
   variant = "card",
 }: ProjectCardProps) {
   const content = (
@@ -76,6 +82,29 @@ export function ProjectCard({
           {technologies.join(", ")}
         </p>
       )}
+      {highlights.length > 0 ? (
+        <ul
+          className={classNames(
+            "list-disc space-y-1.5 pl-5 text-sm text-(--color-text-muted)",
+            variant === "card" ? "mt-5 leading-6" : "mt-2 leading-5",
+          )}
+        >
+          {highlights.map((highlight) => (
+            <li key={highlight}>{highlight}</li>
+          ))}
+        </ul>
+      ) : null}
+      {note ? (
+        <p
+          className={classNames(
+            "text-sm leading-6 text-(--color-text-subtle)",
+            variant === "card" ? "mt-5" : "mt-2",
+          )}
+        >
+          <span className="font-medium text-(--color-text-muted)">Limitations: </span>
+          {note}
+        </p>
+      ) : null}
       {links.length > 0 ? (
         <div
           className={classNames(
@@ -116,6 +145,9 @@ function formatShortUrl(url: string): string {
 
     return `${host}${pathname}`;
   } catch {
-    return url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
+    return url
+      .replace(/^https?:\/\//, "")
+      .replace(/^www\./, "")
+      .replace(/\/$/, "");
   }
 }

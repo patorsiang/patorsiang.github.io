@@ -2,6 +2,7 @@ import { experiences, profile, projects } from "@patorsiang/content";
 import { generateCV } from "@patorsiang/cv-engine";
 import { sanitizeUrl } from "@patorsiang/utils";
 
+import { TextLink } from "@/components/atoms/TextLink";
 import { ExperienceCard } from "@/components/molecules/ExperienceCard";
 import { ProjectCard } from "@/components/molecules/ProjectCard";
 import { SkillGroup } from "@/components/molecules/SkillGroup";
@@ -106,6 +107,10 @@ export default function Home() {
             />
           ))}
         </div>
+
+        <p className="mt-6">
+          <TextLink href="/projects">See all projects</TextLink>
+        </p>
       </Section>
 
       <Section eyebrow="Skills" title="Core skill groups.">
