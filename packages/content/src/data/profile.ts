@@ -21,34 +21,37 @@ export const profile = {
     en: "Bangkok, Thailand",
     translated: { th: { value: "กรุงเทพฯ ประเทศไทย", status: "reviewed" } },
   },
+  // Doubles as the /about meta description, so it has to read as a complete
+  // sentence on its own in a search result - which is why it repeats the role
+  // that sits directly above it on the page.
   headline: {
-    en: "Full-stack developer building practical web, cybersecurity, gamified learning, and AI-related product features.",
+    en: "Full-stack developer at SEC Playground, building security-aware products across web platforms, gamified training, and applied AI.",
     translated: {
       th: {
         value:
-          "Full-stack developer ที่พัฒนาฟีเจอร์ผลิตภัณฑ์เชิงปฏิบัติด้านเว็บ cybersecurity, gamified learning และ AI",
-        status: "reviewed",
+          "Full-stack developer ที่ SEC Playground พัฒนาผลิตภัณฑ์ที่คำนึงถึงความปลอดภัย ครอบคลุมเว็บแพลตฟอร์ม gamified training และ AI เชิงประยุกต์",
+        status: "ai_draft",
       },
     },
   },
   summary: [
     {
-      en: "Full-stack developer at SEC Playground Co., Ltd., recently passed probation and building product features across cybersecurity, gamified learning, and AI-related platform work.",
+      en: "MSc Advanced Computer Science with distinction from the University of Kent, completed 2025, after building web and financial-systems products in Bangkok since 2019.",
       translated: {
         th: {
           value:
-            "Full-stack developer ที่ SEC Playground Co., Ltd. เพิ่งผ่านโปร และกำลังพัฒนาฟีเจอร์ผลิตภัณฑ์ด้าน cybersecurity, gamified learning และแพลตฟอร์มที่เกี่ยวข้องกับ AI",
-          status: "reviewed",
+            "จบปริญญาโท MSc Advanced Computer Science ระดับ distinction จาก University of Kent ในปี 2025 หลังจากพัฒนาผลิตภัณฑ์ด้านเว็บและระบบการเงินในกรุงเทพฯ ตั้งแต่ปี 2019",
+          status: "ai_draft",
         },
       },
     },
     {
-      en: "I work across Vue.js, Nuxt.js, Node.js, APIs, SQL, React, Next.js, Angular, backend services, blockchain systems, and applied AI projects, with a focus on practical implementation.",
+      en: "Day to day that is Vue, Nuxt, Node, and SQL-backed services. Earlier work covered React, Next.js, and a blockchain bond platform on Hyperledger Fabric in a central-bank environment.",
       translated: {
         th: {
           value:
-            "ทำงานกับ Vue.js, Nuxt.js, Node.js, APIs, SQL, React, Next.js, Angular, backend services, ระบบ blockchain และโปรเจกต์ AI เชิงประยุกต์ โดยเน้นการนำไปใช้งานจริง",
-          status: "reviewed",
+            "ปัจจุบันทำงานกับ Vue, Nuxt, Node และบริการที่ใช้ SQL ส่วนงานก่อนหน้าครอบคลุม React, Next.js และแพลตฟอร์มพันธบัตรบน blockchain ด้วย Hyperledger Fabric ในสภาพแวดล้อมธนาคารกลาง",
+          status: "ai_draft",
         },
       },
     },
