@@ -24,9 +24,13 @@ const OFFLINE_URL = "/offline";
  * live site as this origin's offline shell.
  */
 async function precacheRoutes() {
-  const cache = await caches.open(SHELL_CACHE);
-
   try {
+    // Inside the try: caches.open rejects under private browsing and quota
+    // exhaustion, and an uncaught rejection here fails install, which silently
+    // disables the whole feature in exactly the modes you cannot reproduce
+    // locally.
+    const cache = await caches.open(SHELL_CACHE);
+
     await cache.addAll([OFFLINE_URL, "/"]);
 
     const response = await fetch("/sitemap.xml");
@@ -80,8 +84,14 @@ const isImmutableAsset = (url) => url.pathname.startsWith("/_next/static/");
 /** Generated per request from query parameters — a cached copy is the wrong answer. */
 const isNeverCacheable = (url) => url.pathname.startsWith("/cv/export/");
 
+/*
+ * The extension half is gated on mode, because a navigation to a deep link
+ * like /avataaars.svg would otherwise take the image path - and that path has
+ * no /offline fallback, so offline it produced the browser's own error page.
+ */
 const isImage = (request, url) =>
-  request.destination === "image" || /\.(png|svg|jpg|jpeg|webp|ico)$/.test(url.pathname);
+  request.destination === "image" ||
+  (request.mode !== "navigate" && /\.(png|svg|jpg|jpeg|webp|ico)$/.test(url.pathname));
 
 async function networkFirst(request, cacheName) {
   const cache = await caches.open(cacheName);
@@ -98,7 +108,22 @@ async function networkFirst(request, cacheName) {
     // rather than resolve to an HTML document.
     if (request.mode === "navigate") {
       const shell = await caches.open(SHELL_CACHE);
-      const offline = await shell.match(OFFLINE_URL);
+
+      // The precache has to be consulted here or it is dead weight: install
+      // stores routes in SHELL_CACHE, but navigations run through PAGE_CACHE,
+      // which only ever holds routes this visitor already opened under worker
+      // control. Without this lookup every precached route - including "/" -
+      // served the offline page, which is precisely what shipped before.
+      //
+      // ignoreVary because Next varies document responses on RSC routing
+      // headers, and a precache entry fetched without them would otherwise
+      // never match a real navigation.
+      const precached =
+        (await shell.match(request, { ignoreVary: true })) ??
+        (await shell.match(new URL(request.url).pathname, { ignoreVary: true }));
+      if (precached) return precached;
+
+      const offline = await shell.match(OFFLINE_URL, { ignoreVary: true });
       if (offline) return offline;
     }
 
@@ -127,7 +152,10 @@ async function staleWhileRevalidate(request, cacheName) {
     })
     .catch(() => cached);
 
-  return cached ?? network;
+  // Never resolve to undefined: respondWith(Promise<undefined>) is a spec
+  // violation the browser turns into an opaque network error, which reads as a
+  // broken page rather than a missing asset.
+  return cached ?? (await network) ?? Response.error();
 }
 
 self.addEventListener("fetch", (event) => {

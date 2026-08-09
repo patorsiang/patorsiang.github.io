@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 /**
@@ -16,6 +17,7 @@ import { useEffect, useState } from "react";
  */
 export function OfflineBanner() {
   const [isOffline, setIsOffline] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const sync = () => setIsOffline(!navigator.onLine);
@@ -33,7 +35,10 @@ export function OfflineBanner() {
     };
   }, []);
 
-  if (!isOffline) {
+  // Not on /offline. That page exists *because* you are offline, and the
+  // banner's copy - "showing a saved copy" - is wrong there: the fallback is
+  // not a saved copy of anything you asked for.
+  if (!isOffline || pathname === "/offline") {
     return null;
   }
 

@@ -146,7 +146,12 @@ test.describe("service worker", () => {
     await page.evaluate(() => navigator.serviceWorker.ready);
 
     const shell = await page.evaluate(async () => {
-      const cache = await caches.open("portfolio-shell-v1");
+      // Derived, not hardcoded: a CACHE_VERSION bump would otherwise open a
+      // cache that was never populated, failing for a reason unrelated to
+      // whether precaching works - which is how a load-bearing test gets
+      // deleted by whoever is unlucky enough to bump the version.
+      const name = (await caches.keys()).find((key) => key.startsWith("portfolio-shell-"));
+      const cache = await caches.open(name ?? "portfolio-shell-missing");
       return (await cache.keys()).map((request) => new URL(request.url).pathname);
     });
 
@@ -236,7 +241,57 @@ test.describe("service worker", () => {
     const response = await page.goto("/projects");
 
     expect(response?.status(), "/projects did not come from cache").toBe(200);
-    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+
+    // Route-specific, and deliberately NOT "an h1 is visible": only the
+    // homepage and the error pages have an h1, so the offline fallback
+    // satisfied that assertion while every precached route was quietly
+    // serving it. That is how this test passed against a dead precache.
+    await expect(page.locator("body")).toContainText(/selected project samples|playground/i);
+    await expect(page.locator("body")).not.toContainText(/you.re offline/i);
+  });
+
+  test("serves a route never opened in this session, straight from the precache", async ({
+    page,
+    context,
+  }) => {
+    // The property the whole sitemap precache exists for, and the one nothing
+    // tested: visit ONLY the homepage, then go offline and hard-navigate
+    // somewhere new. If the precache is not consulted on navigation, this
+    // lands on /offline.
+    await page.goto("/");
+    await page.evaluate(() => navigator.serviceWorker.ready);
+    await page.evaluate(
+      () =>
+        new Promise<void>((resolve) => {
+          if (navigator.serviceWorker.controller) return resolve();
+          navigator.serviceWorker.addEventListener("controllerchange", () => resolve(), {
+            once: true,
+          });
+        }),
+    );
+    // Install fetches the sitemap and then every route in it.
+    await expect
+      .poll(
+        async () =>
+          page.evaluate(async () => {
+            const name = (await caches.keys()).find((key) => key.startsWith("portfolio-shell-"));
+            if (!name) return 0;
+            return (await (await caches.open(name)).keys()).length;
+          }),
+        { message: "the precache never filled" },
+      )
+      .toBeGreaterThan(5);
+
+    await context.setOffline(true);
+    await page.goto("/about");
+
+    await expect(
+      page.locator("body"),
+      "a precached route fell through to the offline page",
+    ).not.toContainText(/you.re offline/i);
+    await expect(page.locator("body")).toContainText(
+      /engineering focus|where the work concentrates/i,
+    );
   });
 
   test("falls back to the offline page for a route that was never cached", async ({
@@ -256,7 +311,11 @@ test.describe("service worker", () => {
   test("never caches the CV export downloads", async ({ page }) => {
     await page.goto("/");
     await page.evaluate(() => navigator.serviceWorker.ready);
-    await page.request.get("/cv/export/json?role=fullstack_engineer&lang=en");
+    // page.request is an APIRequestContext - not a client the worker controls,
+    // so no fetch event fires and nothing could ever be cached. This test
+    // passed with the guard deleted entirely. Going through the page is what
+    // makes it real.
+    await page.evaluate(() => fetch("/cv/export/json?role=fullstack_engineer&lang=en"));
 
     const cachedExports = await page.evaluate(async () => {
       const names = await caches.keys();

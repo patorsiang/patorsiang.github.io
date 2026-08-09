@@ -15,6 +15,12 @@ import { test, expect } from "@playwright/test";
  * contrast, focus rings and motion are covered without anything extra here.
  */
 
+/*
+ * Deliberately NOT e2e/support/routes.ts, which drives the accessibility
+ * sweeps. That list includes /offline and /this-route-does-not-exist, and
+ * neither renders PageShell - so neither has a footer, and importing it here
+ * would fail on both. Different question, different list.
+ */
 const routes = [
   "/",
   "/about",
