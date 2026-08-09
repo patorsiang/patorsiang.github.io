@@ -53,7 +53,7 @@ export default function Image() {
           style={{
             fontSize: 72,
             fontWeight: 700,
-            color: BRAND_COLORS.textStrong,
+            color: BRAND_COLORS.textStrongLight,
             lineHeight: 1.05,
           }}
         >
@@ -61,8 +61,17 @@ export default function Image() {
         </div>
         <div
           style={{
+            fontSize: 46,
+            color: BRAND_COLORS.textMutedLight,
+            lineHeight: 1.2,
+          }}
+        >
+          {profile.role.en}
+        </div>
+        <div
+          style={{
             fontSize: 34,
-            color: BRAND_COLORS.textMuted,
+            color: BRAND_COLORS.textMutedLight,
             lineHeight: 1.35,
             maxWidth: 900,
           }}

@@ -154,3 +154,26 @@ test("the OG image actually shows the page background and the accent mark", asyn
     "accent teal is not present in the image - the mark may be missing or recoloured",
   ).toBeGreaterThan(300);
 });
+
+test("the homepage shows a portrait with a real alt text", async ({ page }) => {
+  await page.goto("/");
+
+  const portrait = page.locator('header img[alt*="Napatchol"]');
+
+  await expect(portrait).toHaveCount(1);
+  await expect(portrait).toBeVisible();
+
+  const loaded = await portrait.evaluate(
+    (img: HTMLImageElement) => img.complete && img.naturalWidth > 0,
+  );
+
+  expect(loaded, "portrait src did not resolve — is /avataaars.svg present?").toBe(true);
+});
+
+for (const dead of ["file.svg", "globe.svg", "next.svg", "vercel.svg", "window.svg"]) {
+  test(`the unused template file ${dead} is gone`, async ({ request }) => {
+    const response = await request.get(`/${dead}`);
+
+    expect(response.status()).toBe(404);
+  });
+}

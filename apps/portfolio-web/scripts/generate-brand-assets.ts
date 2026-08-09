@@ -116,13 +116,19 @@ async function main() {
       ctx.drawImage(img, 0, 0);
       return canvas.toDataURL("image/png");
     });
-    return Buffer.from(outDataUrl.split(",")[1] ?? "", "base64");
+    const base64Payload = outDataUrl.split(",")[1];
+    if (!base64Payload) {
+      throw new Error(
+        `toRgba: canvas.toDataURL() returned no base64 payload for a ${size}px round-trip - the PNG failed to decode or re-encode`,
+      );
+    }
+    return Buffer.from(base64Payload, "base64");
   };
 
   const tile: TileOptions = {
     scale: 0.68,
     background: BRAND_COLORS.accentLight,
-    stroke: BRAND_COLORS.onAccent,
+    stroke: BRAND_COLORS.onAccentLight,
   };
   const maskable: TileOptions = { ...tile, scale: 0.6 };
 

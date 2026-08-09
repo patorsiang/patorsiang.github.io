@@ -10,9 +10,13 @@
  * somewhere, rather than each renderer inventing its own copy. If a token
  * changes in tokens.css, change it here too.
  *
- * accentLight/accentDark map to --color-accent, pageLight/pageDark to
- * --color-page, onAccent to --color-on-accent, textStrong to --color-text,
- * and textMuted to --color-text-muted - all from packages/ui/tokens.css.
+ * accentLight/accentDark map to --color-accent, pageLight to --color-page,
+ * and onAccentLight/textStrongLight/textMutedLight to the LIGHT values of
+ * --color-on-accent/--color-text/--color-text-muted - all from
+ * packages/ui/tokens.css. Those three also have distinct dark values in
+ * tokens.css (#111110, #f4f4f5, #d4d4d8 respectively), but the dark values
+ * are not mirrored here because nothing outside the CSS pipeline renders
+ * dark yet - only add them once something actually needs to.
  */
 export const MARK_VIEW_BOX = "0 0 100 100";
 export const MARK_PATH = "M34 82 V24 H54 a17 17 0 1 1 0 34 H34";
@@ -22,10 +26,9 @@ export const BRAND_COLORS = {
   accentLight: "#0f766e",
   accentDark: "#5eead4",
   pageLight: "#fafaf9",
-  pageDark: "#111110",
-  onAccent: "#ffffff",
-  textStrong: "#18181b",
-  textMuted: "#3f3f46",
+  onAccentLight: "#ffffff",
+  textStrongLight: "#18181b",
+  textMutedLight: "#3f3f46",
 } as const;
 
 /**
