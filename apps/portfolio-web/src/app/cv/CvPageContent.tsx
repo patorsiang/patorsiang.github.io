@@ -79,7 +79,7 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
                 inline flow the CV sheet is laid out for.
               */}
               <a
-                className="flex h-10 items-center font-medium text-foreground sm:justify-end print:inline print:h-auto"
+                className="flex h-10 items-center font-medium text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:justify-end print:inline print:h-auto"
                 href={sanitizeUrl(`mailto:${cv.header.email}`)}
               >
                 {cv.header.email}

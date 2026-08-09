@@ -59,7 +59,7 @@ export function CvToolbar({ role, lang }: CvToolbarProps) {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <Link
           href="/"
-          className="inline-flex h-10 items-center self-start text-sm font-semibold text-(--color-accent) underline-offset-4 transition hover:underline"
+          className="inline-flex h-10 items-center self-start text-sm font-semibold text-(--color-accent) underline-offset-4 transition hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           {uiLabels[lang].back}
         </Link>
