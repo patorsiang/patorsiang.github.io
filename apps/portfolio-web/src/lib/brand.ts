@@ -9,6 +9,10 @@
  * custom properties, so the literals have to live somewhere - this file is that
  * somewhere, rather than each renderer inventing its own copy. If a token
  * changes in tokens.css, change it here too.
+ *
+ * accentLight/accentDark map to --color-accent, pageLight/pageDark to
+ * --color-page, onAccent to --color-on-accent, textStrong to --color-text,
+ * and textMuted to --color-text-muted - all from packages/ui/tokens.css.
  */
 export const MARK_VIEW_BOX = "0 0 100 100";
 export const MARK_PATH = "M34 82 V24 H54 a17 17 0 1 1 0 34 H34";
@@ -20,6 +24,8 @@ export const BRAND_COLORS = {
   pageLight: "#fafaf9",
   pageDark: "#111110",
   onAccent: "#ffffff",
+  textStrong: "#18181b",
+  textMuted: "#3f3f46",
 } as const;
 
 /**
