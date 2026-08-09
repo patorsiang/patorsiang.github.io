@@ -121,18 +121,43 @@ test.describe("service worker", () => {
       // ever registration this is not a rare race: `controller` is
       // deterministically null at this exact point every time, so wait for
       // `controllerchange` rather than read `controller` synchronously.
+      // Raced against a timeout so a worker that never claims fails this
+      // assertion with our message instead of Playwright's generic 30s one.
       if (!navigator.serviceWorker.controller) {
-        await new Promise<void>((resolve) => {
+        const controllerChange = new Promise<void>((resolve) => {
           navigator.serviceWorker.addEventListener("controllerchange", () => resolve(), {
             once: true,
           });
         });
+        await Promise.race([
+          controllerChange,
+          new Promise<void>((resolve) => setTimeout(resolve, 5000)),
+        ]);
       }
 
       return Boolean(registration.active) && Boolean(navigator.serviceWorker.controller);
     });
 
     expect(controlled, "no service worker took control of the page").toBe(true);
+  });
+
+  test("precaches the shell routes", async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(() => navigator.serviceWorker.ready);
+
+    const shell = await page.evaluate(async () => {
+      const cache = await caches.open("portfolio-shell-v1");
+      return (await cache.keys()).map((request) => new URL(request.url).pathname);
+    });
+
+    // A positive assertion, not merely an absence of foreign entries: an
+    // install that fetches every sitemap URL and silently fails all of them
+    // (e.g. because they resolved to another origin and got blocked) still
+    // leaves the "foreign entries" check below with an empty, passing array.
+    // This is the test that actually guards the pathname reduction.
+    expect(shell, "the precache is empty or lost its routes").toEqual(
+      expect.arrayContaining(["/", "/offline", "/about", "/en/cv/fullstack-engineer"]),
+    );
   });
 
   test("precaches only same-origin entries", async ({ page }) => {
@@ -153,9 +178,15 @@ test.describe("service worker", () => {
       return urls;
     });
 
-    // The sitemap lists absolute production URLs. Precaching them literally
-    // would cache the live site as this origin's offline shell — silently, and
-    // only off production.
+    // Guards any foreign-origin entry reaching a cache, from any code path —
+    // not only `fetch`-based precaching of absolute sitemap URLs. `cache.put`
+    // performs no network request, so it is untouched by CSP `connect-src`
+    // and will land straight in this cache the moment anything writes one
+    // (Task 4's runtime `fetch` handler is exactly such a path). CSP is a
+    // second, independent barrier against the `cache.add`/`addAll` route
+    // specifically, and only on deployments where `next.config.ts` headers
+    // apply — `.github/workflows/nextjs.yml` deploys to GitHub Pages, which
+    // drops them entirely. This test is the one that holds regardless.
     expect(foreign, `cached entries from another origin: ${foreign.join(", ")}`).toEqual([]);
   });
 
@@ -166,9 +197,31 @@ test.describe("service worker", () => {
     await page.evaluate(() => caches.open("portfolio-shell-v0"));
 
     await page.goto("/");
-    await page.evaluate(() => navigator.serviceWorker.ready);
 
-    const names = await page.evaluate(() => caches.keys());
+    const names = await page.evaluate(async () => {
+      await navigator.serviceWorker.ready;
+
+      // Same race as "registers and takes control": `ready` resolves before
+      // the activate handler's body runs, and the `caches.delete()` calls in
+      // that handler happen before its final `clients.claim()`. Waiting for
+      // `controllerchange` — which can only fire once that `claim()` call has
+      // resolved — makes the eviction's completion guaranteed by the time we
+      // read `caches.keys()`, rather than depending on a CDP round-trip
+      // happening to be slower than a sub-millisecond `caches.delete()`.
+      if (!navigator.serviceWorker.controller) {
+        const controllerChange = new Promise<void>((resolve) => {
+          navigator.serviceWorker.addEventListener("controllerchange", () => resolve(), {
+            once: true,
+          });
+        });
+        await Promise.race([
+          controllerChange,
+          new Promise<void>((resolve) => setTimeout(resolve, 5000)),
+        ]);
+      }
+
+      return caches.keys();
+    });
 
     expect(names, "a cache from an older version survived activate").not.toContain(
       "portfolio-shell-v0",

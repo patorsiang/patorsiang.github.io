@@ -26,9 +26,9 @@ const OFFLINE_URL = "/offline";
 async function precacheRoutes() {
   const cache = await caches.open(SHELL_CACHE);
 
-  await cache.addAll([OFFLINE_URL, "/"]);
-
   try {
+    await cache.addAll([OFFLINE_URL, "/"]);
+
     const response = await fetch("/sitemap.xml");
     if (!response.ok) return;
 
@@ -62,7 +62,7 @@ self.addEventListener("activate", (event) => {
 
       await Promise.all(
         names
-          .filter((name) => name.startsWith("portfolio-") && !name.endsWith(CACHE_VERSION))
+          .filter((name) => name.startsWith("portfolio-") && !name.endsWith(`-${CACHE_VERSION}`))
           .map((name) => caches.delete(name)),
       );
 
