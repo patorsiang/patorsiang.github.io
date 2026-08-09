@@ -65,3 +65,4 @@ next-env.d.ts
 /apps/portfolio-web/playwright-report
 /apps/portfolio-web/blob-report
 /.playwright-mcp
+.superpowers/
