@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+import { OfflineBanner } from "@/components/molecules/OfflineBanner";
 import { defaultDescription, defaultTitle, ownerName, siteMetadataBase, siteName } from "@/lib/seo";
 import { themeBootstrapScript } from "@/lib/theme";
 
@@ -53,6 +54,7 @@ export default function RootLayout({
             __html: themeBootstrapScript,
           }}
         />
+        <OfflineBanner />
         {children}
         <Analytics />
         <SpeedInsights />

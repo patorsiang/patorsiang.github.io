@@ -77,3 +77,31 @@ test("the document links the manifest", async ({ page }) => {
 
   expect(href, "Next emitted no manifest link").toBeTruthy();
 });
+
+test("the offline page renders and is not advertised to crawlers", async ({ page, request }) => {
+  const response = await page.goto("/offline");
+
+  expect(response?.status()).toBe(200);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(/offline/i);
+
+  // A fallback page is not content. Listing it would send crawlers to a page
+  // that only makes sense when the network is gone.
+  const sitemap = await (await request.get("/sitemap.xml")).text();
+  expect(sitemap).not.toContain("/offline");
+});
+
+test("the offline banner is absent while online", async ({ page }) => {
+  await page.goto("/");
+
+  await expect(page.getByRole("status")).toHaveCount(0);
+});
+
+test("the offline banner appears when the browser goes offline", async ({ page, context }) => {
+  await page.goto("/");
+  await context.setOffline(true);
+
+  await expect(page.getByRole("status")).toContainText(/offline/i);
+
+  await context.setOffline(false);
+  await expect(page.getByRole("status")).toHaveCount(0);
+});
