@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { GlobalNav } from "@/components/organisms/GlobalNav";
+import { SiteFooter } from "@/components/organisms/SiteFooter";
 import { classNames } from "@/lib/classnames";
 
 type PageShellProps = {
@@ -17,19 +18,27 @@ type PageShellProps = {
 
 export function PageShell({ children, className, contentClassName, lang }: PageShellProps) {
   return (
-    <main
-      lang={lang}
-      className={classNames("min-h-screen bg-background text-foreground print:bg-white", className)}
-    >
-      <div
-        className={classNames(
-          "mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 py-10 sm:px-8 lg:px-10",
-          contentClassName,
-        )}
+    // The footer sits outside <main> on purpose: a <footer> nested inside main
+    // is a sectioning footer, not the contentinfo landmark a screen reader user
+    // jumps to. `flex-1` rather than `min-h-screen` so it settles at the bottom
+    // of a short page instead of always below the fold - the body is already
+    // `min-h-full flex flex-col` for this.
+    <>
+      <main
+        lang={lang}
+        className={classNames("flex-1 bg-background text-foreground print:bg-white", className)}
       >
-        <GlobalNav />
-        {children}
-      </div>
-    </main>
+        <div
+          className={classNames(
+            "mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 py-10 sm:px-8 lg:px-10",
+            contentClassName,
+          )}
+        >
+          <GlobalNav />
+          {children}
+        </div>
+      </main>
+      <SiteFooter />
+    </>
   );
 }
