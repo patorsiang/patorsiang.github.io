@@ -26,6 +26,7 @@
   "devDependencies": {
     "@patorsiang/configs": "workspace:*",
     "@playwright/test": "^1.62.1",
+    "@storybook/addon-a11y": "10.4.2",
     "@storybook/nextjs-vite": "^10.4.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
