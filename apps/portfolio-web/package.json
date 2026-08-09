@@ -9,6 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test:e2e": "playwright test",
+    "generate:brand": "bun run scripts/generate-brand-assets.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
