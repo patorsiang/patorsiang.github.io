@@ -59,11 +59,12 @@ jobs:
       - name: Build
         run: bun run build
 
-      # The accessibility rule no unit test covers: the cv-engine tests would
-      # pass just as happily with every control 8px tall. This renders the app
-      # and measures, so unlike the grep it replaced it can see a control with
-      # no height class at all - which is how every violation it first caught
-      # was written.
+      # The accessibility rules no unit test covers: tap target height, and text
+      # and focus-ring contrast in both themes. The cv-engine tests would pass
+      # just as happily with every control 8px tall and every label the same
+      # colour as its background. These render the app and measure, so unlike
+      # static checks they see a control with no height class at all, and a
+      # colour pair nobody thought to list in the token table.
       #
       # Chromium only; the config pins both viewports to it.
       - name: Install Playwright browser
@@ -72,7 +73,7 @@ jobs:
       # Builds the app again rather than reusing the step above, so the config
       # stays runnable from a cold checkout and does not silently depend on CI
       # step order.
-      - name: Test tap targets
+      - name: Test accessibility (tap targets, contrast)
         run: bun run test:e2e
 
       # Storybook imports the components directly, so a rename or a changed prop
