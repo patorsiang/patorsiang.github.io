@@ -18,6 +18,11 @@ export default defineConfig({
   reporter: process.env.CI ? "github" : "list",
   use: {
     baseURL: `http://127.0.0.1:${port}`,
+    // A service worker can serve a cached response inside an unrelated spec,
+    // so an assertion passes without ever touching the app. That failure is
+    // invisible — the suite goes green either way. Every spec runs with
+    // workers blocked; pwa.e2e.ts opts back in.
+    serviceWorkers: "block",
   },
   projects: [
     // 375px is the narrowest width the design system targets, and the width at

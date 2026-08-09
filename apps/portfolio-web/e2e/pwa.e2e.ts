@@ -105,3 +105,73 @@ test("the offline banner appears when the browser goes offline", async ({ page, 
   await context.setOffline(false);
   await expect(page.getByRole("status")).toHaveCount(0);
 });
+
+test.describe("service worker", () => {
+  test.use({ serviceWorkers: "allow" });
+
+  test("registers and takes control", async ({ page }) => {
+    await page.goto("/");
+
+    const controlled = await page.evaluate(async () => {
+      const registration = await navigator.serviceWorker.ready;
+
+      // `ready` resolves the moment the worker becomes the registration's
+      // active worker — a step that happens before the `activate` event (and
+      // therefore before our `clients.claim()`) has run. On a page's first
+      // ever registration this is not a rare race: `controller` is
+      // deterministically null at this exact point every time, so wait for
+      // `controllerchange` rather than read `controller` synchronously.
+      if (!navigator.serviceWorker.controller) {
+        await new Promise<void>((resolve) => {
+          navigator.serviceWorker.addEventListener("controllerchange", () => resolve(), {
+            once: true,
+          });
+        });
+      }
+
+      return Boolean(registration.active) && Boolean(navigator.serviceWorker.controller);
+    });
+
+    expect(controlled, "no service worker took control of the page").toBe(true);
+  });
+
+  test("precaches only same-origin entries", async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(() => navigator.serviceWorker.ready);
+
+    const foreign = await page.evaluate(async () => {
+      const names = await caches.keys();
+      const urls: string[] = [];
+
+      for (const name of names) {
+        const cache = await caches.open(name);
+        for (const request of await cache.keys()) {
+          if (new URL(request.url).origin !== location.origin) urls.push(request.url);
+        }
+      }
+
+      return urls;
+    });
+
+    // The sitemap lists absolute production URLs. Precaching them literally
+    // would cache the live site as this origin's offline shell — silently, and
+    // only off production.
+    expect(foreign, `cached entries from another origin: ${foreign.join(", ")}`).toEqual([]);
+  });
+
+  test("evicts caches from an older version on activate", async ({ page }) => {
+    // Seeded before the worker exists, because activate only runs for a newly
+    // installing worker — there is no way to force a re-activation later.
+    await page.goto("/offline");
+    await page.evaluate(() => caches.open("portfolio-shell-v0"));
+
+    await page.goto("/");
+    await page.evaluate(() => navigator.serviceWorker.ready);
+
+    const names = await page.evaluate(() => caches.keys());
+
+    expect(names, "a cache from an older version survived activate").not.toContain(
+      "portfolio-shell-v0",
+    );
+  });
+});

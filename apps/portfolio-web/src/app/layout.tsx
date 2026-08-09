@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { OfflineBanner } from "@/components/molecules/OfflineBanner";
+import { ServiceWorkerRegistration } from "@/components/molecules/ServiceWorkerRegistration";
 import { defaultDescription, defaultTitle, ownerName, siteMetadataBase, siteName } from "@/lib/seo";
 import { themeBootstrapScript } from "@/lib/theme";
 
@@ -55,6 +56,7 @@ export default function RootLayout({
           }}
         />
         <OfflineBanner />
+        <ServiceWorkerRegistration />
         {children}
         <Analytics />
         <SpeedInsights />
