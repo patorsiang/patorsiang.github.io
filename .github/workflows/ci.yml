@@ -50,12 +50,6 @@ jobs:
       - name: Lint
         run: bun run lint
 
-      # An accessibility rule no test covers: the component tests would pass
-      # just as happily with h-2. Grep-based, so it guards the class strings
-      # only - see the script header for what it cannot see.
-      - name: Check tap targets
-        run: bun run check:tap-targets
-
       - name: Typecheck
         run: bun run typecheck
 
@@ -64,6 +58,22 @@ jobs:
 
       - name: Build
         run: bun run build
+
+      # The accessibility rule no unit test covers: the cv-engine tests would
+      # pass just as happily with every control 8px tall. This renders the app
+      # and measures, so unlike the grep it replaced it can see a control with
+      # no height class at all - which is how every violation it first caught
+      # was written.
+      #
+      # Chromium only; the config pins both viewports to it.
+      - name: Install Playwright browser
+        run: bunx playwright install --with-deps chromium
+
+      # Builds the app again rather than reusing the step above, so the config
+      # stays runnable from a cold checkout and does not silently depend on CI
+      # step order.
+      - name: Test tap targets
+        run: bun run test:e2e
 
       # Storybook imports the components directly, so a rename or a changed prop
       # breaks it without touching the app build. Nothing else catches that.

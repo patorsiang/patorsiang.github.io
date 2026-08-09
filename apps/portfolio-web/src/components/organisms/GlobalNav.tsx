@@ -87,7 +87,7 @@ export function GlobalNav() {
             href={link.href}
             aria-current={link.matches(pathname) ? "page" : undefined}
             className={classNames(
-              "text-sm font-semibold underline-offset-4 transition hover:underline focus-visible:outline focus-visible:outline-offset-4",
+              "inline-flex h-10 items-center text-sm font-semibold underline-offset-4 transition hover:underline focus-visible:outline focus-visible:outline-offset-2",
               link.matches(pathname) ? "text-foreground underline" : "text-(--color-accent)",
             )}
           >

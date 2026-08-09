@@ -21,6 +21,38 @@ body {
   outline-color: var(--color-focus);
 }
 
+/*
+ * Extends a link's hit area to the design system's 40px floor without changing
+ * how it looks. For links that sit in prose or in a baseline-aligned row, where
+ * giving the box a real 40px height would open a gap in the text or break the
+ * baseline.
+ *
+ * Vertical only: the band keeps the element's own width, so links sitting side
+ * by side cannot steal each other's taps. It still overlays whatever sits
+ * directly above and below, so use it on a link that owns its line - controls
+ * stacked closer than 40px apart will fight over the overlap, which
+ * e2e/tap-targets.spec.ts catches.
+ */
+@utility tap-reach {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    height: 2.5rem;
+    transform: translateY(-50%);
+  }
+
+  /* Nothing is tappable on paper, and the band would inflate the line box. */
+  @media print {
+    &::after {
+      content: none;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

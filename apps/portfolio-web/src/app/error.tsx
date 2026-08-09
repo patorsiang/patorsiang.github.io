@@ -41,7 +41,7 @@ export default function ErrorBoundary({
           </Button>
           <Link
             href="/"
-            className="text-sm font-semibold text-(--color-accent) underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus)"
+            className="inline-flex h-10 items-center text-sm font-semibold text-(--color-accent) underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus)"
           >
             Go back home <span aria-hidden="true">&rarr;</span>
           </Link>

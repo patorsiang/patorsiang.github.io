@@ -109,7 +109,9 @@ export default function Home() {
         </div>
 
         <p className="mt-6">
-          <TextLink href="/projects">See all projects</TextLink>
+          <TextLink href="/projects" className="tap-reach">
+            See all projects
+          </TextLink>
         </p>
       </Section>
 

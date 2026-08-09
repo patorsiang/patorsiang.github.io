@@ -113,7 +113,16 @@ export function ProjectCard({
           )}
         >
           {links.map((link) => (
-            <TextLink key={link.href} href={link.href} target="_blank" rel="noreferrer">
+            <TextLink
+              key={link.href}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              // The row is a flex container, so these are blockified either
+              // way; only the height needs undoing for the dense CV print
+              // sheet, where nothing is tappable anyway.
+              className="inline-flex h-10 items-center print:h-auto"
+            >
               {formatLinkText(link, variant)}
             </TextLink>
           ))}

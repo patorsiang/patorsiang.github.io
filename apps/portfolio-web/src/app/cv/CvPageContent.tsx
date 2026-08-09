@@ -72,8 +72,14 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
             </div>
 
             <address className="not-italic text-sm leading-7 text-(--color-text-muted) sm:text-right">
+              {/*
+                These stack, so each needs its own 40px row rather than an
+                overlay - 28px line boxes would leave the bands overlapping and
+                the wrong link taking the tap. print:* restores the tight
+                inline flow the CV sheet is laid out for.
+              */}
               <a
-                className="font-medium text-foreground"
+                className="flex h-10 items-center font-medium text-foreground sm:justify-end print:inline print:h-auto"
                 href={sanitizeUrl(`mailto:${cv.header.email}`)}
               >
                 {cv.header.email}
@@ -84,7 +90,7 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
                   href={sanitizeUrl(link.url)}
                   target="_blank"
                   rel="noreferrer"
-                  className="block print:hidden"
+                  className="flex h-10 items-center sm:justify-end print:hidden"
                 >
                   {link.label}
                 </TextLink>

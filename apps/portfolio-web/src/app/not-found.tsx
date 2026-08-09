@@ -19,7 +19,7 @@ export default function NotFound() {
           </ButtonLink>
           <a
             href={sanitizeUrl("mailto:napatchol.tha@gmail.com")}
-            className="text-sm font-semibold text-(--color-accent) underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus)"
+            className="inline-flex h-10 items-center text-sm font-semibold text-(--color-accent) underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus)"
           >
             Contact support <span aria-hidden="true">&rarr;</span>
           </a>

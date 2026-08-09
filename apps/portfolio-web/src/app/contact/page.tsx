@@ -42,10 +42,17 @@ export default function ContactPage() {
                 {channel.label}
               </dt>
               <dd className="text-base">
+                {/*
+                  Overlay rather than a real 40px box: the row is
+                  sm:items-baseline, and giving the link a height would drop it
+                  off the baseline it shares with its <dt>. The py-4 rows sit
+                  far enough apart that the bands do not meet.
+                */}
                 <TextLink
                   href={sanitizeUrl(channel.entry.url)}
                   target={channel.label === "Email" ? undefined : "_blank"}
                   rel={channel.label === "Email" ? undefined : "noreferrer"}
+                  className="tap-reach"
                 >
                   {channel.entry.label.en}
                 </TextLink>

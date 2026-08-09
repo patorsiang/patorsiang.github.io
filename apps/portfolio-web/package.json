@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "test:e2e": "playwright test",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@patorsiang/configs": "workspace:*",
+    "@playwright/test": "^1.62.1",
     "@storybook/nextjs-vite": "^10.4.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
