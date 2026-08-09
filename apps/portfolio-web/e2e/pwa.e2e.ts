@@ -227,4 +227,53 @@ test.describe("service worker", () => {
       "portfolio-shell-v0",
     );
   });
+
+  test("serves a precached route while offline", async ({ page, context }) => {
+    await page.goto("/");
+    await page.evaluate(() => navigator.serviceWorker.ready);
+
+    await context.setOffline(true);
+    const response = await page.goto("/projects");
+
+    expect(response?.status(), "/projects did not come from cache").toBe(200);
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  });
+
+  test("falls back to the offline page for a route that was never cached", async ({
+    page,
+    context,
+  }) => {
+    await page.goto("/");
+    await page.evaluate(() => navigator.serviceWorker.ready);
+
+    await context.setOffline(true);
+    // Deliberately not in the sitemap, so it cannot have been precached.
+    await page.goto("/definitely-not-precached");
+
+    await expect(page.getByRole("heading", { level: 1 })).toContainText(/offline/i);
+  });
+
+  test("never caches the CV export downloads", async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(() => navigator.serviceWorker.ready);
+    await page.request.get("/cv/export/json?role=fullstack_engineer&lang=en");
+
+    const cachedExports = await page.evaluate(async () => {
+      const names = await caches.keys();
+      const found: string[] = [];
+
+      for (const name of names) {
+        const cache = await caches.open(name);
+        for (const request of await cache.keys()) {
+          if (new URL(request.url).pathname.startsWith("/cv/export/")) found.push(request.url);
+        }
+      }
+
+      return found;
+    });
+
+    // These are generated per request from query parameters. A cached copy
+    // serves the wrong role or language to the next visitor.
+    expect(cachedExports, `export routes were cached: ${cachedExports.join(", ")}`).toEqual([]);
+  });
 });

@@ -70,3 +70,87 @@ self.addEventListener("activate", (event) => {
     })(),
   );
 });
+
+const PAGE_CACHE = `portfolio-pages-${CACHE_VERSION}`;
+const ASSET_CACHE = `portfolio-assets-${CACHE_VERSION}`;
+
+/** Content-hashed by the build, so a cached entry can never be the wrong version. */
+const isImmutableAsset = (url) => url.pathname.startsWith("/_next/static/");
+
+/** Generated per request from query parameters — a cached copy is the wrong answer. */
+const isNeverCacheable = (url) => url.pathname.startsWith("/cv/export/");
+
+const isImage = (request, url) =>
+  request.destination === "image" || /\.(png|svg|jpg|jpeg|webp|ico)$/.test(url.pathname);
+
+async function networkFirst(request, cacheName) {
+  const cache = await caches.open(cacheName);
+
+  try {
+    const response = await fetch(request);
+    if (response.ok) cache.put(request, response.clone());
+    return response;
+  } catch {
+    const cached = await cache.match(request);
+    if (cached) return cached;
+
+    // Only navigations get the offline page; a failed asset should stay failed
+    // rather than resolve to an HTML document.
+    if (request.mode === "navigate") {
+      const shell = await caches.open(SHELL_CACHE);
+      const offline = await shell.match(OFFLINE_URL);
+      if (offline) return offline;
+    }
+
+    throw new Error("offline and not cached");
+  }
+}
+
+async function cacheFirst(request, cacheName) {
+  const cache = await caches.open(cacheName);
+  const cached = await cache.match(request);
+  if (cached) return cached;
+
+  const response = await fetch(request);
+  if (response.ok) cache.put(request, response.clone());
+  return response;
+}
+
+async function staleWhileRevalidate(request, cacheName) {
+  const cache = await caches.open(cacheName);
+  const cached = await cache.match(request);
+
+  const network = fetch(request)
+    .then((response) => {
+      if (response.ok) cache.put(request, response.clone());
+      return response;
+    })
+    .catch(() => cached);
+
+  return cached ?? network;
+}
+
+self.addEventListener("fetch", (event) => {
+  const { request } = event;
+
+  if (request.method !== "GET") return;
+
+  const url = new URL(request.url);
+
+  if (url.origin !== location.origin) return;
+  if (isNeverCacheable(url)) return;
+
+  if (isImmutableAsset(url)) {
+    event.respondWith(cacheFirst(request, ASSET_CACHE));
+    return;
+  }
+
+  if (isImage(request, url)) {
+    event.respondWith(staleWhileRevalidate(request, ASSET_CACHE));
+    return;
+  }
+
+  // Documents and everything else: the network is the source of truth, and the
+  // cache exists only for when it is genuinely unreachable.
+  event.respondWith(networkFirst(request, request.mode === "navigate" ? PAGE_CACHE : SHELL_CACHE));
+});
