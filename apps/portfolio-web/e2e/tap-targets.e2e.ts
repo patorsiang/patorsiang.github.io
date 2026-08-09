@@ -1,5 +1,7 @@
 import { test, expect } from "@playwright/test";
 
+import { routes } from "./support/routes";
+
 /**
  * Enforces the design system's tap target floor:
  * "Interactive targets should be at least 40px tall, with 44px preferred for
@@ -38,20 +40,6 @@ const FOCUSABLE_SELECTOR = [
   '[role="button"]',
   '[tabindex]:not([tabindex="-1"])',
 ].join(", ");
-
-const routes = [
-  "/",
-  "/about",
-  "/experience",
-  "/projects",
-  "/contact",
-  "/en/cv/fullstack-engineer",
-  "/en/cv/ai-ml-engineer",
-  "/en/cv/security-engineer",
-  "/th/cv/fullstack-engineer",
-  // Rendered by not-found.tsx, which has its own set of controls.
-  "/this-route-does-not-exist",
-];
 
 type Failure = {
   readonly label: string;

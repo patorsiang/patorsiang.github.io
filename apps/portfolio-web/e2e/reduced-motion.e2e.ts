@@ -1,5 +1,7 @@
 import { test, expect, type Page } from "@playwright/test";
 
+import { routes } from "./support/routes";
+
 /**
  * Enforces the motion rules in docs/design/motion-guidelines.md and the
  * "Respect `prefers-reduced-motion`" line in docs/design/design-system.md.
@@ -17,17 +19,6 @@ import { test, expect, type Page } from "@playwright/test";
  * failure - which is exactly the shape of the blinking caret still live in
  * legacy-v1, so it is worth catching here before the replacement inherits it.
  */
-
-const routes = [
-  "/",
-  "/about",
-  "/experience",
-  "/projects",
-  "/contact",
-  "/en/cv/fullstack-engineer",
-  "/th/cv/fullstack-engineer",
-  "/this-route-does-not-exist",
-];
 
 /** Anything above this is motion a user would perceive. */
 const STILL = 0.0001;

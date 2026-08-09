@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 
+import { routes } from "./support/routes";
 import { loadWithTheme, themes } from "./support/theme";
 
 /**
@@ -32,16 +33,6 @@ import { loadWithTheme, themes } from "./support/theme";
 
 const MIN_BODY = 4.5;
 const MIN_LARGE = 3;
-const routes = [
-  "/",
-  "/about",
-  "/experience",
-  "/projects",
-  "/contact",
-  "/en/cv/fullstack-engineer",
-  "/th/cv/fullstack-engineer",
-  "/this-route-does-not-exist",
-];
 
 for (const theme of themes) {
   test.describe(`${theme} theme`, () => {

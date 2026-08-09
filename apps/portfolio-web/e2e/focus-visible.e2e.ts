@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 
+import { routes } from "./support/routes";
 import { loadWithTheme, settle, themes } from "./support/theme";
 
 /**
@@ -22,17 +23,6 @@ import { loadWithTheme, settle, themes } from "./support/theme";
 
 const MIN_RING_PX = 2;
 const MIN_RING_CONTRAST = 3;
-
-const routes = [
-  "/",
-  "/about",
-  "/experience",
-  "/projects",
-  "/contact",
-  "/en/cv/fullstack-engineer",
-  "/th/cv/fullstack-engineer",
-  "/this-route-does-not-exist",
-];
 
 for (const theme of themes) {
   for (const route of routes) {
