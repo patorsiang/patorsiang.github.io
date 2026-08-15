@@ -35,6 +35,23 @@ test("an unknown slug 404s", async ({ page }) => {
   expect(response?.status()).toBe(404);
 });
 
+test("an unknown slug 404s, and still renders after hydration despite the missing initial theme (tracked limitation)", async ({
+  page,
+}) => {
+  const response = await page.goto("/posts/not-a-real-post");
+  expect(response?.status()).toBe(404);
+
+  // Next.js limitation, not specific to this route: notFound() called from a
+  // dynamic-fallback Server Component (dynamicParams: true, no static match)
+  // omits the theme-bootstrap script and stylesheet from the FIRST response.
+  // Confirmed permanent (not a one-time artifact) and pre-existing on
+  // /cv/[role] too. Two fixes were tried and rejected: dynamicParams=false
+  // (breaks ISR for genuinely new posts) and a nested not-found.tsx (doesn't
+  // touch the document shell). The client does hydrate into the real styled
+  // not-found.tsx — this test is the canary for that still being true.
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(/page not found/i);
+});
+
 // img-src is 'self' data: blob:, so a missed vendoring renders as a blocked
 // image that nobody notices until someone opens the console.
 test("every image in a post body is same-origin", async ({ page }) => {
