@@ -22,6 +22,8 @@ export type {
   ExperienceType,
   Link,
   Locale,
+  Post,
+  PostMaturity,
   Profile,
   Project,
   ProjectCategory,
@@ -36,3 +38,4 @@ export type {
 } from "./types";
 
 export * from "./schemas";
+export * from "./posts";
