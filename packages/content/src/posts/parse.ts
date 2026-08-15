@@ -1,4 +1,5 @@
-import { postSchema, type Post } from "../schemas/post.schema";
+import { postSchema } from "../schemas/post.schema";
+import type { Post } from "../types/post";
 
 /**
  * Front matter is a small, fixed shape - six scalar-or-list keys - so it is

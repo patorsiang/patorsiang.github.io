@@ -54,4 +54,19 @@ describe("parsePost", () => {
 
     expect(() => parsePost("x", bad)).toThrow(/maturity/i);
   });
+
+  test("rejects a post with no title", () => {
+    const missingTitle = valid.replace(/title: ".*"\n/, "");
+    expect(() => parsePost("bkkjs-summer-2026", missingTitle)).toThrow(/title/i);
+  });
+
+  test("rejects a post with no summary", () => {
+    const missingSummary = valid.replace(/summary: ".*"\n/, "");
+    expect(() => parsePost("bkkjs-summer-2026", missingSummary)).toThrow(/summary/i);
+  });
+
+  test("rejects a post with no lang", () => {
+    const missingLang = valid.replace(/lang: \[.*\]\n/, "");
+    expect(() => parsePost("bkkjs-summer-2026", missingLang)).toThrow(/lang/i);
+  });
 });

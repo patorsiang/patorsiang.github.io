@@ -7,6 +7,7 @@ export type {
   Locale,
 } from "./common";
 export type { Experience, ExperienceType } from "./experience";
+export type { Post, PostMaturity } from "./post";
 export type { Profile } from "./profile";
 export type {
   ContributionType,

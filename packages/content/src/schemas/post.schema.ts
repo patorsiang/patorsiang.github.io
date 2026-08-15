@@ -17,6 +17,3 @@ export const postSchema = z.object({
   lang: z.array(z.enum(["en", "th"])).min(1),
   body: z.string(),
 });
-
-export type Post = z.infer<typeof postSchema>;
-export type PostMaturity = z.infer<typeof postMaturitySchema>;
