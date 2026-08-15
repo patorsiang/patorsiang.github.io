@@ -11,6 +11,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@patorsiang/utils": "workspace:*",
+    "marked": "^18.0.9",
     "zod": "^3.24.1"
   },
   "devDependencies": {

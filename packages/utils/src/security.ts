@@ -35,3 +35,37 @@ export function sanitizeHTML(html: string): string {
     ALLOWED_ATTR: ["class"], // Allow classes for basic styling if needed
   });
 }
+
+/**
+ * Sanitizes rendered post-body HTML.
+ *
+ * Wider than sanitizeHTML's five-tag allowlist because post bodies come from
+ * CommonMark, not a hand-typed string: headings, links, lists, code blocks,
+ * images and blockquotes are all legitimate content there. `lang` is
+ * explicitly allowed — without it, the Thai-paragraph markup posts rely on
+ * (`<span lang="th">`) would be silently stripped, which is a bilingual
+ * accessibility feature failing shut rather than open.
+ */
+export function sanitizeArticleHTML(html: string): string {
+  return DOMPurify.sanitize(html, {
+    ALLOWED_TAGS: [
+      "h2",
+      "h3",
+      "p",
+      "a",
+      "strong",
+      "em",
+      "ul",
+      "ol",
+      "li",
+      "blockquote",
+      "code",
+      "pre",
+      "img",
+      "hr",
+      "br",
+      "span",
+    ],
+    ALLOWED_ATTR: ["href", "src", "alt", "loading", "rel", "target", "lang"],
+  });
+}
