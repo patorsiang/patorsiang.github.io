@@ -1,5 +1,7 @@
 import { fetchPosts, POST_FALLBACK, type Post, type PostSummary } from "@patorsiang/content";
 
+import { VENDORED_IMAGES } from "@/lib/vendored-images";
+
 /**
  * Every route reads posts through here.
  *
@@ -10,7 +12,7 @@ import { fetchPosts, POST_FALLBACK, type Post, type PostSummary } from "@patorsi
  */
 export async function getPosts(): Promise<PostSummary[]> {
   try {
-    return await fetchPosts();
+    return await fetchPosts(VENDORED_IMAGES);
   } catch (error) {
     console.error("Falling back to committed post summaries", error);
     return [...POST_FALLBACK];
@@ -19,7 +21,7 @@ export async function getPosts(): Promise<PostSummary[]> {
 
 export async function getPost(slug: string): Promise<Post | null> {
   try {
-    const posts = await fetchPosts();
+    const posts = await fetchPosts(VENDORED_IMAGES);
     return posts.find((post) => post.slug === slug) ?? null;
   } catch (error) {
     console.error(`Could not load post ${slug}`, error);

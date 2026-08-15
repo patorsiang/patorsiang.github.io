@@ -41,6 +41,38 @@ async function listPostPaths(): Promise<string[]> {
 }
 
 /**
+ * Every post, newest first, with `body` still raw markdown - not rendered to
+ * HTML.
+ *
+ * Exported separately from `fetchPosts` because the vendoring script needs
+ * markdown link syntax (`![alt](url)`) to find image URLs with
+ * `selectImageUrls`, and `renderPostBody` has already turned that into `<img>`
+ * tags by the time `fetchPosts` returns. This is the single place that lists
+ * and parses posts, so `fetchPosts` is defined in terms of it below rather
+ * than duplicating the fetch-and-parse loop.
+ *
+ * Throws if the listing or any post fails to fetch or parse.
+ */
+export async function fetchRawPosts(): Promise<Post[]> {
+  const paths = await listPostPaths();
+
+  const posts = await Promise.all(
+    paths.map(async (path) => {
+      const response = await fetch(rawUrl(path));
+
+      if (!response.ok) {
+        throw new Error(`fetching ${path} failed: ${response.status}`);
+      }
+
+      const slug = path.replace(/^posts\//, "").replace(/\.md$/, "");
+      return parsePost(slug, await response.text());
+    }),
+  );
+
+  return orderPosts(posts);
+}
+
+/**
  * Every post, newest first, with `body` already sanitised HTML.
  *
  * Throws if the listing fails. The app-side accessor catches that and falls
@@ -54,22 +86,10 @@ async function listPostPaths(): Promise<string[]> {
 export async function fetchPosts(
   vendoredImages: ReadonlyMap<string, string> = new Map(),
 ): Promise<Post[]> {
-  const paths = await listPostPaths();
+  const posts = await fetchRawPosts();
 
-  const posts = await Promise.all(
-    paths.map(async (path) => {
-      const response = await fetch(rawUrl(path));
-
-      if (!response.ok) {
-        throw new Error(`fetching ${path} failed: ${response.status}`);
-      }
-
-      const slug = path.replace(/^posts\//, "").replace(/\.md$/, "");
-      const parsed = parsePost(slug, await response.text());
-
-      return { ...parsed, body: renderPostBody(parsed.body, { vendoredImages }) };
-    }),
-  );
-
-  return orderPosts(posts);
+  return posts.map((post) => ({
+    ...post,
+    body: renderPostBody(post.body, { vendoredImages }),
+  }));
 }

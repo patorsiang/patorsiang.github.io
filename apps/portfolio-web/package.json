@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.scripts.json",
     "test:e2e": "playwright test",
     "generate:brand": "bun run scripts/generate-brand-assets.ts",
+    "vendor:post-images": "bun run scripts/vendor-post-images.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
