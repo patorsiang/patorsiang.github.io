@@ -16,9 +16,9 @@ export function orderPosts(posts: readonly Post[]): Post[] {
 
 /** Exported for testing. Remote images only - local paths need no vendoring. */
 export function selectImageUrls(markdown: string): string[] {
-  const found = [...markdown.matchAll(/!\[[^\]]*\]\((https?:\/\/[^)\s]+)\)/g)].map(
-    (match) => match[1],
-  );
+  const found = [...markdown.matchAll(/!\[[^\]]*\]\(([^)]*)\)/g)]
+    .map((match) => match[1].trim().split(/\s+/)[0])
+    .filter((url): url is string => /^https?:\/\//.test(url));
 
   return [...new Set(found)];
 }

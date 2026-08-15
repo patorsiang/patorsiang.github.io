@@ -40,4 +40,10 @@ describe("selectImageUrls", () => {
 
     expect(urls).toEqual(["https://x.test/a.webp"]);
   });
+
+  test("captures the URL when the image has a title, ignoring the title text", () => {
+    const urls = selectImageUrls('![alt](https://example.com/x.webp "a title")');
+
+    expect(urls).toEqual(["https://example.com/x.webp"]);
+  });
 });
