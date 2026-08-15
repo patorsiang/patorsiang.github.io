@@ -16,7 +16,7 @@ export const metadata: Metadata = buildPageMetadata({ title, description, path: 
 export const revalidate = 3600;
 
 export default async function PostsPage() {
-  const posts = await getPosts();
+  const { posts, isFallback } = await getPosts();
 
   return (
     <PageShell>
@@ -42,7 +42,7 @@ export default async function PostsPage() {
 
         <div className="mt-8 grid gap-5 lg:grid-cols-2">
           {posts.map((post) => (
-            <PostCard key={post.slug} post={post} />
+            <PostCard key={post.slug} post={post} isFallback={isFallback} />
           ))}
         </div>
       </Section>

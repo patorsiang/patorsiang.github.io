@@ -29,6 +29,7 @@ export type {
   ProjectCategory,
   ProjectPlacement,
   ProjectStatus,
+  RawPost,
   SkillGroup,
   SkillGroupId,
   SupportedLocale,

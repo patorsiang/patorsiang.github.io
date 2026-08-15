@@ -26,6 +26,14 @@ import { routes } from "./support/routes";
  * onto the neighbour. Two 40px controls stacked edge to edge would fail on that
  * artifact alone. 15px sits 5px clear of both boundaries; the height assertion,
  * not the probe, is what proves the 40px.
+ *
+ * Inline links inside rendered post prose (`.post-body`) are exempt from both
+ * checks. WCAG 2.5.8 (Target Size Minimum) explicitly excepts "the target is
+ * in a sentence or block of text" - the design system's 40px rule is a
+ * house rule stricter than WCAG for standalone controls, not for prose links.
+ * `.tap-reach` cannot fix this either: its own docstring in globals.css warns
+ * that controls stacked closer than 40px apart fight over the overlap, and
+ * prose lines sit ~28px apart.
  */
 const MIN_TAP_TARGET_PX = 40;
 const PROBE_OFFSET_PX = 15;
@@ -66,6 +74,13 @@ for (const route of routes) {
             : `<${node.tagName.toLowerCase()}> ${(node.textContent || "").trim().replace(/\s+/g, " ").slice(0, 24)}`;
 
         for (const element of document.querySelectorAll<HTMLElement>(selector)) {
+          // WCAG 2.5.8 Target Size Minimum exempts targets "in a sentence or
+          // block of text" - inline links inside rendered post prose are
+          // exactly this case, and tap-reach cannot fix them (see its own
+          // docstring: prose lines sit ~28px apart, closer than the 40px band
+          // would need). See the module docstring above for the full reasoning.
+          if (element.closest(".post-body")) continue;
+
           const initial = element.getBoundingClientRect();
 
           // Zero-area elements are not rendered (print-only blocks, collapsed

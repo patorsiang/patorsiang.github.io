@@ -87,14 +87,25 @@ body {
   margin-top: 2rem;
 }
 
+.post-body h4 {
+  color: var(--color-text);
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 1.75rem;
+}
+
+/*
+ * Underline is unconditional, not hover-only: WCAG technique G183 requires
+ * links be distinguished from surrounding text by more than colour alone
+ * when the contrast against body text is below 3:1 (measured at ~1.01:1 for
+ * --color-accent against --color-text-muted in dark theme).
+ */
 .post-body a {
   color: var(--color-accent);
   font-weight: 600;
-  text-underline-offset: 4px;
-}
-
-.post-body a:hover {
   text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .post-body a:focus-visible {
@@ -154,6 +165,34 @@ body {
 .post-body hr {
   border-color: var(--color-border);
   margin-block: 2.5rem;
+}
+
+.post-body table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.post-body th,
+.post-body td {
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.post-body th {
+  background: var(--color-surface-muted);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.post-body figure {
+  margin-top: 1.25rem;
+}
+
+.post-body figcaption {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

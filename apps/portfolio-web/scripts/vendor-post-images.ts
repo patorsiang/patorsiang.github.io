@@ -26,14 +26,31 @@ import { fetchRawPosts, selectImageUrls } from "@patorsiang/content";
 const publicDir = join(import.meta.dir, "../public/posts");
 const mapPath = join(import.meta.dir, "../src/lib/vendored-images.ts");
 
-const extensionOf = (url: string) => {
+const EXTENSION_BY_CONTENT_TYPE: Record<string, string> = {
+  "image/png": "png",
+  "image/jpeg": "jpg",
+  "image/webp": "webp",
+  "image/gif": "gif",
+  "image/svg+xml": "svg",
+};
+
+const extensionFromUrl = (url: string) => {
   const path = new URL(url).pathname;
   const match = /\.(png|jpe?g|webp|gif|svg)$/i.exec(path);
 
-  // Cloudinary and similar serve extensionless transform URLs; webp is the
-  // safe default and the browser sniffs the real type anyway.
-  return match ? match[1].toLowerCase() : "webp";
+  return match ? match[1].toLowerCase() : null;
 };
+
+/**
+ * Cloudinary and similar serve extensionless transform URLs, so the URL
+ * alone is not always enough. Content-Type is the actual authority on what
+ * was downloaded; webp is the fallback only when neither the URL nor a
+ * recognised image content-type says otherwise.
+ */
+const extensionOf = (url: string, contentType: string | null) =>
+  extensionFromUrl(url) ??
+  (contentType && EXTENSION_BY_CONTENT_TYPE[contentType.split(";")[0].trim()]) ??
+  "webp";
 
 async function main() {
   // Raw markdown, not rendered HTML: selectImageUrls reads markdown syntax.
@@ -50,13 +67,24 @@ async function main() {
     const sources: Record<string, string> = {};
 
     for (const [index, url] of urls.entries()) {
-      const name = `image-${index + 1}.${extensionOf(url)}`;
       const response = await fetch(url);
 
       if (!response.ok) {
         console.warn(`skipped ${url}: ${response.status}`);
         continue;
       }
+
+      // response.ok alone doesn't catch a 200 that's actually an HTML error
+      // page from some intermediate proxy - a vendored file that 404s or
+      // contains an HTML error page still satisfies a same-origin check.
+      const contentType = response.headers.get("content-type");
+
+      if (!contentType?.split(";")[0].trim().startsWith("image/")) {
+        console.warn(`skipped ${url}: response was not an image (content-type: ${contentType})`);
+        continue;
+      }
+
+      const name = `image-${index + 1}.${extensionOf(url, contentType)}`;
 
       writeFileSync(join(dir, name), Buffer.from(await response.arrayBuffer()));
       sources[name] = url;

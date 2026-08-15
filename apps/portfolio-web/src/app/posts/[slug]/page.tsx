@@ -9,7 +9,7 @@ export const revalidate = 3600;
 
 /** Prerendered at build; a post added later is served by ISR on first request. */
 export async function generateStaticParams() {
-  const posts = await getPosts();
+  const { posts } = await getPosts();
 
   return posts.map((post) => ({ slug: post.slug }));
 }

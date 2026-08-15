@@ -1,6 +1,6 @@
 import { parsePost } from "./parse";
 import { renderPostBody } from "./render";
-import type { Post } from "../types/post";
+import type { Post, RawPost } from "../types/post";
 
 const OWNER = "patorsiang";
 const REPO = "thinking-in-public";
@@ -9,9 +9,13 @@ const BRANCH = "main";
 const rawUrl = (path: string) =>
   `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${path}`;
 
-/** Exported for testing: ordering is a pure decision, worth asserting directly. */
-export function orderPosts(posts: readonly Post[]): Post[] {
-  return [...posts].toSorted((a, b) => b.date.localeCompare(a.date));
+/**
+ * Exported for testing: ordering is a pure decision, worth asserting directly.
+ * Generic so it works for both `fetchPosts`'s `Post[]` and `fetchRawPosts`'s
+ * `RawPost[]` without losing the raw/sanitised distinction on the way out.
+ */
+export function orderPosts<T extends Pick<Post, "date">>(posts: readonly T[]): T[] {
+  return [...posts].sort((a, b) => b.date.localeCompare(a.date));
 }
 
 /** Exported for testing. Remote images only - local paths need no vendoring. */
@@ -51,12 +55,27 @@ async function listPostPaths(): Promise<string[]> {
  * and parses posts, so `fetchPosts` is defined in terms of it below rather
  * than duplicating the fetch-and-parse loop.
  *
- * Throws if the listing or any post fails to fetch or parse.
+ * Throws only if the listing itself fails, or if every path it names fails
+ * to fetch or parse. A single post that fails (missing/malformed front
+ * matter, a schema violation) is skipped and logged rather than failing the
+ * whole batch - `thinking-in-public` is a personal archive committed to
+ * independently of this codebase, and one malformed post should not take
+ * down every other post in the listing. But if literally every post failed,
+ * that is functionally a total outage from the caller's point of view - an
+ * index with zero posts is exactly the "empty page" `lib/posts.ts`'s
+ * fallback exists to prevent, even though the failure mode here is parse
+ * errors rather than the listing call itself being unreachable.
+ *
+ * Returns `RawPost[]`, not `Post[]`: the brand stops a future caller from
+ * silently feeding raw markdown to something that expects sanitised HTML
+ * (or vice versa - `fetchPosts`'s output into `selectImageUrls`, which needs
+ * markdown link syntax). The cast below is the one place that brand is
+ * applied; it exists only for the compiler; see `RawPost`'s docstring.
  */
-export async function fetchRawPosts(): Promise<Post[]> {
+export async function fetchRawPosts(): Promise<RawPost[]> {
   const paths = await listPostPaths();
 
-  const posts = await Promise.all(
+  const results = await Promise.allSettled(
     paths.map(async (path) => {
       const response = await fetch(rawUrl(path));
 
@@ -69,7 +88,35 @@ export async function fetchRawPosts(): Promise<Post[]> {
     }),
   );
 
-  return orderPosts(posts);
+  const posts = settleFetchedPosts(paths, results);
+
+  if (paths.length > 0 && posts.length === 0) {
+    throw new Error(`every post (${paths.length}) failed to fetch or parse`);
+  }
+
+  return orderPosts(posts as RawPost[]);
+}
+
+/**
+ * Exported for testing: the isolable piece of I3's per-post failure
+ * handling. Keeps posts whose fetch+parse settled fulfilled, skips (and
+ * logs) the ones that rejected.
+ */
+export function settleFetchedPosts(
+  paths: readonly string[],
+  results: readonly PromiseSettledResult<Post>[],
+): Post[] {
+  const posts: Post[] = [];
+
+  for (const [index, result] of results.entries()) {
+    if (result.status === "fulfilled") {
+      posts.push(result.value);
+    } else {
+      console.error(`skipping ${paths[index]}:`, result.reason);
+    }
+  }
+
+  return posts;
 }
 
 /**
