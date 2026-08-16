@@ -11,32 +11,23 @@ const dateFormat = new Intl.DateTimeFormat("en-GB", {
 });
 
 /**
- * Exported for testing: which URL a post card's title should link to.
+ * Exported for testing: which URL a post card's title should link to, if any.
  *
  * Fallback summaries carry no body, so the internal `/posts/<slug>` route
- * 404s - in that case the card links to the source repo on GitHub instead,
- * matching the pattern already used for "Originally written in" on the post
- * page itself. `internal: true/false` on the return value lets the caller
- * decide `Link` vs a plain external anchor without re-deriving the decision.
+ * 404s - rather than link there, or out to the raw notes file in the source
+ * repo (readers should see finished posts, not drafts-in-progress), the
+ * card renders as plain, unlinked text while data is degraded. `null` means
+ * "no link".
  */
-export function postCardHref(
-  slug: string,
-  isFallback: boolean,
-): { readonly href: string; readonly internal: boolean } {
-  return isFallback
-    ? {
-        href: `https://github.com/patorsiang/thinking-in-public/blob/main/posts/${slug}.md`,
-        internal: false,
-      }
-    : { href: `/posts/${slug}`, internal: true };
+export function postCardHref(slug: string, isFallback: boolean): string | null {
+  return isFallback ? null : `/posts/${slug}`;
 }
 
 /**
  * `isFallback` means `post` came from the committed `POST_FALLBACK`, not a
- * live fetch - it carries no body, so the internal `/posts/<slug>` route
- * would 404. In that case the card links to the source repo on GitHub
- * instead, matching the pattern already used for "Originally written in"
- * on the post page itself.
+ * live fetch - it carries no body, so there is nowhere for the title to
+ * link to yet. The card still shows title, date and summary; it just is
+ * not clickable until the live data is back.
  */
 export function PostCard({
   post,
@@ -62,16 +53,14 @@ export function PostCard({
             card's line rhythm, and a block-level hit box would open a gap
             above the date row and below the summary. */}
         {(() => {
-          const { href, internal } = postCardHref(post.slug, isFallback);
+          const href = postCardHref(post.slug, isFallback);
 
-          return internal ? (
+          return href ? (
             <Link href={href} className={titleLinkClassName}>
               {post.title}
             </Link>
           ) : (
-            <a href={href} target="_blank" rel="noreferrer" className={titleLinkClassName}>
-              {post.title}
-            </a>
+            post.title
           );
         })()}
       </h2>

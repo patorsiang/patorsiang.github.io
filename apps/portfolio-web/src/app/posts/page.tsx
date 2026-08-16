@@ -22,22 +22,7 @@ export default async function PostsPage() {
     <PageShell>
       <Section eyebrow="Posts" title="Learning in public.">
         <p className="mt-6 max-w-2xl text-base leading-8 text-(--color-text-muted)">
-          Notes and reflections from events, projects, and the day job. Written first in the{" "}
-          <a
-            href="https://github.com/patorsiang/thinking-in-public"
-            target="_blank"
-            rel="noreferrer"
-            // tap-reach rather than a real 40px box: this sits inline in
-            // prose, and giving it a height would open a gap in the line.
-            // whitespace-nowrap: the hyphens in "thinking-in-public" are soft
-            // wrap points, and a link broken across two lines gets a bounding
-            // rect that unions both fragments - its "centre" then falls in
-            // the gap between them, which is neither line and untappable.
-            className="tap-reach whitespace-nowrap font-semibold text-(--color-accent) underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus)"
-          >
-            thinking-in-public
-          </a>{" "}
-          archive, and mirrored here.
+          Notes and reflections from events, projects, and the day job.
         </p>
 
         <div className="mt-8 grid gap-5 lg:grid-cols-2">

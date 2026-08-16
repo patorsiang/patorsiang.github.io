@@ -58,19 +58,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
         {/* Sanitised in packages/content/src/posts/render.ts. */}
         <div className="post-body mt-10" dangerouslySetInnerHTML={{ __html: post.body }} />
-
-        <p className="mt-12 border-t border-(--color-border) pt-6 text-sm text-(--color-text-muted)">
-          Originally written in{" "}
-          <a
-            href={`https://github.com/patorsiang/thinking-in-public/blob/main/posts/${post.slug}.md`}
-            target="_blank"
-            rel="noreferrer"
-            className="font-semibold text-(--color-accent) underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus)"
-          >
-            thinking-in-public
-          </a>
-          .
-        </p>
       </article>
     </PageShell>
   );

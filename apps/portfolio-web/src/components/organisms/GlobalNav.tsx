@@ -23,6 +23,11 @@ const primaryLinks = [
     matches: (pathname: string) => pathname === "/experience",
   },
   { href: "/projects", label: "Projects", matches: (pathname: string) => pathname === "/projects" },
+  {
+    href: "/posts",
+    label: "Posts",
+    matches: (pathname: string) => pathname === "/posts" || pathname.startsWith("/posts/"),
+  },
   { href: "/cv", label: "CV", matches: isCvRoute },
   { href: "/contact", label: "Contact", matches: (pathname: string) => pathname === "/contact" },
 ] as const;

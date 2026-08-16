@@ -32,7 +32,7 @@ const routes = [
 ];
 
 /** Primary nav destinations. A footer link to any of these duplicates the nav. */
-const primaryNavPaths = ["/about", "/experience", "/projects", "/contact"];
+const primaryNavPaths = ["/about", "/experience", "/projects", "/posts", "/contact"];
 
 for (const route of routes) {
   test(`${route} has a footer reaching GitHub, LinkedIn, Email and CV`, async ({ page }) => {

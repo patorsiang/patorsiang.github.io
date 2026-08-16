@@ -26,10 +26,12 @@ mock.module("@patorsiang/content", () => ({
 
 describe("getPosts", () => {
   // I4: fallback cards must not link to the internal /posts/<slug> route,
-  // which 404s for fallback data (getPost has no fallback of its own). This
+  // which 404s for fallback data (getPost has no fallback of its own) - and
+  // must not link out to the raw notes file in the source repo either,
+  // since readers should see finished posts, not drafts-in-progress. This
   // is the same forced-failure setup as the bundled-minor test above -
-  // proving the mode AND the resulting href in one place.
-  test("falls back to POST_FALLBACK, reports isFallback: true, and the card href points at the source repo", async () => {
+  // proving the mode AND the resulting (lack of a) href in one place.
+  test("falls back to POST_FALLBACK, reports isFallback: true, and the card has no href", async () => {
     const { getPosts } = await import("./posts");
 
     const result = await getPosts();
@@ -38,26 +40,18 @@ describe("getPosts", () => {
     expect(result.posts).toEqual(POST_FALLBACK);
 
     for (const post of result.posts) {
-      const { href, internal } = postCardHref(post.slug, result.isFallback);
-
-      expect(internal).toBe(false);
-      expect(href).toBe(
-        `https://github.com/patorsiang/thinking-in-public/blob/main/posts/${post.slug}.md`,
-      );
+      expect(postCardHref(post.slug, result.isFallback)).toBeNull();
     }
   });
 });
 
 describe("postCardHref", () => {
   test("links to the internal route when not in fallback mode", () => {
-    expect(postCardHref("my-post", false)).toEqual({ href: "/posts/my-post", internal: true });
+    expect(postCardHref("my-post", false)).toBe("/posts/my-post");
   });
 
-  test("links to the GitHub source when in fallback mode", () => {
-    expect(postCardHref("my-post", true)).toEqual({
-      href: "https://github.com/patorsiang/thinking-in-public/blob/main/posts/my-post.md",
-      internal: false,
-    });
+  test("has no link in fallback mode", () => {
+    expect(postCardHref("my-post", true)).toBeNull();
   });
 });
 
