@@ -1,5 +1,5 @@
 import { describe, expect, mock, test } from "bun:test";
-import { POST_FALLBACK } from "@patorsiang/content";
+import { POST_FALLBACK } from "@patorsiang/content/posts";
 
 /**
  * `getPosts`/`getPost` degrade to `POST_FALLBACK` when the live fetch
@@ -8,7 +8,8 @@ import { POST_FALLBACK } from "@patorsiang/content";
  * page doesn't crash") would pass whether or not the fallback actually
  * fires. `fetchPosts` calls the real `fetch` global and Playwright can't
  * intercept it (this runs server-side), so the only way to force the
- * failure is to mock `@patorsiang/content` itself.
+ * failure is to mock `@patorsiang/content/posts` itself - the exact
+ * specifier lib/posts.ts imports `fetchPosts` from.
  *
  * `mock.module` swaps the module for every import that happens after this
  * call, including the dynamic `import("./posts")` below - which is why
@@ -17,7 +18,7 @@ import { POST_FALLBACK } from "@patorsiang/content";
  * `POST_FALLBACK` above runs first (module evaluation, before any test
  * body), so it captures the real fallback data to assert against.
  */
-mock.module("@patorsiang/content", () => ({
+mock.module("@patorsiang/content/posts", () => ({
   fetchPosts: () => Promise.reject(new Error("network down")),
   POST_FALLBACK,
 }));

@@ -21,7 +21,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-import { fetchRawPosts, selectImageUrls } from "@patorsiang/content";
+import { fetchRawPosts, selectImageUrls } from "@patorsiang/content/posts";
 
 const publicDir = join(import.meta.dir, "../public/posts");
 const mapPath = join(import.meta.dir, "../src/lib/vendored-images.ts");
