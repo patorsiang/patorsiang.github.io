@@ -47,14 +47,15 @@ Forbidden patterns:
 
 ### Duration
 
-| Motion type                         |        Duration |
-| ----------------------------------- | --------------: |
-| Hover/focus feedback                |       100-150ms |
-| Button active/pressed feedback      |        75-120ms |
-| Small menu or disclosure open/close |       150-200ms |
-| Section reveal, if used             |       180-240ms |
-| Loading shimmer, if used            | 900-1400ms loop |
-| Toast or temporary status entry     |       150-220ms |
+| Motion type                                  |        Duration |
+| -------------------------------------------- | --------------: |
+| Hover/focus feedback                         |       100-150ms |
+| Button active/pressed feedback               |        75-120ms |
+| Small menu or disclosure open/close          |       150-200ms |
+| Section reveal, if used                      |       180-240ms |
+| Loading shimmer, if used                     | 900-1400ms loop |
+| Toast or temporary status entry              |       150-220ms |
+| One-shot brand-mark reveal (named exception) |           500ms |
 
 Rules:
 
@@ -62,6 +63,7 @@ Rules:
 - Do not exceed 250ms for normal UI transitions.
 - Loading animations may loop, but they must be visually quiet.
 - Never delay content appearance just to play an animation.
+- Exception: a one-shot brand-mark stroke-draw (e.g. the homepage hero mark) may run up to 500ms, since a self-drawing stroke at 250ms reads as a glitch rather than a draw. Scoped narrowly to that one moment - every other transition on this page keeps the 250ms cap above.
 
 ### Easing
 

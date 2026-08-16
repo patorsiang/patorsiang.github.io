@@ -22,6 +22,24 @@ export const MARK_VIEW_BOX = "0 0 100 100";
 export const MARK_PATH = "M34 82 V24 H54 a17 17 0 1 1 0 34 H34";
 export const MARK_STROKE_WIDTH = 15;
 
+/**
+ * Length, in MARK_PATH's own user-space units (the viewBox is 0 0 100 100,
+ * so this is independent of any rendered size), that HeroMark's
+ * stroke-dasharray uses to draw the mark on mount.
+ *
+ * Computed by hand rather than measured at runtime with
+ * SVGPathElement.getTotalLength(): that needs a mounted DOM node, which
+ * would force HeroMark into a client component and risk a
+ * visible-then-hidden-then-drawn flash on hydration. The stem is two
+ * straight runs of 58 and 20 units, the bowl is a semicircle of radius 17
+ * (its chord equals its diameter, so both possible arc-length choices are
+ * identical), and the base is a third straight run of 20 units:
+ * 58 + 20 + (Math.PI * 17) + 20 ≈ 151.41. Rounded up to 160 so the dash
+ * always fully covers the path - a dasharray longer than the path draws
+ * with no visible gap once stroke-dashoffset reaches 0.
+ */
+export const MARK_DASH_LENGTH = 160;
+
 export const BRAND_COLORS = {
   accentLight: "#0f766e",
   accentDark: "#5eead4",

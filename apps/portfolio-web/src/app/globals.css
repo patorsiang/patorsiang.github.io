@@ -54,6 +54,40 @@ body {
 }
 
 /*
+ * One-shot stroke-draw for HeroMark (components/atoms/HeroMark.tsx).
+ * --hero-mark-dash-length is set inline by HeroMark from MARK_DASH_LENGTH
+ * in src/lib/brand.ts - not duplicated as a literal here, since React can
+ * pipe the constant into an inline style.
+ *
+ * @starting-style defines the pre-draw state for the very first paint, so
+ * no client component or mount-effect is needed. Browsers without
+ * @starting-style support just skip straight to the end state (fully
+ * drawn) - a fine fallback, and also this component's prefers-reduced-motion
+ * behaviour, handled for free by the sitewide reduced-motion block below:
+ * no bespoke media query needed here.
+ *
+ * This degrades, it cannot crash: an unrecognised at-rule is dropped per
+ * the CSS Syntax spec's error-recovery rules, not treated as a parse
+ * error, and that has been true since CSS2.1 - not a recent leniency.
+ * The only real support gap is browsers that understand CSS nesting but
+ * not @starting-style itself (roughly Safari 16.4-17.3); there, the
+ * nested block is discarded and .hero-mark-draw keeps only its end-state
+ * declarations, so the mark simply never animates. globals.css already
+ * ships color-mix() with no fallback (the ::selection rule), so this is
+ * not a new risk category for this app. See "One-shot brand-mark reveals" in
+ * docs/design/motion-guidelines.md for why 500ms exceeds the usual 250ms cap.
+ */
+.hero-mark-draw {
+  stroke-dasharray: var(--hero-mark-dash-length);
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 500ms cubic-bezier(0, 0, 0.2, 1);
+
+  @starting-style {
+    stroke-dashoffset: var(--hero-mark-dash-length);
+  }
+}
+
+/*
  * Typography for rendered post markdown.
  *
  * Not Tailwind's `prose` plugin: that ships its own type scale and colour

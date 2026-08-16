@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { HeroMark } from "@/components/atoms/HeroMark";
 import { ContactLinks, type ContactLink } from "@/components/molecules/ContactLinks";
 
 type ProfileHeaderProps = {
@@ -45,9 +46,12 @@ export function ProfileHeader({
           />
         ) : null}
         <div>
-          <p className="text-sm font-medium uppercase tracking-[0.16em] text-(--color-accent)">
-            {handle}
-          </p>
+          <div className="flex items-center gap-2">
+            <HeroMark />
+            <p className="text-sm font-medium uppercase tracking-[0.16em] text-(--color-accent)">
+              {handle}
+            </p>
+          </div>
           <h1 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-6xl">
             {name}
           </h1>

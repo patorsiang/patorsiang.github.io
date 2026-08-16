@@ -1,5 +1,7 @@
 import { test, expect } from "@playwright/test";
 
+import { MARK_DASH_LENGTH, MARK_PATH } from "../src/lib/brand";
+
 /**
  * The Vercel triangle from create-next-app shipped as this site's identity for
  * months, because a favicon is the one asset nobody looks at twice. These tests
@@ -177,3 +179,62 @@ for (const dead of ["file.svg", "globe.svg", "next.svg", "vercel.svg", "window.s
     expect(response.status()).toBe(404);
   });
 }
+
+test("the homepage renders the self-drawing hero mark, sourced from MARK_PATH", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const mark = page.locator("header svg path.hero-mark-draw");
+
+  await expect(mark).toHaveCount(1);
+  await expect(mark).toHaveAttribute("d", MARK_PATH);
+
+  // Past the 500ms draw, the mark must have settled fully drawn - not stuck
+  // mid-stroke because @starting-style went unsupported, and not silently
+  // clipped by an under-sized dasharray.
+  await expect.poll(() => mark.evaluate((el) => getComputedStyle(el).strokeDashoffset)).toBe("0px");
+});
+
+test("MARK_DASH_LENGTH covers the mark's real rendered length, not just the hand computation", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  // Independent of the hand-derived arithmetic in brand.ts's comment and
+  // brand.test.ts's drift guard - both of those could share the same
+  // arithmetic mistake and still agree with each other. This measures the
+  // path in a real browser's own geometry engine instead.
+  const actualLength = await page
+    .locator("header svg path.hero-mark-draw")
+    .evaluate((el: SVGPathElement) => el.getTotalLength());
+
+  expect(MARK_DASH_LENGTH).toBeGreaterThanOrEqual(actualLength);
+});
+
+test("under prefers-reduced-motion, the hero mark renders fully drawn with no transition", async ({
+  page,
+}) => {
+  // Explicit, on top of the generic sitewide sweep in reduced-motion.e2e.ts
+  // (Step 12 below runs that too) - this one names HeroMark specifically,
+  // so a future refactor that breaks reduced-motion just for this
+  // component (while the generic sweep still passes for some other
+  // reason) fails here by name instead of as an unexplained page-wide
+  // regression.
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+
+  const mark = page.locator("header svg path.hero-mark-draw");
+
+  const { dashoffset, durationSeconds } = await mark.evaluate((el) => {
+    const style = getComputedStyle(el);
+    return {
+      dashoffset: style.strokeDashoffset,
+      durationSeconds: Number.parseFloat(style.transitionDuration),
+    };
+  });
+
+  expect(dashoffset).toBe("0px");
+  // The sitewide reduced-motion block forces this to 0.01ms (1e-5s).
+  expect(durationSeconds).toBeLessThan(0.0001);
+});
