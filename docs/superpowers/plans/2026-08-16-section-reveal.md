@@ -132,7 +132,7 @@ Create `apps/portfolio-web/src/components/atoms/RevealOnView.tsx`:
 ```tsx
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 
 import { classNames } from "@/lib/classnames";
@@ -140,6 +140,16 @@ import { classNames } from "@/lib/classnames";
 type RevealOnViewProps = {
   readonly children: ReactNode;
 };
+
+/**
+ * React warns if useLayoutEffect runs during server rendering ("useLayoutEffect
+ * does nothing on the server") - and Next.js does server-render client
+ * components to produce the initial HTML. useEffect is silently a no-op
+ * there instead, so falling back to it during SSR (typeof window ===
+ * "undefined") avoids the warning with no behavior change: the effect
+ * still only ever does anything once this runs on the client.
+ */
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 /**
  * Reveals its children once, the first time they scroll into view - or
@@ -150,8 +160,8 @@ type RevealOnViewProps = {
  * Defaults to visible: the hidden state only exists once this effect has
  * run and found the element off-screen, never in the server-rendered
  * HTML, so content never depends on JavaScript to become visible - only
- * to animate. useLayoutEffect, not useEffect, so that first hide (when it
- * happens) lands before the browser's first paint - otherwise a
+ * to animate. A layout effect, not a regular effect, so that first hide
+ * (when it happens) lands before the browser's first paint - otherwise a
  * below-the-fold section would flash visible for one frame before fading
  * out, which is exactly the flicker this exists to avoid.
  */
@@ -159,7 +169,7 @@ export function RevealOnView({ children }: RevealOnViewProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [hidden, setHidden] = useState(false);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const element = ref.current;
     if (!element) return;
 
