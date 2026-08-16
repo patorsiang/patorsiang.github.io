@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { POST_FALLBACK } from "@patorsiang/content";
+import { POST_FALLBACK } from "@patorsiang/content/posts";
 import { cvLanguages, cvRoleSlugs } from "@/lib/cv-routes";
 import { siteUrl } from "@/lib/seo";
 

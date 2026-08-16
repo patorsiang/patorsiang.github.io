@@ -1,5 +1,5 @@
 import { describe, expect, mock, test } from "bun:test";
-import { POST_FALLBACK } from "@patorsiang/content";
+import { POST_FALLBACK } from "@patorsiang/content/posts";
 
 /**
  * `getPosts`/`getPost` degrade to `POST_FALLBACK` when the live fetch

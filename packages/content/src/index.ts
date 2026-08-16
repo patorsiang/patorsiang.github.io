@@ -39,4 +39,17 @@ export type {
 } from "./types";
 
 export * from "./schemas";
-export * from "./posts";
+
+// NOT "export * from './posts'": posts/fetch.ts genuinely needs
+// renderPostBody (packages/content/src/posts/render.ts), which needs
+// isomorphic-dompurify/jsdom - a real, direct dependency, unlike the
+// accidental barrel pull-through fixed in @patorsiang/utils. But cv-engine
+// (and everything built on cv-engine, including the /cv legacy-redirect
+// routes) only needs profile/experiences/projects/skills from this
+// package's main barrel, never posts - so eagerly re-exporting posts here
+// pulled jsdom into those routes' bundles too. Only PostSummary is
+// re-exported directly: it's a type-only export, erased at compile time,
+// so it carries none of the runtime weight. Consumers that need the actual
+// posts runtime (fetchPosts, POST_FALLBACK, renderPostBody) import from the
+// "@patorsiang/content/posts" subpath instead.
+export type { PostSummary } from "./posts/fallback";

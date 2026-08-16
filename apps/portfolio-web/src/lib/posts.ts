@@ -1,4 +1,9 @@
-import { fetchPosts, POST_FALLBACK, type Post, type PostSummary } from "@patorsiang/content";
+import type { Post, PostSummary } from "@patorsiang/content";
+// Subpath, not the main barrel: fetchPosts/POST_FALLBACK need
+// renderPostBody's jsdom dependency, which most other consumers of
+// @patorsiang/content (including cv-engine) must not carry - see
+// packages/content/src/index.ts.
+import { fetchPosts, POST_FALLBACK } from "@patorsiang/content/posts";
 
 import { VENDORED_IMAGES } from "@/lib/vendored-images";
 
