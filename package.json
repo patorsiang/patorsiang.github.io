@@ -29,5 +29,8 @@
   "devDependencies": {
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.7.4"
+  },
+  "dependencies": {
+    "dompurify": "^3.4.13"
   }
 }

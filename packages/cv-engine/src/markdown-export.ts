@@ -1,4 +1,7 @@
-import { sanitizeUrl } from "@patorsiang/utils";
+// Narrow subpath, not the "@patorsiang/utils" barrel: this file (and
+// everything that imports it, including cv-engine's own index.ts barrel)
+// must not drag in isomorphic-dompurify/jsdom - see sanitize-url.ts.
+import { sanitizeUrl } from "@patorsiang/utils/sanitize-url";
 import type { CvLanguage, CvRoleId, GeneratedCV } from "./config";
 import { buildCVOutput } from "./output-builder";
 
