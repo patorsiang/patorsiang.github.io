@@ -4,6 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { OfflineBanner } from "@/components/molecules/OfflineBanner";
 import { ServiceWorkerRegistration } from "@/components/molecules/ServiceWorkerRegistration";
+import { personJsonLdScript } from "@/lib/person-json-ld";
 import { defaultDescription, defaultTitle, ownerName, siteMetadataBase, siteName } from "@/lib/seo";
 import { themeBootstrapScript } from "@/lib/theme";
 
@@ -53,6 +54,12 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: themeBootstrapScript,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: personJsonLdScript,
           }}
         />
         <OfflineBanner />
