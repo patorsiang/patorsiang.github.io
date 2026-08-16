@@ -53,7 +53,15 @@ export function RevealOnView({ children }: RevealOnViewProps) {
           setHidden(true);
         }
       },
-      { threshold: 0 },
+      // rootMargin shrinks the effective viewport by 15% from the bottom, so
+      // "intersecting" isn't reported the instant a single pixel touches the
+      // real viewport edge - it waits until the section has scrolled some
+      // real distance into view. Without this, threshold: 0 alone fires (and
+      // the 200ms transition finishes) before a person's eyes, mid-scroll,
+      // have actually reached the section - so the reveal completes off in
+      // their peripheral vision and is never perceived as animating at all,
+      // even though every value is technically correct the whole time.
+      { threshold: 0, rootMargin: "0px 0px -15% 0px" },
     );
 
     observer.observe(element);
