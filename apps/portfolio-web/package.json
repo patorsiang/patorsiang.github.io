@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.scripts.json",
     "test:e2e": "playwright test",
     "generate:brand": "bun run scripts/generate-brand-assets.ts",
+    "generate:qr": "bun run scripts/generate-qr.ts",
     "vendor:post-images": "bun run scripts/vendor-post-images.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -32,11 +33,13 @@
     "@storybook/nextjs-vite": "^10.4.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/qrcode": "^1.5.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "bun-types": "latest",
     "eslint": "^9",
     "eslint-config-next": "16.2.11",
+    "qrcode": "^1.5.4",
     "storybook": "^10.4.2",
     "tailwindcss": "^4",
     "typescript": "^5"
