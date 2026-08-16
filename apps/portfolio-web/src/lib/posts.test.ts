@@ -1,8 +1,6 @@
 import { describe, expect, mock, test } from "bun:test";
 import { POST_FALLBACK } from "@patorsiang/content";
 
-import { postCardHref } from "@/components/molecules/PostCard";
-
 /**
  * `getPosts`/`getPost` degrade to `POST_FALLBACK` when the live fetch
  * throws (a GitHub outage, or - post I3 - the listing call itself failing).
@@ -25,33 +23,12 @@ mock.module("@patorsiang/content", () => ({
 }));
 
 describe("getPosts", () => {
-  // I4: fallback cards must not link to the internal /posts/<slug> route,
-  // which 404s for fallback data (getPost has no fallback of its own) - and
-  // must not link out to the raw notes file in the source repo either,
-  // since readers should see finished posts, not drafts-in-progress. This
-  // is the same forced-failure setup as the bundled-minor test above -
-  // proving the mode AND the resulting (lack of a) href in one place.
-  test("falls back to POST_FALLBACK, reports isFallback: true, and the card has no href", async () => {
+  test("falls back to POST_FALLBACK when the live fetch fails", async () => {
     const { getPosts } = await import("./posts");
 
-    const result = await getPosts();
+    const posts = await getPosts();
 
-    expect(result.isFallback).toBe(true);
-    expect(result.posts).toEqual(POST_FALLBACK);
-
-    for (const post of result.posts) {
-      expect(postCardHref(post.slug, result.isFallback)).toBeNull();
-    }
-  });
-});
-
-describe("postCardHref", () => {
-  test("links to the internal route when not in fallback mode", () => {
-    expect(postCardHref("my-post", false)).toBe("/posts/my-post");
-  });
-
-  test("has no link in fallback mode", () => {
-    expect(postCardHref("my-post", true)).toBeNull();
+    expect(posts).toEqual([...POST_FALLBACK]);
   });
 });
 

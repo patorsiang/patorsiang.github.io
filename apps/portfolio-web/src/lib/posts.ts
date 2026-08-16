@@ -2,31 +2,25 @@ import { fetchPosts, POST_FALLBACK, type Post, type PostSummary } from "@patorsi
 
 import { VENDORED_IMAGES } from "@/lib/vendored-images";
 
-export type PostsResult = {
-  readonly posts: readonly PostSummary[];
-  /**
-   * True when `posts` is the committed `POST_FALLBACK`, not a live fetch.
-   * Fallback summaries carry no bodies, so a card linking to
-   * `/posts/<slug>` would 404 - callers use this to link to the source
-   * repo instead. See `PostCard`.
-   */
-  readonly isFallback: boolean;
-};
-
 /**
  * Every route reads posts through here.
  *
  * The fallback exists so a GitHub outage degrades the index to titles and
- * links rather than an empty page. It carries no bodies, so `getPost` returns
- * null on failure and the route 404s - showing a title with no article would
- * be worse than admitting the post cannot be loaded right now.
+ * links rather than an empty page. Every card links to `/posts/<slug>`
+ * regardless of whether the data came from a live fetch or the fallback -
+ * an out-of-site link would either 404 just the same (nowhere else on this
+ * site has the body) or point a reader at raw, unedited notes in the source
+ * repo, which is worse. In practice this only matters for a slug that has
+ * never been successfully rendered before a live outage starts; anything
+ * already built keeps serving its last-good page until the outage clears
+ * and the next revalidation succeeds.
  */
-export async function getPosts(): Promise<PostsResult> {
+export async function getPosts(): Promise<PostSummary[]> {
   try {
-    return { posts: await fetchPosts(VENDORED_IMAGES), isFallback: false };
+    return await fetchPosts(VENDORED_IMAGES);
   } catch (error) {
     console.error("Falling back to committed post summaries", error);
-    return { posts: [...POST_FALLBACK], isFallback: true };
+    return [...POST_FALLBACK];
   }
 }
 
