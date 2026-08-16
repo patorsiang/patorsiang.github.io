@@ -1,0 +1,92 @@
+/*
+  Design tokens shared by every app in the repo. Values and contrast ratios are
+  documented in docs/design/design-system.md, which is transcribed from this
+  file - change one and change the other.
+
+  Three blocks on purpose: an explicit light choice, an explicit dark choice,
+  and a prefers-color-scheme fallback for visitors who have chosen neither. The
+  dark values are duplicated between the last two, so edit both.
+*/
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --color-page: #fafaf9;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f4f4f5;
+  --color-text: #18181b;
+  --color-text-muted: #3f3f46;
+  --color-text-subtle: #71717a;
+  --color-border: #d4d4d8;
+  --color-border-strong: #71717a;
+  --color-accent: #0f766e;
+  --color-accent-strong: #18181b;
+  --color-accent-warm: #b45309;
+  --color-focus: #0d9488;
+  --color-on-accent: #ffffff;
+  --color-on-accent-strong: #ffffff;
+  --color-danger: #be123c;
+}
+
+@theme inline {
+  --color-background: var(--color-page);
+  --color-foreground: var(--color-text);
+}
+
+/*
+  Motion defaults - see docs/design/motion-guidelines.md.
+  Tailwind ships ease-in-out at 150ms for a bare `transition`; the guidelines
+  ask for ease-out. 120ms sits inside both the hover/focus band (100-150ms) and
+  the pressed band (75-120ms), so one default covers every control and nothing
+  needs a per-component duration override.
+
+  The easing must be a literal curve, not var(--ease-out): a non-inline @theme
+  block that references another theme variable is dropped silently, which puts
+  both values back to the Tailwind defaults with no build error.
+*/
+@theme {
+  --default-transition-duration: 120ms;
+  --default-transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-page: #111110;
+  --color-surface: #18181b;
+  --color-surface-muted: #27272a;
+  --color-text: #f4f4f5;
+  --color-text-muted: #d4d4d8;
+  --color-text-subtle: #a1a1aa;
+  --color-border: #3f3f46;
+  --color-border-strong: #71717a;
+  --color-accent: #5eead4;
+  --color-accent-strong: #0f766e;
+  --color-accent-warm: #fcd34d;
+  --color-focus: #2dd4bf;
+  --color-on-accent: #111110;
+  --color-on-accent-strong: #ffffff;
+  --color-danger: #fb7185;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+
+    --color-page: #111110;
+    --color-surface: #18181b;
+    --color-surface-muted: #27272a;
+    --color-text: #f4f4f5;
+    --color-text-muted: #d4d4d8;
+    --color-text-subtle: #a1a1aa;
+    --color-border: #3f3f46;
+    --color-border-strong: #71717a;
+    --color-accent: #5eead4;
+    --color-accent-strong: #0f766e;
+    --color-accent-warm: #fcd34d;
+    --color-focus: #2dd4bf;
+    --color-on-accent: #111110;
+    --color-on-accent-strong: #ffffff;
+    --color-danger: #fb7185;
+  }
+}

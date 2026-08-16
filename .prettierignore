@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+dist
+build
+coverage
+bun.lock
+legacy-v1
+docs/requirements
+*.log
+*.tmp
+*.temp

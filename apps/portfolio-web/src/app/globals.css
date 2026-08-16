@@ -1,0 +1,399 @@
+@import "tailwindcss";
+@import "@patorsiang/ui/tokens.css";
+
+/* Fonts are per-app: next/font defines these in layout.tsx. */
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--color-page);
+  color: var(--color-text);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  /*
+   * Only body, not every element: GlobalNav flips
+   * document.documentElement.dataset.theme, which cascades new
+   * --color-* values everywhere, but only elements that also carry a
+   * transition ease into the new values. Buttons and nav controls
+   * already do (their own `transition` class); most page surfaces
+   * (this element, Card, Section) did not, so themes snapped instead of
+   * cross-fading on everything but the smallest controls. Reuses the
+   * same tokens Button and nav controls already transition with - no
+   * new duration or easing anywhere in this rule.
+   */
+  transition-property: color, background-color;
+  transition-duration: var(--default-transition-duration);
+  transition-timing-function: var(--default-transition-timing-function);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 24%, transparent);
+}
+
+:focus-visible {
+  outline-color: var(--color-focus);
+}
+
+/*
+ * Extends a link's hit area to the design system's 40px floor without changing
+ * how it looks. For links that sit in prose or in a baseline-aligned row, where
+ * giving the box a real 40px height would open a gap in the text or break the
+ * baseline.
+ *
+ * Vertical only: the band keeps the element's own width, so links sitting side
+ * by side cannot steal each other's taps. It still overlays whatever sits
+ * directly above and below, so use it on a link that owns its line - controls
+ * stacked closer than 40px apart will fight over the overlap, which
+ * e2e/tap-targets.spec.ts catches.
+ */
+@utility tap-reach {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    height: 2.5rem;
+    transform: translateY(-50%);
+  }
+
+  /* Nothing is tappable on paper, and the band would inflate the line box. */
+  @media print {
+    &::after {
+      content: none;
+    }
+  }
+}
+
+/*
+ * Background for GridGlow (components/atoms/GridGlow.tsx). Grid lines and
+ * glows are color-mix() against --color-accent/--color-accent-warm, same as
+ * ::selection above - no hex values of its own.
+ */
+.grid-glow {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(
+      circle at 12% 0%,
+      color-mix(in srgb, var(--color-accent) 16%, transparent),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 92% 25%,
+      color-mix(in srgb, var(--color-accent-warm) 12%, transparent),
+      transparent 40%
+    ),
+    linear-gradient(color-mix(in srgb, var(--color-accent) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-accent) 6%, transparent) 1px,
+      transparent 1px
+    );
+  background-size:
+    auto,
+    auto,
+    16px 16px,
+    16px 16px;
+
+  @media print {
+    display: none;
+  }
+}
+
+/*
+ * One-shot page-entrance fade for app/template.tsx, via @starting-style -
+ * same mechanism as .hero-mark-draw below. Values match RevealOnView
+ * (opacity + 8px, 200ms). Applies to CV pages too; this isn't the
+ * scroll-triggered reveal motion-guidelines.md excludes them from.
+ */
+.page-transition {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  @starting-style {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/*
+ * One-shot stroke-draw for HeroMark (components/atoms/HeroMark.tsx).
+ * --hero-mark-dash-length is set inline by HeroMark from MARK_DASH_LENGTH
+ * in src/lib/brand.ts - not duplicated as a literal here, since React can
+ * pipe the constant into an inline style.
+ *
+ * @starting-style defines the pre-draw state for the very first paint, so
+ * no client component or mount-effect is needed. Browsers without
+ * @starting-style support just skip straight to the end state (fully
+ * drawn) - a fine fallback, and also this component's prefers-reduced-motion
+ * behaviour, handled for free by the sitewide reduced-motion block below:
+ * no bespoke media query needed here.
+ *
+ * This degrades, it cannot crash: an unrecognised at-rule is dropped per
+ * the CSS Syntax spec's error-recovery rules, not treated as a parse
+ * error, and that has been true since CSS2.1 - not a recent leniency.
+ * The only real support gap is browsers that understand CSS nesting but
+ * not @starting-style itself (roughly Safari 16.4-17.3); there, the
+ * nested block is discarded and .hero-mark-draw keeps only its end-state
+ * declarations, so the mark simply never animates. globals.css already
+ * ships color-mix() with no fallback (the ::selection rule), so this is
+ * not a new risk category for this app. See the "One-shot brand-mark reveal"
+ * exception in docs/design/motion-guidelines.md for why 500ms exceeds the
+ * usual 250ms cap.
+ */
+.hero-mark-draw {
+  stroke-dasharray: var(--hero-mark-dash-length);
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 500ms cubic-bezier(0, 0, 0.2, 1);
+
+  @starting-style {
+    stroke-dashoffset: var(--hero-mark-dash-length);
+  }
+}
+
+/*
+ * Typography for rendered post markdown.
+ *
+ * Not Tailwind's `prose` plugin: that ships its own type scale and colour
+ * ramp, which would sit beside the design system's and drift from it. These
+ * rules use the same tokens every other page uses, so a token change moves
+ * post bodies too.
+ */
+.post-body {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.post-body > * + * {
+  margin-top: 1.25rem;
+}
+
+.post-body h2 {
+  color: var(--color-text);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 2.5rem;
+}
+
+.post-body h3 {
+  color: var(--color-text);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 2rem;
+}
+
+.post-body h4 {
+  color: var(--color-text);
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 1.75rem;
+}
+
+/*
+ * Underline is unconditional, not hover-only: WCAG technique G183 requires
+ * links be distinguished from surrounding text by more than colour alone
+ * when the contrast against body text is below 3:1 (measured at ~1.01:1 for
+ * --color-accent against --color-text-muted in dark theme).
+ */
+.post-body a {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.post-body a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.post-body ul,
+.post-body ol {
+  padding-left: 1.5rem;
+}
+
+.post-body ul {
+  list-style: disc;
+}
+
+.post-body ol {
+  list-style: decimal;
+}
+
+.post-body li + li {
+  margin-top: 0.5rem;
+}
+
+.post-body blockquote {
+  border-left: 2px solid var(--color-accent);
+  color: var(--color-text);
+  padding-left: 1rem;
+}
+
+.post-body code {
+  background: var(--color-surface-muted);
+  border-radius: 4px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.875em;
+  padding: 0.15em 0.35em;
+}
+
+.post-body pre {
+  background: var(--color-surface-muted);
+  border-radius: 6px;
+  overflow-x: auto;
+  padding: 1rem;
+}
+
+.post-body pre code {
+  background: none;
+  padding: 0;
+}
+
+.post-body img {
+  border-radius: 6px;
+  height: auto;
+  max-width: 100%;
+}
+
+.post-body hr {
+  border-color: var(--color-border);
+  margin-block: 2.5rem;
+}
+
+.post-body table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.post-body th,
+.post-body td {
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.post-body th {
+  background: var(--color-surface-muted);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.post-body figure {
+  margin-top: 1.25rem;
+}
+
+.post-body figcaption {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 6mm 8mm;
+  }
+
+  html {
+    font-size: 10px;
+  }
+
+  body {
+    background: #ffffff;
+    color: #18181b;
+  }
+
+  .cv-print-article {
+    color: #18181b;
+    font-size: 9.75px;
+    line-height: 1.2;
+  }
+
+  .cv-print-article header {
+    padding-bottom: 4px;
+  }
+
+  .cv-print-article h1 {
+    margin-top: 3px;
+    font-size: 21px;
+    line-height: 1.12;
+  }
+
+  .cv-print-article h2 {
+    padding-bottom: 2px;
+    font-size: 8.75px;
+    letter-spacing: 0.08em;
+  }
+
+  .cv-print-article h3,
+  .cv-print-article p,
+  .cv-print-article ul {
+    break-inside: avoid;
+  }
+
+  .cv-print-section {
+    break-inside: avoid;
+  }
+
+  .cv-print-section > div {
+    margin-top: 4px;
+  }
+
+  .cv-print-stack {
+    margin-top: 5px;
+    row-gap: 5px;
+  }
+
+  .cv-print-compact-list {
+    row-gap: 3px;
+  }
+
+  .cv-print-experience,
+  .cv-print-project,
+  .cv-print-education {
+    break-inside: avoid;
+  }
+
+  .cv-print-experience p,
+  .cv-print-experience ul,
+  .cv-print-project p,
+  .cv-print-education p,
+  .cv-print-education ul {
+    margin-top: 3px;
+    font-size: 9px;
+    line-height: 1.2;
+  }
+
+  .cv-print-project-links {
+    font-size: 8.5px;
+    line-height: 1.2;
+  }
+
+  .cv-print-skills p,
+  .cv-print-languages {
+    font-size: 9px;
+    line-height: 1.2;
+  }
+}

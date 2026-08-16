@@ -1,146 +1,109 @@
-# Napatchol Thaipanich Portfolio
+# Patorsiang Portfolio Platform 2026
 
-Professional portfolio website for Napatchol "Pat" Thaipanich, a software developer focused on practical, product-minded engineering across front-end development, fintech/govtech systems, AI projects, cybersecurity learning, and interactive web experiences.
+The **2026 Portfolio Platform** is a modern, monorepo-based system for Napatchol Thaipanich (`patorsiang`). It serves as a unified hub for professional identity, role-targeted CV generation, and experimental projects.
 
-The site presents work experience, education, selected projects, contact links, downloadable CV variants, and showcase pages in a multilingual portfolio format.
+## Architecture Overview
 
-## Overview
+The platform is built as a high-performance monorepo using **Bun** and **Next.js**. It separates content from presentation and logic, enabling role-specific views and automated exports.
 
-This repository contains the source code for `patorsiang.github.io`, my personal portfolio website. It is built as a static-export Next.js application with localized content, responsive UI, PWA support, and portfolio data stored in structured TypeScript and JSON files.
-
-The website is intended to be more than a digital resume. It acts as a living professional profile that connects my software engineering background with selected academic, product, AI, cybersecurity, and creative coding work.
-
-## Purpose
-
-The portfolio is designed to:
-
-- Present my professional identity clearly to recruiters, engineering teams, collaborators, and clients.
-- Highlight real-world front-end and product engineering experience.
-- Connect selected projects to broader interests in fintech, govtech, cybersecurity, AI, and interactive systems.
-- Provide a maintained place for contact links, project links, CV downloads, and future portfolio content.
-- Support multilingual communication for audiences across Thailand, the UK, Korea, and international teams.
-
-## Tech Stack
-
-- **Framework:** Next.js 14 with the App Router
-- **Language:** TypeScript
-- **UI:** React 18
-- **Styling:** Tailwind CSS and global CSS
-- **Internationalization:** next-intl
-- **Static output:** Next.js static export
-- **PWA:** next-pwa with generated service worker files
-- **PDF generation:** pdfjs for CV generation
-- **Game/showcase support:** kaboom
-- **Icons:** react-icons
-
-## Project Structure
+### Repository Structure
 
 ```text
-src/
-  app/                     Next.js app routes, layouts, metadata, sitemap, robots, and API route code
-  components/              Shared UI components and page-level portfolio sections
-  components/page/         Home, about, maintenance, and showcase page components
-  data/profile/            Structured profile content used by the portfolio and CV generation
-  data/types/              TypeScript types for profile data
-  utils/                   Dictionary, routing, game, and helper utilities
-  constants/               Shared UI constants
-
-messages/                  Localized UI messages
-public/
-  assets/                  Portfolio documents, certificates, transcripts, and showcase assets
-  screenshots/             Device screenshots for portfolio presentation
-  imgs/                    Avatar, QR code, and general images
-  fonts/                   Local font files used by the site and generated documents
+.
+├── apps/
+│   ├── portfolio-web/    # Main Next.js portfolio application (2026 version)
+│   ├── playground/       # Experiments, visual demos, and game ideas
+│   └── admin/            # (Planned) CMS/Admin interface
+├── packages/
+│   ├── content/          # Structured profile, project, and CV data (Zod/JSON)
+│   ├── cv-engine/        # Role-targeted CV logic (filtering, ranking, formatting)
+│   ├── ui/               # Shared design system components
+│   ├── configs/          # Shared configuration presets (ESLint, Prettier, TS)
+│   └── utils/            # Shared utility helpers
+├── docs/                 # Architecture, requirements, and design decisions
+├── infra/                # Infrastructure and deployment configurations
+└── legacy-v1/            # Previous production portfolio (current fallback)
 ```
 
-Key routes include:
+## Getting Started
 
-- `/` - root entry point
-- `/[locale]` - localized home page
-- `/[locale]/about` - professional background, education, awards, activities, and skills
-- `/[locale]/showcases` - selected portfolio showcases
-- `/[locale]/showcases/2d-game-portfolio` - interactive 2D portfolio showcase
-- `/api/cv/[type]` - generated CV variants
+### Prerequisites
 
-## Local Development
+- [Bun](https://bun.sh/) (latest version)
 
-Install dependencies:
+### Installation
 
 ```bash
-yarn install
+bun install
 ```
 
-Start the development server:
+### Development Commands
 
-```bash
-yarn dev
-```
+| Command                 | Description                                      |
+| :---------------------- | :----------------------------------------------- |
+| `bun run dev`           | Start the main portfolio app in development mode |
+| `bun run dev:portfolio` | Alias for `bun run dev`                          |
+| `bun run dev:legacy`    | Start the legacy-v1 portfolio app                |
 
-Open the local site:
+### Build & Quality
 
-```text
-http://localhost:3000
-```
+| Command                   | Description                                     |
+| :------------------------ | :---------------------------------------------- |
+| `bun run build`           | Build both the new portfolio and the legacy app |
+| `bun run build:portfolio` | Build the main Next.js portfolio                |
+| `bun run lint`            | Run ESLint across the workspace                 |
+| `bun run typecheck`       | Run TypeScript compiler checks                  |
+| `bun run format:check`    | Check file formatting with Prettier             |
 
-Useful commands:
+## Core Packages
 
-```bash
-yarn dev      # Start local development
-yarn build    # Build the static export
-yarn start    # Start the production server where applicable
-yarn lint     # Run Next.js linting
-```
+### `@patorsiang/content`
+
+Contains the "source of truth" for the portfolio. Data is stored as JSON and validated via Zod schemas to ensure consistency across different applications and CV versions.
+
+### `@patorsiang/cv-engine`
+
+A specialized engine that generates role-targeted CVs. It handles:
+
+- **Filtering**: Selecting relevant experiences and projects based on a targeted role.
+- **Ranking**: Prioritizing skills and highlights.
+- **Exporting**: Providing normalized data for Web, JSON, and Markdown formats.
+
+## Legacy Portfolio Policy
+
+`legacy-v1` contains the previous/current production version of the portfolio.
+
+- **Do NOT delete** this directory.
+- It serves as the **current production fallback** until the 2026 platform is fully live.
+- Post-launch, it will be kept for migration reference and eventually archived.
+
+## Environment & Secrets
+
+- **Do not commit** real `.env` files.
+- Use `.env.example` as a template for local development.
+- Browser-safe variables must be prefixed with `NEXT_PUBLIC_`.
+- Private secrets belong in **Vercel Project Settings** or **GitHub Actions Secrets**.
 
 ## Deployment
 
-The app is configured for static export through `next.config.js`:
+The platform is configured for continuous deployment to **Vercel** via GitHub Actions.
 
-```js
-output: "export"
-```
+- Pushing to `main` triggers a production deployment of `portfolio-web`.
+- `legacy-v1` deployment is managed separately (see `infra/github-pages` or its own workflow).
 
-This makes the site suitable for static hosting targets such as GitHub Pages or Vercel static deployments. The production build should be generated with:
+## Deployment Status
 
-```bash
-yarn build
-```
+The new `apps/portfolio-web` app has a development deployment on Vercel.
 
-Deployment notes:
+- **Development**: Active — `https://patorsiang-portfolio-web.vercel.app` (Placeholder)
+- **Production**: Pending final cutover
 
-- Keep public portfolio assets in `public/`.
-- Keep profile content updates in `src/data/profile/` and `messages/`.
-- Verify localized routes after content changes.
-- Check generated CV routes when profile data or font assets change.
-- Confirm PWA assets and service worker output after production builds.
+`legacy-v1` remains the current production fallback until the new portfolio app is stable.
 
-## Portfolio Content Strategy
+See [Vercel Deployment Details](docs/deployment/vercel.md) for project settings and environment configuration.
 
-The portfolio should prioritize clarity over quantity. The strongest content should help visitors quickly understand what I can build, how I think, and where I can contribute.
+## Workflow Notes
 
-Current content priorities:
-
-- **Professional positioning:** Front-end and product-focused software developer with real-world systems experience.
-- **Work experience:** Government financial systems, privacy platforms, dashboards, internal tools, and freelance client work.
-- **Academic projects:** MSc Advanced Computer Science work, including AI, IoT, cybersecurity, and blockchain-related projects.
-- **Showcase projects:** Portfolio projects that can demonstrate product thinking, engineering quality, and visual/interactive craft.
-- **Multilingual presentation:** English-first content with support for Thai and Korean audiences.
-- **CV variants:** Role-specific CV outputs for software engineering, cybersecurity, and machine learning opportunities.
-
-Recommended portfolio emphasis:
-
-1. Lead with software engineering and product delivery.
-2. Use selected projects to support focus areas: AI, cybersecurity, fintech, govtech, and interactive web.
-3. Keep project descriptions concise, outcome-oriented, and connected to skills.
-4. Add screenshots or demos where they help reviewers understand the work quickly.
-5. Keep older coursework or practice work secondary unless it supports a current career direction.
-
-## Future Improvements
-
-- Add project case studies for the strongest portfolio projects.
-- Improve screenshots and visual summaries for selected work.
-- Add clearer links from showcase pages to source repositories and live demos.
-- Add a dedicated writing or notes section connected to public learning content.
-- Expand accessibility checks across localized pages.
-- Add automated checks for build, linting, and broken internal links.
-- Review generated CV output for layout consistency across role variants.
-- Add metadata improvements for social sharing and search snippets.
+- Always run `bun run typecheck` before pushing changes.
+- Ensure `bun run lint` passes to maintain codebase standards.
+- Documentation for specific features can be found in the `docs/` directory.

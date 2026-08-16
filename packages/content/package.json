@@ -1,0 +1,22 @@
+{
+  "name": "@patorsiang/content",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "types": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@patorsiang/utils": "workspace:*",
+    "marked": "^18.0.9",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "typescript": "^5"
+  }
+}
