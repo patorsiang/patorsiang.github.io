@@ -12,7 +12,7 @@ export function Section({ eyebrow, title, children }: SectionProps) {
       {eyebrow || title ? (
         <div>
           {eyebrow ? (
-            <p className="text-sm font-medium uppercase tracking-[0.16em] text-(--color-accent)">
+            <p className="font-mono text-sm font-medium uppercase tracking-[0.16em] text-(--color-accent)">
               {eyebrow}
             </p>
           ) : null}

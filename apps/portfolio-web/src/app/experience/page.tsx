@@ -1,6 +1,7 @@
 import { experiences, type Experience } from "@patorsiang/content";
 import type { Metadata } from "next";
 
+import { RevealOnView } from "@/components/atoms/RevealOnView";
 import { ExperienceCard } from "@/components/molecules/ExperienceCard";
 import { PageShell } from "@/components/templates/PageShell";
 import { Section } from "@/components/organisms/Section";
@@ -44,12 +45,14 @@ function formatDateRange(experience: Experience) {
 export default function ExperiencePage() {
   return (
     <PageShell>
-      <Section eyebrow="Experience" title="Work, internships, and education.">
-        <p className="mt-6 max-w-2xl text-base leading-8 text-(--color-text-muted)">
-          Newest first within each group. Every entry lists the organization, location, dates, and
-          the specific work behind it.
-        </p>
-      </Section>
+      <RevealOnView>
+        <Section eyebrow="Experience" title="Work, internships, and education.">
+          <p className="mt-6 max-w-2xl text-base leading-8 text-(--color-text-muted)">
+            Newest first within each group. Every entry lists the organization, location, dates, and
+            the specific work behind it.
+          </p>
+        </Section>
+      </RevealOnView>
 
       {groups.map((group) => {
         const items = experiences.filter((item) => item.type === group.type).toSorted(byNewest);
@@ -59,22 +62,24 @@ export default function ExperiencePage() {
         }
 
         return (
-          <Section key={group.type} eyebrow={group.eyebrow} title={group.heading}>
-            <div className="mt-8 space-y-5">
-              {items.map((item) => (
-                <ExperienceCard
-                  key={item.id}
-                  title={item.title.en}
-                  organization={item.organization.en}
-                  location={item.location.en}
-                  dateRange={formatDateRange(item)}
-                  summary={item.summary.en}
-                  bullets={item.highlights.map((highlight) => highlight.en)}
-                  skills={item.skills}
-                />
-              ))}
-            </div>
-          </Section>
+          <RevealOnView key={group.type}>
+            <Section eyebrow={group.eyebrow} title={group.heading}>
+              <div className="mt-8 space-y-5">
+                {items.map((item) => (
+                  <ExperienceCard
+                    key={item.id}
+                    title={item.title.en}
+                    organization={item.organization.en}
+                    location={item.location.en}
+                    dateRange={formatDateRange(item)}
+                    summary={item.summary.en}
+                    bullets={item.highlights.map((highlight) => highlight.en)}
+                    skills={item.skills}
+                  />
+                ))}
+              </div>
+            </Section>
+          </RevealOnView>
         );
       })}
     </PageShell>

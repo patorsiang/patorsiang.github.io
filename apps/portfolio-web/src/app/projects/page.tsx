@@ -2,6 +2,7 @@ import { projects, type Project } from "@patorsiang/content";
 import { sanitizeUrl } from "@patorsiang/utils";
 import type { Metadata } from "next";
 
+import { RevealOnView } from "@/components/atoms/RevealOnView";
 import { ProjectCard } from "@/components/molecules/ProjectCard";
 import { PageShell } from "@/components/templates/PageShell";
 import { Section } from "@/components/organisms/Section";
@@ -34,33 +35,37 @@ const playgroundProjects = projects.filter((project) => project.placement === "p
 export default function ProjectsPage() {
   return (
     <PageShell>
-      <Section eyebrow="Projects" title="Selected project work.">
-        <p className="mt-6 max-w-2xl text-base leading-8 text-(--color-text-muted)">
-          Each entry states what the project does, what was built, the stack behind it, and where
-          the code can be reviewed. Research prototypes are labelled as such, with their limitations
-          stated rather than omitted.
-        </p>
-
-        <div className="mt-8 grid gap-5 lg:grid-cols-2">
-          {selectedProjects.map((project) => (
-            <ProjectCard key={project.id} {...toCardProps(project)} />
-          ))}
-        </div>
-      </Section>
-
-      {playgroundProjects.length > 0 ? (
-        <Section eyebrow="Playground" title="Smaller experiments.">
+      <RevealOnView>
+        <Section eyebrow="Projects" title="Selected project work.">
           <p className="mt-6 max-w-2xl text-base leading-8 text-(--color-text-muted)">
-            Learning exercises and prototypes kept public for reference. Smaller in scope than the
-            work above.
+            Each entry states what the project does, what was built, the stack behind it, and where
+            the code can be reviewed. Research prototypes are labelled as such, with their
+            limitations stated rather than omitted.
           </p>
 
           <div className="mt-8 grid gap-5 lg:grid-cols-2">
-            {playgroundProjects.map((project) => (
+            {selectedProjects.map((project) => (
               <ProjectCard key={project.id} {...toCardProps(project)} />
             ))}
           </div>
         </Section>
+      </RevealOnView>
+
+      {playgroundProjects.length > 0 ? (
+        <RevealOnView>
+          <Section eyebrow="Playground" title="Smaller experiments.">
+            <p className="mt-6 max-w-2xl text-base leading-8 text-(--color-text-muted)">
+              Learning exercises and prototypes kept public for reference. Smaller in scope than the
+              work above.
+            </p>
+
+            <div className="mt-8 grid gap-5 lg:grid-cols-2">
+              {playgroundProjects.map((project) => (
+                <ProjectCard key={project.id} {...toCardProps(project)} />
+              ))}
+            </div>
+          </Section>
+        </RevealOnView>
       ) : null}
     </PageShell>
   );

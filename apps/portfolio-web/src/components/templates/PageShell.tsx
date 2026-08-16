@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { GridGlow } from "@/components/atoms/GridGlow";
 import { GlobalNav } from "@/components/organisms/GlobalNav";
 import { SiteFooter } from "@/components/organisms/SiteFooter";
 import { classNames } from "@/lib/classnames";
@@ -26,11 +27,15 @@ export function PageShell({ children, className, contentClassName, lang }: PageS
     <>
       <main
         lang={lang}
-        className={classNames("flex-1 bg-background text-foreground print:bg-white", className)}
+        className={classNames(
+          "relative flex-1 overflow-hidden bg-background text-foreground print:bg-white",
+          className,
+        )}
       >
+        <GridGlow />
         <div
           className={classNames(
-            "mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 py-10 sm:px-8 lg:px-10",
+            "relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 py-10 sm:px-8 lg:px-10",
             contentClassName,
           )}
         >

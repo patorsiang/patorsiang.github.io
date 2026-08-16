@@ -24,34 +24,46 @@ Future tokens should fit this setup and can be added through CSS variables and T
 
 Transcribed from `apps/portfolio-web/src/app/globals.css`, which is the source of truth. Every screen style in the app resolves through these; no component uses a raw palette class.
 
-| Token                      | Light value | Dark value | Tailwind reference      | Usage                                          |
-| -------------------------- | ----------- | ---------- | ----------------------- | ---------------------------------------------- |
-| `--color-page`             | `#fafaf9`   | `#111110`  | `stone-50` / near black | Page background.                               |
-| `--color-surface`          | `#ffffff`   | `#18181b`  | `white` / `zinc-900`    | Cards, panels, CV sections.                    |
-| `--color-surface-muted`    | `#f4f4f5`   | `#27272a`  | `zinc-100` / `zinc-800` | Tags, segmented-control tracks, grouped areas. |
-| `--color-text`             | `#18181b`   | `#f4f4f5`  | `zinc-900` / `zinc-100` | Primary text.                                  |
-| `--color-text-muted`       | `#3f3f46`   | `#d4d4d8`  | `zinc-700` / `zinc-300` | Secondary text, body copy, metadata.           |
-| `--color-text-subtle`      | `#71717a`   | `#a1a1aa`  | `zinc-500` / `zinc-400` | Dates, helper text, eyebrow labels.            |
-| `--color-border`           | `#d4d4d8`   | `#3f3f46`  | `zinc-300` / `zinc-700` | Decorative borders and separators only.        |
-| `--color-border-strong`    | `#71717a`   | `#71717a`  | `zinc-500` both         | Boundaries of interactive controls. See below. |
-| `--color-accent`           | `#0f766e`   | `#5eead4`  | `teal-700` / `teal-300` | Links, focus, selected states, small emphasis. |
-| `--color-accent-strong`    | `#18181b`   | `#0f766e`  | `zinc-900` / `teal-700` | Primary button background.                     |
-| `--color-focus`            | `#0d9488`   | `#2dd4bf`  | `teal-600` / `teal-400` | Focus ring.                                    |
-| `--color-on-accent`        | `#ffffff`   | `#111110`  | `white` / near black    | Text on `--color-accent`.                      |
-| `--color-on-accent-strong` | `#ffffff`   | `#ffffff`  | `white` both            | Text on `--color-accent-strong`.               |
-| `--color-danger`           | `#be123c`   | `#fb7185`  | `rose-700` / `rose-400` | Error text on the error and not-found pages.   |
+| Token                      | Light value | Dark value | Tailwind reference        | Usage                                                                                |
+| -------------------------- | ----------- | ---------- | ------------------------- | ------------------------------------------------------------------------------------ |
+| `--color-page`             | `#fafaf9`   | `#111110`  | `stone-50` / near black   | Page background.                                                                     |
+| `--color-surface`          | `#ffffff`   | `#18181b`  | `white` / `zinc-900`      | Cards, panels, CV sections.                                                          |
+| `--color-surface-muted`    | `#f4f4f5`   | `#27272a`  | `zinc-100` / `zinc-800`   | Tags, segmented-control tracks, grouped areas.                                       |
+| `--color-text`             | `#18181b`   | `#f4f4f5`  | `zinc-900` / `zinc-100`   | Primary text.                                                                        |
+| `--color-text-muted`       | `#3f3f46`   | `#d4d4d8`  | `zinc-700` / `zinc-300`   | Secondary text, body copy, metadata.                                                 |
+| `--color-text-subtle`      | `#71717a`   | `#a1a1aa`  | `zinc-500` / `zinc-400`   | Dates, helper text, eyebrow labels.                                                  |
+| `--color-border`           | `#d4d4d8`   | `#3f3f46`  | `zinc-300` / `zinc-700`   | Decorative borders and separators only.                                              |
+| `--color-border-strong`    | `#71717a`   | `#71717a`  | `zinc-500` both           | Boundaries of interactive controls. See below.                                       |
+| `--color-accent`           | `#0f766e`   | `#5eead4`  | `teal-700` / `teal-300`   | Links, focus, selected states, small emphasis.                                       |
+| `--color-accent-strong`    | `#18181b`   | `#0f766e`  | `zinc-900` / `teal-700`   | Primary button background.                                                           |
+| `--color-accent-warm`      | `#b45309`   | `#fcd34d`  | `amber-700` / `amber-300` | Second accent, scoped to the GridGlow decorative layer. Not used for text elsewhere. |
+| `--color-focus`            | `#0d9488`   | `#2dd4bf`  | `teal-600` / `teal-400`   | Focus ring.                                                                          |
+| `--color-on-accent`        | `#ffffff`   | `#111110`  | `white` / near black      | Text on `--color-accent`.                                                            |
+| `--color-on-accent-strong` | `#ffffff`   | `#ffffff`  | `white` both              | Text on `--color-accent-strong`.                                                     |
+| `--color-danger`           | `#be123c`   | `#fb7185`  | `rose-700` / `rose-400`   | Error text on the error and not-found pages.                                         |
 
 Colour direction:
 
 - Use neutral colours for most surfaces and text.
-- Use teal as a functional accent, not a dominant brand wash.
-- Avoid broad gradients, saturated backgrounds, and decorative colour blocks.
-- Prefer border and spacing for structure before using strong colour.
+- Use teal as the functional accent for links, focus, and selected states everywhere.
+- `--color-accent-warm` (amber) is scoped to GridGlow only. Not for text or borders.
+- GridGlow (below) is the one exception to "avoid decorative colour blocks."
+- Prefer border and spacing for structure before using strong colour anywhere outside GridGlow.
 
 Two border tokens, deliberately:
 
 - `--color-border` is decorative — card outlines, section rules, dividers. It is intentionally low-contrast (1.5:1 light, 1.7:1 dark) and must not be the only thing identifying a control, because it does not meet the 3:1 that WCAG 1.4.11 requires for that.
 - `--color-border-strong` is for anything whose boundary _is_ its affordance: secondary buttons, nav controls, the segmented-control track. Same `zinc-500` in both themes, which clears 3:1 against every surface in both.
+
+### GridGlow, the decorative layer
+
+`GridGlow` (`components/atoms/GridGlow.tsx`, `.grid-glow` in `globals.css`): a faint accent grid plus two corner glows, mounted once per page by `PageShell`, behind the nav and hero. The one place this system spends colour on mood instead of function.
+
+- Built from `color-mix()` against `--color-accent` and `--color-accent-warm`. No hex values of its own.
+- `aria-hidden`, `pointer-events-none`. Masked (`mask-image: linear-gradient(to bottom, black, transparent)`) to fade out before a page's prose or CV content.
+- Hidden under `print:`.
+- Not gated behind `prefers-reduced-motion` — it's static, nothing animates.
+- Same in both themes. See "Dark And Light Mode Approach" below.
 
 ### Typography Tokens
 
@@ -69,7 +81,7 @@ Two border tokens, deliberately:
 Typography rules:
 
 - Use Geist Sans for interface and content.
-- Use Geist Mono only for code-like labels, technical IDs, or export/debug contexts.
+- Use Geist Mono for code-like labels, technical IDs, export/debug contexts, and the terminal accents (section eyebrows, the profile handle).
 - Keep letter spacing at `0` for normal text.
 - Uppercase labels may use modest tracking, but only for short metadata.
 - Do not scale font size with viewport width.
@@ -101,17 +113,16 @@ Spacing rules:
 
 ### Radius Tokens
 
-| Token       | Value | Usage                        |
-| ----------- | ----: | ---------------------------- |
-| `radius-sm` |   4px | Tags, small controls.        |
-| `radius-md` |   6px | Buttons, inputs, compact UI. |
-| `radius-lg` |   8px | Cards and section panels.    |
+| Token         |    Value | Usage                                       |
+| ------------- | -------: | ------------------------------------------- |
+| `radius-full` | `9999px` | Buttons, nav/theme/language controls, tags. |
+| `radius-lg`   |     16px | Cards and section panels (`rounded-2xl`).   |
 
 Radius rules:
 
-- Use 8px or less for portfolio UI.
-- Avoid pill-shaped cards or large rounded containers unless required for a specific control.
-- Keep radius consistent across cards, buttons, tags, and panels.
+- Pills (`rounded-full`) for buttons, nav controls, and tags.
+- 16px (`rounded-2xl`) for cards and panels.
+- Keep radius consistent within each category.
 
 ### Shadow Tokens
 
@@ -122,8 +133,8 @@ Radius rules:
 
 Shadow rules:
 
-- Prefer borders over shadows.
-- Use shadows sparingly on repeated cards if they improve separation.
+- Prefer borders over shadows for structure.
+- Cards carry a faint accent-tinted glow (`color-mix()` against `--color-accent`) at rest, stronger on `:hover`. Replaces the flat `shadow-subtle` this token used to describe.
 - Avoid deep, floating, or glossy shadows.
 
 ### Layout Tokens
@@ -160,8 +171,8 @@ Avoid:
 
 - Large teal sections.
 - Purple/blue gradients.
-- Decorative colour blobs.
-- Multiple competing accent colours.
+- Decorative colour anywhere outside GridGlow.
+- The amber accent used for text, borders, or tag backgrounds — GridGlow's glow only.
 - Low-contrast grey text on pale backgrounds.
 
 ## Component Styling Rules
@@ -186,10 +197,10 @@ Avoid:
 Default card style:
 
 - Background: `--color-surface`.
-- Border: `1px solid --color-border`.
-- Radius: `radius-lg` / 8px.
+- Border: `1px solid --color-border`, brightening to `--color-accent` on hover.
+- Radius: `radius-lg` / 16px (`rounded-2xl`).
 - Padding: 20px mobile, 24px desktop.
-- Shadow: none or `shadow-subtle`.
+- Shadow: faint accent glow at rest, stronger on hover.
 
 Cards should be used for repeated items such as projects, experience entries, skill groups, and CV export options. Avoid cards inside cards.
 
@@ -227,7 +238,7 @@ Button types:
 Button rules:
 
 - Height: 40-44px for common controls.
-- Radius: 6px.
+- Radius: `radius-full` (pill) — matches nav controls and tags.
 - Padding: 12-16px horizontal.
 - Use clear labels.
 - Keep hover, focus, active, and disabled states visible.
@@ -236,6 +247,7 @@ Button rules:
 ### Tags And Badges
 
 - Use muted neutral backgrounds.
+- Radius: `radius-full` (pill).
 - Keep labels short.
 - Use small text with adequate contrast.
 - Do not rely on tag colour alone to communicate meaning.
@@ -275,6 +287,6 @@ Rules:
 - Colours remain neutral, professional, and calm, with teal used only as a controlled accent.
 - Spacing and layout rules support mobile-first pages and readable desktop widths.
 - Card, button, link, navbar, project, and CV section styles are defined clearly enough for future implementation.
-- Shadows are intentionally minimal and never decorative.
-- Light mode is the first implementation target, with dark-mode support documented but not forced.
+- Shadows are intentionally minimal: a faint accent glow, not deep or decorative.
+- Light and dark mode carry the same signature identity (GridGlow, radius, second accent). Neither is the plain fallback for the other.
 - Accessibility requirements are part of the visual system, not an afterthought.

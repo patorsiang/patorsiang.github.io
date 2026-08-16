@@ -2,6 +2,7 @@ import { profile, projects, skills } from "@patorsiang/content";
 import { sanitizeUrl } from "@patorsiang/utils";
 import type { Metadata } from "next";
 
+import { RevealOnView } from "@/components/atoms/RevealOnView";
 import { ContactLinks } from "@/components/molecules/ContactLinks";
 import { SkillGroup } from "@/components/molecules/SkillGroup";
 import { PageShell } from "@/components/templates/PageShell";
@@ -39,80 +40,88 @@ const interests = [...new Set(projects.map((project) => project.category))].map(
 export default function AboutPage() {
   return (
     <PageShell>
-      <Section eyebrow="About" title={profile.role.en}>
-        <p className="mt-6 max-w-2xl text-base leading-8 text-(--color-text-muted)">
-          {profile.headline.en}
-        </p>
+      <RevealOnView>
+        <Section eyebrow="About" title={profile.role.en}>
+          <p className="mt-6 max-w-2xl text-base leading-8 text-(--color-text-muted)">
+            {profile.headline.en}
+          </p>
 
-        <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
-          <div className="space-y-5 text-base leading-8 text-(--color-text-muted)">
-            {profile.summary.map((paragraph) => (
-              <p key={paragraph.en}>{paragraph.en}</p>
+          <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
+            <div className="space-y-5 text-base leading-8 text-(--color-text-muted)">
+              {profile.summary.map((paragraph) => (
+                <p key={paragraph.en}>{paragraph.en}</p>
+              ))}
+            </div>
+
+            <aside className="border-l-0 border-(--color-border) lg:border-l lg:pl-8">
+              <dl className="space-y-8">
+                <div>
+                  <dt className="text-sm font-medium uppercase tracking-[0.16em] text-(--color-text-subtle)">
+                    Location
+                  </dt>
+                  <dd className="mt-3 text-lg font-semibold text-foreground">
+                    {profile.location.en}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-sm font-medium uppercase tracking-[0.16em] text-(--color-text-subtle)">
+                    Public identity
+                  </dt>
+                  <dd className="mt-3 text-lg font-semibold text-foreground">
+                    {profile.nickname.en} / {profile.nickname2.en}
+                  </dd>
+                  <dd className="mt-1 text-sm text-(--color-text-muted)">@{profile.handle}</dd>
+                </div>
+              </dl>
+            </aside>
+          </div>
+        </Section>
+      </RevealOnView>
+
+      <RevealOnView>
+        <Section eyebrow="Engineering focus" title="Where the work concentrates.">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {skills.map((group) => (
+              <SkillGroup key={group.id} title={group.label.en} items={group.items} />
             ))}
           </div>
+        </Section>
+      </RevealOnView>
 
-          <aside className="border-l-0 border-(--color-border) lg:border-l lg:pl-8">
-            <dl className="space-y-8">
-              <div>
-                <dt className="text-sm font-medium uppercase tracking-[0.16em] text-(--color-text-subtle)">
-                  Location
-                </dt>
-                <dd className="mt-3 text-lg font-semibold text-foreground">
-                  {profile.location.en}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-sm font-medium uppercase tracking-[0.16em] text-(--color-text-subtle)">
-                  Public identity
-                </dt>
-                <dd className="mt-3 text-lg font-semibold text-foreground">
-                  {profile.nickname.en} / {profile.nickname2.en}
-                </dd>
-                <dd className="mt-1 text-sm text-(--color-text-muted)">@{profile.handle}</dd>
-              </div>
-            </dl>
-          </aside>
-        </div>
-      </Section>
+      <RevealOnView>
+        <Section eyebrow="Interests" title="Problem areas the projects cover.">
+          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-base leading-8 text-(--color-text-muted)">
+            {interests.map((interest) => (
+              <li key={interest}>{interest}</li>
+            ))}
+          </ul>
+        </Section>
+      </RevealOnView>
 
-      <Section eyebrow="Engineering focus" title="Where the work concentrates.">
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {skills.map((group) => (
-            <SkillGroup key={group.id} title={group.label.en} items={group.items} />
-          ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Interests" title="Problem areas the projects cover.">
-        <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-base leading-8 text-(--color-text-muted)">
-          {interests.map((interest) => (
-            <li key={interest}>{interest}</li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section eyebrow="Links" title="Professional links.">
-        <div className="mt-8">
-          <ContactLinks
-            aria-label="Professional links"
-            links={[
-              {
-                label: "Email",
-                href: sanitizeUrl(profile.contact.email.url),
-                variant: "primary" as const,
-              },
-              ...profile.links
-                .filter((link) => link.label.en !== "Portfolio")
-                .map((link) => ({
-                  label: link.label.en,
-                  href: sanitizeUrl(link.url),
-                  external: true,
-                })),
-              { label: "View CV", href: "/cv" },
-            ]}
-          />
-        </div>
-      </Section>
+      <RevealOnView>
+        <Section eyebrow="Links" title="Professional links.">
+          <div className="mt-8">
+            <ContactLinks
+              aria-label="Professional links"
+              links={[
+                {
+                  label: "Email",
+                  href: sanitizeUrl(profile.contact.email.url),
+                  variant: "primary" as const,
+                },
+                ...profile.links
+                  .filter((link) => link.label.en !== "Portfolio")
+                  .map((link) => ({
+                    label: link.label.en,
+                    href: sanitizeUrl(link.url),
+                    external: true,
+                  })),
+                { label: "View CV", href: "/cv" },
+              ]}
+            />
+          </div>
+        </Section>
+      </RevealOnView>
     </PageShell>
   );
 }

@@ -6,7 +6,7 @@ const meta = {
   title: "Organisms/ProfileHeader",
   component: ProfileHeader,
   args: {
-    handle: "@patorsiang",
+    handle: "patorsiang",
     name: "Napatchol Thaipanich",
     role: "Full-Stack Developer",
     headline:

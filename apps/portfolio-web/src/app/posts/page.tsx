@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { RevealOnView } from "@/components/atoms/RevealOnView";
 import { PostCard } from "@/components/molecules/PostCard";
 import { Section } from "@/components/organisms/Section";
 import { PageShell } from "@/components/templates/PageShell";
@@ -20,17 +21,19 @@ export default async function PostsPage() {
 
   return (
     <PageShell>
-      <Section eyebrow="Posts" title="Learning in public.">
-        <p className="mt-6 max-w-2xl text-base leading-8 text-(--color-text-muted)">
-          Notes and reflections from events, projects, and the day job.
-        </p>
+      <RevealOnView>
+        <Section eyebrow="Posts" title="Learning in public.">
+          <p className="mt-6 max-w-2xl text-base leading-8 text-(--color-text-muted)">
+            Notes and reflections from events, projects, and the day job.
+          </p>
 
-        <div className="mt-8 grid gap-5 lg:grid-cols-2">
-          {posts.map((post) => (
-            <PostCard key={post.slug} post={post} />
-          ))}
-        </div>
-      </Section>
+          <div className="mt-8 grid gap-5 lg:grid-cols-2">
+            {posts.map((post) => (
+              <PostCard key={post.slug} post={post} />
+            ))}
+          </div>
+        </Section>
+      </RevealOnView>
     </PageShell>
   );
 }

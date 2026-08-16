@@ -183,7 +183,7 @@ function buildLanguageLinks(pathname: string) {
 
 function controlClassName(active: boolean) {
   return classNames(
-    "inline-flex h-10 min-w-12 items-center justify-center rounded-md border px-3 text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:active:translate-y-px",
+    "inline-flex h-10 min-w-12 items-center justify-center rounded-full border px-3 text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:active:translate-y-px",
     active
       ? "border-(--color-accent) bg-(--color-accent) text-(--color-on-accent)"
       : "border-(--color-border-strong) bg-(--color-surface) text-foreground hover:border-(--color-accent)",
