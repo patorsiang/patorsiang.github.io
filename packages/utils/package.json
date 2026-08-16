@@ -4,14 +4,15 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./sanitize-url": "./src/sanitize-url.ts"
   },
   "types": "./src/index.ts",
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "isomorphic-dompurify": "^2.20.0"
+    "isomorphic-dompurify": "^2.36.0"
   },
   "devDependencies": {
     "@types/node": "^20",

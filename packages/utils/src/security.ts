@@ -1,37 +1,8 @@
 import DOMPurify from "isomorphic-dompurify";
 
-/**
- * Sanitizes a URL to prevent dangerous protocols like 'javascript:' or 'data:'.
- * Returns the original URL if safe, or 'about:blank' if unsafe.
- */
-export function sanitizeUrl(url: string | undefined): string {
-  if (!url) return "";
-
-  const trimmedUrl = url.trim();
-
-  // "//host" is protocol-relative - a browser resolves it against the
-  // current scheme, so it is an external URL wearing an internal-path
-  // disguise, not an internal path. Reject it before the "/" case below
-  // would otherwise let it through.
-  if (trimmedUrl.startsWith("//")) {
-    return "about:blank";
-  }
-
-  // Allow only safe protocols
-  if (
-    trimmedUrl.startsWith("http://") ||
-    trimmedUrl.startsWith("https://") ||
-    trimmedUrl.startsWith("mailto:") ||
-    trimmedUrl.startsWith("tel:") ||
-    trimmedUrl.startsWith("/") ||
-    trimmedUrl.startsWith("#")
-  ) {
-    return trimmedUrl;
-  }
-
-  // If it's a dangerous protocol or ambiguous, return a safe fallback
-  return "about:blank";
-}
+// Re-exported for existing consumers of "@patorsiang/utils" - see
+// sanitize-url.ts for why the implementation lives there instead of here.
+export { sanitizeUrl } from "./sanitize-url";
 
 /**
  * Sanitizes HTML to prevent XSS.
