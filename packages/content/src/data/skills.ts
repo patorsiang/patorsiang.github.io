@@ -21,7 +21,7 @@ export const skills = [
     visibility: "public",
     groupId: "frontend",
     label: { en: "Frontend", translated: { th: { value: "Frontend", status: "reviewed" } } },
-    items: ["React.js", "Next.js", "Angular", "PWA"],
+    items: ["React.js", "Next.js", "Angular", "Vue.js", "Nuxt.js", "PWA"],
   },
   {
     id: "skills.backend-tools",
@@ -97,6 +97,7 @@ export const skills = [
       "Thai: Native",
       "English: IELTS 6 / CEFR B2",
       "Korean: Elementary (TOPIK 1 / Sejong 2A)",
+      "Chinese: HSK 2",
     ],
   },
 ] as const satisfies readonly SkillGroup[];
