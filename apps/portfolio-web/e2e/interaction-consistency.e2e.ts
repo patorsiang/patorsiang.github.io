@@ -39,3 +39,40 @@ test("under prefers-reduced-motion, text links don't shift when pressed", async 
 
   expect(transform).toBe("none");
 });
+
+test("theme changes cross-fade instead of snapping", async ({ page }) => {
+  // Explicit, not the reduced-motion helper in ./support/theme: that
+  // collapses every duration to near-zero on purpose, which would hide
+  // exactly the thing this test checks.
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+
+  const { property, durationSeconds } = await page.evaluate(() => {
+    const style = getComputedStyle(document.body);
+    return {
+      property: style.transitionProperty,
+      durationSeconds: Number.parseFloat(style.transitionDuration),
+    };
+  });
+
+  expect(property).toContain("color");
+  expect(property).toContain("background-color");
+  // --default-transition-duration is 120ms; computed style always reports
+  // in seconds, hence 0.12.
+  expect(durationSeconds).toBeCloseTo(0.12, 2);
+});
+
+test("under prefers-reduced-motion, theme changes don't ease either", async ({ page }) => {
+  // Explicit, on top of the generic sitewide sweep in reduced-motion.e2e.ts
+  // (Task 3 Step 5 below runs that too) - names body's new rule
+  // specifically, the same reasoning as HeroMark's equivalent test.
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+
+  const durationSeconds = await page.evaluate(() =>
+    Number.parseFloat(getComputedStyle(document.body).transitionDuration),
+  );
+
+  // The sitewide reduced-motion block forces this to 0.01ms (1e-5s).
+  expect(durationSeconds).toBeLessThan(0.0001);
+});

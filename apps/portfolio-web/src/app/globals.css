@@ -11,6 +11,20 @@ body {
   background: var(--color-page);
   color: var(--color-text);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  /*
+   * Only body, not every element: GlobalNav flips
+   * document.documentElement.dataset.theme, which cascades new
+   * --color-* values everywhere, but only elements that also carry a
+   * transition ease into the new values. Buttons and nav controls
+   * already do (their own `transition` class); most page surfaces
+   * (this element, Card, Section) did not, so themes snapped instead of
+   * cross-fading on everything but the smallest controls. Reuses the
+   * same tokens Button and nav controls already transition with - no
+   * new duration or easing anywhere in this rule.
+   */
+  transition-property: color, background-color;
+  transition-duration: var(--default-transition-duration);
+  transition-timing-function: var(--default-transition-timing-function);
 }
 
 ::selection {
