@@ -2,6 +2,19 @@ import type { NextConfig } from "next";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
+/**
+ * script-src keeps 'unsafe-inline': Next.js App Router injects its own
+ * inline <script> tags for streaming RSC hydration data, with content that
+ * varies per page (sometimes per request) - those can't be hash-allowlisted,
+ * and the alternative (a per-request nonce via proxy.ts + headers() in the
+ * root layout) forces every page to dynamic rendering, since headers() opts
+ * the whole layout out of static generation. Verified directly: with that
+ * nonce approach, /, /about, /contact, /experience, /posts, /projects, and
+ * every CV page all flipped from static/SSG to server-rendered-per-request.
+ * That is too large a trade for this one hardening item on a fundamentally
+ * static site - revisit only as a deliberate, scoped change, not a
+ * side-effect of a routine security pass.
+ */
 const contentSecurityPolicy = [
   "default-src 'self'",
   "base-uri 'self'",

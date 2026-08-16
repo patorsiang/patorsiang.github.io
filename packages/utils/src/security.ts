@@ -9,6 +9,14 @@ export function sanitizeUrl(url: string | undefined): string {
 
   const trimmedUrl = url.trim();
 
+  // "//host" is protocol-relative - a browser resolves it against the
+  // current scheme, so it is an external URL wearing an internal-path
+  // disguise, not an internal path. Reject it before the "/" case below
+  // would otherwise let it through.
+  if (trimmedUrl.startsWith("//")) {
+    return "about:blank";
+  }
+
   // Allow only safe protocols
   if (
     trimmedUrl.startsWith("http://") ||
