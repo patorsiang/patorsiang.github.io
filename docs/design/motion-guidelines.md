@@ -37,7 +37,7 @@ Forbidden patterns:
 - Large page entrance animations that delay reading.
 - Animated hero backgrounds.
 - Decorative bouncing, floating, pulsing, or looping elements.
-- Text animation that reveals words or letters over time.
+- Text animation that reveals words or letters over time (the one-shot brand-mark stroke-draw is a distinct, named exception - see above; this still forbids revealing actual text content).
 - Animations required to understand content.
 - Long staggered reveals across lists of projects, experience, or CV sections.
 - Motion that moves large layout regions after content has loaded.
@@ -183,7 +183,7 @@ If a library such as Framer Motion is introduced later:
 - Motion supports clarity, state feedback, or loading feedback.
 - No animation delays reading key portfolio or CV content.
 - Hover, focus, active, selected, and loading states are consistent across components.
-- Normal UI transitions stay under 250ms.
+- Normal UI transitions stay under 250ms (see the one-shot brand-mark reveal exception above).
 - Scroll animation, parallax, decorative loops, and large text reveals are not used.
 - Reduced-motion users receive instant or near-instant state changes with no non-essential animation.
 - Future UI work can implement motion with CSS/Tailwind without adding a heavy dependency.

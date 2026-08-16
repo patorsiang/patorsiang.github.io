@@ -88,8 +88,9 @@ body {
  * nested block is discarded and .hero-mark-draw keeps only its end-state
  * declarations, so the mark simply never animates. globals.css already
  * ships color-mix() with no fallback (the ::selection rule), so this is
- * not a new risk category for this app. See "One-shot brand-mark reveals" in
- * docs/design/motion-guidelines.md for why 500ms exceeds the usual 250ms cap.
+ * not a new risk category for this app. See the "One-shot brand-mark reveal"
+ * exception in docs/design/motion-guidelines.md for why 500ms exceeds the
+ * usual 250ms cap.
  */
 .hero-mark-draw {
   stroke-dasharray: var(--hero-mark-dash-length);
