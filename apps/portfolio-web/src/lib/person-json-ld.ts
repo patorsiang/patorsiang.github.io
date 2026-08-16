@@ -1,5 +1,9 @@
 import { profile } from "@patorsiang/content";
-import { sanitizeUrl } from "@patorsiang/utils";
+// Narrow subpath, not the "@patorsiang/utils" barrel: this file is imported
+// by the root layout, which wraps every route including the still-dynamic
+// /cv redirects - see packages/utils/src/sanitize-url.ts for why that
+// matters (pulling in isomorphic-dompurify/jsdom broke them in production).
+import { sanitizeUrl } from "@patorsiang/utils/sanitize-url";
 
 import { siteUrl } from "./seo";
 

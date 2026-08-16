@@ -1,4 +1,6 @@
-import { sanitizeArticleHTML } from "@patorsiang/utils";
+// Subpath, not the main barrel: this is the one file in the app that
+// actually needs DOMPurify - see packages/utils/src/index.ts.
+import { sanitizeArticleHTML } from "@patorsiang/utils/security";
 import { marked } from "marked";
 
 type RenderOptions = {
