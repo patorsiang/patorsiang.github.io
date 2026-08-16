@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { Breadcrumbs } from "@/components/molecules/Breadcrumbs";
 import { PageShell } from "@/components/templates/PageShell";
 import { getPost, getPosts } from "@/lib/posts";
 import { buildPageMetadata } from "@/lib/seo";
@@ -48,7 +49,14 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   return (
     <PageShell>
       <article className="mx-auto w-full max-w-2xl">
-        <p className="text-sm font-medium uppercase tracking-[0.16em] text-(--color-accent)">
+        <Breadcrumbs
+          trail={[
+            { href: "/posts", label: "Posts" },
+            { href: `/posts/${slug}`, label: post.title },
+          ]}
+        />
+
+        <p className="mt-4 text-sm font-medium uppercase tracking-[0.16em] text-(--color-accent)">
           <time dateTime={post.date}>{dateFormat.format(new Date(post.date))}</time>
         </p>
         <h1 className="mt-4 text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
