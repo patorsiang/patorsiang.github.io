@@ -7,7 +7,11 @@ export type { BaseCvRankDebug } from "./types";
 export type { ExperienceRankDebug } from "./experience-selection";
 export type { ProjectRankDebug } from "./project-ranking";
 
-export type CvRoleId = "fullstack_engineer" | "ai_ml_engineer" | "security_engineer";
+export type CvRoleId =
+  | "fullstack_engineer"
+  | "ai_ml_engineer"
+  | "security_engineer"
+  | "apple_specialist";
 export type CvLanguage = "en" | "th";
 
 export type CvSectionId =
@@ -313,6 +317,41 @@ export const roleConfigs = {
       maxExperienceItems: 4,
       maxBulletsPerExperience: 3,
       maxSkillsPerGroup: 7,
+    },
+  },
+  apple_specialist: {
+    id: "apple_specialist",
+    label: "Apple Specialist",
+    targetTitle: "Apple Specialist (Retail, Part-Time)",
+    summaryIntent:
+      "Show customer-facing communication, fast learning across many tools and platforms, and reliable teamwork - not backend depth.",
+    // No experience entry is tagged for retail/customer service - it doesn't
+    // exist in the data. These stay broad (the same tags fullstack_engineer
+    // uses) so every real work entry stays eligible; ranking below is what
+    // actually favors the client-facing ones.
+    requiredTags: ["frontend", "web", "software-engineering"],
+    preferredTags: ["react", "nextjs", "vue", "nuxt", "dashboard", "cloud", "privacy-tech"],
+    excludedTags: ["private-only", "tutorial-learning"],
+    atsKeywords: ["Clients", "Users", "Dashboard", "Requirements", "WordPress", "Cloud", "Agile"],
+    prioritySkillGroups: ["frontend", "programming-fundamentals"],
+    priorityProjectCategories: ["web"],
+    priorityExperienceTypes: ["work"],
+    sectionOrder: [
+      "header",
+      "summary",
+      "skills",
+      "experience",
+      "projects",
+      "education",
+      "awards",
+      "languages",
+    ],
+    limits: {
+      maxPages: 1,
+      maxProjects: 1,
+      maxExperienceItems: 3,
+      maxBulletsPerExperience: 2,
+      maxSkillsPerGroup: 5,
     },
   },
 } as const satisfies Record<CvRoleId, CvRoleConfig>;

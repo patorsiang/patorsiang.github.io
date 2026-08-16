@@ -12,6 +12,7 @@ const seoRoleLabels = {
   fullstack_engineer: "Full-Stack Engineer",
   ai_ml_engineer: "AI / ML Engineer",
   security_engineer: "Security Engineer",
+  apple_specialist: "Apple Specialist",
 } as const;
 
 const roleDescriptions = {
@@ -22,6 +23,8 @@ const roleDescriptions = {
       "AI and ML engineering CV for Napatchol Thaipanich, focused on applied AI projects, automation, and practical web systems.",
     security_engineer:
       "Security-focused CV for Napatchol Thaipanich, focused on security-aware software work, risk context, and practical web system foundations.",
+    apple_specialist:
+      "Apple Specialist CV for Napatchol Thaipanich, focused on customer-facing communication, fast learning across tools and platforms, and reliable teamwork.",
   },
   th: {
     fullstack_engineer:
@@ -30,6 +33,8 @@ const roleDescriptions = {
       "CV สาย AI / ML Engineer ของ Napatchol Thaipanich เน้นโปรเจกต์ AI เชิงประยุกต์ automation และระบบเว็บที่นำไปใช้งานได้จริง",
     security_engineer:
       "CV สาย Security Engineer ของ Napatchol Thaipanich เน้นงานซอฟต์แวร์ที่คำนึงถึงความปลอดภัย บริบทความเสี่ยง และพื้นฐานระบบเว็บเชิงปฏิบัติ",
+    apple_specialist:
+      "CV สำหรับตำแหน่ง Apple Specialist ของ Napatchol Thaipanich เน้นการสื่อสารกับลูกค้า การเรียนรู้เครื่องมือใหม่ได้เร็ว และการทำงานเป็นทีมที่เชื่อถือได้",
   },
 } as const;
 

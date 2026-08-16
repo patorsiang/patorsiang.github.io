@@ -2,7 +2,12 @@ import { isCvLanguage, isCvRoleId, type CvLanguage, type CvRoleId } from "@pator
 
 export const defaultCvRole: CvRoleId = "fullstack_engineer";
 export const defaultCvLanguage: CvLanguage = "en";
-export const cvRoleSlugs = ["fullstack-engineer", "ai-ml-engineer", "security-engineer"] as const;
+export const cvRoleSlugs = [
+  "fullstack-engineer",
+  "ai-ml-engineer",
+  "security-engineer",
+  "apple-specialist",
+] as const;
 export const cvLanguages = ["en", "th"] as const satisfies readonly CvLanguage[];
 
 export type CvSelection = {
@@ -21,12 +26,14 @@ const roleSlugById = {
   fullstack_engineer: "fullstack-engineer",
   ai_ml_engineer: "ai-ml-engineer",
   security_engineer: "security-engineer",
+  apple_specialist: "apple-specialist",
 } as const satisfies Record<CvRoleId, string>;
 
 const roleIdBySlug: Readonly<Record<string, CvRoleId | undefined>> = {
   "fullstack-engineer": "fullstack_engineer",
   "ai-ml-engineer": "ai_ml_engineer",
   "security-engineer": "security_engineer",
+  "apple-specialist": "apple_specialist",
 };
 
 export function resolveCvSelection(source: SearchParamSource): CvSelection {

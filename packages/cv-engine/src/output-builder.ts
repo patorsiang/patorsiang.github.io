@@ -140,6 +140,27 @@ const roleText = {
       },
     },
   },
+  apple_specialist: {
+    targetTitle: {
+      en: "Apple Specialist (Retail, Part-Time)",
+      translated: {
+        th: {
+          value: "Apple Specialist (Retail, Part-Time)",
+          status: "ai_draft",
+        },
+      },
+    },
+    summaryIntent: {
+      en: "Show customer-facing communication, fast learning across many tools and platforms, and reliable teamwork.",
+      translated: {
+        th: {
+          value:
+            "นำเสนอการสื่อสารกับลูกค้า การเรียนรู้เครื่องมือใหม่ได้เร็ว และการทำงานเป็นทีมที่เชื่อถือได้",
+          status: "ai_draft",
+        },
+      },
+    },
+  },
 } as const satisfies Record<
   CvRoleId,
   {

@@ -12,11 +12,13 @@ const roleLabels = {
     fullstack_engineer: "Full-Stack Engineer",
     ai_ml_engineer: "AI / ML Engineer",
     security_engineer: "Security Engineer",
+    apple_specialist: "Apple Specialist",
   },
   th: {
     fullstack_engineer: "Full-Stack Developer",
     ai_ml_engineer: "วิศวกร AI / ML",
     security_engineer: "วิศวกร Security",
+    apple_specialist: "Apple Specialist",
   },
 } as const satisfies Record<CvLanguage, Record<CvRoleId, string>>;
 
@@ -25,6 +27,7 @@ const shortRoleLabels = {
   fullstack_engineer: "Full-Stack",
   ai_ml_engineer: "AI / ML",
   security_engineer: "Security",
+  apple_specialist: "Apple Specialist",
 } as const satisfies Record<CvRoleId, string>;
 
 const roleIds = Object.keys(shortRoleLabels) as readonly CvRoleId[];

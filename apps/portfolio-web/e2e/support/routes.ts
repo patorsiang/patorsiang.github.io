@@ -29,6 +29,7 @@ export const routes = [
   "/en/cv/fullstack-engineer",
   "/en/cv/ai-ml-engineer",
   "/en/cv/security-engineer",
+  "/en/cv/apple-specialist",
   "/th/cv/fullstack-engineer",
   "/this-route-does-not-exist",
   "/offline",
