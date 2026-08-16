@@ -41,16 +41,16 @@ The just-shipped hero-motion work (`docs/superpowers/specs/2026-08-16-hero-motio
 
 `RevealOnView` is a client component (`"use client"`) — the only part of this feature that needs to be, since `IntersectionObserver` has no server equivalent. It renders a `<div>` wrapping `children`, defaulting to no special classes (fully visible, matching the server-rendered HTML exactly).
 
-On mount, if `prefers-reduced-motion: reduce` is set, nothing else in this list happens — no observer is created, the element stays in its default (visible) state permanently. Otherwise, a layout effect (not a regular effect — see below) creates an `IntersectionObserver` watching the wrapper div, with `threshold: 0` (any pixel visible counts) and no `rootMargin` adjustment. Its callback fires once, synchronously, with the element's current intersection state:
+On mount, if `prefers-reduced-motion: reduce` is set, nothing else in this list happens — no observer is created, the element stays in its default (visible) state permanently. Otherwise, an effect creates an `IntersectionObserver` watching the wrapper div, with `threshold: 0` (any pixel visible counts) and no `rootMargin` adjustment. Its callback fires with the element's current intersection state:
 
 - **Already intersecting:** do nothing. The element stays in its default (visible) state — this is the case for a section that happens to already be in the viewport at mount (e.g. a very tall screen, or a short page).
 - **Not intersecting:** apply the hidden state (`opacity-0 translate-y-2`). Keep observing. The first time the observer reports the element has become intersecting, apply the visible state (`opacity-100 translate-y-0`), and disconnect the observer — one-shot, never re-hides on scroll back up.
 
-The effect that does this hiding must run _before_ the browser's first paint, not after — a regular `useEffect` runs after paint, which would mean a below-the-fold section briefly paints visible, then fades to hidden a moment later, which is exactly the flash this design exists to avoid. A layout effect runs synchronously before paint, so for a section that starts off-screen, the very first thing painted is already the hidden state — nothing to see, nothing that flashes.
+`IntersectionObserver` always delivers its initial observation asynchronously, in a task queued after the browser's first paint, regardless of which effect hook sets the observer up — so a below-the-fold section is always briefly painted visible before this effect can hide it. That transition-out is never meant to be seen, though: the hidden branch has no transition (`transition-none`), so hiding is a hard cut rather than a fade. Nothing visibly flashes, not because the hide happens before paint (it can't), but because when it does happen, it isn't animated.
 
 Because the _default_ server-rendered state is always visible, a user with JS disabled, a failed script load, or a slow connection sees the content immediately, exactly as today. The reveal is additive: it can only ever make something appear that would otherwise already be there, never hide something that would otherwise be visible.
 
-The transition itself is CSS (`transition-[opacity,translate] duration-200`), not JS-animated — consistent with `motion-guidelines.md`'s "CSS/Tailwind first" stance and with how the hero mark and theme cross-fade were both built. Only `transform`/`translate` and `opacity` are animated, per the guideline's performance rule.
+The transition itself is CSS (`transition-[opacity,translate] duration-200`), not JS-animated — consistent with `motion-guidelines.md`'s "CSS/Tailwind first" stance and with how the hero mark and theme cross-fade were both built. Only `transform`/`translate` and `opacity` are animated, per the guideline's performance rule. That transition only applies on the visible branch, though — the hidden branch uses `transition-none`, since hiding is never meant to be seen animating (see above).
 
 ## Components
 
@@ -62,7 +62,7 @@ The transition itself is CSS (`transition-[opacity,translate] duration-200`), no
 
 New, in `e2e/`:
 
-1. On initial load with default viewport size (sections below the fold), each of the four sections' `RevealOnView` wrapper starts in the hidden state, and reaches the visible state after scrolling it into view.
+1. On initial load with default viewport size (sections below the fold), the Skills section's `RevealOnView` wrapper — chosen as a representative case because it's reliably below the fold regardless of viewport, unlike the other three — starts in the hidden state, and reaches the visible state after scrolling it into view.
 2. A user with JavaScript disabled (or before hydration completes) sees all four sections' text content in the accessibility tree / DOM immediately — proving the fail-open default. Playwright can approximate this by disabling JS for the page load and asserting the content is present and has no `opacity: 0` computed style.
 3. Reduced-motion: a bespoke assertion (not just the generic sweep, since the disable-the-mechanism behavior is component-specific logic the generic sweep can't target) that under `prefers-reduced-motion: reduce`, a below-the-fold section is visible without ever scrolling to it — proving the hide phase never engages at all, not just that it's fast. The existing sitewide sweep (`e2e/reduced-motion.e2e.ts`) still runs too, as a second, independent confirmation.
 4. Scrolling back up after a section has revealed does not re-hide it (one-shot).
