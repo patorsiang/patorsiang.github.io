@@ -15,7 +15,7 @@ type TextLinkProps = {
 export function TextLink({ href, children, className, target, rel }: TextLinkProps) {
   const isInternal = href.startsWith("/");
   const sharedClassName = classNames(
-    "font-semibold text-(--color-accent) underline-offset-4 transition hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus) motion-safe:active:translate-y-px print:text-zinc-800",
+    "relative font-semibold text-(--color-accent) underline-offset-4 transition hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-focus) motion-safe:active:top-px print:text-zinc-800",
     className,
   );
 

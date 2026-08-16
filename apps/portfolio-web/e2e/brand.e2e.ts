@@ -215,12 +215,11 @@ test("MARK_DASH_LENGTH covers the mark's real rendered length, not just the hand
 test("under prefers-reduced-motion, the hero mark renders fully drawn with no transition", async ({
   page,
 }) => {
-  // Explicit, on top of the generic sitewide sweep in reduced-motion.e2e.ts
-  // (Step 12 below runs that too) - this one names HeroMark specifically,
-  // so a future refactor that breaks reduced-motion just for this
-  // component (while the generic sweep still passes for some other
-  // reason) fails here by name instead of as an unexplained page-wide
-  // regression.
+  // Explicit, on top of the generic sitewide sweep in
+  // e2e/reduced-motion.e2e.ts - this one names HeroMark specifically, so
+  // a future refactor that breaks reduced-motion just for this component
+  // (while the generic sweep still passes for some other reason) fails
+  // here by name instead of as an unexplained page-wide regression.
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
 
@@ -237,4 +236,31 @@ test("under prefers-reduced-motion, the hero mark renders fully drawn with no tr
   expect(dashoffset).toBe("0px");
   // The sitewide reduced-motion block forces this to 0.01ms (1e-5s).
   expect(durationSeconds).toBeLessThan(0.0001);
+});
+
+test("the hero mark actually draws rather than appearing pre-drawn", async ({ page }) => {
+  // Every other test in this file passes identically whether
+  // @starting-style ever runs or the mark just renders in its final,
+  // fully-drawn state - none of them observe the transition itself, only
+  // its end state. Listen for the transitionrun event instead, which only
+  // fires if the browser actually animates stroke-dashoffset from its
+  // @starting-style value.
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.addInitScript(() => {
+    (window as unknown as { __drew?: boolean }).__drew = false;
+    document.addEventListener(
+      "transitionrun",
+      (event) => {
+        if ((event as TransitionEvent).propertyName === "stroke-dashoffset") {
+          (window as unknown as { __drew?: boolean }).__drew = true;
+        }
+      },
+      true,
+    );
+  });
+  await page.goto("/");
+
+  await expect
+    .poll(() => page.evaluate(() => (window as unknown as { __drew?: boolean }).__drew))
+    .toBe(true);
 });
