@@ -9,6 +9,7 @@ import { SkillGroup } from "@/components/molecules/SkillGroup";
 import { ProfileHeader } from "@/components/organisms/ProfileHeader";
 import { PageShell } from "@/components/templates/PageShell";
 import { Section } from "@/components/organisms/Section";
+import { RevealOnView } from "@/components/atoms/RevealOnView";
 
 type ExperienceItem = (typeof experiences)[number];
 
@@ -68,67 +69,75 @@ export default function Home() {
         ]}
       />
 
-      <Section eyebrow="About" title="Practical software for real product problems.">
-        <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
-          <div className="space-y-5 text-base leading-8 text-(--color-text-muted)">
-            {profile.summary.map((paragraph) => (
-              <p key={paragraph.en}>{paragraph.en}</p>
+      <RevealOnView>
+        <Section eyebrow="About" title="Practical software for real product problems.">
+          <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
+            <div className="space-y-5 text-base leading-8 text-(--color-text-muted)">
+              {profile.summary.map((paragraph) => (
+                <p key={paragraph.en}>{paragraph.en}</p>
+              ))}
+            </div>
+
+            <aside className="border-l-0 border-(--color-border) lg:border-l lg:pl-8">
+              <p className="text-sm font-medium uppercase tracking-[0.16em] text-(--color-text-subtle)">
+                Location
+              </p>
+              <p className="mt-3 text-lg font-semibold text-foreground">{profile.location.en}</p>
+              <p className="mt-8 text-sm font-medium uppercase tracking-[0.16em] text-(--color-text-subtle)">
+                Public identity
+              </p>
+              <p className="mt-3 text-lg font-semibold text-foreground">
+                {profile.nickname.en} / {profile.nickname2.en}
+              </p>
+            </aside>
+          </div>
+        </Section>
+      </RevealOnView>
+
+      <RevealOnView>
+        <Section eyebrow="Experience" title="Work and education.">
+          <div className="mt-8 grid gap-6 lg:grid-cols-2">
+            <ExperienceColumn title="Work" items={workExperiences} />
+            <ExperienceColumn title="Education" items={educationExperiences} />
+          </div>
+        </Section>
+      </RevealOnView>
+
+      <RevealOnView>
+        <Section eyebrow="Projects" title="Selected project samples.">
+          <div className="mt-8 grid gap-5 lg:grid-cols-2">
+            {featuredProjects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                title={project.title.en}
+                summary={project.summary.en}
+                technologies={project.techStack}
+                meta={[project.category, project.status]}
+                links={project.links.map((link) => ({
+                  label: link.label.en,
+                  href: sanitizeUrl(link.url),
+                }))}
+              />
             ))}
           </div>
 
-          <aside className="border-l-0 border-(--color-border) lg:border-l lg:pl-8">
-            <p className="text-sm font-medium uppercase tracking-[0.16em] text-(--color-text-subtle)">
-              Location
-            </p>
-            <p className="mt-3 text-lg font-semibold text-foreground">{profile.location.en}</p>
-            <p className="mt-8 text-sm font-medium uppercase tracking-[0.16em] text-(--color-text-subtle)">
-              Public identity
-            </p>
-            <p className="mt-3 text-lg font-semibold text-foreground">
-              {profile.nickname.en} / {profile.nickname2.en}
-            </p>
-          </aside>
-        </div>
-      </Section>
+          <p className="mt-6">
+            <TextLink href="/projects" className="tap-reach">
+              See all projects
+            </TextLink>
+          </p>
+        </Section>
+      </RevealOnView>
 
-      <Section eyebrow="Experience" title="Work and education.">
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <ExperienceColumn title="Work" items={workExperiences} />
-          <ExperienceColumn title="Education" items={educationExperiences} />
-        </div>
-      </Section>
-
-      <Section eyebrow="Projects" title="Selected project samples.">
-        <div className="mt-8 grid gap-5 lg:grid-cols-2">
-          {featuredProjects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              title={project.title.en}
-              summary={project.summary.en}
-              technologies={project.techStack}
-              meta={[project.category, project.status]}
-              links={project.links.map((link) => ({
-                label: link.label.en,
-                href: sanitizeUrl(link.url),
-              }))}
-            />
-          ))}
-        </div>
-
-        <p className="mt-6">
-          <TextLink href="/projects" className="tap-reach">
-            See all projects
-          </TextLink>
-        </p>
-      </Section>
-
-      <Section eyebrow="Skills" title="Core skill groups.">
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {cv.skills.map((group) => (
-            <SkillGroup key={group.id} title={group.group} items={group.items} />
-          ))}
-        </div>
-      </Section>
+      <RevealOnView>
+        <Section eyebrow="Skills" title="Core skill groups.">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {cv.skills.map((group) => (
+              <SkillGroup key={group.id} title={group.group} items={group.items} />
+            ))}
+          </div>
+        </Section>
+      </RevealOnView>
     </PageShell>
   );
 }

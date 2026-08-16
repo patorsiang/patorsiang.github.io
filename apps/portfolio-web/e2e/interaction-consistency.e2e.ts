@@ -32,6 +32,18 @@ for (const [motion, expectedShift] of [
     const link = page.getByRole("link", { name: "See all projects" });
     await link.scrollIntoViewIfNeeded();
 
+    // "See all projects" lives inside the Projects section, which
+    // RevealOnView wraps (see section-reveal.e2e.ts). Scrolling it into
+    // view is what triggers that section's own reveal transition
+    // (translate-y 8px -> 0 over 200ms), and if the "before" measurement
+    // below happens while that's still in flight, the ancestor's own
+    // motion gets picked up by getBoundingClientRect() alongside - or
+    // instead of - the ~1px press-feedback shift this test actually
+    // checks. Wait comfortably past that 200ms so the section has
+    // settled into place before either measurement, leaving only the
+    // link's own :active movement to observe.
+    await page.waitForTimeout(300);
+
     const before = await link.evaluate((el) => el.getBoundingClientRect().top);
     const box = (await link.boundingBox())!;
     await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
