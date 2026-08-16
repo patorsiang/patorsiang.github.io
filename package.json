@@ -10,9 +10,9 @@
   ],
   "scripts": {
     "dev": "bun run dev:portfolio",
-    "build": "bun run build:portfolio && bun run build:legacy",
-    "lint": "bun run --cwd apps/portfolio-web lint && bun run --cwd legacy-v1 lint",
-    "typecheck": "bun run --cwd apps/portfolio-web typecheck && bun run --cwd legacy-v1 typecheck",
+    "build": "bun run build:portfolio",
+    "lint": "bun run --cwd apps/portfolio-web lint",
+    "typecheck": "bun run --cwd apps/portfolio-web typecheck",
     "test": "bun test",
     "test:e2e": "bun run --cwd apps/portfolio-web test:e2e",
     "security:audit": "bun audit --audit-level high",
