@@ -35,4 +35,4 @@ const personJsonLd = {
     .map((link) => sanitizeUrl(link.url)),
 };
 
-export const personJsonLdScript = JSON.stringify(personJsonLd).replace(/</g, "\\u003c");
+export const personJsonLdScript = JSON.stringify(personJsonLd).replaceAll("<", "\\u003c");

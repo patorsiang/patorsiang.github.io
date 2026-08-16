@@ -37,10 +37,11 @@ export function GET() {
     "",
     "## CV",
     "",
-    ...cvRoleSlugs.map(
-      (role) =>
-        `- [${cvRoleLabels[role]} CV](${url(`/en/cv/${role}`)}): ATS-oriented, role-tailored resume.`,
-    ),
+    ...cvRoleSlugs.map((role) => {
+      const cvPath = `/en/cv/${role}`;
+
+      return `- [${cvRoleLabels[role]} CV](${url(cvPath)}): ATS-oriented, role-tailored resume.`;
+    }),
     "",
     "## Contact",
     "",
