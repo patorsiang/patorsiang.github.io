@@ -102,6 +102,14 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
                   width={80}
                   height={80}
                   unoptimized
+                  // This block is `hidden` until `print:flex` (see className
+                  // below), so Next's default loading="lazy" never fires -
+                  // the browser only requests the image once it gets a
+                  // layout box, i.e. exactly when window.print() is called.
+                  // That races the print snapshot against the fetch and can
+                  // print a blank QR. `priority` forces eager loading on
+                  // mount, well before Print CV is ever clicked.
+                  priority
                   className="h-20 w-20"
                 />
                 <span className="text-[8.5px] leading-tight text-(--color-text-muted)">
