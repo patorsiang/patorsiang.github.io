@@ -22,8 +22,8 @@
     "next": "15.5.21",
     "next-intl": "4",
     "pdfjs": "^2.5.4",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^19",
+    "react-dom": "^19",
     "react-icons": "^5.1.0"
   },
   "devDependencies": {
