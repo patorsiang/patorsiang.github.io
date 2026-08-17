@@ -87,12 +87,12 @@ const roleText = {
       },
     },
     summaryIntent: {
-      en: "Show practical product development experience across frontend, backend, cloud, data, and security-aware systems.",
+      en: "Full-stack developer with practical product development experience across frontend, backend, cloud, data, and security-aware systems.",
       translated: {
         th: {
           value:
-            "นำเสนอประสบการณ์พัฒนาผลิตภัณฑ์เชิงปฏิบัติ ครอบคลุม frontend, backend, cloud, data และระบบที่คำนึงถึงความปลอดภัย",
-          status: "reviewed",
+            "นักพัฒนา Full-Stack ที่มีประสบการณ์พัฒนาผลิตภัณฑ์จริง ครอบคลุม frontend, backend, cloud, data และระบบที่คำนึงถึงความปลอดภัย",
+          status: "ai_draft",
         },
       },
     },
@@ -108,12 +108,12 @@ const roleText = {
       },
     },
     summaryIntent: {
-      en: "Emphasize machine learning, applied AI projects, data pipelines, model evaluation, and software engineering experience.",
+      en: "Software engineer with hands-on experience in machine learning, applied AI projects, data pipelines, and model evaluation.",
       translated: {
         th: {
           value:
-            "เน้นประสบการณ์ด้าน machine learning, โปรเจกต์ AI เชิงประยุกต์, data pipelines, การประเมินโมเดล และ software engineering",
-          status: "reviewed",
+            "วิศวกรซอฟต์แวร์ที่มีประสบการณ์ตรงด้าน machine learning, โปรเจกต์ AI เชิงประยุกต์, data pipelines และการประเมินโมเดล",
+          status: "ai_draft",
         },
       },
     },
@@ -129,12 +129,12 @@ const roleText = {
       },
     },
     summaryIntent: {
-      en: "Show security-aware software development, cybersecurity learning, CTF activity, cryptography, and blockchain-related exposure.",
+      en: "Security-aware software engineer with cybersecurity learning, CTF activity, cryptography, and blockchain-related experience.",
       translated: {
         th: {
           value:
-            "นำเสนอประสบการณ์พัฒนาซอฟต์แวร์ที่คำนึงถึงความปลอดภัย การเรียนรู้ cybersecurity กิจกรรม CTF พื้นฐาน cryptography และงานที่เกี่ยวข้องกับ blockchain",
-          status: "reviewed",
+            "วิศวกรซอฟต์แวร์ที่คำนึงถึงความปลอดภัย มีประสบการณ์เรียนรู้ cybersecurity กิจกรรม CTF พื้นฐาน cryptography และงานที่เกี่ยวข้องกับ blockchain",
+          status: "ai_draft",
         },
       },
     },
@@ -150,11 +150,11 @@ const roleText = {
       },
     },
     summaryIntent: {
-      en: "Show customer-facing communication, fast learning across many tools and platforms, and reliable teamwork.",
+      en: "Customer-facing team member with fast learning across many tools and platforms, reliable teamwork, and genuine day-to-day fluency with Apple's ecosystem - MacBook, iPad, iPhone, Apple Watch, Apple TV, and AirPods.",
       translated: {
         th: {
           value:
-            "นำเสนอการสื่อสารกับลูกค้า การเรียนรู้เครื่องมือใหม่ได้เร็ว และการทำงานเป็นทีมที่เชื่อถือได้",
+            "พนักงานที่สื่อสารกับลูกค้าได้ดี เรียนรู้เครื่องมือใหม่ได้เร็ว ทำงานเป็นทีมได้อย่างเชื่อถือได้ และคุ้นเคยกับอุปกรณ์ Apple ในชีวิตประจำวันอย่างแท้จริง ทั้ง MacBook, iPad, iPhone, Apple Watch, Apple TV และ AirPods",
           status: "ai_draft",
         },
       },
