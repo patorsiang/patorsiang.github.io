@@ -92,7 +92,7 @@ export const profile = {
   links: [
     {
       label: { en: "Portfolio", translated: { th: { value: "Portfolio", status: "approved" } } },
-      url: "https://patorsiang.github.io/",
+      url: "https://patorsiang-github-io.vercel.app/",
     },
     {
       label: { en: "GitHub", translated: { th: { value: "GitHub", status: "approved" } } },

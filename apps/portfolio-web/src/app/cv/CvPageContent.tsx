@@ -33,7 +33,7 @@ const sectionLabels = {
 } as const satisfies Record<CvLanguage, Record<string, string>>;
 
 const portfolioQrCodeSrc = "/portfolio-qr.svg";
-const fallbackPortfolioUrl = "https://patorsiang.github.io/";
+const fallbackPortfolioUrl = "https://patorsiang-github-io.vercel.app/";
 
 type CvPageContentProps = {
   readonly cv: GeneratedCV;
