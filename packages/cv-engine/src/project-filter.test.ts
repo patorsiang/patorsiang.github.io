@@ -33,6 +33,7 @@ const baseRoleConfig: CvRoleConfig = {
     maxExperienceItems: 0,
     maxBulletsPerExperience: 0,
     maxSkillsPerGroup: 0,
+    maxEducationItems: 0,
   },
 };
 

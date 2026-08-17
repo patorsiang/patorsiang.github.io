@@ -33,7 +33,6 @@ import { rankProjectsForRole, type RankedProject } from "./project-ranking";
 const fullstackAtsSummary =
   "Full-stack developer currently building cybersecurity, gamified learning, and AI-related platform features at SEC Playground Co., Ltd. Experience includes Vue.js, Nuxt.js, React, Next.js, Angular, Node.js, Java, Go, APIs, SQL, PostgreSQL, MongoDB, AWS, GCP, Docker, Git, Linux, and TypeScript across startup, government, freelance, and client-facing environments.";
 
-const atsMaxEducationItems = 2;
 const atsMaxAwardItems = 3;
 
 const atsEducationPriority = new Map<string, number>([
@@ -188,7 +187,7 @@ export function buildCVOutput(role: CvRoleId, lang: CvLanguage): GeneratedCV {
   const educationSource = publicExperiencesForLanguage(lang)
     .filter((experience) => experience.type === "education")
     .sort(compareAtsEducationPriority)
-    .slice(0, atsMaxEducationItems);
+    .slice(0, roleConfig.limits.maxEducationItems);
 
   const awardSource = publicExperiencesForLanguage(lang)
     .filter((experience) => experience.type === "award" || experience.type === "activity")

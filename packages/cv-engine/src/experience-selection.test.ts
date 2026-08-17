@@ -60,6 +60,7 @@ function makeRoleConfig(overrides: Partial<CvRoleConfig> = {}): CvRoleConfig {
       maxExperienceItems: 10,
       maxBulletsPerExperience: 3,
       maxSkillsPerGroup: 5,
+      maxEducationItems: 2,
     },
     ...overrides,
   };

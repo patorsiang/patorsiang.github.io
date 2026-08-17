@@ -135,6 +135,7 @@ export type CvRoleConfig = {
     readonly maxExperienceItems: number;
     readonly maxBulletsPerExperience: number;
     readonly maxSkillsPerGroup: number;
+    readonly maxEducationItems: number;
   };
 };
 
@@ -211,6 +212,7 @@ export const roleConfigs = {
       maxExperienceItems: 4,
       maxBulletsPerExperience: 3,
       maxSkillsPerGroup: 7,
+      maxEducationItems: 2,
     },
   },
   ai_ml_engineer: {
@@ -268,6 +270,7 @@ export const roleConfigs = {
       maxExperienceItems: 3,
       maxBulletsPerExperience: 3,
       maxSkillsPerGroup: 7,
+      maxEducationItems: 2,
     },
   },
   security_engineer: {
@@ -317,6 +320,10 @@ export const roleConfigs = {
       maxExperienceItems: 4,
       maxBulletsPerExperience: 3,
       maxSkillsPerGroup: 7,
+      // The law degree (LL.B.) is relevant to this role's IP/compliance
+      // angle, so security gets one more education slot than the other
+      // roles instead of always losing it to the ATS priority ranking.
+      maxEducationItems: 3,
     },
   },
   apple_specialist: {
@@ -352,6 +359,7 @@ export const roleConfigs = {
       maxExperienceItems: 3,
       maxBulletsPerExperience: 2,
       maxSkillsPerGroup: 5,
+      maxEducationItems: 2,
     },
   },
 } as const satisfies Record<CvRoleId, CvRoleConfig>;
