@@ -313,7 +313,14 @@ body {
 @media print {
   @page {
     size: A4;
-    margin: 6mm 8mm;
+    /*
+     * Chrome's print/PDF pipeline rounds the mm-based @page box against the
+     * px-based content box, and at exactly 100% scale that rounding has
+     * clipped a line of text at the printable-area edge (reported: needed
+     * 99% scale to get everything on the page). The extra ~1mm here is
+     * slack for that rounding, not a layout change.
+     */
+    margin: 7mm 9mm;
   }
 
   html {
