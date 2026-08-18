@@ -69,6 +69,13 @@ export type GeneratedCvProject = {
   readonly rankDebug: ProjectRankDebug;
 };
 
+export type GeneratedCvAdditionalExperience = {
+  readonly id: string;
+  readonly title: string;
+  readonly organization: string;
+  readonly dateRange: string;
+};
+
 export type GeneratedCvEducation = {
   readonly id: string;
   readonly degree: string;
@@ -110,6 +117,7 @@ export type GeneratedCV = {
   };
   readonly skills: readonly GeneratedCvSkillGroup[];
   readonly experience: readonly GeneratedCvExperience[];
+  readonly additionalExperience: readonly GeneratedCvAdditionalExperience[];
   readonly projects: readonly GeneratedCvProject[];
   readonly education: readonly GeneratedCvEducation[];
   readonly awards: readonly GeneratedCvAward[];

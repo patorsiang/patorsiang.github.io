@@ -7,6 +7,7 @@ import {
   type CvRoleConfig,
   type CvSectionId,
   type ExperienceRankDebug,
+  type GeneratedCvAdditionalExperience,
   type GeneratedCvAward,
   type GeneratedCvEducation,
   type GeneratedCvExperience,
@@ -28,7 +29,7 @@ import {
   type MarkdownExportOptions,
 } from "./markdown-export";
 import { filterProjectsForRole } from "./project-filter";
-import { selectExperiencesForRole } from "./experience-selection";
+import { selectBridgingExperiences, selectExperiencesForRole } from "./experience-selection";
 import { groupSkillsForRole } from "./skill-grouping";
 import { rankProjectsForRole } from "./project-ranking";
 
@@ -43,6 +44,7 @@ export type {
   CvSectionId,
   ExperienceRankDebug,
   GeneratedCV,
+  GeneratedCvAdditionalExperience,
   GeneratedCvAward,
   GeneratedCvEducation,
   GeneratedCvExperience,
@@ -67,6 +69,7 @@ export {
   isCvRoleId,
   rankProjectsForRole,
   roleConfigs,
+  selectBridgingExperiences,
   selectExperiencesForRole,
   CvEngineInputError,
 };

@@ -19,11 +19,16 @@ import {
   type GeneratedCvProject,
   type GeneratedCvSkillGroup,
   type CvRoleConfig,
+  type GeneratedCvAdditionalExperience,
   CvEngineInputError,
   getRoleConfig,
   isCvLanguage,
 } from "./config";
-import { selectExperiencesForRole, type RankedExperience } from "./experience-selection";
+import {
+  selectBridgingExperiences,
+  selectExperiencesForRole,
+  type RankedExperience,
+} from "./experience-selection";
 import { filterProjectsForRole } from "./project-filter";
 import { isContentAvailableForLanguage, isMissingTranslation, text } from "./content-language";
 import { normalizeTag } from "./normalize";
@@ -43,19 +48,19 @@ const atsEducationPriority = new Map<string, number>([
 
 const fullstackAtsExperienceBullets: Readonly<Record<string, readonly string[]>> = {
   "experience.freelance-frontend-developer": [
-    "Maintained a corporate WordPress site and delivered responsive React and Next.js web interfaces from requirements gathering through deployment support.",
+    "Delivered 2 client projects end-to-end, including a corporate WordPress site and responsive React/Next.js web interfaces, from requirements gathering through deployment support.",
     "Built client-facing dashboards and web experiences using JavaScript/TypeScript, CSS, HTML, and cloud hosting practices.",
     "Coordinated with clients and collaborators to clarify scope, resolve feedback, and ship production-ready frontend changes.",
   ],
   "experience.datawow-frontend-developer": [
-    "Built React and Next.js interfaces for PDPA compliance platforms, dashboards, and internal product workflows.",
+    "Built React and Next.js interfaces for Cookie Wow and PDPA Pro, PDPA/GDPR consent platforms that have since scaled to 9,000+ websites and 600M+ consent records.",
     "Implemented real-time dashboard and LINE bot chat storage features with frontend state, API integration, and release-ready UI behavior.",
     "Delivered frontend changes in Agile product teams across privacy-tech, mock exam, and internal-platform products.",
   ],
   "experience.bank-of-thailand-system-analyst": [
-    "Developed and maintained Angular, Node.js, Go, and Hyperledger Fabric components for DLTBond, a blockchain-based government bond platform.",
+    "Developed and maintained Angular, Node.js, Go, and Hyperledger Fabric components for DLTBond, a blockchain-based government bond platform that cut bond delivery time from 15 days to 2 and has issued over 160 billion baht across 10 bond series since 2020.",
     "Supported ISO 20022 migration through Java updates, requirements analysis, SWIFT-standard alignment, and system testing.",
-    "Automated repetitive operational workflows with UiPath RPA to reduce manual processing in financial-system operations.",
+    "Automated 2-3 procurement and contracting review workflows with UiPath RPA, cutting manual checking time in financial-system operations.",
   ],
   "experience.kbtg-blockchain-developer-internship": [
     "Built a React frontend and Go backend proof of concept integrating the Stellar SDK for a blockchain social-impact application.",
@@ -68,7 +73,7 @@ const fullstackAtsExperienceBullets: Readonly<Record<string, readonly string[]>>
 
 const fullstackAtsProjectSummaries: Readonly<Record<string, string>> = {
   "project.rugpull-detection":
-    "Full-stack research prototype using React, FastAPI, Python, Redis, Docker, and TensorFlow to intake contract addresses, run feature extraction, and review DeFi rug-pull risk predictions.",
+    "Full-stack research prototype using React, FastAPI, Python, Redis, Docker, and TensorFlow to intake contract addresses, run feature extraction, and review DeFi rug-pull risk predictions, reaching 0.94 macro F1 on an 843-contract benchmark.",
   "project.smart-shoe":
     "IoT dashboard prototype using Next.js, ESP32 firmware, BLE, MQTT, and sensor data processing to visualize live step, balance, and fall-risk signals.",
   "project.chi-cultural-heritage-pwa":
@@ -183,6 +188,12 @@ export function buildCVOutput(role: CvRoleId, lang: CvLanguage): GeneratedCV {
     0,
     roleConfig.limits.maxExperienceItems,
   );
+  const bridgingExperiences = selectBridgingExperiences(
+    experiences,
+    rankedExperiences,
+    roleConfig,
+    lang,
+  );
 
   const educationSource = publicExperiencesForLanguage(lang)
     .filter((experience) => experience.type === "education")
@@ -202,6 +213,9 @@ export function buildCVOutput(role: CvRoleId, lang: CvLanguage): GeneratedCV {
   }));
   const generatedExperience = rankedExperiences.map((rankedExperience) =>
     toGeneratedExperience(rankedExperience, roleConfig, lang),
+  );
+  const generatedAdditionalExperience = bridgingExperiences.map((rankedExperience) =>
+    toGeneratedAdditionalExperience(rankedExperience, lang),
   );
   const generatedProjects = filteredProjects.map((project) =>
     toGeneratedProject(project.project, roleConfig, project, lang),
@@ -248,6 +262,7 @@ export function buildCVOutput(role: CvRoleId, lang: CvLanguage): GeneratedCV {
     },
     skills: skillGroups,
     experience: generatedExperience,
+    additionalExperience: generatedAdditionalExperience,
     projects: generatedProjects,
     education,
     awards,
@@ -378,6 +393,20 @@ function getAtsEducationPriority(item: Experience): number {
 
 function compareExperienceDates(a: Experience, b: Experience): number {
   return comparableDate(b.endDate ?? b.startDate) - comparableDate(a.endDate ?? a.startDate);
+}
+
+function toGeneratedAdditionalExperience(
+  rankedExperience: RankedExperience,
+  lang: CvLanguage,
+): GeneratedCvAdditionalExperience {
+  const item = rankedExperience.experience;
+
+  return {
+    id: item.id,
+    title: text(item.title, lang),
+    organization: text(item.organization, lang),
+    dateRange: `${item.startDate} - ${formatOpenEndedDate(item.current ? undefined : item.endDate, lang)}`,
+  };
 }
 
 function toGeneratedEducation(item: Experience, lang: CvLanguage): GeneratedCvEducation {

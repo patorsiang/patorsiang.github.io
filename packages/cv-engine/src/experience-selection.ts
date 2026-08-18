@@ -47,6 +47,131 @@ export function selectExperiencesForRole(
     );
 }
 
+const EMPLOYMENT_GAP_THRESHOLD_MONTHS = 6;
+
+type DateInterval = { readonly start: number; readonly end: number };
+
+/**
+ * Roles filter to relevant experiences by tag, which can drop a real job
+ * from the timeline and leave what reads as an unexplained employment gap.
+ * This backfills just enough of the omitted work/internship experiences
+ * (chosen by relevance, not just chronological order) to close any gap
+ * wider than the threshold, treating education periods as already-explained
+ * time even though they're rendered in a separate CV section.
+ */
+export function selectBridgingExperiences(
+  allExperiences: readonly Experience[],
+  selected: readonly RankedExperience[],
+  roleConfig: CvRoleConfig,
+  lang: CvLanguage,
+  referenceDate: Date = new Date(),
+): readonly RankedExperience[] {
+  const referenceMonthIndex = referenceDate.getFullYear() * 12 + referenceDate.getMonth();
+  const selectedIds = new Set(selected.map((item) => item.experience.id));
+  const visible = allExperiences.filter(
+    (experience) =>
+      experience.visibility === "public" && isContentAvailableForLanguage(experience.locale, lang),
+  );
+
+  const explainedIntervals = [
+    ...selected.map((item) => experienceInterval(item.experience, referenceMonthIndex)),
+    ...visible
+      .filter((experience) => experience.type === "education")
+      .map((experience) => experienceInterval(experience, referenceMonthIndex)),
+  ];
+
+  const excludedTags = normalizedTagSet(roleConfig.excludedTags ?? []);
+  const remainingCandidates = visible.filter(
+    (experience) =>
+      (experience.type === "work" || experience.type === "internship") &&
+      !selectedIds.has(experience.id) &&
+      !hasOverlap(normalizedTagSet(experience.tags), excludedTags),
+  );
+
+  const bridged: Experience[] = [];
+  let coverage = mergeCoverage(explainedIntervals);
+
+  for (let guard = 0; guard < remainingCandidates.length; guard += 1) {
+    const gap = findUncoveredGaps(coverage, EMPLOYMENT_GAP_THRESHOLD_MONTHS)[0];
+    if (!gap) {
+      break;
+    }
+
+    const fillerIndex = remainingCandidates.findIndex((candidate) => {
+      const interval = experienceInterval(candidate, referenceMonthIndex);
+      return interval.start < gap.end && interval.end > gap.start;
+    });
+    if (fillerIndex === -1) {
+      break;
+    }
+
+    const [filler] = remainingCandidates.splice(fillerIndex, 1);
+    bridged.push(filler);
+    coverage = mergeCoverage([...coverage, experienceInterval(filler, referenceMonthIndex)]);
+  }
+
+  return bridged
+    .map((experience) => scoreExperience(experience, roleConfig, referenceDate.getFullYear()))
+    .sort(compareRankedExperiences)
+    .map(
+      ({ isCurrent: _isCurrent, endYear: _endYear, startYear: _startYear, ...experience }) =>
+        experience,
+    );
+}
+
+function toMonthIndex(value: string): number | null {
+  const match = value.match(/^(\d{4})-(\d{2})$/);
+
+  if (!match) {
+    return null;
+  }
+
+  return Number.parseInt(match[1], 10) * 12 + (Number.parseInt(match[2], 10) - 1);
+}
+
+function experienceInterval(experience: Experience, referenceMonthIndex: number): DateInterval {
+  const start = toMonthIndex(experience.startDate) ?? referenceMonthIndex;
+  const end = experience.current
+    ? referenceMonthIndex
+    : ((experience.endDate ? toMonthIndex(experience.endDate) : null) ?? referenceMonthIndex);
+
+  return { start, end };
+}
+
+function mergeCoverage(intervals: readonly DateInterval[]): DateInterval[] {
+  const sorted = [...intervals].sort((a, b) => a.start - b.start);
+  const merged: DateInterval[] = [];
+
+  for (const interval of sorted) {
+    const last = merged[merged.length - 1];
+
+    if (last && interval.start <= last.end) {
+      merged[merged.length - 1] = { start: last.start, end: Math.max(last.end, interval.end) };
+    } else {
+      merged.push(interval);
+    }
+  }
+
+  return merged;
+}
+
+function findUncoveredGaps(
+  coverage: readonly DateInterval[],
+  thresholdMonths: number,
+): DateInterval[] {
+  const gaps: DateInterval[] = [];
+
+  for (let index = 1; index < coverage.length; index += 1) {
+    const gapMonths = coverage[index].start - coverage[index - 1].end;
+
+    if (gapMonths > thresholdMonths) {
+      gaps.push({ start: coverage[index - 1].end, end: coverage[index].start });
+    }
+  }
+
+  return gaps;
+}
+
 function isEligibleExperience(
   experience: Experience,
   roleConfig: CvRoleConfig,

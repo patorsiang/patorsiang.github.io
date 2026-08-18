@@ -69,6 +69,20 @@ export function exportCVAsMarkdown(cv: GeneratedCV, options: MarkdownExportOptio
     trimTrailingBlankLine(lines);
   }
 
+  if (cv.additionalExperience.length > 0) {
+    lines.push(`## ${labels.additionalExperience}`);
+    lines.push("");
+    for (const item of cv.additionalExperience) {
+      lines.push(
+        `- ${escapeMarkdown(item.title)} — ${escapeMarkdown(item.organization)} (${escapeMarkdown(
+          item.dateRange,
+        )})`,
+      );
+    }
+    lines.push("");
+    trimTrailingBlankLine(lines);
+  }
+
   if (cv.projects.length > 0) {
     lines.push(`## ${labels.projects}`);
     lines.push("");
@@ -163,6 +177,7 @@ const markdownLabels = {
     summary: "Professional Summary",
     skills: "Technical Skills",
     experience: "Work Experience",
+    additionalExperience: "Additional Experience",
     projects: "Selected Projects",
     education: "Education",
     awards: "Awards & Activities",
@@ -177,6 +192,7 @@ const markdownLabels = {
     summary: "สรุปประสบการณ์",
     skills: "ทักษะด้านเทคนิค",
     experience: "ประสบการณ์ทำงาน",
+    additionalExperience: "ประสบการณ์เพิ่มเติม",
     projects: "โปรเจกต์ที่คัดเลือก",
     education: "การศึกษา",
     awards: "รางวัลและกิจกรรม",

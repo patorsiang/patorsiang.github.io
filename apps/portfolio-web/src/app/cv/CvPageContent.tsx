@@ -16,6 +16,7 @@ const sectionLabels = {
     summary: "Professional Summary",
     skills: "Technical Skills",
     experience: "Work Experience",
+    additionalExperience: "Additional Experience",
     projects: "Selected Projects",
     education: "Education",
     awards: "Awards & Activities",
@@ -25,6 +26,7 @@ const sectionLabels = {
     summary: "สรุปประสบการณ์",
     skills: "ทักษะด้านเทคนิค",
     experience: "ประสบการณ์ทำงาน",
+    additionalExperience: "ประสบการณ์เพิ่มเติม",
     projects: "โปรเจกต์ที่คัดเลือก",
     education: "การศึกษา",
     awards: "รางวัลและกิจกรรม",
@@ -158,6 +160,22 @@ export function CvPageContent({ cv, selection }: CvPageContentProps) {
               ))}
             </div>
           </CVSection>
+
+          {cv.additionalExperience.length > 0 ? (
+            <CVSection title={labels.additionalExperience}>
+              <ul className="space-y-2 text-sm leading-6 text-(--color-text-muted)">
+                {cv.additionalExperience.map((item) => (
+                  <li key={item.id}>
+                    <span className="font-semibold text-foreground">{item.title}</span>
+                    {" · "}
+                    {item.organization}
+                    {" · "}
+                    {item.dateRange}
+                  </li>
+                ))}
+              </ul>
+            </CVSection>
+          ) : null}
 
           <CVSection title={labels.projects}>
             <div className="cv-print-compact-list space-y-5 print:space-y-0">

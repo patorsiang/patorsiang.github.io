@@ -67,3 +67,8 @@ next-env.d.ts
 /.playwright-mcp
 .superpowers/
 .env*
+
+# Claude Code local state
+.agents/
+.claude/
+skills-lock.json

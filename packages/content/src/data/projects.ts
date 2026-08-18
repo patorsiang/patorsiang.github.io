@@ -18,12 +18,12 @@ export const projects = [
     category: "ai-ml",
     status: "prototype",
     summary: {
-      en: "Research prototype that analyzes smart contracts, blockchain activity, and anomaly signals to flag possible DeFi rug-pull risk.",
+      en: "Research prototype that analyzes smart contracts, blockchain activity, and anomaly signals to flag possible DeFi rug-pull risk, reaching 0.94 macro F1 on an 843-contract benchmark.",
       translated: {
         th: {
           value:
-            "ต้นแบบงานวิจัยที่วิเคราะห์ smart contracts, blockchain activity และ anomaly signals เพื่อช่วยระบุความเสี่ยงที่อาจเกี่ยวข้องกับ DeFi rug pull",
-          status: "reviewed",
+            "ต้นแบบงานวิจัยที่วิเคราะห์ smart contracts, blockchain activity และ anomaly signals เพื่อช่วยระบุความเสี่ยงที่อาจเกี่ยวข้องกับ DeFi rug pull ได้ macro F1 0.94 จากการทดสอบบน benchmark 843 contracts",
+          status: "ai_draft",
         },
       },
     },
@@ -44,21 +44,21 @@ export const projects = [
     ],
     highlights: [
       {
+        en: "Trained a fused multi-model classifier (tabular, Solidity source, opcode, and GRU timeline features) on 1,550 labelled contracts, reaching 0.94 macro F1 on an 843-contract benchmark across 6 rug-pull categories.",
+        translated: {
+          th: {
+            value:
+              "ฝึก fused multi-model classifier (tabular, Solidity source, opcode และ GRU timeline features) บน contract ที่มี label 1,550 รายการ ได้ macro F1 0.94 จากการทดสอบบน benchmark 843 contracts ครอบคลุม 6 ประเภทพฤติกรรม rug pull",
+            status: "ai_draft",
+          },
+        },
+      },
+      {
         en: "Built a React/Vite and FastAPI workflow for contract address intake, feature extraction, and prediction review.",
         translated: {
           th: {
             value:
               "พัฒนา workflow ด้วย React/Vite และ FastAPI สำหรับรับ contract address, feature extraction และตรวจดูผล prediction",
-            status: "reviewed",
-          },
-        },
-      },
-      {
-        en: "Combined source, bytecode/opcode, transaction timeline, tabular ML, and anomaly-detection signals.",
-        translated: {
-          th: {
-            value:
-              "รวมข้อมูลจาก source, bytecode/opcode, transaction timeline, tabular ML และ anomaly-detection signals",
             status: "reviewed",
           },
         },
@@ -165,21 +165,22 @@ export const projects = [
     tags: ["iot", "web", "frontend", "nextjs", "software-engineering"],
     highlights: [
       {
-        en: "Collected pressure and motion readings with force sensors, an MPU6050, and ESP32 firmware.",
+        en: "Collected pressure and motion readings from 3 force sensors (front, middle, heel) and an MPU6050, processed on ESP32 firmware with median filtering.",
         translated: {
           th: {
             value:
-              "เก็บข้อมูลแรงกดและการเคลื่อนไหวด้วย force sensors, MPU6050 และ firmware บน ESP32",
-            status: "reviewed",
+              "เก็บข้อมูลแรงกดและการเคลื่อนไหวจาก force sensor 3 จุด (หน้าเท้า, กลางเท้า, ส้นเท้า) และ MPU6050 ประมวลผลบน ESP32 firmware ด้วย median filtering",
+            status: "ai_draft",
           },
         },
       },
       {
-        en: "Implemented filtering and threshold logic for step, fall, and balance events.",
+        en: "Applied threshold and debounce logic to detect steps, falls, and uneven weight balance.",
         translated: {
           th: {
-            value: "พัฒนา filtering และ threshold logic สำหรับเหตุการณ์ step, fall และ balance",
-            status: "reviewed",
+            value:
+              "ใช้ threshold และ debounce logic เพื่อตรวจจับ step, การล้ม และความไม่สมดุลของน้ำหนัก",
+            status: "ai_draft",
           },
         },
       },

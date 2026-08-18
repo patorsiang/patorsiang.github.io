@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { experiences, type Experience, type TranslatableText } from "@patorsiang/content";
 import { generateCV, getRoleConfig, type CvRoleConfig, type CvSectionId } from "./index";
-import { selectExperiencesForRole } from "./experience-selection";
+import { selectBridgingExperiences, selectExperiencesForRole } from "./experience-selection";
 
 const sectionOrder: readonly CvSectionId[] = [
   "header",
@@ -356,6 +356,155 @@ describe("selectExperiencesForRole", () => {
   });
 });
 
+describe("selectBridgingExperiences", () => {
+  const referenceDate = new Date(2025, 0, 1);
+
+  test("backfills a work experience that closes a gap wider than the threshold", () => {
+    const roleConfig = makeRoleConfig({ requiredTags: ["required-a"] });
+    const early = makeExperience({
+      id: "fixture.early",
+      startDate: "2018-01",
+      endDate: "2019-01",
+    });
+    const recent = makeExperience({
+      id: "fixture.recent",
+      startDate: "2021-01",
+      current: true,
+      endDate: undefined,
+    });
+    const bridge = makeExperience({
+      id: "fixture.bridge",
+      startDate: "2019-02",
+      endDate: "2020-12",
+      tags: ["unrelated"],
+    });
+
+    const selected = selectExperiencesForRole([early, recent], roleConfig, "en", 2025);
+    const bridged = selectBridgingExperiences(
+      [early, recent, bridge],
+      selected,
+      roleConfig,
+      "en",
+      referenceDate,
+    );
+
+    expect(bridged.map((item) => item.experience.id)).toEqual(["fixture.bridge"]);
+  });
+
+  test("adds nothing when the selected timeline has no gap over the threshold", () => {
+    const roleConfig = makeRoleConfig({ requiredTags: ["required-a"] });
+    const early = makeExperience({ id: "fixture.early", startDate: "2018-01", endDate: "2019-01" });
+    const recent = makeExperience({
+      id: "fixture.recent",
+      startDate: "2019-04",
+      current: true,
+      endDate: undefined,
+    });
+    const unused = makeExperience({
+      id: "fixture.unused",
+      startDate: "2019-06",
+      endDate: "2020-01",
+    });
+
+    const selected = selectExperiencesForRole([early, recent], roleConfig, "en", 2025);
+    const bridged = selectBridgingExperiences(
+      [early, recent, unused],
+      selected,
+      roleConfig,
+      "en",
+      referenceDate,
+    );
+
+    expect(bridged).toEqual([]);
+  });
+
+  test("treats an education period as already-explained time", () => {
+    const roleConfig = makeRoleConfig({ requiredTags: ["required-a"] });
+    const early = makeExperience({ id: "fixture.early", startDate: "2018-01", endDate: "2019-01" });
+    const recent = makeExperience({
+      id: "fixture.recent",
+      startDate: "2021-01",
+      current: true,
+      endDate: undefined,
+    });
+    const masters = makeExperience({
+      id: "fixture.masters",
+      type: "education",
+      startDate: "2018-09",
+      endDate: "2020-09",
+    });
+    const wouldOtherwiseBridge = makeExperience({
+      id: "fixture.would-otherwise-bridge",
+      startDate: "2019-02",
+      endDate: "2020-12",
+    });
+
+    const selected = selectExperiencesForRole([early, recent], roleConfig, "en", 2025);
+    const bridged = selectBridgingExperiences(
+      [early, recent, masters, wouldOtherwiseBridge],
+      selected,
+      roleConfig,
+      "en",
+      referenceDate,
+    );
+
+    expect(bridged).toEqual([]);
+  });
+
+  test("does not re-offer an experience that is already selected", () => {
+    const roleConfig = makeRoleConfig({ requiredTags: ["required-a"] });
+    const early = makeExperience({ id: "fixture.early", startDate: "2018-01", endDate: "2019-01" });
+    const recent = makeExperience({
+      id: "fixture.recent",
+      startDate: "2019-04",
+      current: true,
+      endDate: undefined,
+    });
+
+    const selected = selectExperiencesForRole([early, recent], roleConfig, "en", 2025);
+    const bridged = selectBridgingExperiences(
+      [early, recent],
+      selected,
+      roleConfig,
+      "en",
+      referenceDate,
+    );
+
+    expect(bridged).toEqual([]);
+  });
+
+  test("skips a candidate whose tags are excluded by the role", () => {
+    const roleConfig = makeRoleConfig({
+      requiredTags: ["required-a"],
+      excludedTags: ["excluded-a"],
+    });
+    const early = makeExperience({ id: "fixture.early", startDate: "2018-01", endDate: "2019-01" });
+    const recent = makeExperience({
+      id: "fixture.recent",
+      startDate: "2021-01",
+      current: true,
+      endDate: undefined,
+    });
+    const excludedBridge = makeExperience({
+      id: "fixture.excluded-bridge",
+      startDate: "2019-02",
+      endDate: "2020-12",
+      tags: ["excluded-a"],
+    });
+
+    const selected = selectExperiencesForRole([early, recent], roleConfig, "en", 2025);
+    const bridged = selectBridgingExperiences(
+      [early, recent, excludedBridge],
+      selected,
+      roleConfig,
+      "en",
+      referenceDate,
+    );
+
+    expect(bridged).toEqual([]);
+  });
+});
+
 describe("generateCV experience integration", () => {
   test("fullstack_engineer returns relevant work/internship experiences in score order", () => {
     const cv = generateCV("fullstack_engineer", "en");
@@ -391,7 +540,7 @@ describe("generateCV experience integration", () => {
     expect(cv.experience[0].skills).toEqual(source.skills);
   });
 
-  test("ai_ml_engineer does not include unrelated public experiences", () => {
+  test("ai_ml_engineer does not include unrelated public experiences in the main section", () => {
     const cv = generateCV("ai_ml_engineer", "en");
     const unrelatedIds = new Set([
       "experience.freelance-frontend-developer",
@@ -415,5 +564,37 @@ describe("generateCV experience integration", () => {
     expect(new Set(orderedIds).has("experience.sec-playground-fullstack-developer")).toBe(true);
     expect(new Set(orderedIds).has("experience.bank-of-thailand-system-analyst")).toBe(true);
     expect(new Set(orderedIds).has("experience.kbtg-blockchain-developer-internship")).toBe(true);
+  });
+
+  test("ai_ml_engineer backfills the frontend roles as additional experience to close the gap", () => {
+    const cv = generateCV("ai_ml_engineer", "en");
+
+    expect(cv.additionalExperience.map((item) => item.id)).toEqual([
+      "experience.freelance-frontend-developer",
+      "experience.datawow-frontend-developer",
+    ]);
+    expect(cv.additionalExperience.every((item) => item.title && item.organization)).toBe(true);
+  });
+
+  test("security_engineer backfills the one omitted role that keeps the timeline continuous", () => {
+    const cv = generateCV("security_engineer", "en");
+
+    expect(cv.additionalExperience.map((item) => item.id)).toEqual([
+      "experience.datawow-frontend-developer",
+    ]);
+  });
+
+  test("apple_specialist backfills Bank of Thailand to close the pre-2021 gap", () => {
+    const cv = generateCV("apple_specialist", "en");
+
+    expect(cv.additionalExperience.map((item) => item.id)).toEqual([
+      "experience.bank-of-thailand-system-analyst",
+    ]);
+  });
+
+  test("fullstack_engineer needs no bridging since its timeline already has no gap", () => {
+    const cv = generateCV("fullstack_engineer", "en");
+
+    expect(cv.additionalExperience).toEqual([]);
   });
 });

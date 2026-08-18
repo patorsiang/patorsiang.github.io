@@ -34,31 +34,32 @@ export const experiences = [
     },
     highlights: [
       {
-        en: "Developed full-stack features across Vue.js, Nuxt.js, Node.js, APIs, and SQL-backed application flows.",
+        en: "Developed full-stack features for SECPlayground, a hands-on cybersecurity training platform, across Vue.js, Nuxt.js, Node.js, APIs, and SQL-backed application flows.",
         translated: {
           th: {
             value:
-              "พัฒนา full-stack features ด้วย Vue.js, Nuxt.js, Node.js, APIs และ application flows ที่ใช้ SQL",
-            status: "reviewed",
+              "พัฒนา full-stack features สำหรับ SECPlayground แพลตฟอร์มฝึกอบรมด้าน cybersecurity แบบลงมือทำจริง ด้วย Vue.js, Nuxt.js, Node.js, APIs และ application flows ที่ใช้ SQL",
+            status: "ai_draft",
           },
         },
       },
       {
-        en: "Built and maintained user-facing interfaces, backend services, and integration points for cybersecurity and gamification product needs.",
+        en: "Built and maintained user-facing interfaces, backend services, and integration points powering gamified training content and challenges.",
         translated: {
           th: {
             value:
-              "สร้างและดูแล user-facing interfaces, backend services และ integration points สำหรับผลิตภัณฑ์ด้าน cybersecurity และ gamification",
-            status: "reviewed",
+              "สร้างและดูแล user-facing interfaces, backend services และ integration points ที่รองรับเนื้อหาการฝึกอบรมและ challenges แบบ gamification",
+            status: "ai_draft",
           },
         },
       },
       {
-        en: "Collaborated on implementation, testing, deployment, and maintenance work",
+        en: "Collaborated across implementation, testing, and deployment cycles to ship features into production.",
         translated: {
           th: {
-            value: "ทำงานร่วมกับทีมด้านพัฒนา, ทดสอบ และการ deploy, ปรับปรุง และ การดูแลระบบ",
-            status: "reviewed",
+            value:
+              "ทำงานร่วมกับทีมตลอดขั้นตอน implementation, testing และ deployment เพื่อนำฟีเจอร์ขึ้นใช้งานจริง",
+            status: "ai_draft",
           },
         },
       },
@@ -123,31 +124,32 @@ export const experiences = [
     },
     highlights: [
       {
-        en: "Worked with multiple frameworks, including React, Next.js, and WordPress, to meet diverse project requirements.",
+        en: "Delivered 2 client web projects end-to-end - from requirements gathering to production deployment - using React, Next.js, and WordPress.",
         translated: {
           th: {
             value:
-              "ทำงานกับ frameworks หลากหลาย รวมถึง React, Next.js และ WordPress เพื่อตอบสนองความต้องการของโปรเจกต์",
-            status: "reviewed",
+              "ส่งมอบโปรเจกต์เว็บให้ลูกค้า 2 โปรเจกต์แบบครบวงจร ตั้งแต่เก็บความต้องการจนถึงนำขึ้นใช้งานจริง ด้วย React, Next.js และ WordPress",
+            status: "ai_draft",
           },
         },
       },
       {
-        en: "Built responsive web experiences following design specifications from requirements to production deployment.",
+        en: "Built responsive web and dashboard interfaces matched to each client's design specifications and hosting requirements.",
         translated: {
           th: {
-            value: "สร้างเว็บ responsive ตามแบบออกแบบตั้งแต่เก็บความต้องการจนถึงนำขึ้นใช้งาน",
-            status: "reviewed",
+            value:
+              "สร้างเว็บและ dashboard แบบ responsive ให้ตรงกับ design specifications และความต้องการด้าน hosting ของลูกค้าแต่ละราย",
+            status: "ai_draft",
           },
         },
       },
       {
-        en: "Communicated effectively with clients and team members to ensure a clear understanding and successful project delivery.",
+        en: "Managed client communication directly, translating feedback into scoped, production-ready changes.",
         translated: {
           th: {
             value:
-              "สื่อสารอย่างมีประสิทธิภาพกับลูกค้าและสมาชิกในทีมเพื่อให้มั่นใจในการส่งมอบโปรเจกต์ที่สำเร็จ",
-            status: "reviewed",
+              "สื่อสารกับลูกค้าโดยตรง และแปลง feedback ให้เป็นการเปลี่ยนแปลงที่กำหนดขอบเขตชัดเจนและพร้อมใช้งานจริง",
+            status: "ai_draft",
           },
         },
       },
@@ -187,22 +189,22 @@ export const experiences = [
     },
     highlights: [
       {
-        en: "Built interfaces for PDPA compliance platforms including Cookie Wow and PDPA Pro, helping users manage privacy controls and consent workflows.",
+        en: "Built interfaces for Cookie Wow and PDPA Pro, PDPA/GDPR consent-management platforms that have since grown to 9,000+ websites and 600M+ consent records.",
         translated: {
           th: {
             value:
-              "พัฒนา interfaces สำหรับแพลตฟอร์ม PDPA compliance รวมถึง Cookie Wow และ PDPA Pro",
-            status: "reviewed",
+              "พัฒนา interfaces สำหรับ Cookie Wow และ PDPA Pro แพลตฟอร์มจัดการ consent ด้าน PDPA/GDPR ที่ปัจจุบันเติบโตถึงกว่า 9,000 เว็บไซต์ และ consent record กว่า 600 ล้านรายการ",
+            status: "ai_draft",
           },
         },
       },
       {
-        en: "Implemented dashboards, LINE bot chat storage systems, and mock exam platforms with real-time data handling needs.",
+        en: "Implemented dashboards, a LINE bot chat storage system, and a mock exam platform, each with real-time data handling needs.",
         translated: {
           th: {
             value:
-              "พัฒนา dashboard ระบบจัดเก็บแชต LINE bot และแพลตฟอร์ม mock exam ที่เกี่ยวข้องกับข้อมูลแบบ real-time",
-            status: "reviewed",
+              "พัฒนา dashboard ระบบจัดเก็บแชต LINE bot และแพลตฟอร์ม mock exam ซึ่งแต่ละระบบต้องจัดการข้อมูลแบบ real-time",
+            status: "ai_draft",
           },
         },
       },
@@ -261,12 +263,12 @@ export const experiences = [
     },
     highlights: [
       {
-        en: "Worked on DLTBond, a blockchain-based government bond platform using Angular, Node.js, Go, and Hyperledger Fabric; developed internal dashboards and maintained the system.",
+        en: "Worked on DLTBond, a blockchain-based government bond platform (Angular, Node.js, Go, Hyperledger Fabric) that cut bond delivery time from 15 days to 2 and has issued over 160 billion baht across 10 bond series since 2020; developed internal dashboards and maintained the system.",
         translated: {
           th: {
             value:
-              "ทำงานในโปรเจกต์ DLTBond แพลตฟอร์มพันธบัตรรัฐบาลที่ใช้ blockchain พัฒนา dashboard ภายในและดูแลระบบ",
-            status: "reviewed",
+              "ทำงานในโปรเจกต์ DLTBond แพลตฟอร์มพันธบัตรรัฐบาลที่ใช้ blockchain (Angular, Node.js, Go, Hyperledger Fabric) ซึ่งช่วยลดระยะเวลาส่งมอบพันธบัตรจาก 15 วันเหลือ 2 วัน และออกพันธบัตรไปแล้วกว่า 160,000 ล้านบาทใน 10 รุ่น นับตั้งแต่ปี 2020 พัฒนา dashboard ภายในและดูแลระบบ",
+            status: "ai_draft",
           },
         },
       },
@@ -281,11 +283,12 @@ export const experiences = [
         },
       },
       {
-        en: "Automated repetitive operational workflows using UiPath RPA to reduce manual workload.",
+        en: "Automated 2-3 procurement and contracting review workflows using UiPath RPA, cutting manual checking time.",
         translated: {
           th: {
-            value: "ทำ automation สำหรับ workflow ที่ทำซ้ำบ่อยด้วย UiPath RPA เพื่อลดงาน manual",
-            status: "reviewed",
+            value:
+              "ทำ automation ให้กับ workflow การตรวจสอบด้าน procurement และ contracting จำนวน 2-3 workflow ด้วย UiPath RPA เพื่อลดเวลาตรวจสอบแบบ manual",
+            status: "ai_draft",
           },
         },
       },
