@@ -23,7 +23,10 @@ async function main() {
   const svg = await QRCode.toString(url, {
     type: "svg",
     margin: 1,
-    color: { dark: "#000000", light: "#ffffff" },
+    // Brand teal (brand.ts BRAND_COLORS.accentLight), not black - print is
+    // always dark-on-white regardless of theme (design-system.md), so this
+    // is a single fixed color rather than a light/dark pair.
+    color: { dark: "#0f766e", light: "#ffffff" },
   });
 
   // QRCode's own output has no <title> - inject one so the asset stays
