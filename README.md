@@ -22,7 +22,7 @@ The platform is built as a high-performance monorepo using **Bun** and **Next.js
 │   └── utils/            # Shared utility helpers
 ├── docs/                 # Architecture, requirements, and design decisions
 ├── infra/                # Infrastructure and deployment configurations
-└── legacy-v1/            # Previous production portfolio (current fallback)
+└── legacy-v1/            # Previous production portfolio (retained for reference)
 ```
 
 ## Getting Started
@@ -71,11 +71,10 @@ A specialized engine that generates role-targeted CVs. It handles:
 
 ## Legacy Portfolio Policy
 
-`legacy-v1` contains the previous/current production version of the portfolio.
+`legacy-v1` contains the previous production version of the portfolio. Its GitHub Pages deployment has been decommissioned; `apps/portfolio-web` is now the sole live site.
 
 - **Do NOT delete** this directory.
-- It serves as the **current production fallback** until the 2026 platform is fully live.
-- Post-launch, it will be kept for migration reference and eventually archived.
+- Kept for migration reference; eventually archived.
 
 ## Environment & Secrets
 
@@ -89,16 +88,11 @@ A specialized engine that generates role-targeted CVs. It handles:
 The platform is configured for continuous deployment to **Vercel** via GitHub Actions.
 
 - Pushing to `main` triggers a production deployment of `portfolio-web`.
-- `legacy-v1` deployment is managed separately (see `infra/github-pages` or its own workflow).
+- `legacy-v1` has no active deployment; its GitHub Pages workflow was removed.
 
 ## Deployment Status
 
-The new `apps/portfolio-web` app has a development deployment on Vercel.
-
-- **Development**: Active — `https://patorsiang-portfolio-web.vercel.app` (Placeholder)
-- **Production**: Pending final cutover
-
-`legacy-v1` remains the current production fallback until the new portfolio app is stable.
+- **Production**: Active — `https://patstudio.vercel.app`
 
 See [Vercel Deployment Details](docs/deployment/vercel.md) for project settings and environment configuration.
 

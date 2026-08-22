@@ -12,7 +12,7 @@ const meta = {
       "A structured content and CV generation system for maintaining role-specific portfolio material.",
     technologies: ["TypeScript", "Next.js", "Bun", "Tailwind CSS"],
     meta: ["web", "launched"],
-    links: [{ label: "Repository", href: "https://github.com/patorsiang/patorsiang.github.io" }],
+    links: [{ label: "Repository", href: "https://github.com/patorsiang/patstudio" }],
   },
 } satisfies Meta<typeof ProjectCard>;
 

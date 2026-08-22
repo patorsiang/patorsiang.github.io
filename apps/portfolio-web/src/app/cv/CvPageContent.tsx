@@ -8,6 +8,7 @@ import { ProjectCard } from "@/components/molecules/ProjectCard";
 import { SkillGroup } from "@/components/molecules/SkillGroup";
 import { CVSection } from "@/components/organisms/CVSection";
 import { PageShell } from "@/components/templates/PageShell";
+import { siteUrl } from "@/lib/seo";
 
 import { CvToolbar } from "./CvToolbar";
 
@@ -35,7 +36,7 @@ const sectionLabels = {
 } as const satisfies Record<CvLanguage, Record<string, string>>;
 
 const portfolioQrCodeSrc = "/portfolio-qr.svg";
-const fallbackPortfolioUrl = "https://patorsiang-github-io.vercel.app/";
+const fallbackPortfolioUrl = `${siteUrl}/`;
 
 type CvPageContentProps = {
   readonly cv: GeneratedCV;

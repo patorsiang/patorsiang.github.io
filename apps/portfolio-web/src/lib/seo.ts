@@ -6,7 +6,7 @@ export const defaultTitle = "Napatchol Thaipanich | Full-Stack Developer";
 export const defaultDescription =
   "Portfolio of Napatchol Thaipanich, a full-stack developer in Bangkok working on practical web systems, applied AI projects, and security-aware software.";
 export const siteUrl =
-  normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL) ?? "https://patorsiang.github.io";
+  normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL) ?? "https://patstudio.vercel.app";
 export const siteMetadataBase = new URL(siteUrl);
 
 /**
@@ -15,7 +15,7 @@ export const siteMetadataBase = new URL(siteUrl);
  * paste in by mistake - that shape throws in `new URL()` and breaks the
  * production build. Treat a schemeless value as https rather than fail.
  */
-function normalizeSiteUrl(value: string | undefined): string | undefined {
+export function normalizeSiteUrl(value: string | undefined): string | undefined {
   if (!value) {
     return undefined;
   }

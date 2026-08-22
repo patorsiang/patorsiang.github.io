@@ -5,17 +5,17 @@ This document outlines the deployment setup for the Patorsiang Portfolio Platfor
 ## Status
 
 - **Development Deployment**: Active
-- **Production Deployment**: Cutover in progress. `legacy-v1`'s GitHub Pages workflow (`nextjs.yml`) has been removed - `apps/portfolio-web` is now the only app built and deployed. `legacy-v1`'s source stays in the repo (`bun run build:legacy` etc. still work locally); only the automated deploy stopped.
-- Taking the already-live `patorsiang.github.io` GitHub Pages site down, or repointing its DNS to the new Vercel deployment, is a separate manual step (repo Settings / DNS), not done as part of this change.
+- **Production Deployment**: Cut over. `legacy-v1`'s GitHub Pages workflow (`nextjs.yml`) was removed; `apps/portfolio-web` is the only app built and deployed. `legacy-v1`'s source stays in the repo (`bun run build:legacy` etc. still work locally); only the automated deploy stopped.
+- The `patorsiang.github.io` GitHub Pages site has been taken down (repo Settings → Pages disabled). The repo and Vercel project were both renamed to `patstudio`.
 
 ## Deployment URLs
 
-- **Production URL**: `https://patorsiang-github-io.vercel.app` (no custom domain configured yet)
+- **Production URL**: `https://patstudio.vercel.app` (no custom domain configured yet)
 - **Preview URL**: generated per-deploy by `deploy-preview`
 
 ## App Deployed
 
-- **Project**: `patorsiang-github-io` (Vercel slugifies the linked repo name, `patorsiang.github.io`)
+- **Project**: `patstudio`
 - **Location**: `apps/portfolio-web`
 
 ## Package Manager
@@ -65,12 +65,12 @@ These packages are transpiled by Next.js as configured in `apps/portfolio-web/ne
 
 The following environment variables should be configured in the Vercel Dashboard:
 
-| Variable                       | Scope      | Required    | Description                                            |
-| :----------------------------- | :--------- | :---------- | :----------------------------------------------------- |
-| `NEXT_PUBLIC_APP_ENV`          | Production | Yes         | Set to `production`. Configured.                       |
-| `NEXT_PUBLIC_SITE_URL`         | Production | Recommended | `https://patorsiang-github-io.vercel.app`. Configured. |
-| `NEW_RELIC_LICENSE_KEY`        | Production | Optional    | Private license key for New Relic.                     |
-| `NEXT_PUBLIC_NEW_RELIC_APP_ID` | Production | Optional    | Public application ID for New Relic Browser.           |
+| Variable                       | Scope      | Required    | Description                                  |
+| :----------------------------- | :--------- | :---------- | :------------------------------------------- |
+| `NEXT_PUBLIC_APP_ENV`          | Production | Yes         | Set to `production`. Configured.             |
+| `NEXT_PUBLIC_SITE_URL`         | Production | Recommended | `https://patstudio.vercel.app`. Configured.  |
+| `NEW_RELIC_LICENSE_KEY`        | Production | Optional    | Private license key for New Relic.           |
+| `NEXT_PUBLIC_NEW_RELIC_APP_ID` | Production | Optional    | Public application ID for New Relic Browser. |
 
 Only the Production environment is configured so far - Preview builds still fall back to the defaults in `src/lib/seo.ts`, which is correct: a preview deploy's real URL is different on every run, so a fixed `NEXT_PUBLIC_SITE_URL` would be wrong there.
 
@@ -83,17 +83,15 @@ Only the Production environment is configured so far - Preview builds still fall
 
 ## Deployment Verification
 
-- **Last Checked**: 2026-06-01
-- **Result**: Development deployment is active and reachable.
-- **Notes**: SEO metadata is currently using the fallback canonical URL.
+- **Last Checked**: 2026-08-22
+- **Result**: Production deployment is active and reachable at `https://patstudio.vercel.app`.
+- **Notes**: SEO metadata now falls back to the current production origin.
 
 ## Production Cutover TODO
 
-Before the final production cutover:
-
-- [ ] Choose a custom domain, if any - currently shipping on the Vercel-assigned `patorsiang-github-io.vercel.app`.
+- [ ] Choose a custom domain, if any - currently shipping on the Vercel-assigned `patstudio.vercel.app`.
 - [x] Configure production-specific environment variables in Vercel: `NEXT_PUBLIC_APP_ENV`, `NEXT_PUBLIC_SITE_URL`.
 - [x] Update `NEXT_PUBLIC_SITE_URL` to the current production domain.
-- [ ] Verify SEO and Open Graph metadata on the live deployment (checked locally with the env var overridden; not yet checked against the real deploy).
+- [ ] Verify SEO and Open Graph metadata on the live deployment (pending redeploy with the updated fallback and renamed project).
 - [x] Finalize the `legacy-v1` fallback and archival plan: its GitHub Pages workflow is removed, source stays in the repo unbuilt by default.
-- [ ] Decide what happens to the already-live GitHub Pages site at `patorsiang.github.io` (leave it, disable Pages in repo Settings, or repoint DNS to the new Vercel deployment) - manual, outside this repo's code.
+- [x] Decide what happens to the already-live GitHub Pages site at `patorsiang.github.io`: disabled in repo Settings. Repo and Vercel project both renamed to `patstudio`.

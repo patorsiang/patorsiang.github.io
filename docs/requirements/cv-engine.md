@@ -770,7 +770,7 @@ Manual overrides should be visible in admin/debug mode so the generated CV does 
       },
       {
         "label": "Portfolio",
-        "url": "https://patorsiang.github.io/en"
+        "url": "https://patstudio.vercel.app/en"
       }
     ]
   },

@@ -1,15 +1,15 @@
 # Vercel Hosting
 
-`apps/portfolio-web` is the intended future production portfolio app.
+`apps/portfolio-web` is the production portfolio app, deployed to Vercel as the `patstudio` project.
 
-## Intended Environments
+## Environments
 
 - `local`: developer machine using Bun.
 - `staging`: preview or staging deployment for review before production.
-- `production`: public 2026 portfolio site.
+- `production`: public site at `https://patstudio.vercel.app`.
 
 ## Notes
 
 - Do not commit Vercel tokens or production environment values.
 - Configure real environment variables in the Vercel project settings.
-- Keep `legacy-v1` available until the production deployment decision is finalized.
+- `legacy-v1` is kept for reference; it has no active deployment.
