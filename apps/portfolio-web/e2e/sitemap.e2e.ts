@@ -75,6 +75,29 @@ test("the CV redirect routes are not advertised", async ({ request }) => {
   expect(paths.has("/en/cv/fullstack-engineer")).toBe(true);
 });
 
+test("post entries carry lastModified from their real publish date; other entries don't", async ({
+  request,
+}) => {
+  const body = await (await request.get("/sitemap.xml")).text();
+
+  const postEntry = entryFor(body, "/posts/bkkjs-summer-2026");
+  expect(postEntry).toContain("<lastmod>2026-06-14");
+
+  const aboutEntry = entryFor(body, "/about");
+  expect(aboutEntry).not.toContain("<lastmod>");
+});
+
 function locationsIn(xml: string): string[] {
   return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
+}
+
+function entryFor(xml: string, path: string): string {
+  const entries = [...xml.matchAll(/<url>[\s\S]*?<\/url>/g)].map((match) => match[0]);
+  const entry = entries.find((candidate) => new URL(locationsIn(candidate)[0]).pathname === path);
+
+  if (!entry) {
+    throw new Error(`No sitemap entry found for ${path}`);
+  }
+
+  return entry;
 }

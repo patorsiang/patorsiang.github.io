@@ -868,10 +868,11 @@ The portfolio should feel interactive, dynamic, and modern, while still staying 
 ## 9.3 SEO and AI Readability
 
 * Metadata per page
-* Open Graph image
-* Sitemap
+* Open Graph image: a site-wide default, plus a dynamic per-post image on `/posts/[slug]`
+* Sitemap, with `lastModified` on post entries sourced from each post's real publish date
 * Robots.txt
-* Structured data where useful
+* Structured data: `Person` and `WebSite` site-wide, `BreadcrumbList` and `BlogPosting` on post pages
+* Google Search Console verification (`GOOGLE_SITE_VERIFICATION`, see `docs/deployment/vercel.md`)
 * `llms.txt` for an AI-readable site summary
 * Clear project summaries for AI search and retrieval
 * Public project pages should explain context without requiring the reader to open GitHub first

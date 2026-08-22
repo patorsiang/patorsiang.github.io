@@ -65,12 +65,13 @@ These packages are transpiled by Next.js as configured in `apps/portfolio-web/ne
 
 The following environment variables should be configured in the Vercel Dashboard:
 
-| Variable                       | Scope      | Required    | Description                                  |
-| :----------------------------- | :--------- | :---------- | :------------------------------------------- |
-| `NEXT_PUBLIC_APP_ENV`          | Production | Yes         | Set to `production`. Configured.             |
-| `NEXT_PUBLIC_SITE_URL`         | Production | Recommended | `https://patstudio.vercel.app`. Configured.  |
-| `NEW_RELIC_LICENSE_KEY`        | Production | Optional    | Private license key for New Relic.           |
-| `NEXT_PUBLIC_NEW_RELIC_APP_ID` | Production | Optional    | Public application ID for New Relic Browser. |
+| Variable                       | Scope      | Required    | Description                                                                                                     |
+| :----------------------------- | :--------- | :---------- | :-------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_APP_ENV`          | Production | Yes         | Set to `production`. Configured.                                                                                |
+| `NEXT_PUBLIC_SITE_URL`         | Production | Recommended | `https://patstudio.vercel.app`. Configured.                                                                     |
+| `NEW_RELIC_LICENSE_KEY`        | Production | Optional    | Private license key for New Relic.                                                                              |
+| `NEXT_PUBLIC_NEW_RELIC_APP_ID` | Production | Optional    | Public application ID for New Relic Browser.                                                                    |
+| `GOOGLE_SITE_VERIFICATION`     | Production | Recommended | Google Search Console HTML-tag verification code; provided by whoever registers the property, never fabricated. |
 
 Only the Production environment is configured so far - Preview builds still fall back to the defaults in `src/lib/seo.ts`, which is correct: a preview deploy's real URL is different on every run, so a fixed `NEXT_PUBLIC_SITE_URL` would be wrong there.
 

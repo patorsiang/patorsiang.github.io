@@ -82,3 +82,31 @@ test("posts appear in the sitemap", async ({ request }) => {
   expect(body).toContain("/posts");
   expect(body).toContain("/posts/bkkjs-summer-2026");
 });
+
+test("a post has its own OG image, distinct from the site default", async ({ page, request }) => {
+  const imageResponse = await request.get("/posts/bkkjs-summer-2026/opengraph-image");
+  expect(imageResponse.status()).toBe(200);
+  expect(imageResponse.headers()["content-type"]).toContain("image/png");
+
+  await page.goto("/posts/bkkjs-summer-2026");
+  const ogImage = await page.locator('meta[property="og:image"]').getAttribute("content");
+
+  expect(ogImage).toContain("/posts/bkkjs-summer-2026/opengraph-image");
+});
+
+test("a post page carries BreadcrumbList and BlogPosting structured data", async ({ page }) => {
+  await page.goto("/posts/bkkjs-summer-2026");
+
+  const scripts = await page
+    .locator('script[type="application/ld+json"]')
+    .evaluateAll((nodes) => nodes.map((node) => JSON.parse(node.textContent ?? "null")));
+
+  const breadcrumb = scripts.find((script) => script["@type"] === "BreadcrumbList");
+  const blogPosting = scripts.find((script) => script["@type"] === "BlogPosting");
+
+  expect(breadcrumb).toBeTruthy();
+  expect(blogPosting).toMatchObject({
+    headline: expect.stringContaining("BKK.js"),
+    datePublished: "2026-06-14",
+  });
+});

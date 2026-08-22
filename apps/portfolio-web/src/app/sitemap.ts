@@ -22,13 +22,14 @@ export const dynamic = "force-static";
  * A brand-new post's sitemap entry therefore waits for the next deploy; the
  * spec accepts this as the one place the hybrid sync approach still lags.
  *
- * No `lastModified`: nothing here tracks per-page modification dates, and
- * stamping every entry with the build time (as the legacy site does) tells
- * crawlers the whole site changed on every deploy, which is worse than saying
- * nothing.
+ * `lastModified` is emitted only for post entries, from each post's real
+ * `date` field. Nothing tracks a per-page modified date for the static pages
+ * or the CV routes, and stamping those with the build time (as the legacy
+ * site did) tells crawlers the whole site changed on every deploy, which is
+ * worse than saying nothing - so they stay untagged.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages: { path: string; priority: number }[] = [
+  const pages: { path: string; priority: number; lastModified?: Date }[] = [
     { path: "/", priority: 1 },
     { path: "/about", priority: 0.8 },
     { path: "/experience", priority: 0.8 },
@@ -38,12 +39,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...cvLanguages.flatMap((lang) =>
       cvRoleSlugs.map((role) => ({ path: `/${lang}/cv/${role}`, priority: 0.7 })),
     ),
-    ...POST_FALLBACK.map((post) => ({ path: `/posts/${post.slug}`, priority: 0.6 })),
+    ...POST_FALLBACK.map((post) => ({
+      path: `/posts/${post.slug}`,
+      priority: 0.6,
+      lastModified: new Date(post.date),
+    })),
   ];
 
-  return pages.map(({ path, priority }) => ({
+  return pages.map(({ path, priority, lastModified }) => ({
     url: new URL(path, siteUrl).href,
     changeFrequency: "monthly",
     priority,
+    ...(lastModified ? { lastModified } : {}),
   }));
 }

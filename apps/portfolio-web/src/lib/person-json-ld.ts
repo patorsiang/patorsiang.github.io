@@ -6,6 +6,7 @@ import { profile } from "@patorsiang/content";
 import { sanitizeUrl } from "@patorsiang/utils/sanitize-url";
 
 import { siteUrl } from "./seo";
+import { toJsonLdScript } from "./json-ld";
 
 /**
  * Person structured data (schema.org), read by search engines for rich
@@ -16,10 +17,10 @@ import { siteUrl } from "./seo";
  * happened to contain "</script>" could never end the tag early.
  *
  * A plain exported string, not computed inline in layout.tsx: next.config.ts
- * hashes this exact string for the CSP script-src allowlist (see
- * buildContentSecurityPolicy), so the hash and the rendered content can never
- * drift apart the way a nonce-based approach would need per-request
- * plumbing to guarantee.
+ * keeps 'unsafe-inline' in its CSP script-src (see the comment above
+ * contentSecurityPolicy) rather than a per-script hash allowlist, because
+ * Next's own RSC hydration scripts vary per request and can't be hashed. This
+ * script rides on that same unsafe-inline allowance, not a hash of its own.
  */
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -39,4 +40,4 @@ const personJsonLd = {
     .map((link) => sanitizeUrl(link.url)),
 };
 
-export const personJsonLdScript = JSON.stringify(personJsonLd).replaceAll("<", "\\u003c");
+export const personJsonLdScript = toJsonLdScript(personJsonLd);

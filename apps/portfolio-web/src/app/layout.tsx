@@ -4,9 +4,12 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { OfflineBanner } from "@/components/molecules/OfflineBanner";
 import { ServiceWorkerRegistration } from "@/components/molecules/ServiceWorkerRegistration";
+import { buildWebsiteJsonLd, toJsonLdScript } from "@/lib/json-ld";
 import { personJsonLdScript } from "@/lib/person-json-ld";
 import { defaultDescription, defaultTitle, ownerName, siteMetadataBase, siteName } from "@/lib/seo";
 import { themeBootstrapScript } from "@/lib/theme";
+
+const websiteJsonLdScript = toJsonLdScript(buildWebsiteJsonLd());
 
 import { geistMono, geistSans } from "./fonts";
 import "./globals.css";
@@ -25,6 +28,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  ...(process.env.GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }
+    : {}),
   openGraph: {
     title: defaultTitle,
     description: defaultDescription,
@@ -60,6 +66,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: personJsonLdScript,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: websiteJsonLdScript,
           }}
         />
         <OfflineBanner />
